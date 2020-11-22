@@ -1,0 +1,89 @@
+// Font Imports
+@import url('https://fonts.googleapis.com/css2?family=Cairo&family=Hind+Vadodara&family=Montserrat&display=swap');
+
+// Color Theme List
+$ColorTheme: (
+    Main: #355070,
+    MainContrast: #E56B6F,
+    Accent: #6D597A,
+    Accent1: #B56576,
+    Accent2: #EAAC8B,
+    Base: #ffffff
+);
+
+// Font Theme List
+$FontTheme: (
+    Heading: 'Montserrat',
+    Secondary: 'Hind Vadodara',
+    Accent: 'Montserrat',
+);
+// Font Size List
+$FontSizeList: (
+    Minimum: 5vh,
+    Regular: 8rem,
+    Maximum: 6vw
+);
+
+// Button, Textfield Size List
+$ComponentWidthList:(
+    Large: 90%,
+    Medium: 70%,
+    Small: 40%
+);
+$ComponentHeightList:(
+    Large: 150px,
+    Medium: 85px,
+    Small: 55px
+);
+
+// Getter Functions
+/*
+ COLOR THEME
+ * @param $Color
+ * You can pass the following arguments
+ ! Main, MainContrast, Accent, Accent1, Accent2, Base
+*/
+@function GetColorTheme($Color){
+    @return map-get($map: $ColorTheme, $key: $Color);
+}
+
+/*
+ FONT THEME
+ * @param $FontType
+ * You can pass the following arguments
+ ! Heading, Secondary, Accent
+*/
+@function GetFontTheme($FontType){
+    @return map-get($map: $FontTheme, $key: $FontType);
+}
+
+/*
+ FONT SIZE
+ * @param $FontSize
+ * You can pass the following arguments
+ ! Minimum, Regular, Maximum
+*/
+@function GetFontSize($FontSize){
+    @return map-get($map: $FontSizeList, $key: $FontSize);
+}
+
+// Setting Functions
+
+/*
+ COMPONENT WIDTH
+ * @param $ComponentWidth
+ * You can pass the following arguments
+ ! Large, Medium, Small
+*/
+@function SetComponentWidth($ComponentWidth){
+    @return map-get($map: $ComponentWidthList, $key: $ComponentWidth);
+}
+/*
+ COMPONENT HEIGHT
+ * @param $ComponentHeight
+ * You can pass the following arguments
+ ! Large, Medium, Small
+*/
+@function SetComponentHeight($ComponentHeight){
+    @return map-get($map: $ComponentHeightList, $key: $ComponentHeight);
+}
