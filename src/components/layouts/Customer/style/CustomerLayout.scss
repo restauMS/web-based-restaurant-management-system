@@ -1,0 +1,10 @@
+@import '../../../../theme/theme';
+
+.CustomerLayoutContainer{
+    background-color: GetColorTheme(Main);
+    display: flex;
+    flex-flow: column;
+    padding: 0;
+    margin: auto;
+    height: 100vh;
+}
