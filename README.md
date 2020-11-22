@@ -7,7 +7,13 @@ TODO:
 *****
 # Instruction:
 
-###### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
+  
+## Before Running the Scripts
+### `cd web-based-restaurant-management-system`  
+### `npm install`
+Wait for the npm to finish installing all the needed dependencies  
+After the install you can now `npm start`
 
 ## Available Scripts
 
