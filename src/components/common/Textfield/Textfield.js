@@ -4,12 +4,12 @@ export default class Textfield extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // State stuff goes here
+            // State stuff code goes here
         }
     }
     render(){
         return (
-            <input type="text" className="Textfield"/>
+            <input type="text" className="Textfield" placeholder={this.props.PlaceholderTitle}/>
         )
     }
 }
