@@ -1,0 +1,20 @@
+@import '../../../../theme/theme';
+
+.Textfield {
+    transition: 0.1s ease-in-out;
+    border: none;
+    border-radius: clamp(10px,100px,200px);
+    background-color: GetColorTheme(Base);
+    text-align: center;
+    font-family: GetFontTheme(Secondary);
+    color: GetColorTheme(Main);
+    font-size: clamp(GetFontSize(Minimum),GetFontSize(Regular),GetFontSize(Maximum));
+    height: clamp(SetCompnentHeight(Small), SetCompnentHeight(Medium),SetCompnentHeight(Large));
+    margin: auto;
+    &:focus{
+        outline: none;
+    }
+    &:hover{
+        filter: drop-shadow(0 0 0.10rem rgba(0, 0, 0, 0.342));
+    }
+}

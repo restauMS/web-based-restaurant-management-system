@@ -1,0 +1,18 @@
+@import '../../../../theme/theme';
+
+.Label {
+    color: GetColorTheme(Base);
+    font-family: GetFontTheme(Heading);
+    font-size: clamp(GetFontSize(Minimum),GetFontSize(Regular),GetFontSize(Maximum));
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+}
+.Label-Contrast {
+    color: GetColorTheme(Main);
+    font-family: GetFontTheme(Heading);
+    font-size: clamp(GetFontSize(Minimum), GetFontSize(Regular), GetFontSize(Maximum));
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+}
