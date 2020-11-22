@@ -13,7 +13,7 @@ TODO:
 ### `cd web-based-restaurant-management-system`  
 ### `npm install`
 Wait for the npm to finish installing all the needed dependencies  
-After the install you can now test `npm start`.\
+After the install you can now `npm start`
 
 ## Available Scripts
 
