@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomerLabel from '../../common/Label/Label';
 import CustomerTextfield from '../../common/Textfield/Textfield';
+import CustomerButton from '../../common/Button/Button';
 // * All these function components are probably class components not sure yet.
 // function LogCustomerName(props){
 //     return (
@@ -29,11 +30,15 @@ export default class CustomerView extends React.Component{
         return (
         <div style={
             {display: 'flex', 
-            flexFlow: 'column',
-            alignContent: 'space-between'}}>
+            flexFlow: 'column'}}>
             <CustomerLabel LabelContent='welcome.'
             isContrast={true}/>
             <CustomerTextfield
+            PlaceholderTitle='Enter Name'
+            />
+            <CustomerButton
+            isContrast = {true}
+            ButtonText = 'Submit.'
             />
         </div>
         );
