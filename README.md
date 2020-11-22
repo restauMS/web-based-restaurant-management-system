@@ -5,9 +5,9 @@ TODO:
 - [x] Setup the Development Environment
 - [x] Configure Directory Structure  
 *****
-# Getting Started with Create React App
+# Instruction:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
