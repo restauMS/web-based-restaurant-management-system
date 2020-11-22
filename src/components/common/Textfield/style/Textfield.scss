@@ -9,12 +9,12 @@
     font-family: GetFontTheme(Secondary);
     color: GetColorTheme(Main);
     font-size: clamp(GetFontSize(Minimum),GetFontSize(Regular),GetFontSize(Maximum));
+    font-weight: bold;
+    width: clamp(SetComponentWidth(Small), SetComponentWidth(Medium), SetComponentWidth(Large));
     height: clamp(SetCompnentHeight(Small), SetCompnentHeight(Medium),SetCompnentHeight(Large));
-    margin: auto;
+    margin: 10px auto;
+    padding: 10px;
     &:focus{
         outline: none;
-    }
-    &:hover{
-        filter: drop-shadow(0 0 0.10rem rgba(0, 0, 0, 0.342));
     }
 }
