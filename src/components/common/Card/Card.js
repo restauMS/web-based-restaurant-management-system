@@ -4,7 +4,7 @@ function AlertCardComponent(props){
     return(
         <div className="AlertCard">
             <h1>
-                Alert Card
+                {props.PropObject.Title}
             </h1>
         </div>
     )
@@ -24,7 +24,7 @@ class TableCardComponent extends React.Component{
         super(props);
         this.state = {
             // Default Table Card Component value
-            isTaken = false
+            isTaken: false
         }
     }
     render(){
@@ -38,44 +38,53 @@ class TableCardComponent extends React.Component{
     }
 }
 
-class FoodItemCardComponent extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            // Default Food Item Card Component value
-            isRounded = false
-        }
-    }
-    render(){
+function FoodItemCardComponent(props){
         return (
-            <div className={this.state.isTaken ? 'FoodItemCard' : 'FoodItemCardRounded'}>
+            <div className={props.PropObject.isRounded ? 'FoodItemCard' : 'FoodItemCardRounded'}>
                 <h1>
                     Food Card
                 </h1>
             </div>
         )
-    }
 }
 
+/*
+ @param PropCardType 
+ * Pass in a String indicating what type of Card are we trying to Render
+ ? returns a Sub Component
 
-function SetCardType(PropCardType){
+ @param SubPropObject
+ * Pass in an Object that will contain Props for the Sub Components
+ ? returns an Object
+*/
+function SetCardType(PropCardType, SubPropObject){
     switch(PropCardType){
         case 'Alert': {
-            return <AlertCardComponent/>;
+            return <AlertCardComponent
+                    PropObject={SubPropObject}
+                    />;
         }
         case 'OrderNote': {
-            return <OrderNoteCardComponent/>;
+            return <OrderNoteCardComponent
+                    PropObject={SubPropObject}
+                    />;
         }
         case 'TableCard': {
-            return <TableCardComponent/>;
+            return <TableCardComponent
+                    PropObject={SubPropObject}
+                    />;
         }
         case 'FoodCard': {
-            return <FoodItemCardComponent/>
+            return <FoodItemCardComponent
+                    PropObject={SubPropObject}
+                    />
         }
+        default:
+            return <h1>Something definitely went wrong :C</h1>
     }
 }
 
 export default function Card(props) {
-        // Funny code tbh this is very spaghetti lol xd, hardly scalable
-        return SetCardType(props.CardType);
+        // Funny code tbh this is very spaghetti lol xd, hardly scalable but it works nonetheless
+        return SetCardType(props.CardType, props.SubPropObject);
 }
