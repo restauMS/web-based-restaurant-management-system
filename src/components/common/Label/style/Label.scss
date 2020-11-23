@@ -4,17 +4,15 @@
     color: GetColorTheme(Base);
     font-family: GetFontTheme(Heading);
     font-size: clamp(GetFontSize(Minimum),GetFontSize(Regular),GetFontSize(Maximum));
-    margin: auto;
+    margin: 10px auto;
     padding: 5px;
-    font-weight: bolder;
     text-align: center;
 }
 .Label-Contrast {
     color: GetColorTheme(Main);
     font-family: GetFontTheme(Heading);
     font-size: clamp(GetFontSize(Minimum), GetFontSize(Regular), GetFontSize(Maximum));
-    font-weight: bolder;
-    margin: auto;
+    margin: 10px auto;
     padding: 5px;
     text-align: center;
 }
