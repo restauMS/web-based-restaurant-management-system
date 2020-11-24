@@ -26,8 +26,8 @@ $FontSizeList: (
 
 // Button, Textfield Size List
 $ComponentWidthList:(
-    Large: 90%,
-    Medium: 70%,
+    Large: 100%,
+    Medium: 90%,
     Small: 40%
 );
 $ComponentHeightList:(
@@ -67,7 +67,7 @@ $ComponentHeightList:(
     @return map-get($map: $FontSizeList, $key: $FontSize);
 }
 
-// Setting Functions
+// Setter Functions
 
 /*
  COMPONENT WIDTH
