@@ -4,10 +4,11 @@
     border: none;
     border-radius: 100px;
     background-color: GetColorTheme(Main);
-    margin: 10px auto;
+    margin: 20px auto;
     font-family: GetFontTheme(Accent);
     font-weight: bolder;
-    height: clamp(SetComponentHeight(Small),SetComponentHeight(Medium),SetComponentHeight(Large));
+    font-size: clamp(25px, 35px, 60px);
+    height: clamp(SetComponentHeight(Small) - 40px,SetComponentHeight(Medium) - 50px, SetComponentHeight(Large));
     padding: 5px;
     width: clamp(100px,150px,250px);
     transition: 0.2s ease-in-out;
@@ -24,11 +25,12 @@
     border: none;
     border-radius: 100px;
     background-color: GetColorTheme(MainContrast);
-    margin: 10px auto;
+    margin: 20px auto;
     font-family: GetFontTheme(Accent);
     font-weight: bolder;
+    font-size: clamp(25px, 35px, 60px);
     color: GetColorTheme(Base);
-    height: clamp(SetComponentHeight(Small) - 60px,SetComponentHeight(Medium) - 40px, SetComponentHeight(Large));
+    height: clamp(SetComponentHeight(Small) - 20px,SetComponentHeight(Medium) - 30px, SetComponentHeight(Large) -40px);
     padding: 5px;
     width: clamp(150px,200px,350px);
     transition: 0.2s ease-in-out;
