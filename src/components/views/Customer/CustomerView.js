@@ -3,6 +3,7 @@ import CustomerLabel from '../../common/Label/Label';
 import CustomerTextfield from '../../common/Textfield/Textfield';
 import CustomerButton from '../../common/Button/Button';
 
+// eslint-disable-next-line
 class LogPage extends React.Component{
     constructor(props){
         super(props);
