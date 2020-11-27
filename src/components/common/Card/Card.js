@@ -79,7 +79,5 @@ function SetCardType(CardType){
     @param props
 
 */
-export default function Card(CardType) {
-        // Funny code tbh this is very spaghetti lol xd, hardly scalable but it works nonetheless
-        return SetCardType(CardType);
-}
+// Funny code tbh this is very spaghetti lol xd, hardly scalable but it works nonetheless
+export const Card = CardType => SetCardType(CardType)
