@@ -1,4 +1,4 @@
-![Logo for our Web Application System](https://lh3.googleusercontent.com/9Ucr-3XVFtKoz0lesk3iM4H8nY0rIMkob8F6HUCxN52e1Lb6IItnGo-wJRd11ukQBsWl=s85)
+![Logo for our Web Application System](https://github.com/restauMS/web-based-restaurant-management-system/blob/main/public/apple-icon-144x144.png?raw=true)
 # Web-based Restaurant Management System
 A Software Analysis and Design / Software Engineering I project for the 1st semester of AY 2020-2021  
 TODO:  

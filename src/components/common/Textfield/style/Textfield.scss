@@ -8,7 +8,7 @@
     text-align: center;
     font-family: GetFontTheme(Secondary) GetFontTheme(FallbackSecondary);
     color: GetColorTheme(Main);
-    font-size: clamp(GetFontSize(Minimum),GetFontSize(Regular),GetFontSize(Maximum));
+    font-size: clamp(GetFontSize(Minimum)-1vh,GetFontSize(Regular)-1.5rem,GetFontSize(Maximum)-2vw);
     font-weight: bold;
     width: clamp(SetComponentWidth(Small), SetComponentWidth(Medium), SetComponentWidth(Large));
     height: clamp(SetCompnentHeight(Small), SetCompnentHeight(Medium),SetCompnentHeight(Large));
