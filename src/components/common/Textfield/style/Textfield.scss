@@ -6,7 +6,7 @@
     border-radius: clamp(10px,100px,200px);
     background-color: GetColorTheme(Base);
     text-align: center;
-    font-family: GetFontTheme(Secondary);
+    font-family: GetFontTheme(Secondary) GetFontTheme(FallbackSecondary);
     color: GetColorTheme(Main);
     font-size: clamp(GetFontSize(Minimum),GetFontSize(Regular),GetFontSize(Maximum));
     font-weight: bold;
