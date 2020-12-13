@@ -1,15 +1,10 @@
 import React from 'react';
 import './style/Textfield.scss';
-export default class Textfield extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // State stuff code goes here
-        }
-    }
-    render(){
-        return (
-            <input type="text" className="Textfield" placeholder={this.props.PlaceholderTitle}/>
-        )
-    }
+
+const Textfield = props => {
+    return (
+        <input type="text" className="Textfield" placeholder={props.PlaceholderTitle}/>
+    )
 }
+
+export default Textfield;
