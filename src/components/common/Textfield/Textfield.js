@@ -3,7 +3,11 @@ import './style/Textfield.scss';
 
 const Textfield = props => {
     return (
-        <input type="text" className="Textfield" placeholder={props.PlaceholderTitle}/>
+        <input 
+        type="text" 
+        className="Textfield" 
+        handleChange={props.ChangeHandler}
+        placeholder={props.PlaceholderTitle}/>
     )
 }
 
