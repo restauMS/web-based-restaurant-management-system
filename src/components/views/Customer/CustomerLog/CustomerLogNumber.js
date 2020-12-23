@@ -20,7 +20,7 @@ const CustomerLogNumber = props => {
         >
             {/* * Customer Label: Just a heading */}
             <CustomerLabel 
-                LabelContent='we appreciate you dining with us 😊'
+                LabelContent='we appreciate you dining with us'
                 isLabelContrast={false}
             />
             {/* * Customer Textfield: A custom Textfield Component where customer's can input text*/}
