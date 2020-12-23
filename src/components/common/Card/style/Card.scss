@@ -1,5 +1,17 @@
 @import '../../../../theme/theme';
 
+.TableCard {
+    color: GetColorTheme(Main);
+}
+
+.TableCardTaken{
+    
+}
+
 .Card {
-    color: black;
+    max-height: 100px;
+}
+
+.CardTaken {
+    
 }

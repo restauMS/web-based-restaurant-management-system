@@ -1,8 +1,7 @@
 import React from 'react';
-
 /*
- * Alert Card Component
- ? Alert card for important pieces of information like Warnings, Heads up, and Errors.
+    * Alert Card Component
+    ? Card Component responsible for warning users
 */
 const AlertCardComponent = props => 
 {
@@ -16,8 +15,8 @@ const AlertCardComponent = props =>
 }
 
 /*
- *
- 
+    * Order Card Component
+    ? Card component responsible for taking specific notes for a specific dish ordered
 */
 export const OrderNoteCardComponent = props => 
 {
@@ -31,22 +30,23 @@ export const OrderNoteCardComponent = props =>
 }
 
 /*
- *
- 
+    * Table Card Component
+    ? Card component responsible for outputting Table availability
 */
 export const TableCardComponent  = props => 
 {
         return (
-            <div className={props.isTaken ? 'TableCard' : 'TableCardTaken'}>
+            <div key={props.key} className={props.isTaken ? 'TableCard' : 'TableCardTaken'}>
                 <h1>
-                    Table Card
+                    Table Card {props.TableNumber}
                 </h1>
             </div>
         )
 }
+
 /*
- * 
- 
+    * Food Item Card Component
+    ? 
 */
 export const FoodItemCardComponent = props => 
 {

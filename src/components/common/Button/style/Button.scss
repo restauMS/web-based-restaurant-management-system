@@ -5,7 +5,7 @@
     border-radius: 100px;
     background-color: GetColorTheme(Main);
     margin: 10px auto;
-    font-family: GetFontTheme(Accent) GetFontTheme(FallbackSecondary);
+    font-family: GetFontTheme(Accent), GetFontTheme(FallbackSecondary);
     font-weight: bolder;
     min-height: clamp(SetComponentHeight(Small) - 60px,SetComponentHeight(Medium) - 40px, SetComponentHeight(Large));
     padding: 5px;
@@ -13,14 +13,14 @@
     transition: 0.2s ease-in-out;
     cursor: pointer;
     &:hover{
-        filter: drop-shadow(0 6px 0.50rem rgba(247, 247, 247, 0.164));
+        filter: drop-shadow(0 6px 0.50rem rgba(0, 0, 0, 0.164));
     }
     &:focus{
         outline: none;
     }
 }
 
-.-Contrast {
+.ButtonContrast {
     background-color: GetColorTheme(MainContrast);
     color: GetColorTheme(Base);
 }

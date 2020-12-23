@@ -4,9 +4,10 @@ import './style/Button.scss';
 const Button = props => {
     return (
         <button 
-        onClick={() => props.buttonFunction}
-        className="Button -Contrast">
-            {props.ButtonText}
+        style ={props.Style}
+        onClick={props.ButtonFunction}
+        className={props.isButtonContrast ? 'Button ButtonContrast' : 'Button'}>
+            {props.ButtonContent}
         </button>
     )
 }
