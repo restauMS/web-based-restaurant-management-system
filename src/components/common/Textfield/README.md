@@ -1,5 +1,5 @@
 # Custom Textfield Component  
-## <b>Custom Textfield Component Properties that can be passed:</b>  
+## Custom Textfield Component Properties that can be passed:  
 ### PlaceHolderTitle   
  Accepts a string
 ### ChangeHandler    
