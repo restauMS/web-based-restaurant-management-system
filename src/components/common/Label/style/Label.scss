@@ -2,13 +2,13 @@
 
 .Label {
     color: GetColorTheme(Base);
-    font-family: GetFontTheme(Heading) GetFontTheme(Fallback);
+    font-family: GetFontTheme(Accent), GetFontTheme(Fallback);
     font-size: clamp(GetFontSize(Minimum),GetFontSize(Regular),GetFontSize(Maximum));
     margin: 10px auto;
     padding: 5px;
     text-align: center;
 }
-.-Contrast {
+.LabelContrast {
     color: GetColorTheme(Main);
     font-family: GetFontTheme(Heading);
 }
