@@ -22,7 +22,7 @@ const CustomerLogAddress = props => {
         >
             {/* * Customer Label: Just a heading */}
             <CustomerLabel 
-                LabelContent={`how's your day? ⛅`}
+                LabelContent={`how's your day?`}
                 isLabelContrast={false}
             />
             {/* * Customer Textfield: A custom Textfield Component where customer's can input text*/}
@@ -32,11 +32,6 @@ const CustomerLogAddress = props => {
                 Name = {props.Name}
                 Type = 'text'
             />
-            {/* * Customer Button: A custom Button Component where the customer's can submit inputted text
-            {props.LogPage !== 2 ? null : <CustomerButton
-                isButtonContrast = {true}
-                ButtonContent = 'Submit.'
-            />} */}
         </div>
     );
 }
