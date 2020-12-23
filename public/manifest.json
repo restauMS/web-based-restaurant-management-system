@@ -1,6 +1,6 @@
 {
-  "short_name": "RestauMS",
-  "name": "Web-based Restaurant Management System",
+  "short_name": "RestoMS",
+  "name": "Convenience in the time of Inconvenience",
   "icons": [
     {
      "src": "\/android-icon-36x36.png",
@@ -41,6 +41,6 @@
    ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#E56B6F",
+  "background_color": "#355070"
 }
