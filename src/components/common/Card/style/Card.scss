@@ -1,11 +1,26 @@
 @import '../../../../theme/theme';
 
+* {
+    font-family: GetFontTheme(Heading);
+}
+
 .TableCard {
+    background-color: GetColorTheme(Base);
     color: GetColorTheme(Main);
+    margin: 5px 20px;
+    padding: 10px;
+    border-radius: 20px;
+    height: 100px;
+    width: 50px;
+    flex: 1 0 30%q;
+    h4 {
+        align-self: center;
+    }
 }
 
 .TableCardTaken{
-    
+    background-color: GetColorTheme(MainContrast);
+    color: GetColorTheme(Base);
 }
 
 .Card {

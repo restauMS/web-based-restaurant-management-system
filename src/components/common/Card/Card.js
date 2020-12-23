@@ -1,4 +1,5 @@
 import React from 'react';
+import './style/Card.scss';
 /*
     * Alert Card Component
     ? Card Component responsible for warning users
@@ -36,10 +37,10 @@ export const OrderNoteCardComponent = props =>
 export const TableCardComponent  = props => 
 {
         return (
-            <div key={props.key} className={props.isTaken ? 'TableCard' : 'TableCardTaken'}>
-                <h1>
+            <div key={props.key} className={props.isTaken ? 'TableCard TableCardTaken' : 'TableCard'}>
+                <h4>
                     Table Card {props.TableNumber}
-                </h1>
+                </h4>
             </div>
         )
 }
