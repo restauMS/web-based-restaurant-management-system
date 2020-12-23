@@ -29,6 +29,10 @@ const TestData =
     {
         TableNumber: 4,
         TableIsTaken: true
+    },
+    {
+        TableNumber: 5,
+        TableIsTaken: false
     }
 ]
 
@@ -58,8 +62,19 @@ const CustomerLogTable = props => {
         }}
     >
     <CustomerLabel
-        LabelContent = 'Choose your desired table 😊'
+        LabelContent = 'Choose your desired table'
     />
+    <div
+        style = 
+        {
+            {
+                display: 'flex',
+                flexWrap: 'wrap',
+                margin: '20px',
+                justifyContent: 'space-between'
+            }
+        }
+    >
     {TestData.map(items => 
         items.length < 0 ? 
         <CustomerLabel
@@ -73,6 +88,7 @@ const CustomerLogTable = props => {
         /> 
         )
     }
+    </div>
     </div>);
 }
 
