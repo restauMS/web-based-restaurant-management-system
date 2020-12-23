@@ -3,7 +3,7 @@
 .Label {
     color: GetColorTheme(Base);
     font-family: GetFontTheme(Accent), GetFontTheme(Fallback);
-    font-size: clamp(GetFontSize(Minimum),GetFontSize(Regular),GetFontSize(Maximum));
+    font-size: clamp(GetFontSize(Minimum) - 0.5vh,GetFontSize(Regular),GetFontSize(Maximum));
     margin: 10px auto;
     padding: 5px;
     text-align: center;
