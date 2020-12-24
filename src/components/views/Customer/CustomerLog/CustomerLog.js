@@ -10,18 +10,15 @@ import SubmitButton from '../../../common/Button/Button';
 const CustomerLog = () => {
 
     // Object Log Form to be used as default state
-    const LogForm = 
-    {
-        CustomerName: '',
-        CustomerAddress: '',
-        CustomerContactNumber: '',
-        CustomerTable: 0
-    }
 
     // Sets Default Log Page is 1 which is the name input
     const [CurrentLogPage, SetCurrentLogPage] = useState(1);
-    // Sets the Default Log Input as LogForm which is the object above
-    const [LogInput, SetLogInput] = useState(LogForm);
+    
+    const [LogName, SetLogName] = useState('');
+    const [LogAddress, SetLogAddress] = useState('');
+    const [LogContactNumber, SetLogContactNumber] = useState('');
+    const [LogTableOfChoice, SetLogTableOfChoice] = useState(0);
+    
 
     // Making sure we don't go out of bounds 
     const _nextLogPage = (e) => {
@@ -35,14 +32,14 @@ const CustomerLog = () => {
     //     SetCurrentLogPage = CurrentLogPage <= 1 ? 1 : CurrentLogPage - 1;
     // }
     // Finds the right target value of each LogForm input
-    const HandleChange = e => {
-        const {name, value} = e.target;
-        SetLogInput({[name]: value});
-    }
+    // const HandleChange = e => {
+    //     const {name, value} = e.target;
+    //     SetLogInput({[name]: value});
+    // }
 
     const HandleSubmit = e => {
         e.preventDefault();
-        console.log(LogInput);
+        console.log(`Data to Submit: ${LogName} ${LogAddress} ${LogContactNumber} ${LogTableOfChoice}`);
     }
 
     return (
@@ -63,25 +60,24 @@ const CustomerLog = () => {
                 // * Props for Checking if the Page is mounted correctly
                 LogPage = {CurrentLogPage}
                 // * Props for the onChange handler
-                HandleChange = {HandleChange}
+                HandleChange = {e => {SetLogName(e.target.value)}}
                 // * For the Input name props
                 Name = 'CustomerName'
             />
-
             <CustomerLogAddress
                 LogPage = {CurrentLogPage}
-                HandleChange = {HandleChange}
+                HandleChange = {e => {SetLogAddress(e.target.value)}}
                 Name = 'CustomerAddress'
             />
-
             <CustomerLogNumber
                 LogPage = {CurrentLogPage}
-                HandleChange = {HandleChange}
+                HandleChange = {e => {SetLogContactNumber(e.target.value)}}
                 Name = 'CustomerContact' 
             />
-
             <CustomerLogTable
                 LogPage = {CurrentLogPage}
+                ProceedFunction = {HandleSubmit}
+                SetChosenCard = {SetLogTableOfChoice}
             />
             
             {
