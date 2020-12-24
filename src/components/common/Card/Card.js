@@ -38,11 +38,19 @@ export const TableCardComponent  = props =>
 {
         return (
             <div 
-            className={props.isTaken ? 'TableCard TableCardTaken' : 'TableCard'}
-            onClick = {props.TableIsChosen}
+            className = 
+            {
+                props.isTaken ? 'TableCard TableCardTaken' : 'TableCard'
+            }
+            onClick = 
+            {
+                props.TableIsChosen
+            }
             >
                 {props.isTaken ? 
-                    <h1>
+                    <h1
+                    style={{marginBottom: '20px'}}
+                    >
                         Occupied
                     </h1>
                     :

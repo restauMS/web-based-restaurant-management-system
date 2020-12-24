@@ -13,7 +13,12 @@ const CustomerView = () => {
         }
         return (
                 <div>       
-                {Stage !== 1 ? null : <CustomerLog/>}
+                        {Stage !== 1 
+                                ? null : 
+                                <CustomerLog
+                                        Stage = {_nextStage}
+                                />
+                        }
                 </div>
         );
 }

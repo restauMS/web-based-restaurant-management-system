@@ -13,7 +13,7 @@
     display: flex;
     flex-flow: column;
     transition: 0.3s ease-in-out;
-    font-size: clamp(GetFontSize(Minimum) - 3.9vh,GetFontSize(Regular) - 4rem, GetFontSize(Maximum) - 3vw);
+    font-size: clamp(GetFontSize(Minimum) - 4.1vh,GetFontSize(Regular) - 4rem, GetFontSize(Maximum) - 3vw);
     color: GetColorTheme(Main);
     margin: 5px 5px;
     border-radius: 20px;
@@ -31,9 +31,6 @@
     }
     &:hover {
         filter:drop-shadow(0 4px 0.9rem rgba(0, 0, 0, 0.336));
-    }
-    &:focus {
-        background-color: GetColorTheme(MainContrast);
     }
 }
 
