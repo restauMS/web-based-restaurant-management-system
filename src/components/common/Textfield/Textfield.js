@@ -9,6 +9,7 @@ const Textfield = props => {
         placeholder={props.PlaceholderTitle}
         onChange = {props.HandleChange}
         name = {props.Name}
+        value = {props.Value}
         />
     )
 }

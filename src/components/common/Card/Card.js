@@ -37,10 +37,29 @@ export const OrderNoteCardComponent = props =>
 export const TableCardComponent  = props => 
 {
         return (
-            <div key={props.key} className={props.isTaken ? 'TableCard TableCardTaken' : 'TableCard'}>
-                <h4>
-                    Table Card {props.TableNumber}
-                </h4>
+            <div 
+            className={props.isTaken ? 'TableCard TableCardTaken' : 'TableCard'}
+            onClick = {props.TableIsChosen}
+            >
+                {props.isTaken ? 
+                    <h1>
+                        Occupied
+                    </h1>
+                    :
+                    <span>
+                        <h3
+                        style={{marginBottom: '35px'}}
+                        >
+                            Table #{props.TableNumber}
+                        </h3>
+                        <h1>
+                            Available 
+                        </h1>
+                        <p>
+                            Seats: {props.SeatType}
+                        </p>
+                    </span>
+                }
             </div>
         )
 }
