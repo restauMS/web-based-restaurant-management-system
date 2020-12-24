@@ -7,7 +7,7 @@ import CustomerLogTable from './CustomerLogTable';
 
 import SubmitButton from '../../../common/Button/Button';
 
-const CustomerLog = () => {
+const CustomerLog = props => {
 
     // Object Log Form to be used as default state
 
@@ -18,7 +18,6 @@ const CustomerLog = () => {
     const [LogAddress, SetLogAddress] = useState('');
     const [LogContactNumber, SetLogContactNumber] = useState('');
     const [LogTableOfChoice, SetLogTableOfChoice] = useState(0);
-    
 
     // Making sure we don't go out of bounds 
     const _nextLogPage = (e) => {
@@ -77,12 +76,14 @@ const CustomerLog = () => {
             <CustomerLogTable
                 LogPage = {CurrentLogPage}
                 ProceedFunction = {HandleSubmit}
+                NextStage = {props.Stage}
                 SetChosenCard = {SetLogTableOfChoice}
             />
             
             {
             // * Filter for the last proceed submit button
-            CurrentLogPage <= 3 ? <SubmitButton
+            CurrentLogPage <= 3 ? 
+            <SubmitButton
             isButtonContrast = {true}
             ButtonContent = 'Submit.'
             ButtonFunction = {_nextLogPage}
