@@ -6,21 +6,46 @@
 
 .TableCard {
     background-color: GetColorTheme(Base);
+    background-image: url('../../../../assets/table-card/table-card-.bg.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-flow: column;
+    transition: 0.3s ease-in-out;
+    font-size: clamp(GetFontSize(Minimum) - 3.9vh,GetFontSize(Regular) - 4rem, GetFontSize(Maximum) - 3vw);
     color: GetColorTheme(Main);
-    margin: 5px 20px;
-    padding: 10px;
+    margin: 5px 5px;
     border-radius: 20px;
-    height: 100px;
-    width: 50px;
-    flex: 1 0 30%q;
-    h4 {
-        align-self: center;
+    min-height: 120px;
+    min-width: 10%;
+    flex: 1 0 20%;
+    cursor: pointer;
+    span {
+        margin: auto;
+        text-align: center;
+        h1, h3, p {
+            padding: 0;
+            margin: 0;
+        }
+    }
+    &:hover {
+        filter:drop-shadow(0 4px 0.9rem rgba(0, 0, 0, 0.336));
+    }
+    &:focus {
+        background-color: GetColorTheme(MainContrast);
     }
 }
 
 .TableCardTaken{
+    background-image: url('../../../../assets/table-card/table-card-.bg.png');
     background-color: GetColorTheme(MainContrast);
-    color: GetColorTheme(Base);
+    cursor: default;
+    h1 {
+        color: GetColorTheme(Main);
+        text-align: center;
+        margin: auto;
+    }
 }
 
 .Card {
