@@ -1,17 +1,17 @@
 [
     {
         "TableNumber": 1,
-        "TableIsTaken": true,
+        "TableIsTaken": false,
         "SeatType": 4
     },
     {
         "TableNumber": 2,
-        "TableIsTaken": true,
+        "TableIsTaken": false,
         "SeatType": 2
     },
     {
         "TableNumber": 3,
-        "TableIsTaken": true,
+        "TableIsTaken": false,
         "SeatType": 2
     },
     {
@@ -21,63 +21,23 @@
     },
     {
         "TableNumber": 5,
-        "TableIsTaken": true,
+        "TableIsTaken": false,
         "SeatType": 2
     },
     {
         "TableNumber": 6,
-        "TableIsTaken": true,
+        "TableIsTaken": false,
         "SeatType": 4
     }
     ,
     {
         "TableNumber": 7,
-        "TableIsTaken": true,
+        "TableIsTaken": false,
         "SeatType": 2
     },
     {
         "TableNumber": 8,
         "TableIsTaken": false,
-        "SeatType": 2
-    },
-    {
-        "TableNumber": 9,
-        "TableIsTaken": false,
-        "SeatType": 4
-    },
-    {
-        "TableNumber": 10,
-        "TableIsTaken": true,
-        "SeatType": 2
-    },
-    {
-        "TableNumber": 11,
-        "TableIsTaken": true,
-        "SeatType": 2
-    },
-    {
-        "TableNumber": 12,
-        "TableIsTaken": false,
-        "SeatType": 2
-    },
-    {
-        "TableNumber": 13,
-        "TableIsTaken": false,
-        "SeatType": 4
-    },
-    {
-        "TableNumber": 14,
-        "TableIsTaken": true,
-        "SeatType": 2
-    },
-    {
-        "TableNumber": 15,
-        "TableIsTaken": false,
-        "SeatType": 2
-    },
-    {
-        "TableNumber": 16,
-        "TableIsTaken": true,
         "SeatType": 2
     }
 ]
