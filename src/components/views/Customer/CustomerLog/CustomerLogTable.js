@@ -1,32 +1,30 @@
 // Important Imports
 import React, { useEffect, useState } from 'react';
-
 // Custom Component Imports
 import CustomerLabel from '../../../common/Label/Label';
 import {TableCardComponent as TableCard} from '../../../common/Card/Card';
-
 //Utility Imports
 import TestData from './TestData.json';
+// eslint-disable-next-line
 import NumberGenerator from '../../../../utils/TableNumberGenerator';
-
 // eslint-disable-next-line
 import CustomerButton from '../../../common/Button/Button';
 
 
+/*
+ ! This Component will need a backend service to grab available Tables from the database
+*/
 const CustomerLogTable = props => {
 
-    const ProceedStyle = 
-    {
-        margin: '10px auto'
-    }
+    // Constant for Max Table you can Aqcuire as a Group
+    const MaxTablePerGroup = 2;
+    const [Count, SetCount] = useState(0);
 
     const TableIsTaken = () => {
         console.log('Table is taken sorry');
-    }
+    } 
+    
 
-/*
- * This Component will need a backend service to grab available Tables from the database
-*/
 
     // We'll grab the data from the backend as an array
     // eslint-disable-next-line
@@ -69,23 +67,34 @@ const CustomerLogTable = props => {
                         TableNumber = {items.TableNumber}
                         SeatType = {items.SeatType}
                         isTaken = {items.TableIsTaken}
+                        PropsTablecount
                         TableIsChosen = {
                             items.TableIsTaken ? 
-                                TableIsTaken 
+                                    TableIsTaken
                                     : 
                                     /* 
                                     ? What this does:
                                     * If the Customer accidentally presses the proceed button
                                     ! to continue...
                                     */
-
-                                () => props.SetChosenCard(items.TableNumber <= 0 ? NumberGenerator(TestData.length) : TestData.filter(AvailableTable => {return AvailableTable.TableIsTaken ? NumberGenerator(TestData.length) : AvailableTable.TableNumber}))
+                                () => 
+                                    {
+                                        if(Count < MaxTablePerGroup)
+                                        {
+                                            props.SetChosenCard(items.TableNumber);
+                                            items.TableIsTaken = true;
+                                            SetCount(Count + 1);
+                                        }
+                                        else {
+                                            console.log('Unfortunately youve reached the limit 😢')
+                                        }
+                                    }
                         }
                     /> 
                 )
                 :
                 <CustomerLabel
-                LabelContent={`Something went wrong! 😭`}
+                LabelContent={`Something went wrong! 😭`}   
                 />
             }
             
@@ -93,7 +102,6 @@ const CustomerLogTable = props => {
             <CustomerButton
                 isButtonContrast = {true}
                 ButtonContent = 'Proceed.'
-                Style = {ProceedStyle}
                 ButtonFunction = {props.ProceedFunction}
             />
         </div>
