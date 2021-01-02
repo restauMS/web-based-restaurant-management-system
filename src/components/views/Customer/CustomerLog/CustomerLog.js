@@ -1,15 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import CustomerLogName from './CustomerLogName';
-import CustomerLogAddress from './CustomerLogAddress';
-import CustomerLogNumber from './CustomerLogNumber';
-import CustomerLogTable from './CustomerLogTable';
+import CustomerLogName from './CustomerForm/CustomerLogName';
+import CustomerLogAddress from './CustomerForm/CustomerLogAddress';
+import CustomerLogNumber from './CustomerForm/CustomerLogNumber';
+import CustomerLogTable from './CustomerForm/CustomerLogTable';
 
 import SubmitButton from '../../../common/Button/Button';
 
 const CustomerLog = props => {
-
-    // Object Log Form to be used as default state
 
     // Sets Default Log Page is 1 which is the name input
     const [CurrentLogPage, SetCurrentLogPage] = useState(1);
@@ -17,7 +15,7 @@ const CustomerLog = props => {
     const [LogName, SetLogName] = useState('');
     const [LogAddress, SetLogAddress] = useState('');
     const [LogContactNumber, SetLogContactNumber] = useState('');
-    const [LogTableOfChoice, SetLogTableOfChoice] = useState(0);
+    const [LogTableOfChoice, SetLogTableOfChoice] = useState([]);
 
     // Making sure we don't go out of bounds 
     const _nextLogPage = (e) => {
@@ -38,12 +36,24 @@ const CustomerLog = props => {
 
     const HandleSubmit = e => {
         e.preventDefault();
-        console.log(`Data to Submit: ${LogName} ${LogAddress} ${LogContactNumber} ${LogTableOfChoice}`);
+        props.LogData(
+                    {
+                        CustomerName: LogName, 
+                        CustomerAddress: LogAddress, 
+                        CustomerContact: LogContactNumber, 
+                        CustomerTable: LogTableOfChoice
+                    }
+                );
+        props.NextStage();
     }
+
+    if(props.Stage !== 1) 
+        return null;
+    
 
     return (
         <form 
-        onSubmit={HandleSubmit}
+        // onSubmit={HandleSubmit}
         style = {{
             'display': 'flex',
             'flexFlow': 'column'
@@ -52,15 +62,12 @@ const CustomerLog = props => {
             {/* 
             * This is a multi-paged form approach
             */}
-            {/* 
-            // * Where the
-            */}
             <CustomerLogName
-                // * Props for Checking if the Page is mounted correctly
+                // * Props for Checking if the Page mounted is correct
                 LogPage = {CurrentLogPage}
-                // * Props for the onChange handler
+                // * Props for the onChange handler in the Input found in LogName
                 HandleChange = {e => {SetLogName(e.target.value)}}
-                // * For the Input name props
+                // * For the Input label props
                 Name = 'CustomerName'
             />
             <CustomerLogAddress
@@ -76,7 +83,6 @@ const CustomerLog = props => {
             <CustomerLogTable
                 LogPage = {CurrentLogPage}
                 ProceedFunction = {HandleSubmit}
-                NextStage = {props.Stage}
                 SetChosenCard = {SetLogTableOfChoice}
             />
             
@@ -89,6 +95,7 @@ const CustomerLog = props => {
             ButtonFunction = {_nextLogPage}
             /> : null
             }
+
         </form>
     );
 }
