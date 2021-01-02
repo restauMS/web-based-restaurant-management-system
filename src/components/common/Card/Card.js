@@ -1,17 +1,29 @@
 import React from 'react';
+import { Spring } from 'react-spring/renderprops';
+
+import AlertCardIcon from '../../../assets/alert-card/warning-icon.png';
 import './style/Card.scss';
 /*
     * Alert Card Component
     ? Card Component responsible for warning users
 */
-const AlertCardComponent = props => 
+const AlertCardComponent = AlertProps => 
 {
     return (
-        <div className="AlertCard">
-            <h1>
-                {props.Title}
-            </h1>
-        </div>
+        <Spring
+        from = {{opacity: 0, transform: 'translateX(-2000px)', transition: '0.5s ease-in-out'}}
+        to = {{opacity: 1, transform: 'translateX(0px)'}}
+        >
+            {props =>
+             <div className="AlertCard" style={{...props,...AlertProps.Style}}>
+                 <img src={AlertCardIcon} alt="Red circle with exclamation point inside it"/>
+                <h1>
+                    {AlertProps.AlertTitle}!
+                </h1>   
+            </div>
+            }
+        </Spring>
+        
     )
 }
 
@@ -79,10 +91,18 @@ export const TableCardComponent  = props =>
 export const FoodItemCardComponent = props => 
 {
         return (
-            <div className={props.isRounded ? 'FoodItemCard' : 'FoodItemCardRounded'}>
+            <div
+            className={props.isRounded ? 'FoodItemCard FoodItemCardRounded' : 'FoodItemCard'}
+            >
                 <h1>
-                    Food Card
+                    Food Name: {props.FoodName}
                 </h1>
+                <h2>
+                    Food Price: ₱{props.FoodPrice}
+                </h2>
+                {/* <h3>
+                    Ingredients: {props.FoodIngredients}
+                </h3> */}
             </div>
         )
 }
