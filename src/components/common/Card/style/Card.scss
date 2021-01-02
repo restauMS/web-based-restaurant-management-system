@@ -3,7 +3,7 @@
 * {
     font-family: GetFontTheme(Heading);
 }
-
+// * Table Card Styling Properties
 .TableCard {
     background-color: GetColorTheme(Base);
     background-image: url('../../../../assets/table-card/table-card-.bg.png');
@@ -33,7 +33,6 @@
         filter:drop-shadow(0 4px 0.9rem rgba(0, 0, 0, 0.336));
     }
 }
-
 .TableCardTaken{
     background-image: url('../../../../assets/table-card/table-card-.bg.png');
     background-color: GetColorTheme(MainContrast);
@@ -44,11 +43,54 @@
         margin: auto;
     }
 }
-
-.Card {
-    max-height: 100px;
+// * Alert Card Styling Properties
+.AlertCard {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: GetColorTheme(Base);
+    display: flex;
+    flex-flow: column wrap;
+    text-align: center;
+    margin: 10px auto;
+    font-family: GetFontTheme(Header);
+    font-size: clamp(GetFontSize(Minimum) - 3.7vh,GetFontSize(Regular) - 4rem, GetFontSize(Maximum) - 3vw);
+    text-align: center;
+    h1 {
+        color: GetColorTheme(MainContrast);
+        margin: 0;
+    }
+    img {
+        margin: -35px -40px;
+        height: 50px;
+        width: 50px;
+        position:absolute;
+        z-index: 2;
+    }
 }
-
-.CardTaken {
-    
+// * Food Item Card Styling Properties
+.FoodItemCard {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: GetColorTheme(Base);
+    display: flex;
+    flex-flow: column wrap;
+    transition: 0.3s ease-in-out;
+    font-size: clamp(GetFontSize(Minimum) - 4.1vh,GetFontSize(Regular) - 4rem, GetFontSize(Maximum) - 3vw);
+    color: GetColorTheme(Main);
+    margin: 5px 5px;
+    border-radius: 20px;
+    min-height: 100px;
+    min-width: 30%;
+    flex: 1 0 40%;
+    cursor: pointer;
+    h1 {
+        color: GetColorTheme(MainContrast);
+        margin: 0;
+    }
+    &:hover {
+        filter:drop-shadow(0 4px 0.9rem rgba(0, 0, 0, 0.336));
+    }
+}
+.FoodItemCardRounded {
+    border-radius: 9999px;
 }
