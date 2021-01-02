@@ -11,7 +11,7 @@
     },
     {
         "TableNumber": 3,
-        "TableIsTaken": false,
+        "TableIsTaken": true,
         "SeatType": 2
     },
     {
