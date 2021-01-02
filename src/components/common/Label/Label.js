@@ -6,7 +6,10 @@ export default function Label(props){
     // or the Label-Contrast on the state value of useContrast
     return (
     <strong>
-        <p className={props.isLabelContrast ? 'Label LabelContrast' : 'Label'}> 
+        <p
+        style = {props.Style} 
+        className={props.isLabelContrast ? 'Label LabelContrast' : 'Label'}
+        > 
         {props.LabelContent} 
         </p>
     </strong>
