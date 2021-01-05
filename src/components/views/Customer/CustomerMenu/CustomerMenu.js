@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CustomerLabel from '../../../common/Label/Label';
+// eslint-disable-next-line
 import CustomerButton from '../../../common/Button/Button';
 import {FoodItemCardComponent as FoodCard} from '../../../common/Card/Card';
 
@@ -12,6 +13,7 @@ import FoodList from './TestData.json';
 const CustomerMenu = props => {
 
 
+    // ! put this code in the utility dir
     const CurrentDate = new Date();
     const Day = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday'];
     const TodayDate = `${CurrentDate.getDate()}/${CurrentDate.getMonth()}/${CurrentDate.getFullYear()}`;

@@ -1,6 +1,6 @@
 /*
  ! Create Proxy to Hide API Key!
-*/
+*/  
 export default async function WeatherAPI(Location){
     try {
         const WeatherData = await fetch(`https://community-open-weather-map.p.rapidapi.com/weather?q=${encodeURI(Location)}`,

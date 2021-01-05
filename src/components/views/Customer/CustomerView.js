@@ -7,8 +7,10 @@ import CustomerMenu from './CustomerMenu/CustomerMenu';
 const CustomerView = () => {
 
         const [Stage, SetStage] = useState(1);
-        
         const [LogData, SetLogData] = useState({});
+        // eslint-disable-next-line
+        const [OrderData, SetOrderData] = useState({});
+
 
         // eslint-disable-next-line
         const _nextStage = () => {
