@@ -5,16 +5,13 @@ TODO:
 - [x] Setup the Development Environment
 - [x] Configure Directory Structure  
 *****
-# Instruction:
-
-###### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
-  
+# Instruction:  
 ## Before Running the Scripts
 ### `cd web-based-restaurant-management-system`  
 ### `npm install`
 Wait for the npm to finish installing all the needed dependencies  
 After the install you can now `npm start`
-
+***
 ## Available Scripts
 
 In the project directory, you can run:
@@ -81,3 +78,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+***
+###### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
