@@ -16,7 +16,7 @@ const CustomerMenu = props => {
     // ! put this code in the utility dir
     const CurrentDate = new Date();
     const Day = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday'];
-    const TodayDate = `${CurrentDate.getDate()}/${CurrentDate.getMonth()}/${CurrentDate.getFullYear()}`;
+    const TodayDate = `${CurrentDate.getDate()}/${CurrentDate.getMonth()+1}/${CurrentDate.getFullYear()}`;
 
     if(props.Stage !== 2)
         return null;
