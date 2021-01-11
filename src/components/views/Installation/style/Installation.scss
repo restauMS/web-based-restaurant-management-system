@@ -1,0 +1,8 @@
+@import '../../../../theme/theme';
+
+.Installation {
+    background-color: GetColorTheme(Main);
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+}
