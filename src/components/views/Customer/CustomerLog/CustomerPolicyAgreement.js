@@ -1,9 +1,33 @@
 import React from 'react';
+import Button from '../../../common/Button/Button';
 
-const CustomerPolicyAgreement = props => {
+const CustomerPolicyAgreement = () => {
     return (
-        <div>
-            
+        <div
+            style =
+            {
+                { 
+                    display: 'flex',
+                    flexFlow: 'column',
+                    margin: 'auto'
+                }
+            }
+        >
+            <h1>
+                Privacy Policy
+            </h1>
+            <div
+            style = 
+            {
+                {
+
+                }
+            }
+            >
+            <Button
+                ButtonFunction = {() => {}}
+            />
+            </div>
         </div>
     );
 }
