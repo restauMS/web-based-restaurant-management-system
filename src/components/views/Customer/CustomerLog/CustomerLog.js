@@ -4,7 +4,7 @@ import CustomerLogName from './CustomerForm/CustomerLogName';
 import CustomerLogAddress from './CustomerForm/CustomerLogAddress';
 import CustomerLogNumber from './CustomerForm/CustomerLogNumber';
 import CustomerLogTable from './CustomerForm/CustomerLogTable';
-
+import CustomerPolicyAgreement from '../CustomerLog/CustomerPolicyAgreement/CustomerPolicyAgreement';
 import SubmitButton from '../../../common/Button/Button';
 
 const CustomerLog = props => {
@@ -20,7 +20,7 @@ const CustomerLog = props => {
     // Making sure we don't go out of bounds 
     const _nextLogPage = (e) => {
         e.preventDefault();
-        SetCurrentLogPage(CurrentLogPage >= 3 ? 4 : CurrentLogPage + 1);
+        SetCurrentLogPage(CurrentLogPage >= 4 ? 5 : CurrentLogPage + 1);
         console.log(CurrentLogPage);
     }
     // ! The _previousLogPage functionality is doable however may not be necessary **Subject to change
@@ -53,7 +53,6 @@ const CustomerLog = props => {
 
     return (
         <form 
-        // onSubmit={HandleSubmit}
         style = {{
             'display': 'flex',
             'flexFlow': 'column'
@@ -62,6 +61,10 @@ const CustomerLog = props => {
             {/* 
             * This is a multi-paged form approach
             */}
+            <CustomerPolicyAgreement
+                LogPage = {CurrentLogPage}
+                ButtonFunction = {_nextLogPage}
+            />
             <CustomerLogName
                 // * Props for Checking if the Page mounted is correct
                 LogPage = {CurrentLogPage}
@@ -87,8 +90,8 @@ const CustomerLog = props => {
             />
             
             {
-            // * Filter for the last proceed submit button
-            CurrentLogPage <= 3 ? 
+            // * Filters the proceed button before the final page
+            CurrentLogPage <= 4 && CurrentLogPage > 1 ? 
             <SubmitButton
             isButtonContrast = {true}
             ButtonContent = 'Submit.'
