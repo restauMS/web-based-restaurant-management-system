@@ -5,7 +5,7 @@ import CustomerTextfield from '../../../../common/Textfield/Textfield';
 
 const CustomerLogNumber = props => {
 
-    if(props.LogPage !== 3) {
+    if(props.LogPage !== 4) {
         return null
     }
 

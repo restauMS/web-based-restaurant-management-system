@@ -6,7 +6,7 @@ import CustomerTextfield from '../../../../common/Textfield/Textfield';
 const CustomerLogAddress = props => {
 
     // This is to make sure this component will not mount if not on the right Log Page
-    if(props.LogPage !== 2) 
+    if(props.LogPage !== 3) 
     {
         return null;
     }

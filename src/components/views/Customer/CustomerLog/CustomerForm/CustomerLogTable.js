@@ -32,7 +32,7 @@ const CustomerLogTable = props => {
         // Fetching data FROM DB code goes here
     }, []);
 
-    return props.LogPage !== 4 ? null : 
+    return props.LogPage !== 5 ? null : 
     (
         <div
             style = 
@@ -56,7 +56,8 @@ const CustomerLogTable = props => {
                     {
                         display: 'flex',
                         flexFlow: 'row wrap',
-                        margin: '2px 20px',
+                        margin: '2px auto',
+                        maxWidth: 'clamp(100%, 60%, 60%)',
                         justifyContent: 'space-evenly',
                     }
                 }
