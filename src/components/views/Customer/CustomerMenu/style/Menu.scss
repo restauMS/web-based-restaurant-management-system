@@ -1,0 +1,24 @@
+@import '../../../../../theme/theme';
+
+.MenuContainer {
+    display: flex;
+    flex-flow: column;
+    .InnerContainer {
+        height: 100vh;
+        .HeaderCheckoutContainer {
+            display: flex;
+            justify-content: space-between;
+            button {
+                margin: auto 10px;
+            }
+        }
+        .FoodMenuContainer {
+            max-width: 70%;
+            display: flex;
+            flex-flow: row wrap;
+            margin: 30px auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+    }
+}

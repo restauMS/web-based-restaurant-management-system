@@ -1,19 +1,19 @@
 import React from 'react';
-
+// Component Imports
 import CustomerLabel from '../../../common/Label/Label';
-// eslint-disable-next-line
 import CustomerButton from '../../../common/Button/Button';
-import {FoodItemCardComponent as FoodCard} from '../../../common/Card/Card';
-
-// Test data
+import {FoodItemCardComponent as FoodCard, FoodItemCardComponent} from '../../../common/Card/Card';
+// Testing Data Import
 import FoodList from './TestData.json';
+// Asset Imports
+import './style/Menu.scss';
+import CheckoutIcon from '../../../../assets/button-assets/checkout-icon.png';
 
 // ! Code do be smelly
-
 const CustomerMenu = props => {
 
 
-    // ! put this code in the utility dir
+    // ! put this code in the utility dir maybe
     const CurrentDate = new Date();
     const Day = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday'];
     const TodayDate = `${CurrentDate.getDate()}/${CurrentDate.getMonth()+1}/${CurrentDate.getFullYear()}`;
@@ -24,53 +24,38 @@ const CustomerMenu = props => {
     return (
         // ? To form or not To form
         <form
-        style = {{display: 'flex', flexFlow: 'row wrap'}}
-        onSubmit = {
-         e => {e.preventDefault()}
-        }
+        className = 'MenuContainer'
         >
-            <div
-            style = {{display: 'flex', flexFlow: 'column', minHeight: '100vh', margin: 'auto 20px'}}
-            >
+            <div className="InnerContainer">
+                <div className="HeaderCheckoutContainer">
+                    <CustomerLabel
+                        LabelContent = {`Hello${props.LoggedData.CustomerName.length > 0 ? `, ${props.LoggedData.CustomerName}` : ' 😊'}`}
+                        Style = {{margin: '10px auto',textAlign: "start"}}
+                    />
+                    <CustomerButton
+                    isButtonContrast = {true}
+                    Style = {{height: '10px', minWidth: '45px', backgroundImage: `url('${CheckoutIcon}')`, backgroundPosition: 'center', backgroundSize: 'cover'}}
+                    />
+                </div>
                 <CustomerLabel
-                LabelContent = {`Hello${props.LoggedData.CustomerName.length > 0 ? `, ${props.LoggedData.CustomerName}` : ' 😊'}`}
-                Style = {{margin: '10px auto',textAlign: "start"}}
+                    LabelContent = {`${Day[CurrentDate.getDay()]}, ${TodayDate}, Weather information unavailable at the moment`}
+                    Style = {{fontSize: 'clamp(large)', margin: '0 auto', textAlign: "start"}}
                 />
-                <CustomerLabel
-                LabelContent = {`${Day[CurrentDate.getDay()]}, ${TodayDate}, Weather information unavailable at the moment`}
-                Style = {{fontSize: '22px', margin: '0 auto', textAlign: "start"}}
-                />
-                <div style = {{display: 'flex', flexFlow: 'row wrap', margin: 'auto', overflowY:'auto', maxHeight: '500px'}}>
+                <div className="FoodMenuContainer">
                     {
                         FoodList.length <= 0 ?
-                        <h1>Something went wrong with our system</h1>
+                        <CustomerLabel
+                            LabelContent = {`We're very sorry for this, the Menu seems to be empty 😢`}
+                        />
                         :
                         FoodList.map(Dish => 
-                        <FoodCard
-                        key = {Dish.FoodId}
-                        FoodName = {Dish.FoodName}
-                        FoodPrice = {Dish.FoodPrice}
-                        FoodIngredients = {Dish.FoodIngredients}
-                        isRounded = {false}
+                        <FoodItemCardComponent 
+                            key={Dish.FoodId}
+                            FoodName = {Dish.FoodName}
+                            FoodPrice = {Dish.FoodPrice}
+                            isRounded = {false}
                         />)
                     }
-                </div>
-            </div>
-            <div
-            style = {{display: 'flex', flexFlow: 'column row',margin: 'auto',minHeight: '100vh',backgroundColor: '#E56B6F'}}
-            >
-                <CustomerLabel
-                    LabelContent = 'checkout'
-                    isLabelContrast = {false}
-                    Style = {{padding: '10px', fontSize: '20px'}}
-                />
-                <div
-                style = {{backgroundColor: 'white', position: 'absolute', margin: 'auto', borderRadius: '20px',zIndex: '1'}}
-                >
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
                 </div>
             </div>
         </form>
