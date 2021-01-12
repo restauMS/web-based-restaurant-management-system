@@ -24,3 +24,9 @@
     background-color: GetColorTheme(MainContrast);
     color: GetColorTheme(Base);
 }
+
+.Link {
+    text-align: center;
+    text-decoration: none;
+    min-height: 0;
+}
