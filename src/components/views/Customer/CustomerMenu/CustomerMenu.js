@@ -2,7 +2,7 @@ import React from 'react';
 // Component Imports
 import CustomerLabel from '../../../common/Label/Label';
 import CustomerButton from '../../../common/Button/Button';
-import {FoodItemCardComponent as FoodCard, FoodItemCardComponent} from '../../../common/Card/Card';
+import {FoodItemCardComponent as FoodCard} from '../../../common/Card/Card';
 // Testing Data Import
 import FoodList from './TestData.json';
 // Asset Imports
@@ -39,7 +39,7 @@ const CustomerMenu = props => {
                 </div>
                 <CustomerLabel
                     LabelContent = {`${Day[CurrentDate.getDay()]}, ${TodayDate}, Weather information unavailable at the moment`}
-                    Style = {{fontSize: 'clamp(large)', margin: '0 auto', textAlign: "start"}}
+                    Style = {{fontSize: '15px', margin: '0 auto', textAlign: "start"}}
                 />
                 <div className="FoodMenuContainer">
                     {
@@ -49,7 +49,7 @@ const CustomerMenu = props => {
                         />
                         :
                         FoodList.map(Dish => 
-                        <FoodItemCardComponent 
+                        <FoodCard 
                             key={Dish.FoodId}
                             FoodName = {Dish.FoodName}
                             FoodPrice = {Dish.FoodPrice}
