@@ -15,8 +15,8 @@ const AlertCardComponent = AlertProps =>
         to = {{opacity: 1, transform: 'translateX(0px)'}}
         >
             {props =>
-             <div className="AlertCard" style={{...props,...AlertProps.Style}}>
-                 <img src={AlertCardIcon} alt="Red circle with exclamation point inside it"/>
+                <div className="AlertCard" style={{...props,...AlertProps.Style}}>
+                    <img src={AlertCardIcon} alt="Red circle with exclamation point inside it"/>
                 <h1>
                     {AlertProps.AlertTitle}!
                 </h1>   
@@ -93,6 +93,7 @@ export const FoodItemCardComponent = props =>
         return (
             <div
             className={props.isRounded ? 'FoodItemCard FoodItemCardRounded' : 'FoodItemCard'}
+            style = {{...props.Style}}
             >
                 <h1>
                     Food Name: {props.FoodName}
