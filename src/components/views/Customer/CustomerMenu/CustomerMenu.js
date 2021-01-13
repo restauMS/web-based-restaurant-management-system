@@ -21,9 +21,12 @@ const CustomerMenu = props => {
     const [DropdownStatus, SetDropdownStatus] = useState(false);
     const [CheckoutList, SetCheckoutList] = useState([]);
     const {
+        // eslint-disable-next-line
             CustomerAddress: Address,
-            CustomerContact: Contanct,
+            // eslint-disable-next-line
+            CustomerContact: Contact,
             CustomerName: Name,
+            // eslint-disable-next-line
             CustomerTable: Table
         } = props.LoggedData;
 
