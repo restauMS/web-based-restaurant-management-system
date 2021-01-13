@@ -93,6 +93,7 @@ const CustomerLog = props => {
             // * Filters the proceed button before the final page
             CurrentLogPage <= 4 && CurrentLogPage > 1 ? 
             <SubmitButton
+            isButtonLink = {false}
             isButtonContrast = {true}
             ButtonContent = 'Submit.'
             ButtonFunction = {_nextLogPage}
