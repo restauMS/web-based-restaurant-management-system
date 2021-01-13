@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spring } from 'react-spring/renderprops';
-
+// Asset Imports
 import AlertCardIcon from '../../../assets/alert-card/warning-icon.png';
 import './style/Card.scss';
 /*
@@ -92,8 +92,9 @@ export const FoodItemCardComponent = props =>
 {
         return (
             <div
-            className={props.isRounded ? 'FoodItemCard FoodItemCardRounded' : 'FoodItemCard'}
-            style = {{...props.Style}}
+                className={props.isRounded ? 'FoodItemCard FoodItemCardRounded' : 'FoodItemCard'}
+                style = {{...props.Style}}
+                onClick = {props.FoodCardFunction}
             >
                 <h1>
                     Food Name: {props.FoodName}
@@ -106,6 +107,27 @@ export const FoodItemCardComponent = props =>
                 </h3> */}
             </div>
         )
+}
+
+export const CheckoutFoodCard = props => {
+    return (
+        <div className = {props.isCheckoutFoodCardContrast ? 'CheckoutFoodCard Contrast' : 'CheckoutFoodCard'}
+        key = {props.Key}
+        >
+            <img src={props.FoodImageSrc} alt={props.FoodImageAlt}/>
+            <div className="CheckoutInfo">
+                <h3>
+                    {props.FoodName}
+                </h3>
+                <h5>
+                    {props.FoodQty}
+                </h5>
+                <h5>
+                    {props.FoodTotal}
+                </h5>
+            </div>
+        </div>
+    )
 }
 
 export default AlertCardComponent;

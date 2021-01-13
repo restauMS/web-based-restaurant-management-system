@@ -94,3 +94,35 @@
 .FoodItemCardRounded {
     border-radius: 9999px;
 }
+// * Checkout Food Card Styling Properties
+.CheckoutFoodCard {
+    display: flex;
+    background-color: GetColorTheme(Main);
+    min-width: 100%;
+    min-height: 120px;
+    border-radius: 100px 0 0 100px;
+    margin: 10px auto;
+    img {
+        border-radius: 10000px;
+        min-height: 100px;
+        min-width: 100px;
+        background-color: GetColorTheme(Base);
+        margin: auto 10px;
+    }
+    .CheckoutInfo {
+        display: flex;
+        flex-flow: column;
+        margin: auto;
+        h3 {
+            color: GetColorTheme(MainContrast);
+            margin: 0;
+        }
+        h5 {
+            color: GetColorTheme(Base);
+            margin: 0;
+        }
+    }
+}
+.Contrast {
+    background-color: GetColorTheme(MainContrast);
+}
