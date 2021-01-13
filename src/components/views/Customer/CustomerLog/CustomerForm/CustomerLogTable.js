@@ -1,3 +1,4 @@
+// ! For testing --- Testing will determine if this will make it to the Production Build
 // Important Imports
 import React, { useEffect, useState } from 'react';
 // Custom Component Imports
@@ -16,22 +17,18 @@ import CustomerButton from '../../../../common/Button/Button';
 */
 const CustomerLogTable = props => {
     // Constant for Max Table you can Aqcuire as a Group
-    const MaxTablePerGroup = 2;
+    const MaxTablePerGroup = props.IsGroup ? 2 : 1;
     const [Count, SetCount] = useState(0);
-    const TableIsTaken = () => {
-        console.log('Table is taken sorry');
-    } 
-
     // We'll grab the data from the backend as an array
     // eslint-disable-next-line
     const [ AvailableTable, SetAvailableTable ] = useState([]);
-
+    
     useEffect(
         () => 
     {
         // Fetching data FROM DB code goes here
     }, []);
-
+    
     return props.LogPage !== 5 ? null : 
     (
         <div
@@ -43,7 +40,8 @@ const CustomerLogTable = props => {
             }}
         >
             {Count >= 2 ? 
-            <AlertCard 
+            <AlertCard
+            Style = {{zIndex: '1', position: 'absolute', top: '20px', left: '30px'}} 
             AlertTitle='Exceeded table limit'/> 
             : null
             }
@@ -75,9 +73,8 @@ const CustomerLogTable = props => {
                             items.TableIsTaken ? 
                                 () => 
                                     {
-                                        TableIsTaken()
+                                        alert('Table is Taken');
                                         SetCount(Count - 1);
-                                        items.TableIsTaken = false;
                                     }
                                     : 
                                 () => 
@@ -98,11 +95,15 @@ const CustomerLogTable = props => {
                 />
             }
             </div>
+            {Count <= 0 ? 
+            null
+            :
             <CustomerButton
+                isButtonLink = {false}
                 isButtonContrast = {true}
                 ButtonContent = 'Proceed.'
                 ButtonFunction = {props.ProceedFunction}
-            />
+            />}
         </div>
     );
 }
