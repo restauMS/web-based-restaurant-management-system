@@ -1,4 +1,4 @@
-const WeatherAPI = async(Location) => {
+const WeatherAPI = async() => {
     try {
         const WeatherData = await fetch("https://visual-crossing-weather.p.rapidapi.com/forecast?location=Dumaguete%2CPH&aggregateHours=24&contentType=json&shortColumnNames=0&unitGroup=metric", {
             "method": "GET",
@@ -25,5 +25,7 @@ const Temperature = () => {
     })
     .catch(Error => console.trace(Error));
 }
+
+
 
 export default Temperature;
