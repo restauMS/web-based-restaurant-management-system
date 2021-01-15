@@ -122,6 +122,19 @@
             margin: 0;
         }
     }
+    .ButtonContainer {
+        display: flex;
+        flex-flow: column;
+        background-color: GetColorTheme(Main);
+        .ButtonGroup {
+            display: flex;
+            flex-flow: column;
+            margin: auto;
+            button {
+                margin: 2px auto;
+            }
+        }
+    }
 }
 .Contrast {
     background-color: GetColorTheme(MainContrast);

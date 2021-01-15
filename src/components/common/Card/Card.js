@@ -1,5 +1,7 @@
 import React from 'react';
 import { Spring } from 'react-spring/renderprops';
+// Component Imports
+import Button from '../Button/Button';
 // Asset Imports
 import AlertCardIcon from '../../../assets/alert-card/warning-icon.png';
 import './style/Card.scss';
@@ -125,6 +127,24 @@ export const CheckoutFoodCard = props => {
                 <h5>
                     {props.FoodTotal}
                 </h5>
+            </div>
+            <div className="ButtonContainer">
+                <div className="ButtonGroup">
+                    <Button
+                        isButtonLink = {false}
+                        ButtonContent = 'Remove'
+                        isButtonContrast = {true}
+                        ButtonFunction = {props.RemoveFunction}
+                        Style = {{minHeight: '0',minWidth: '100px'}}
+                    />
+                    <Button
+                        isButtonLink = {false}
+                        ButtonContent = 'Note'
+                        isButtonContrast = {true}
+                        ButtonFunction = {props.NoteFunction}
+                        Style = {{minHeight: '0',minWidth: '100px'}}
+                    />
+                </div>
             </div>
         </div>
     )
