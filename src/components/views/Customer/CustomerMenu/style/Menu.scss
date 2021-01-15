@@ -4,6 +4,8 @@
     display: flex;
     flex-flow: column;
     .InnerContainer {
+        display: flex;
+        flex-flow: column;
         height: 100vh;
         .HeaderCheckoutContainer {
             display: flex;
@@ -16,7 +18,7 @@
             max-width: 70%;
             display: flex;
             flex-flow: row wrap;
-            margin: 30% auto;
+            margin: auto;
             max-height: 500px;
             overflow-y: auto;
         }
