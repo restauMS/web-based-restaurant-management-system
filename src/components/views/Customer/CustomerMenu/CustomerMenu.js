@@ -110,13 +110,13 @@ const CustomerMenu = props => {
                                     {
                                         CheckoutList.length <= 0 ?
                                         <CustomerLabel
-                                            isLabelContrast = {false}
+                                            isLabelContrast = {true}
                                             LabelContent = 'Your Checkout List is Empty!'
                                         />
                                         :
                                         CheckoutList.map(CheckedOut => 
                                             <CheckoutCard
-                                            Key = {CheckedOut.Id}
+                                            key = {CheckedOut.Id}
                                             FoodName = {CheckedOut.Name}
                                             FoodQty = {`Qty: ${CheckedOut.Price}`}
                                             FoodTotal = {`Total: ${CheckedOut.Price * 2}`}
