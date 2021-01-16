@@ -1,16 +1,13 @@
 ![Logo for our Web Application System](https://github.com/restauMS/web-based-restaurant-management-system/blob/main/public/apple-icon-144x144.png?raw=true)
 # Web-based Restaurant Management System
 A Software Analysis and Design / Software Engineering I project for the 1st semester of AY 2020-2021  
-TODO:  
-- [x] Setup the Development Environment
-- [x] Configure Directory Structure  
 *****
 # Instruction:  
 ## Before Running the Scripts
 ### `cd web-based-restaurant-management-system`  
 ### `npm install`
-Wait for the npm to finish installing all the needed dependencies  
-After the install you can now `npm start`
+Wait for npm to finish installing all the needed dependencies  
+After the install you can now try `npm start`  
 ***
 ## Available Scripts
 
