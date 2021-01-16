@@ -36,7 +36,8 @@ const CustomerLogTable = props => {
             {{
                 display: 'flex',
                 flexFlow: 'column',
-                margin: 'auto'
+                margin: 'auto',
+                padding: '20px'
             }}
         >
             {Count >= 1 || TableStatus ? 
