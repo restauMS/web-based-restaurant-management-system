@@ -99,10 +99,10 @@ export const FoodItemCardComponent = props =>
                 onClick = {props.FoodCardFunction}
             >
                 <h1>
-                    Food Name: {props.FoodName}
+                    {props.FoodName}
                 </h1>
                 <h2>
-                    Food Price: ₱{props.FoodPrice}
+                    ₱{props.FoodPrice}
                 </h2>
                 {/* <h3>
                     Ingredients: {props.FoodIngredients}
@@ -113,9 +113,7 @@ export const FoodItemCardComponent = props =>
 
 export const CheckoutFoodCard = props => {
     return (
-        <div className = {props.isCheckoutFoodCardContrast ? 'CheckoutFoodCard Contrast' : 'CheckoutFoodCard'}
-        key = {props.Key}
-        >
+        <div className = {props.isCheckoutFoodCardContrast ? 'CheckoutFoodCard Contrast' : 'CheckoutFoodCard'}>
             <img src={props.FoodImageSrc} alt={props.FoodImageAlt}/>
             <div className="CheckoutInfo">
                 <h3>
