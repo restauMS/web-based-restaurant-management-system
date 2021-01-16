@@ -3,10 +3,9 @@
 import React, { useEffect, useState } from 'react';
 // Custom Component Imports
 import CustomerLabel from '../../../../common/Label/Label';
-import {TableCardComponent as TableCard} from '../../../../common/Card/Card';
+import AlertCard, {TableCardComponent as TableCard} from '../../../../common/Card/Card';
 //Utility Imports
 import TestData from '../TestData.json';
-import AlertCard from '../../../../common/Card/Card';
 
 // eslint-disable-next-line
 import CustomerButton from '../../../../common/Button/Button';
@@ -19,6 +18,7 @@ const CustomerLogTable = props => {
     // Constant for Max Table you can Aqcuire as a Group
     const MaxTablePerGroup = props.IsGroup ? 2 : 1;
     const [Count, SetCount] = useState(0);
+    const [TableStatus, SetTableStatus] = useState(false);
     // We'll grab the data from the backend as an array
     // eslint-disable-next-line
     const [ AvailableTable, SetAvailableTable ] = useState([]);
@@ -39,10 +39,10 @@ const CustomerLogTable = props => {
                 margin: 'auto'
             }}
         >
-            {Count >= 2 ? 
+            {Count >= 1 || TableStatus ? 
             <AlertCard
             Style = {{zIndex: '1', position: 'absolute', top: '20px', left: '30px'}} 
-            AlertTitle='Exceeded table limit'/> 
+            AlertTitle={Count >= 1 ? 'Table limit reached' : TableStatus ? 'Table is taken' : null}/> 
             : null
             }
             <CustomerLabel
@@ -73,8 +73,10 @@ const CustomerLogTable = props => {
                             items.TableIsTaken ? 
                                 () => 
                                     {
-                                        alert('Table is Taken');
-                                        SetCount(Count - 1);
+                                        SetTableStatus(true);
+                                        setTimeout(() => {
+                                            SetTableStatus(false)
+                                        }, 4000);
                                     }
                                     : 
                                 () => 
