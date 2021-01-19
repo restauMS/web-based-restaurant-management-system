@@ -1,15 +1,10 @@
 import React from 'react';
-import AdminLayout from '../../layouts/Admin/AdminLayout';
+import Login from './AdminLoginForm/LoginForm';
 
-class Login extends React.Component{
-    // Login stuff goes here
+const AdminView = props => {
+    return (
+        <Login/>
+    )
 }
-export default class AdminView {
-    render(){
-        return (
-            <AdminLayout>
-                
-            </AdminLayout>
-        );
-    }
-}
+
+export default AdminView;

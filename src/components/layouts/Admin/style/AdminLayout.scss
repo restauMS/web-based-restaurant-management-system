@@ -1,3 +1,5 @@
+@import '../../../../theme/theme';
+
 .AdminLayoutContainer {
     box-sizing: border-box;
     height: 100vh;
@@ -5,4 +7,5 @@
     padding: 0;
     display: flex;
     flex-flow: column;
+    background-color: GetColorTheme(MainContrast);
 }
