@@ -1,12 +1,12 @@
 import React from 'react';
-import WorkerLayout from '../../layouts/Worker/WorkerLayout';
+import Login from './WorkerForms/Login/LoginForm';
+// eslint-disable-next-line
+import Register from './WorkerForms/Register/RegisterForm';
 
-export default class WorkerView {
-    render(){
-        return (
-            <WorkerLayout>
-                
-            </WorkerLayout>
-        );
-    }
+const ExportView = () => {
+    return (
+        <Login/>
+    )
 }
+
+export default ExportView;

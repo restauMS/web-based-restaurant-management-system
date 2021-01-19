@@ -1,9 +1,13 @@
 import React from 'react';
+import WorkerView from '../../views/Worker/WorkerView';
+import './style/WorkerLayout.scss';
 
-export default function WorkerLayout(){
+const WorkerLayout = () => {
     return (
-        <div class="WorkerLayoutContainer">
-            
+        <div className="WorkerLayoutContainer">
+            <WorkerView/>
         </div>
     )
 }
+
+export default WorkerLayout;
