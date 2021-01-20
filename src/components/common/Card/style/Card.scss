@@ -98,9 +98,10 @@
 .CheckoutFoodCard {
     display: flex;
     background-color: GetColorTheme(Main);
-    min-width: 100%;
-    min-height: 120px;
+    min-width: fit-content;
+    min-height: fit-content;
     border-radius: 100px 0 0 100px;
+    padding: 10px;
     margin: 10px auto;
     img {
         border-radius: 10000px;
@@ -125,7 +126,6 @@
     .ButtonContainer {
         display: flex;
         flex-flow: column;
-        background-color: GetColorTheme(Main);
         .ButtonGroup {
             display: flex;
             flex-flow: column;
