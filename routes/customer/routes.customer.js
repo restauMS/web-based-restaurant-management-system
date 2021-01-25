@@ -5,7 +5,7 @@ const Router = express.Router();
 const FetchTableData = require('../../services/customer/customer.fetchAvailableTable');
 
 
-Router.post('/', async(Request, Response) => {
+Router.post('/availabletable', async(Request, Response) => {
     try {
         const Data = await FetchTableData();
         if(Data){
