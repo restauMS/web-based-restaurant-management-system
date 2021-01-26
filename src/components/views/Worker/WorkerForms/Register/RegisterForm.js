@@ -1,12 +1,14 @@
 import React from 'react';
 
-// Component imports
+// ? Component imports
 import RegisterButton from '../../../../common/Button/Button';
 import RegisterLabel from '../../../../common/Label/Label';
 import RegisterInput from '../../../../common/Textfield/Textfield';
-// Style import
+
+// ? Style import
 import './style/RegisterForm.scss';
-// Asset import
+
+// ? Asset import
 import Logo from '../../../../../assets/restoms-logo/logo.png'
 
 const Register = props => {
