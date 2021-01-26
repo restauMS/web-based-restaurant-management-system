@@ -1,32 +1,29 @@
 const mysql = require('mysql');
 
 const Configuration = {
-    host: '',
-    user: '',
+    host: 'localhost',
+    user: 'root',
     password: '',
-    database: '',
+    database: 'restoms',
     multipleStatements: true
 }
 
 const Connection = mysql.createPool(Configuration);
 
 module.exports = (Query) => {
-    return new Promise((Reject, Resolve) => {
+    return new Promise ((Resolve, Reject) => {
         try {
             Connection.getConnection((Error, AttempConnect) => {
                 Error ?
                 Reject(Error)
                 :
-                AttempConnect.query(Query, (Error, Rows) => 
-                {
+                AttempConnect.query(Query, (Error, Rows) => {
                     Error ?
-                    console.trace(Error)
+                    console.trace('Something went wrong:', Error)
                     :
-                    Resolve(Rows)
-
-                    AttempConnect.release()
-                }
-                )
+                    Resolve(Rows);
+                    AttempConnect.release();
+                })
             })
         } catch (error) {
             console.trace(error);
