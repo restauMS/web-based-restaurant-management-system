@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import CustomerLabel from '../../../../common/Label/Label';
 import AlertCard, {TableCardComponent as TableCard} from '../../../../common/Card/Card';
 //Utility Imports
-import TestData from '../TestData.json';
+// import TestData from '../TestData.json';
 
 // eslint-disable-next-line
 import CustomerButton from '../../../../common/Button/Button';
@@ -23,10 +23,21 @@ const CustomerLogTable = props => {
     // eslint-disable-next-line
     const [ AvailableTable, SetAvailableTable ] = useState([]);
     
+    const FetchTableData = async() => {
+        try {
+            const Data = await fetch('/API/Customer/FetchAvailableData', {method: 'POST'});
+            return Data.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    }
+    
     useEffect(
         () => 
     {
-        // Fetching data FROM DB code goes here
+        FetchTableData()
+        .then(DataList => SetAvailableTable(DataList))
+        .catch(Error => console.trace(Error));
     }, []);
     
     return props.LogPage !== 5 ? null : 
@@ -40,6 +51,7 @@ const CustomerLogTable = props => {
                 padding: '20px'
             }}
         >
+            {/*Needs major refactoring, wrong usage of the Component */}
             {Count >= 1 || TableStatus ? 
             <AlertCard
             Style = {{zIndex: '1', position: 'absolute', top: '20px', left: '30px'}} 
@@ -62,16 +74,16 @@ const CustomerLogTable = props => {
                 }
             >
             {
-                TestData.length > 0 ?
-                TestData.map(items => 
+                AvailableTable.length > 0 ?
+                AvailableTable.map(items => 
                     <TableCard
-                        key = {items.TableNumber}
-                        TableNumber = {items.TableNumber}
-                        SeatType = {items.SeatType}
-                        isTaken = {items.TableIsTaken}
+                        key = {items.table_id}
+                        TableNumber = {items.table_id}
+                        SeatType = {items.table_seat_no}
+                        isTaken = {items.table_availability}
                         PropsTablecount
                         TableIsChosen = {
-                            items.TableIsTaken ? 
+                            items.table_availability ? 
                                 () => 
                                     {
                                         SetTableStatus(true);
@@ -84,9 +96,9 @@ const CustomerLogTable = props => {
                                     {
                                         if(Count < MaxTablePerGroup)
                                         {
-                                            props.SetChosenCard(items.TableNumber);
+                                            props.SetChosenCard(items.table_id);
                                             SetCount(Count + 1);
-                                            items.TableIsTaken = true;
+                                            items.table_availability = 1;
                                         }
                                     }
                         }
