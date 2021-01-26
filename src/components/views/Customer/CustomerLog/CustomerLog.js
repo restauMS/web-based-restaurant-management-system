@@ -34,8 +34,18 @@ const CustomerLog = props => {
     //     SetLogInput({[name]: value});
     // }
 
+    // ? Function for logging customer information and pushing it to the database
+    // const LogCustomerInformation = async() => {
+    //     try {
+            
+    //     } catch (error) {
+            
+    //     }
+    // }
+
     const HandleSubmit = e => {
         e.preventDefault();
+        // Is passed to the CustomerMenu Component as Property to grab basic customer information
         props.LogData(
                     {
                         CustomerName: LogName, 
@@ -44,6 +54,10 @@ const CustomerLog = props => {
                         CustomerTable: LogTableOfChoice
                     }
                 );
+
+        // ? Where the LogCustomerInformation() should be called
+        // CurrentLogPage > 4 ?
+
         props.NextStage();
     }
 
