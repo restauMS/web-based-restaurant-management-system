@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import {Spring} from 'react-spring/renderprops';
-// Component Imports
+
+// ? Component Imports
 import CustomerLabel from '../../../common/Label/Label';
 import CustomerButton from '../../../common/Button/Button';
 import {FoodItemCardComponent as FoodCard, CheckoutFoodCard as CheckoutCard} from '../../../common/Card/Card';
-// Testing Data Import
-import FoodList from './TestData.json';
-// Asset Imports
+
+// ? Asset Imports
 import './style/Menu.scss';
 import CheckoutIcon from '../../../../assets/button-assets/checkout-icon.png';
 
 const CustomerMenu = props => {
 
     // ! Code to => util directory
-    // ? Create a Builder for this
+    // ? Create a Builder for this maybe if there's time...
     const CurrentDate = new Date();
     const Day = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday'];
     const TodayDate = `${CurrentDate.getDate()}/${CurrentDate.getMonth()+1}/${CurrentDate.getFullYear()}`;
-
+    const FetchMenuData = async() => {
+        try {
+            const Data = await fetch('/API/Customer/FetchMenuData', {
+                method: 'POST'
+            });
+            return Data.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    }
     const [DropdownStatus, SetDropdownStatus] = useState(false);
+    const [MenuList, SetMenuList] = useState([]);
     const [CheckoutList, SetCheckoutList] = useState([]);
     const {
         // eslint-disable-next-line
@@ -32,7 +42,9 @@ const CustomerMenu = props => {
 
     // Fetch data from the Database
     useEffect(() =>{
-
+        FetchMenuData()
+        .then(Data => SetMenuList(Data))
+        .catch(Error => console.trace(Error));
     }
     ,[CheckoutList]
     )
@@ -67,23 +79,24 @@ const CustomerMenu = props => {
                 />
                 <div className="FoodMenuContainer">
                     {
-                        FoodList.length <= 0 ?
+                        MenuList.length <= 0 ?
                         <CustomerLabel
                             LabelContent = {`We're very sorry for this, the Menu seems to be empty 😢`}
                         />
                         :
-                        FoodList.map(Dish => 
+                        MenuList.map(Dish => 
                         <FoodCard 
-                            key={Dish.FoodId}
-                            FoodName = {Dish.FoodName}
-                            FoodPrice = {Dish.FoodPrice}
+                            key={Dish.item_id}
+                            FoodName = {Dish.item_name}
+                            FoodPrice = {Dish.item_price}
                             isRounded = {false}
-                            FoodCardFunction = {() => {SetCheckoutList([...CheckoutList, {Id: Dish.FoodId, Name: Dish.FoodName, Price: Dish.FoodPrice}])}}
+                            FoodCardFunction = {() => {SetCheckoutList([...CheckoutList, {Id: Dish.item_id, Name: Dish.item_name, Price: Dish.item_price}])}}
                         />)
                     }
                 </div>
             </div>
             {
+                // ! Needs major refactoring, using the component wrong
                 DropdownStatus ? 
                 <Spring
                     from = {{transform: 'translateY(-1000px)', transition: '0.1s ease-in-out'}}
