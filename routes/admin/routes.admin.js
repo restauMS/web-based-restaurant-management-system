@@ -4,6 +4,7 @@ const Router = express.Router();
 // Services
 const Authenticate = require('../../services/admin/admin.auth');
 
+// ! Very bad smelly authentication
 Router.post('/Authenticate', async(Request, Response) => {
         try {
             const { Username } = Request.body;
