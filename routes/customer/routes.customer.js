@@ -7,7 +7,7 @@ const FetchMenuList = require('../../services/customer/customer.pullMenuList');
 const PushLogData = require('../../services/customer/customer.pushLogData');
 const PushOrderInformation = require('../../services/customer/customer.pushOrderInformation');
 
-Router.post('/FetchAvailableData', async(Request, Response) => {
+Router.post('/FetchAvailableTable', async(Request, Response) => {
     try {
         const TableData = await FetchTableData();
         if(TableData){
