@@ -1,0 +1,16 @@
+### Customer Requests
+POST http://localhost:3001/API/Customer/FetchAvailableTable
+###
+POST http://localhost:3001/API/Customer/FetchMenuData
+###
+POST http://localhost:3001/API/Customer/PushLogInformation
+Content-Type: application/json
+{
+    # Body here
+}
+###
+POST http://localhost:3001/API/Customer/PushOrderSessionInformation
+Content-Type: application/json
+{
+    # Body here
+}
