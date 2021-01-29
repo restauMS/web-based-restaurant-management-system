@@ -1,4 +1,3 @@
-// ! TESTING ONLY
 import React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
