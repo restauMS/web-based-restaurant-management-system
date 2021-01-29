@@ -7,8 +7,8 @@ const Authenticate = require('../../services/admin/admin.auth');
 // ! Very bad smelly authentication
 Router.post('/Authenticate', async(Request, Response) => {
         try {
-            const { Username } = Request.body;
-            const Auth = await Authenticate(Username);
+            const { Username, Password } = Request.body;
+            const Auth = await Authenticate(Username, Password);
             if (Auth) {
                 Response.status(200)
                 .send(Auth);
