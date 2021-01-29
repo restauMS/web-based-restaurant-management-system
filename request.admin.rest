@@ -2,5 +2,6 @@ POST http://localhost:3001/API/Admin/Authenticate
 content-type: application/json
 
 {
-    "Username": "admin"
+    "Username": "admin",
+    "Password": "admin"
 }
