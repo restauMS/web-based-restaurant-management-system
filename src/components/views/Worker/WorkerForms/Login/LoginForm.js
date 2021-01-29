@@ -1,17 +1,49 @@
-import React from 'react';
-
-
+import React, {useState} from 'react';
 // Component imports
-import LoginButton from '../../../../common/Button/Button';
+import Button from '../../../../common/Button/Button';
 import LoginLabel from '../../../../common/Label/Label';
 import LoginInput from '../../../../common/Textfield/Textfield';
+import AlertCard from  '../../../../common/Card/Card';
+
 // Style import
 import './style/LoginForm.scss';
+
 // Asset imports
 import Logo from '../../../../../assets/restoms-logo/logo.png';
+
+
 const Login = () => {
+    
+    const [Username, SetUsername] = useState('');
+    const [Password, SetPassword] = useState('');
+    const [AuthState, SetAuthState] = useState(false);
+
+    const Authenticate = async() => {
+        try {
+            const Auth = await fetch('./API/Worker/Authenticate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    "Username": Username,
+                    "Password": Password
+                })
+            })
+            return Auth.json();
+        } catch (error) {
+            console.trace('Something went wrong', error);
+        }
+    }
+
     return (
-        <form action="" className="LoginContainer">
+        <form onChange={e => {e.preventDefault()}} className="LoginContainer">
+                {
+                    AuthState ?
+                    <AlertCard
+                    AlertTitle = 'Login Successful'
+                    />
+                    :
+                    null
+                }
             <div className="FormContainer">
                 <img src={Logo} alt="" id="restoms-logo"/>
                 <LoginLabel
@@ -20,15 +52,24 @@ const Login = () => {
                 />
                 <LoginInput
                 PlaceholderTitle = 'Username here'
+                HandleChange = {(e) => SetUsername(e.target.value)}
                 />
                 <LoginInput
                 PlaceholderTitle = 'Password here'
                 Type = 'password'
+                HandleChange = {(e) => SetPassword(e.target.value)}
                 />
-                <LoginButton
+                <Button
                 isButtonLink = {false}
                 isButtonContrast = {true}
                 ButtonContent = 'LOGIN'
+                ButtonFunction = {(e) => {
+                    e.preventDefault();
+                    Authenticate()
+                    .then(Result => SetAuthState(true))
+                    .catch(Error => console.trace(Error))
+                }
+                }
                 />
             </div>
         </form>
