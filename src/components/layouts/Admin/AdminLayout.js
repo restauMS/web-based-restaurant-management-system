@@ -7,7 +7,7 @@ import './style/AdminLayout.scss';
 
 const AdminLayout = () =>{
     return (
-        <div class="AdminLayoutContainer">
+        <div className="AdminLayoutContainer">
             <AdminView/>
         </div>
     )
