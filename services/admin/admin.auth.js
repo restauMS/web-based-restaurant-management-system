@@ -1,8 +1,9 @@
+// ! Temporary code, bad code.
 const Connection = require('../../database/mysql.connection');
 
 /**
- * @param {String} User 
- * @param {String} Password
+ * @param {String} User accepts the username as body
+ * @param {String} Password accepts the body as body
  */
 module.exports = async(User, Password) => {
     try {
