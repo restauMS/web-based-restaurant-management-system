@@ -2,6 +2,6 @@ POST http://localhost:3001/API/Worker/Authenticate
 content-type: application/json
 
 {
-    "Username": "lozanasc",
-    "Password": "admin"
+    "Username": "test",
+    "Password": "test"
 }
