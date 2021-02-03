@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const Configuration = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'restoms',
+    host: process.env.DB_CONNECTION_HOST,
+    user: process.env.DB_CONNECTION_USER,
+    password: process.env.DB_CONNECTION_PASSWORD,
+    database: process.env.DB_NAME,
     multipleStatements: true
 }
 
