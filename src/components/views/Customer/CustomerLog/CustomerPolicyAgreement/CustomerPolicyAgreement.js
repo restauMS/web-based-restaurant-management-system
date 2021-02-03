@@ -13,7 +13,7 @@ const CustomerPolicyAgreement = props => {
                 />
                 <div className="PolicyContainer">
                     <p>
-                        Your privacy is important to us. It is RestauMS' policy to respect your privacy regarding any information we may collect from you across our Web Application, https://github.com/restauMS/web-based-restaurant-management-system, and other sites we own and operate.
+                        Your privacy is important to us. It is our policy to respect your privacy regarding any information we may collect from you across our Web Application, https://github.com/restauMS/web-based-restaurant-management-system, and other sites we own and operate.
                         
                         We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.
             
