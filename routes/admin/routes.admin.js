@@ -5,6 +5,9 @@ const Router = express.Router();
 const Authenticate = require('../../services/admin/admin.auth');
 
 // ! Very bad smelly authentication
+/*
+    ? Conver to JWT in the future
+*/
 Router.post('/Authenticate', async(Request, Response) => {
         try {
             const { Username, Password } = Request.body;
@@ -16,7 +19,7 @@ Router.post('/Authenticate', async(Request, Response) => {
                 Response.status(500)
                 .send({
                     "Status": Auth,
-                    "StatusDescription": "Username not found, operation failed."
+                    "StatusDescription": "Something went wrong, operation failed."
                 });
             }
 
