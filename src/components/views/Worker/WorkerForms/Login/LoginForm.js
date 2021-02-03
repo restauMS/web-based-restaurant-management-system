@@ -27,7 +27,7 @@ const Login = () => {
                     "Username": Username,
                     "Password": Password
                 })
-            })
+            });
             return Auth.json();
         } catch (error) {
             console.trace('Something went wrong', error);
@@ -65,8 +65,9 @@ const Login = () => {
                 ButtonContent = 'LOGIN'
                 ButtonFunction = {(e) => {
                     e.preventDefault();
+                    // ! Absolute dog water piece of code
                     Authenticate()
-                    .then(Result => SetAuthState(true))
+                    .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Massive cuckery for not getting it right.'))
                     .catch(Error => console.trace(Error))
                 }
                 }

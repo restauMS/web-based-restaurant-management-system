@@ -1,26 +1,28 @@
 import React, {useState} from 'react';
-// Asset Imports
-import Logo from '../../../../assets/restoms-logo/logo.png';
 
 // Component Imports
 import LoginButton from '../../../common/Button/Button';
 import LoginLabel from '../../../common/Label/Label';
 import LoginInput from '../../../common/Textfield/Textfield';
 import AlertCard from '../../../common/Card/Card';
+
 // Styling import
 import './style/LoginForm.scss';
 
-const Login = props => {
+// Asset Imports
+import Logo from '../../../../assets/restoms-logo/logo.png';
+
+const Login = () => {
 
     const [Username, SetUsername] = useState('');
     const [Password, SetPassword] = useState('');
-    const [AuthState, SetAuthState] = useState(false);
-
+    const [AuthState, SetAuthState] = useState(false); 
+    
     const Authenticate = async() => {
         try {
             const Auth = await fetch('./API/Admin/Authenticate', {
                 method: 'POST',
-                header: {'Content-type': 'application.json'},
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     "Username": Username,
                     "Password": Password
@@ -28,14 +30,14 @@ const Login = props => {
             });
             return Auth.json();
         } catch (error) {
-            console.trace(error);
+            console.trace('Something went wrong', error);
         }
     }
 
     return (
         <form 
-        onChange = {(e) => {e.preventDefault()}}
         className="LoginContainer"
+        onChange={e => {e.preventDefault()}} 
         >
             {
                 AuthState ?
@@ -64,9 +66,10 @@ const Login = props => {
                     isButtonContrast = {false}
                     ButtonContent = 'LOGIN'
                     ButtonFunction = {(e) => {
+                        // ! Needs MAJOR refactoring, absolute dog water authentication
                         e.preventDefault();
                         Authenticate()
-                        .then(Result => {SetAuthState(true)})
+                        .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Oof, you got it wrong bucko!'))
                         .catch(Error => console.trace(Error));
                     }}
                 />
