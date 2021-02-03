@@ -2,16 +2,17 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
+require('dotenv').config();
 
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-// require('cors');
+
 
 const Customer = require('./routes/customer/routes.customer');
 const Worker = require('./routes/worker/routes.worker');
 const Admin = require('./routes/admin/routes.admin');
-const Inventory = require('./routes/inventory/routes.inventory');
+// const Inventory = require('./routes/inventory/routes.inventory');
 
 /* 
     ! Not needed atm
@@ -26,7 +27,7 @@ const Inventory = require('./routes/inventory/routes.inventory');
 app.use('/API/Customer', Customer);
 app.use('/API/Worker', Worker);
 app.use('/API/Admin', Admin);
-app.use('/API/Secret/Inventory', Inventory);
+// app.use('/API/Secret/Inventory', Inventory);
 
 app.listen(PORT, () => {
     console.log(`API Server is listening at http://localhost:${PORT}`);
