@@ -2,7 +2,18 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
+const cors = require('cors');
+
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+
+const jwt = require('jsonwebtoken');
+
+app.use({
+    
+})
 require('dotenv').config();
+
 
 app.use(express.json());
 app.use(bodyParser.json());
