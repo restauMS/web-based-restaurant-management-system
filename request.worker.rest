@@ -1,7 +1,21 @@
+### Authentication Endpoint
 POST http://localhost:3001/API/Worker/Authenticate
 content-type: application/json
 
 {
-    "Username": "test",
-    "Password": "test"
+    "Username": "jmls",
+    "Password": "jireh123"
 }
+### Registration of Worker Information
+POST http://localhost:3001/API/Worker/Register
+content-type: application/json
+
+{
+    "Username": "lozanasc",
+    "Password": "Sean09753763274",
+    "Fullname": "Sean Christian Lozana",
+    "Contact": "09455477432",
+    "Address": "Candau-ay, Dumaguete City"
+}
+### Test Endpoint for checking Username availability
+POST http://localhost:3001/API/Worker/CheckUsername

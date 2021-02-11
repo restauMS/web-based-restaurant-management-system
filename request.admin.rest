@@ -1,7 +1,19 @@
+### Authentication endpoit
 POST http://localhost:3001/API/Admin/Authenticate
 content-type: application/json
 
 {
     "Username": "admin",
     "Password": "admin"
+}
+### Registration endpoint
+POST http://localhost:3001/API/Admin/Register
+content-type: application/json
+
+{
+    "Username": "admin",
+    "Password": "admin",
+    "Fullname": "Sean Christian Lozana",
+    "Contact": "09455477432",
+    "Address": "Candau-ay, Dumaguete City"
 }
