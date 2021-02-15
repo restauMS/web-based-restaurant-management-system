@@ -1,0 +1,9 @@
+@import '../../../../../theme/theme';
+
+
+.DashboardContainer {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: GetColorTheme(MainContrast);
+}

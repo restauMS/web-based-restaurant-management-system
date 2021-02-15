@@ -13,37 +13,39 @@ import Logo from '../../../../../assets/restoms-logo/logo.png';
 
 
 const Login = () => {
-    
-    const [Username, SetUsername] = useState('');
-    const [Password, SetPassword] = useState('');
-    const [AuthState, SetAuthState] = useState(false);
 
-    const Authenticate = async() => {
-        try {
-            const Auth = await fetch('./API/Worker/Authenticate', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    "Username": Username,
-                    "Password": Password
-                })
-            });
-            return Auth.json();
-        } catch (error) {
-            console.trace('Something went wrong', error);
-        }
-    }
+    // ! To be replaced
+    // const [Username, SetUsername] = useState('');
+    // const [Password, SetPassword] = useState('');
+    // const [AuthState, SetAuthState] = useState(false);
+
+    // ! Dog water code
+    // const Authenticate = async() => {
+    //     try {
+    //         const Auth = await fetch('./API/Worker/Authenticate', {
+    //             method: 'POST',
+    //             headers: {'Content-Type': 'application/json'},
+    //             body: JSON.stringify({
+    //                 "Username": Username,
+    //                 "Password": Password
+    //             })
+    //         });
+    //         return Auth.json();
+    //     } catch (error) {
+    //         console.trace('Something went wrong', error);
+    //     }
+    // }
 
     return (
         <form onChange={e => {e.preventDefault()}} className="LoginContainer">
-                {
+                {/* {
                     AuthState ?
                     <AlertCard
                     AlertTitle = 'Login Successful'
                     />
                     :
                     null
-                }
+                } */}
             <div className="FormContainer">
                 <img src={Logo} alt="" id="restoms-logo"/>
                 <LoginLabel
@@ -52,12 +54,12 @@ const Login = () => {
                 />
                 <LoginInput
                 PlaceholderTitle = 'Username here'
-                HandleChange = {(e) => SetUsername(e.target.value)}
+                // HandleChange = {(e) => SetUsername(e.target.value)}
                 />
                 <LoginInput
                 PlaceholderTitle = 'Password here'
                 Type = 'password'
-                HandleChange = {(e) => SetPassword(e.target.value)}
+                // HandleChange = {(e) => SetPassword(e.target.value)}
                 />
                 <Button
                 isButtonLink = {false}
@@ -65,10 +67,11 @@ const Login = () => {
                 ButtonContent = 'LOGIN'
                 ButtonFunction = {(e) => {
                     e.preventDefault();
+
                     // ! Absolute dog water piece of code
-                    Authenticate()
-                    .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Massive cuckery for not getting it right.'))
-                    .catch(Error => console.trace(Error))
+                    // Authenticate()
+                    // .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Massive cuckery for not getting it right.'))
+                    // .catch(Error => console.trace(Error))
                 }
                 }
                 />
