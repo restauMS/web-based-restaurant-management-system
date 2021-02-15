@@ -13,40 +13,41 @@ import './style/LoginForm.scss';
 import Logo from '../../../../assets/restoms-logo/logo.png';
 
 const Login = () => {
-
-    const [Username, SetUsername] = useState('');
-    const [Password, SetPassword] = useState('');
-    const [AuthState, SetAuthState] = useState(false); 
+    // ? Subject to change
+    // const [Username, SetUsername] = useState('');
+    // const [Password, SetPassword] = useState('');
+    // const [AuthState, SetAuthState] = useState(false); 
     
-    const Authenticate = async() => {
-        try {
-            const Auth = await fetch('./API/Admin/Authenticate', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    "Username": Username,
-                    "Password": Password
-                })
-            });
-            return Auth.json();
-        } catch (error) {
-            console.trace('Something went wrong', error);
-        }
-    }
+    // ! Dog water code, definitely needs replacing
+    // const Authenticate = async() => {
+    //     try {
+    //         const Auth = await fetch('./API/Admin/Authenticate', {
+    //             method: 'POST',
+    //             headers: {'Content-Type': 'application/json'},
+    //             body: JSON.stringify({
+    //                 "Username": Username,
+    //                 "Password": Password
+    //             })
+    //         });
+    //         return Auth.json();
+    //     } catch (error) {
+    //         console.trace('Something went wrong', error);
+    //     }
+    // }
 
     return (
         <form 
         className="LoginContainer"
         onChange={e => {e.preventDefault()}} 
         >
-            {
+            {/* {
                 AuthState ?
                 <AlertCard
                 AlertTitle = 'Login Successful'
                 />
                 :
                 null
-            }
+            } */}
             <div className="FormContainer">
                 <img src={Logo} alt="" id="restoms-logo"/>
                 <LoginLabel
@@ -54,11 +55,11 @@ const Login = () => {
                 />
                 <LoginInput
                     PlaceholderTitle = 'Username here'
-                    HandleChange = {(e) => SetUsername(e.target.value)}
+                    // HandleChange = {(e) => SetUsername(e.target.value)}
                 />
                 <LoginInput
                     PlaceholderTitle = 'Password here'
-                    HandleChange = {(e) => SetPassword(e.target.value)}
+                    // HandleChange = {(e) => SetPassword(e.target.value)}
                     Type = 'password'
                 />
                 <LoginButton
@@ -68,9 +69,9 @@ const Login = () => {
                     ButtonFunction = {(e) => {
                         // ! Needs MAJOR refactoring, absolute dog water authentication
                         e.preventDefault();
-                        Authenticate()
-                        .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Oof, you got it wrong bucko!'))
-                        .catch(Error => console.trace(Error));
+                        // Authenticate()
+                        // .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Oof, you got it wrong bucko!'))
+                        // .catch(Error => console.trace(Error));
                     }}
                 />
             </div>
