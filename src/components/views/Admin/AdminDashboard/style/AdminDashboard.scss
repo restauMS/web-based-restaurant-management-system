@@ -6,4 +6,34 @@
     margin: 0;
     padding: 0;
     background-color: GetColorTheme(MainContrast);
+    display: flex;
+    flex-flow: column;
+    .DashboardNavigation {
+        background-color: GetColorTheme(Main);
+        height: 20vh;
+        border-radius: 0 0 50px 50px;
+        margin: auto;
+        width: 100%;
+        padding: 25px;
+        display: flex;
+        .NavigationContent {
+            margin: auto;
+            display: flex;
+            * {
+                margin: auto 5px;
+            }
+            img {
+                height: clamp(20px, 100px, 150px);
+                width: clamp(20px, 100px, 150px);
+                margin: auto 10px;
+            }
+        }
+    }
+    .ContentContainer {
+        margin: 10px auto;
+        background-color: GetColorTheme(Base);
+        height: 80vh;
+        width: 95%;
+        border-radius: 25px;
+    }
 }
