@@ -11,7 +11,7 @@ const NotFound = props => {
         <div className="NotFound">
             <div className="Info">
                 <Label
-                LabelContent = `Oh, you're not supposed to be here.`
+                LabelContent = 'Sorry, this page does not exist.'
                 isLabelContrast = {false}
                 />
                 <Button
