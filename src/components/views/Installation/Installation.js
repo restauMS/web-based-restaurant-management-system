@@ -8,9 +8,6 @@ import Label from '../../common/Label/Label';
 import RestoMSLogo from '../../../assets/restoms-logo/logo.png';
 import './style/Installation.scss';
 
-
-
-
 const Selection = () => {
     return (
         <Spring
