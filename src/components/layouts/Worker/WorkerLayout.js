@@ -1,12 +1,29 @@
+// Dependency Imports
 import React from 'react';
-import WorkerView from '../../views/Worker/WorkerView';
+import {Route, Switch} from 'react-router-dom'
+// Component Imports
+// import WorkerView from '../../views/Worker/WorkerView';
+import Login from '../../views/Worker/WorkerForms/Login/LoginForm';
+import Register from '../../views/Worker/WorkerForms/Register/RegisterForm';
+// Styling Import
 import './style/WorkerLayout.scss';
 
-const WorkerLayout = () => {
+const WorkerLayout = ({match}) => {
     return (
-        <div className="WorkerLayoutContainer">
-            <WorkerView/>
-        </div>
+            <Switch>
+                {/* <Route path = {`${match.url} + /login`}>
+                    <WorkerView
+                        ComponentToMount = 'Login'
+                    />
+                </Route>
+                <Route path = {`${match.url} + /register`}>
+                    <WorkerView
+                        ComponentToMount = 'Register'
+                    />
+                </Route> */}
+                <Route path = {`${match.url} + /login`} component = {Login}/>
+                <Route path = {`${match.url} + /register`} component = {Register}/>
+            </Switch>
     )
 }
 
