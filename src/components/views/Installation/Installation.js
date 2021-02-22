@@ -37,7 +37,7 @@ const Selection = () => {
                             isButtonLink = {true}
                             ButtonContent = 'Worker'
                             isButtonContrast = {true}
-                            ButtonLinkRoute = '/worker'
+                            ButtonLinkRoute = '/worker/login'
                         />
                     </div>
                 </div>
@@ -53,7 +53,7 @@ const Selection = () => {
  * To render Admin view service intended for the Admin
  * @param {Component} props.WorkerService
  * To render Worker view service inteded for the Workers
- */
+ **/
 const Installation = props =>{
 return (
     <Router>
@@ -61,8 +61,8 @@ return (
                 <Route exact path = '/' component={Selection}/>
                 <Route exact path = '/customer' component={props.CustomerService}/>
                 <Route exact path = '/admin' component={props.AdminService}/>
-                <Route exact path='/worker' component={props.WorkerService}/>
-                <Route exact path='/404' component={props.NotFound}/>
+                <Route path = '/worker' component={props.WorkerService}/>
+                <Route exact path = '/404' component={props.NotFound}/>
                 <Redirect to='/404'/>
             </Switch>
     </Router>
