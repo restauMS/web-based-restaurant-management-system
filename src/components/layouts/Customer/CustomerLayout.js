@@ -1,20 +1,19 @@
+// Dependency Imports
 import React from 'react';
-import { Spring } from 'react-spring/renderprops';
-import './style/CustomerLayout.scss';
-import CustomerView from '../../views/Customer/CustomerView';
 
-export default function CustomerLayout(){
+// Component Imports
+import MainCustomer from '../../views/Customer/CustomerView';
+
+// Component Styling Import
+import './style/CustomerLayout.scss';
+
+
+const CustomerLayout = ({match}) => {
     return (
-        <Spring
-        from = {{opacity: 0, transition: '0.1s ease-in-out'}}
-        to = {{opacity: 1}}
-        >
-            {
-                props => 
-                <div className="CustomerLayoutContainer" style={{...props}}>
-                    <CustomerView/>
-                </div>
-            }
-        </Spring>
+        <div className="CustomerLayoutContainer">
+            <MainCustomer/>
+        </div>
     )
 }
+
+export default CustomerLayout;
