@@ -1,0 +1,19 @@
+@import '../../../../theme/theme';
+
+.ServiceMenu {
+    background-color: GetColorTheme(Main);
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    .SelectContainer {
+        display: flex;
+        flex-flow: column;
+        margin: auto;
+        #restoms-logo{
+            height: 100px; 
+            width: 100px;
+            margin: auto;
+        }
+    }
+}
