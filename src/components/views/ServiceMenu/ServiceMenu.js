@@ -12,7 +12,7 @@ import RestoMSLogo from '../../../assets/restoms-logo/logo.png';
 // Component Styling Import
 import './style/ServiceMenu.scss';
 
-const ServiceMenu = ({match}) => {
+const ServiceMenu = () => {
     return (
         <Spring
             from = {{opacity: 0, transition: '0.1s ease-in-out'}}
