@@ -15,9 +15,9 @@ return (
     <Router>
             <Switch>
                 <Route exact path = '/' strict component={ServiceMenu}/>
-                <Route exact path = '/Customer' strict component={Customer}/>
-                <Route exact path = '/Admin' strict component={''}/>
-                <Route path='/Worker' strict component={Worker}/>
+                {/* Complete parent and child routes for each service component */}
+                { Customer.map(({path, component}, key) => <Route exact strict path = {path} component = {component} key = {key} />)}
+                { Worker.map(({path, component}, key) => <Route exact strict path = {path} component = {component} key = {key} />)}
                 <Route exact path='/404' component={NotFound}/>
                 <Redirect to='/404'/>
             </Switch>
