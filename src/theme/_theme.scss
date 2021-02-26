@@ -1,6 +1,15 @@
 // Font Imports
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Hind+Vadodara:wght@700&family=Montserrat:wght@700&display=swap');
 
+// Breakpoint List 
+$Breakpoints: (
+    Phone: 599px,
+    TabletPortraitUp: 600px,
+    TabletLandscapeUp: 900px,
+    DesktopUp: 1200px,
+    BigDesktopUp: 1800px
+);
+
 // Color Theme List
 $ColorTheme: (
     Main: #355070,
@@ -42,6 +51,22 @@ $ComponentHeightList: (
 );
 
 // GETTER FUNCTIONS
+
+/*
+Breakpoint for all Viewports
+@param $Device
+* You can pass the following as arguments:
+? Phone - returns 599px
+? TabletPortraitUp - returns 600px
+? TabletLandscapeUp - returns 900px
+? DeskopUp - returns 1200px
+? BigDesktopUp - returns 1900px
+*/
+@function GetBreakpoint($Device){
+    @return map-get($map: $Breakpoints, $key: $Device);
+}
+
+
 /*
 COLOR THEME
 @param $Color
@@ -112,3 +137,37 @@ COMPONENT HEIGHT
 {
     @return map-get($map: $ComponentHeightList, $key: $ComponentHeight);
 }
+
+
+// Mixins
+/*
+    Breakpoints
+*/
+@mixin for-size($size){
+    @if $size == GetBreakpoint(Phone) {
+        @media (max-width: GetBreakpoint(Phone)) {
+            @content;
+        }
+    }
+    @else if $size == GetBreakpoint(TabletPortraitUp) {
+        @media (max-width: GetBreakpoint(TabletPortraitUp)) {
+            @content;
+        }
+    }
+    @else if $size == GetBreakpoint(TabletLandscapeUp) {
+        @media (max-width: GetBreakpoint(TabletLandscapeUp)) {
+            @content;
+        }
+    }
+    @else if $size == GetBreakpoint(DesktopUp) {
+        @media (max-width: GetBreakpoint(DesktopUp)) {
+            @content;
+        }
+    }
+    @else if $size == GetBreakpoint(BigDesktopUp) {
+        @media (max-width: GetBreakpoint(BigDesktopUp)) {
+            @content;
+        }
+    }
+}
+
