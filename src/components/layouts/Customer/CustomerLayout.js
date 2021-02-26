@@ -8,7 +8,7 @@ import MainCustomer from '../../views/Customer/CustomerView';
 import './style/CustomerLayout.scss';
 
 
-const CustomerLayout = ({match}) => {
+const CustomerOrder = () => {
     return (
         <div className="CustomerLayoutContainer">
             <MainCustomer/>
@@ -16,4 +16,25 @@ const CustomerLayout = ({match}) => {
     )
 }
 
-export default CustomerLayout;
+const CustomerCheckout = () => {
+    return (
+        <div className="CustomerLayoutContainer">
+            <h1>
+                This is the Checkout component
+            </h1>
+        </div>
+    )
+}
+
+const CustomerServiceRoutes = [
+    {
+        path: '/Customer/Order',
+        component: CustomerOrder
+    },
+    {
+        path: '/Customer/Checkout',
+        component: CustomerCheckout
+    }
+]
+
+export default CustomerServiceRoutes;

@@ -30,7 +30,7 @@ const ServiceMenu = () => {
                             isButtonLink = {true}
                             ButtonContent = 'Customer'
                             isButtonContrast = {true}
-                            ButtonLinkRoute = '/Customer'
+                            ButtonLinkRoute = '/Customer/Order'
                         />
                         <LinkButton
                             isButtonLink = {true}
