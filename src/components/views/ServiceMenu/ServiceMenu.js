@@ -36,7 +36,7 @@ const ServiceMenu = () => {
                             isButtonLink = {true}
                             ButtonContent = 'Admin'
                             isButtonContrast = {true}
-                            ButtonLinkRoute = ''
+                            ButtonLinkRoute = '/Admin/Login'
                         />
                         <LinkButton
                             isButtonLink = {true}

@@ -5,12 +5,27 @@ import AdminView from '../../views/Admin/AdminView';
 // Styling import
 import './style/AdminLayout.scss';
 
-const AdminLayout = () =>{
-    return (
-        <div className="AdminLayoutContainer">
-            <AdminView/>
-        </div>
-    )
-}
+const AdminLogin = () => {
+    return <div className="AdminLayoutContainer">
+                <AdminView ComponentToMount="Login"/>
+            </div>
+    };
+const AdminDashboard = () => {
+    return <div className="AdminLayoutContainer">
+                <AdminView ComponentToMount="Dashboard"/>
+            </div>
+    };
 
-export default AdminLayout;
+const AdminServiceRoutes = [
+    {
+        path: '/Admin/Login',
+        component: AdminLogin
+    }, 
+    {
+        // ! Testing
+        path: '/Admin/Dashboard',
+        component: AdminDashboard
+    }
+]
+
+export default AdminServiceRoutes;

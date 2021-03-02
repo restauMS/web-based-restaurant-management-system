@@ -18,7 +18,7 @@ const Login = () => {
     // const [Password, SetPassword] = useState('');
     // const [AuthState, SetAuthState] = useState(false); 
     
-    // ! Dog water code, definitely needs replacing
+    // ! Dog water code, definitely needs refactoring
     // const Authenticate = async() => {
     //     try {
     //         const Auth = await fetch('./API/Admin/Authenticate', {
