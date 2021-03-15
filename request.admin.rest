@@ -17,3 +17,16 @@ content-type: application/json
     "Contact": "09455477432",
     "Address": "Candau-ay, Dumaguete City"
 }
+
+### Jwt Test Endpoint
+POST http://localhost:3001/API/Admin/Authenticate
+content-type: application/json
+
+{
+    "Username": "admin",
+    "Password": "admin"
+}
+
+### Protected API Endpoint Test
+POST http://localhost:3001/API/Admin/GetSales
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6ImFkbWluIiwiUGFzc3dvcmQiOiJhZG1pbiIsImlhdCI6MTYxNTc3MDcyNX0.tHAfPRahmyAB32Z98XM4GUIEdu23gUepzN6zimwLbFs
