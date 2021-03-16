@@ -2,14 +2,14 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const PORT = process.env.API_SERVER;
 
 
 
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
 
 
 const Customer = require('./routes/customer/routes.customer');
