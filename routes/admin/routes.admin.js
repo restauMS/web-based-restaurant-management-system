@@ -48,23 +48,24 @@ Router.post('/Authenticate', async(Request, Response) => {
             const Auth = await Authenticate(Username);
             if(Auth) {
                 if(await compare(Password, Auth[0].admin_password)) {
-                    const AccessToken = jwt.sign({Username, Password}, process.env.ACCESS_TOKEN_SECRET);
+                    const AccessToken = jwt.sign({ Username, Password }, process.env.ACCESS_TOKEN_SECRET);
                     // ! Review later, security reasons...
-                    // localStorage.setItem('AccessToken', AccessToken);
                     Response.status(200)
                     .send(
                         {
                             "Status": true,
-                            "StatusDescription": "Login Authentication Successful"
+                            "StatusDescription": "Login Authentication Successful",
+                            "Username": Username,
+                            "AccessToken": AccessToken
                         }
                     )
-                }
+                } 
                 else {
                     Response.send(403)
                     .send(
                         {
                             "Status": false,
-                            "StatusDescription": "Login Unsuccessful, password is incorrect"
+                            "StatusDescription": "Login Unsuccessful, password or username is incorrect"
                         }
                     )
                 }
