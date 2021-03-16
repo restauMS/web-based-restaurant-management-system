@@ -14,26 +14,26 @@ import Logo from '../../../../assets/restoms-logo/logo.png';
 
 const Login = () => {
     // ? Subject to change
-    // const [Username, SetUsername] = useState('');
-    // const [Password, SetPassword] = useState('');
+    const [Username, SetUsername] = useState('');
+    const [Password, SetPassword] = useState('');
     // const [AuthState, SetAuthState] = useState(false); 
     
-    // ! Dog water code, definitely needs refactoring
-    // const Authenticate = async() => {
-    //     try {
-    //         const Auth = await fetch('./API/Admin/Authenticate', {
-    //             method: 'POST',
-    //             headers: {'Content-Type': 'application/json'},
-    //             body: JSON.stringify({
-    //                 "Username": Username,
-    //                 "Password": Password
-    //             })
-    //         });
-    //         return Auth.json();
-    //     } catch (error) {
-    //         console.trace('Something went wrong', error);
-    //     }
-    // }
+    // ! Testing phase subject for Refactoring
+    const Authenticate = async() => {
+        try {
+            const Auth = await fetch('/API/Admin/Authenticate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    "Username": Username,
+                    "Password": Password
+                })
+            });
+            return Auth.json();
+        } catch (error) {
+            console.trace('Something went wrong', error);
+        }
+    }
 
     return (
         <form 
@@ -55,11 +55,11 @@ const Login = () => {
                 />
                 <LoginInput
                     PlaceholderTitle = 'Username here'
-                    // HandleChange = {(e) => SetUsername(e.target.value)}
+                    HandleChange = {(e) => SetUsername(e.target.value)}
                 />
                 <LoginInput
                     PlaceholderTitle = 'Password here'
-                    // HandleChange = {(e) => SetPassword(e.target.value)}
+                    HandleChange = {(e) => SetPassword(e.target.value)}
                     Type = 'password'
                 />
                 <LoginButton
@@ -67,11 +67,18 @@ const Login = () => {
                     isButtonContrast = {false}
                     ButtonContent = 'LOGIN'
                     ButtonFunction = {(e) => {
+                        // ! Testing Phase subject for refactoring
                         // ! Needs MAJOR refactoring, absolute dog water authentication
                         e.preventDefault();
                         // Authenticate()
                         // .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Oof, you got it wrong bucko!'))
                         // .catch(Error => console.trace(Error));
+                        Authenticate()
+                        .then(({AccessToken, Username: Name}) => {
+                            localStorage.setItem("AccessToken", AccessToken);
+                            localStorage.setItem("Username", Name);
+                        })
+                        .catch(Error => console.trace(Error));
                     }}
                 />
             </div>
