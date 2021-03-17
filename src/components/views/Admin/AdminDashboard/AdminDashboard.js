@@ -1,53 +1,44 @@
-import React from 'react';
-// ? Needed later on
-// import {BrowserRouter as Router} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+// ? Later on ... import {Redirect} from 'react-router-dom';
 
 // Component Imports
-import ADButton from '../../../common/Button/Button';
-import ADLabel from '../../../common/Label/Label';
-// eslint-disable-next-line
-import ADInput from '../../../common/Textfield/Textfield';
-
-// Asset Imports
-import Logo from '../../../../assets/restoms-logo/logo.png';
+import Content from './components/AdminDashboardContent';
+import Navigation from './components/AdminDashboardNavbar';
 
 // Styling Import
 import './style/AdminDashboard.scss';
 
-const Dashboard = props => {
+const Dashboard = () => {
+
+    /* 
+        ! TESTING PHASE
+    */
+    const AdminInformationTemplate = {
+        Username: '',
+        Fullname: '',
+        AuthType: ''
+    }
+
+    const [AdminInformation, SetAdminInformation] = useState(AdminInformationTemplate);
+
+    useEffect(() => {
+        SetAdminInformation({
+            Username: localStorage.getItem('Username'),
+            Fullname: '',
+            AuthType: 'Admin',
+            Token: localStorage.getItem('AccessToken')
+        });
+    },[])
+
     return (
+        // props.IsAuthenticated ? 
         <div className='DashboardContainer'>
-            <nav className='DashboardNavigation'>
-                <div className="NavigationContent">
-                    <img src={Logo} alt="The RestoMS Logo"/>
-                    <ADButton
-                        isButtonLink = {false} // Atleast for now
-                        ButtonContent = 'Button 1'
-                        isButtonContrast = {true}
-                    />
-                    <ADButton
-                        isButtonLink = {false} // Atleast for now
-                        ButtonContent = 'Button 2'
-                        isButtonContrast = {true}
-                    />
-                    <ADButton
-                        isButtonLink = {false} // Atleast for now
-                        ButtonContent = 'Button 3'
-                        isButtonContrast = {true}
-                    />
-                    <ADButton
-                        isButtonLink = {false} // Atleast for now
-                        ButtonContent = 'Button 4'
-                        isButtonContrast = {true}
-                    />
-                </div>
-            </nav>
-            <div className="ContentContainer">
-                <ADLabel
-                isLabelContrast = {true}
-                LabelContent = 'Test'
-                />
-            </div>
+            <Navigation/>
+            <Content
+                AdminName = {AdminInformation.Username}
+                AuthType = {AdminInformation.AuthType}
+                AuthToken = {AdminInformation.Token}
+            />
         </div>
     );
 }
