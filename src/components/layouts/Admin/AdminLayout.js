@@ -18,6 +18,10 @@ const AdminDashboard = () => {
 
 const AdminServiceRoutes = [
     {
+        path: '/Admin',
+        component: AdminLogin
+    },
+    {
         path: '/Admin/Login',
         component: AdminLogin
     }, 
