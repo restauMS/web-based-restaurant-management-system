@@ -16,7 +16,7 @@ const Login = () => {
     // ? Subject to change
     const [Username, SetUsername] = useState('');
     const [Password, SetPassword] = useState('');
-    // const [AuthState, SetAuthState] = useState(false); 
+    const [AuthState, SetAuthState] = useState(false); 
     
     // ! Testing phase subject for Refactoring
     const Authenticate = async() => {
@@ -35,19 +35,34 @@ const Login = () => {
         }
     }
 
+    const Verify = () => {
+        try {
+            Authenticate()
+            .then(({AccessToken, Username: Name, Status}) => {
+                localStorage.setItem("AccessToken", AccessToken);
+                localStorage.setItem("Username", Name);
+                SetAuthState(Status);
+            })
+            .catch(Error => console.trace(Error));    
+        } catch (error) {
+            // ? Subject to change
+            alert(error);
+        }
+    }
+
     return (
         <form 
         className="LoginContainer"
         onChange={e => {e.preventDefault()}} 
         >
-            {/* {
-                AuthState ?
+            {
+                AuthState ? 
                 <AlertCard
-                AlertTitle = 'Login Successful'
+                    AlertTitle = 'Login is successful!'
                 />
                 :
                 null
-            } */}
+            }
             <div className="FormContainer">
                 <img src={Logo} alt="" id="restoms-logo"/>
                 <LoginLabel
@@ -67,18 +82,8 @@ const Login = () => {
                     isButtonContrast = {false}
                     ButtonContent = 'LOGIN'
                     ButtonFunction = {(e) => {
-                        // ! Testing Phase subject for refactoring
-                        // ! Needs MAJOR refactoring, absolute dog water authentication
                         e.preventDefault();
-                        // Authenticate()
-                        // .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Oof, you got it wrong bucko!'))
-                        // .catch(Error => console.trace(Error));
-                        Authenticate()
-                        .then(({AccessToken, Username: Name}) => {
-                            localStorage.setItem("AccessToken", AccessToken);
-                            localStorage.setItem("Username", Name);
-                        })
-                        .catch(Error => console.trace(Error));
+                        Verify();
                     }}
                 />
             </div>
