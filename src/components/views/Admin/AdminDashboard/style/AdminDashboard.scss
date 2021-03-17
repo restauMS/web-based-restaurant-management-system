@@ -1,39 +1,48 @@
 @import '../../../../../theme/theme';
 
-
+// ! Needs refactoring...
 .DashboardContainer {
     height: 100vh;
     margin: 0;
     padding: 0;
     background-color: GetColorTheme(MainContrast);
     display: flex;
-    flex-flow: column;
-    .DashboardNavigation {
-        background-color: GetColorTheme(Main);
-        height: 20vh;
-        border-radius: 0 0 50px 50px;
-        margin: auto;
-        width: 100%;
-        padding: 25px;
+    flex-flow: row;
+    .Navigation {
         display: flex;
-        .NavigationContent {
-            margin: auto;
-            display: flex;
-            * {
-                margin: auto 5px;
-            }
-            img {
-                height: clamp(20px, 100px, 150px);
-                width: clamp(20px, 100px, 150px);
-                margin: auto 10px;
-            }
-        }
+        flex-flow: column;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: GetColorTheme(Main);
+        border-radius: 0px 15px 15px 0px;
+        filter: drop-shadow(5px 0px 4px rgba(0, 0, 0, 0.400));
     }
-    .ContentContainer {
-        margin: 10px auto;
+    .Content {
+        display: flex;
+        margin: 10px 10px;
         background-color: GetColorTheme(Base);
-        height: 80vh;
+        height: 97vh;
         width: 95%;
         border-radius: 25px;
+        padding: 20px;
+    }
+    // Breakpoints
+    @include for-size(GetBreakpoint(Phone)){
+        flex-flow: column;
+        .Navigation {
+            flex-flow: row;
+        }
+        .Content {
+            flex-flow: column;
+        }
+    }
+    @include for-size(GetBreakpoint(TabletPortraitUp)){
+        flex-flow: row;
+        .Content {
+            flex-flow: row;
+        }
+        .Navigation {
+            flex-flow: column;
+        }
     }
 }
