@@ -1,0 +1,26 @@
+import React from 'react';
+import {Route} from 'react-router-dom';
+
+// Component Imports
+import AuthenticatorRoute from './Authenticator';
+import ProtectedRoute from './Protected';
+
+const ControllerRouter = (props) => {
+
+    const {RouteType, RouteProps} = props;
+
+    return (
+        <>
+            {
+                RouteType === 'public' &&
+                <Route
+                    {...RouteProps}
+                />
+            }
+            {(RouteType === 'authenticate') && <AuthenticatorRoute {...RouteProps}/>}
+            {(RouteType === 'protected') && <ProtectedRoute {...RouteProps}/>}
+        </>
+    );
+}
+
+export default ControllerRouter;
