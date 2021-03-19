@@ -1,18 +1,16 @@
 import React from 'react';
-import {Router, Redirect} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 
-const AuthenticatorRoute = ({component: Component, RedirectPath,AuthenticationStatus, ...rest}) => {
+const AuthenticatorRoute = ({component: Component, AuthStatus, RedirectPath,...rest}) => {
     return (
-        <Router
+        <Route
             {...rest}
             render = {RenderProps => {
-                !AuthenticationStatus ?
+                !AuthStatus ?
                 <Component {...RenderProps}/>
                 :
                 <Redirect
-                    to = {{
-                        pathname: RedirectPath
-                    }}
+                    to = {{pathname: RedirectPath}}
                 />
             }}
         />

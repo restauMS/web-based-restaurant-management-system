@@ -1,12 +1,12 @@
 import React from 'react';
-import {Router, Redirect} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 
-const ProtectedRoute = ({component: Component, AuthenticationStatus, RedirectPath, ...rest}) => {
+const ProtectedRoute = ({component: Component, AuthStatus, RedirectPath, ...rest}) => {
     return (
-        <Router
+        <Route
             {...rest}
-            render = {RenderProps => {
-                !AuthenticationStatus
+            render = {RenderProps   => {
+                AuthStatus
                 ?
                 <Component {...RenderProps}/>
                 :
