@@ -2,6 +2,7 @@ import React from 'react';
 
 // Component import
 import AdminView from '../../views/Admin/AdminView';
+
 // Styling import
 import './style/AdminLayout.scss';
 
@@ -10,6 +11,7 @@ const AdminLogin = () => {
                 <AdminView ComponentToMount="Login"/>
             </div>
     };
+
 const AdminDashboard = () => {
     return <div className="AdminLayoutContainer">
                 <AdminView ComponentToMount="Dashboard"/>
@@ -18,17 +20,18 @@ const AdminDashboard = () => {
 
 const AdminServiceRoutes = [
     {
-        path: '/Admin',
-        component: AdminLogin
-    },
-    {
         path: '/Admin/Login',
-        component: AdminLogin
+        component: AdminLogin,
+        RouteType: 'authenticator',
+        RedirectPath: '/Admin/Dashboard',
+        AuthStatus: false
     }, 
     {
-        // ! Testing
         path: '/Admin/Dashboard',
-        component: AdminDashboard
+        component: AdminDashboard,
+        RouteType: 'protected',
+        RedirectPath: '/Admin/Login',
+        AuthStatus: false
     }
 ]
 

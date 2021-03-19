@@ -7,7 +7,7 @@ import ProtectedRoute from './Protected';
 
 const ControllerRouter = (props) => {
 
-    const {RouteType, RouteProps} = props;
+    const {RouteType, ...RouteProps} = props;
 
     return (
         <>
@@ -17,7 +17,7 @@ const ControllerRouter = (props) => {
                     {...RouteProps}
                 />
             }
-            {(RouteType === 'authenticate') && <AuthenticatorRoute {...RouteProps}/>}
+            {(RouteType === 'authenticator') && <AuthenticatorRoute {...RouteProps}/>}
             {(RouteType === 'protected') && <ProtectedRoute {...RouteProps}/>}
         </>
     );
