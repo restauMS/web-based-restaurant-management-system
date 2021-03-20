@@ -5,9 +5,7 @@ import {Route} from 'react-router-dom';
 import AuthenticatorRoute from './Authenticator';
 import ProtectedRoute from './Protected';
 
-const ControllerRouter = (props) => {
-
-    const {RouteType, ...RouteProps} = props;
+const ControllerRouter = ({RouteType, ...RouteProps}) => {
 
     return (
         <>

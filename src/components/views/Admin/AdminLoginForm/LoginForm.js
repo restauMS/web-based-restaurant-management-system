@@ -78,9 +78,10 @@ const Login = () => {
                     Type = 'password'
                 />
                 <LoginButton
-                    isButtonLink = {false}
+                    isButtonLink = {true}
                     isButtonContrast = {false}
                     ButtonContent = 'LOGIN'
+                    ButtonLinkRoute = '/Admin/Dashboard'
                     ButtonFunction = {(e) => {
                         e.preventDefault();
                         Verify();
