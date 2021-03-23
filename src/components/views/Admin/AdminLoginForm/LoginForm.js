@@ -78,7 +78,7 @@ const Login = () => {
                     Type = 'password'
                 />
                 <LoginButton
-                    isButtonLink = {true}
+                    isButtonLink = {AuthState ? '/Admin/Dashboard' : null}
                     isButtonContrast = {false}
                     ButtonContent = 'LOGIN'
                     ButtonLinkRoute = '/Admin/Dashboard'

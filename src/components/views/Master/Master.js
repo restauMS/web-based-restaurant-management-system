@@ -15,13 +15,14 @@ import Worker from '../../layouts/Worker/WorkerLayout';
 import Admin from '../../layouts/Admin/AdminLayout';
 
 
-const Master = ({IsAuthenticated}) => {
+const Master = () => {
 return (
     <Router>
             <Switch>
                 <ControllerRouter
                     path = '/'
                     component = {ServiceMenu}
+                    // AuthStatus = {false}
                     RouteType = 'public'
                     strict
                     exact
@@ -46,6 +47,7 @@ return (
                 <ControllerRouter
                     path = '/404'
                     component = {NotFound}
+                    // AuthStatus = {false}
                     RouteType = 'public'
                     strict
                     exact

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {} from 'react';
 
 // Component import
 import AdminView from '../../views/Admin/AdminView';
@@ -6,7 +6,7 @@ import AdminView from '../../views/Admin/AdminView';
 // Styling import
 import './style/AdminLayout.scss';
 
-const Auth = localStorage.getItem('AccessToken')!=null;
+const IsAuthenticated = localStorage.getItem('AccessToken')!=null;
 
 const AdminLogin = () => {
     return <div className="AdminLayoutContainer">
@@ -20,21 +20,21 @@ const AdminLogin = () => {
             </div>
     };
 
-
+// ! Removed Auth prop at layout level for testing...
 const AdminServiceRoutes = [
     {
         path: '/Admin/Login',
         component: AdminLogin,
         RouteType: 'authenticator',
         RedirectPath: '/Admin/Dashboard',
-        AuthStatus: Auth
+        AuthStatus: IsAuthenticated
     }, 
     {
         path: '/Admin/Dashboard',
         component: AdminDashboard,
         RouteType: 'protected',
         RedirectPath: '/Admin/Login',
-        AuthStatus: Auth
+        AuthStatus: IsAuthenticated
     }
 ]
 
