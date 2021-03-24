@@ -6,7 +6,6 @@ import AdminView from '../../views/Admin/AdminView';
 // Styling import
 import './style/AdminLayout.scss';
 
-const IsAuthenticated = localStorage.getItem('AccessToken')!=null;
 
 const AdminLogin = () => {
     return <div className="AdminLayoutContainer">
@@ -27,14 +26,14 @@ const AdminServiceRoutes = [
         component: AdminLogin,
         RouteType: 'authenticator',
         RedirectPath: '/Admin/Dashboard',
-        AuthStatus: IsAuthenticated
+        // AuthStatus: IsAuthenticated
     }, 
     {
         path: '/Admin/Dashboard',
         component: AdminDashboard,
         RouteType: 'protected',
         RedirectPath: '/Admin/Login',
-        AuthStatus: IsAuthenticated
+        // AuthStatus: IsAuthenticated
     }
 ]
 
