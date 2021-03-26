@@ -1,15 +1,18 @@
-import React, {} from 'react';
+import React from 'react';
 
 // Component import
 import AdminView from '../../views/Admin/AdminView';
+import { useAuth } from '../../hooks/AuthCheck';
 
 // Styling import
 import './style/AdminLayout.scss';
 
-
 const AdminLogin = () => {
+
+    const {SetAuthStatus} = useAuth();
+
     return <div className="AdminLayoutContainer">
-                <AdminView ComponentToMount="Login"/>
+                <AdminView ComponentToMount="Login" SetAuthStatus={SetAuthStatus}/>
             </div>
     };
     
@@ -18,22 +21,19 @@ const AdminLogin = () => {
                 <AdminView ComponentToMount="Dashboard"/>
             </div>
     };
-
-// ! Removed Auth prop at layout level for testing...
+    
 const AdminServiceRoutes = [
     {
         path: '/Admin/Login',
         component: AdminLogin,
         RouteType: 'authenticator',
-        RedirectPath: '/Admin/Dashboard',
-        // AuthStatus: IsAuthenticated
+        RedirectPath: '/Admin/Dashboard'
     }, 
     {
         path: '/Admin/Dashboard',
         component: AdminDashboard,
         RouteType: 'protected',
-        RedirectPath: '/Admin/Login',
-        // AuthStatus: IsAuthenticated
+        RedirectPath: '/Admin/Login'
     }
 ]
 
