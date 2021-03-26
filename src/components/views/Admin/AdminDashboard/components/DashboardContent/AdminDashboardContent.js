@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Component Imports
-import ContentLabel from '../../../../common/Label/Label';
+import ContentLabel from '../../../../../common/Label/Label';
 
 const AdminDashboardContent = (props) => {
     return (
