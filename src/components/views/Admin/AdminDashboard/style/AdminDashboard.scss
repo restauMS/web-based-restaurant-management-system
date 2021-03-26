@@ -8,6 +8,7 @@
     background-color: GetColorTheme(MainContrast);
     display: flex;
     flex-flow: row;
+    overflow: hidden;
     .Navigation {
         display: flex;
         flex-flow: column;
