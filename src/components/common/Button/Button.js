@@ -22,6 +22,7 @@ const Button = props => {
                 onClick={props.ButtonFunction}
                 className={props.isButtonContrast ? 'Button ButtonContrast onActive' : 'Button onActive'}
                 style = {{...props.Style}}
+                type = {props.Type}
                 >
                     {props.ButtonContent}
                 </button>
