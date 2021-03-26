@@ -7,7 +7,7 @@ import Dashboard from './AdminDashboard/AdminDashboard';
 const AdminView = props => {
     switch(props.ComponentToMount){
         case 'Login': {
-            return <Login/>
+            return <Login SetAuthStatus={props.SetAuthStatus}/>
         }
         case 'Dashboard': {
             return <Dashboard/>
