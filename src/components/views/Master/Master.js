@@ -6,23 +6,27 @@ import {BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
 import ServiceMenu from '../ServiceMenu/ServiceMenu';
 import ControllerRouter from '../../routers/Controller';
+import { useAuth } from '../../hooks/AuthCheck';
 
 // ? Customer Component Import
-import Customer from '../../layouts/Customer/CustomerLayout';
+// import Customer from '../../layouts/Customer/CustomerLayout';
 // ? Worker Component Import
-import Worker from '../../layouts/Worker/WorkerLayout';
+// import Worker from '../../layouts/Worker/WorkerLayout';
 // ? Admin Component Import
 import Admin from '../../layouts/Admin/AdminLayout';
 
 
 const Master = () => {
+
+    const {AuthStatus} = useAuth();
+
 return (
     <Router>
             <Switch>
                 <ControllerRouter
                     path = '/'
                     component = {ServiceMenu}
-                    // AuthStatus = {false}
+                    AuthStatus = {AuthStatus}
                     RouteType = 'public'
                     strict
                     exact
@@ -31,7 +35,7 @@ return (
                 {/* { Customer.map(({path, component}, key) => <Route exact strict path = {path} component = {component} key = {key} />)}
                 { Worker.map(({path, component}, key) => <Route exact strict path = {path} component = {component} key = {key} />)} */}
                 { 
-                    Admin.map(({path, component, RouteType, AuthStatus, RedirectPath}, key) => 
+                    Admin.map(({path, component, RouteType, RedirectPath}, key) => 
                     <ControllerRouter 
                         key = {key} 
                         path = {path} 
@@ -47,7 +51,7 @@ return (
                 <ControllerRouter
                     path = '/404'
                     component = {NotFound}
-                    // AuthStatus = {false}
+                    AuthStatus = {AuthStatus}
                     RouteType = 'public'
                     strict
                     exact
