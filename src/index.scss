@@ -15,9 +15,6 @@ body {
     padding: 0;
     margin: 0;
     min-height: 100%;
-    @include for-size(GetBreakpoint(TabletPortraitUp)){
-        overflow: hidden;
-    }
 }
 
 .ContainerIndex{
