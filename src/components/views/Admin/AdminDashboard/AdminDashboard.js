@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 // ? Later on ... import {Redirect} from 'react-router-dom';
 
 // Component Imports
-import Content from './components/AdminDashboardContent';
+import Content from './components/DashboardContent/AdminDashboardContent';
 import Navigation from './components/AdminDashboardNavbar';
 
 // Styling Import
