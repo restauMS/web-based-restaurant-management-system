@@ -21,7 +21,7 @@ const AuthenticateToken = (Request, Response, Next) => {
     }) 
 }
 
-
+// ! Needs refactoring...
 Router.post('/GetAdminInformation', AuthenticateToken, async(Request, Response) => {
     try {
         const GetAdminInformation = await AdminInformation();
