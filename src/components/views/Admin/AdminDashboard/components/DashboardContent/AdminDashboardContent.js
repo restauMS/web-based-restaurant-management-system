@@ -3,6 +3,9 @@ import React from 'react'
 // Component Imports
 import ContentLabel from '../../../../../common/Label/Label';
 
+// Styling Import
+import "./style/Content.scss";
+
 const AdminDashboardContent = (props) => {
     return (
         <div className="Content">

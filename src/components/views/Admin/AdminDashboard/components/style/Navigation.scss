@@ -1,0 +1,36 @@
+@import "../../../../../../theme/theme";
+
+.Navigation {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: GetColorTheme(Main);
+    border-radius: 0px 15px 15px 0px;
+    filter: drop-shadow(5px 0px 4px rgba(0, 0, 0, 0.400));
+    // ? Breakpoints
+    @include for-size(GetBreakpoint(Phone)){
+        
+        flex-flow: row;
+        border-radius: 15px 15px 0px 0px;
+        padding: 5px;
+
+        .ExitButton {
+            display: none;
+        }
+        
+        .NavButtonGroup {
+            position: absolute;
+            display: flex;
+            flex-flow: row;
+            button {
+                margin: auto 10px;
+            }
+        }
+        
+        .Logo {
+            display: none;
+        }
+        
+    }
+}

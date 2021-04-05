@@ -12,6 +12,9 @@ import Sales from '../../../../../assets/button-assets/dashboard-related/sales.p
 import Settings from '../../../../../assets/button-assets/dashboard-related/settings.png';
 import Logout from '../../../../../assets/button-assets/dashboard-related/logout.png';
 
+// Styling Imports
+import "./style/Navigation.scss";
+
 const NavButtonGroup = [
     {
         Contrast: true,
@@ -71,8 +74,8 @@ const NavButtonGroup = [
 const AdminDashboardNavbar = (props) => {
     return (
         <div className="Navigation">
-            <img src={Logo} alt="" height="50px" width="50px"/> 
-            {/* 
+            <img className="Logo" src={Logo} alt="" height="50px" width="50px"/> 
+            {/*  
                 * Refactor later...
             */}
             <div className="NavButtonGroup">
@@ -89,6 +92,7 @@ const AdminDashboardNavbar = (props) => {
             </div>
             
             <NavButton
+                    className = "ExitButton"
                     isButtonContrast = {true}
                     ButtonImageProps = {
                         {

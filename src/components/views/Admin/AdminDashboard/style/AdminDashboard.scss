@@ -2,6 +2,7 @@
 
 // ! Needs refactoring...
 .DashboardContainer {
+
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -9,41 +10,11 @@
     display: flex;
     flex-flow: row;
     overflow: hidden;
-    .Navigation {
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        padding: 20px;
-        background-color: GetColorTheme(Main);
-        border-radius: 0px 15px 15px 0px;
-        filter: drop-shadow(5px 0px 4px rgba(0, 0, 0, 0.400));
-    }
-    .Content {
-        display: flex;
-        margin: 10px 10px;
-        background-color: GetColorTheme(Base);
-        height: 97vh;
-        width: 95%;
-        border-radius: 25px;
-        padding: 20px;
-    }
-    // Breakpoints
+
+    // ? Breakpoints
     @include for-size(GetBreakpoint(Phone)){
-        flex-flow: column;
-        .Navigation {
-            flex-flow: row;
-        }
-        .Content {
-            flex-flow: column;
-        }
+        flex-flow: column-reverse;
+        overflow: auto;
     }
-    @include for-size(GetBreakpoint(TabletPortraitUp)){
-        flex-flow: row;
-        .Content {
-            flex-flow: row;
-        }
-        .Navigation {
-            flex-flow: column;
-        }
-    }
+
 }
