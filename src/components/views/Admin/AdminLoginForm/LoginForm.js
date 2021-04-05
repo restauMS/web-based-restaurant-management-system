@@ -39,10 +39,7 @@ const Login = ({SetAuthStatus}) => {
         });
         localStorage.setItem("AccessToken", AccessToken);
         localStorage.setItem("Username", Name);
-        SetAuthStatus(Status);
-        // ! Really retarded... but last resort method
-        // ? Why? It goes against the tech we're using...
-        // window.location.replace('/Admin/Dashboard');
+        localStorage.setItem("AuthStatus", Status);
     }
 
     return (
