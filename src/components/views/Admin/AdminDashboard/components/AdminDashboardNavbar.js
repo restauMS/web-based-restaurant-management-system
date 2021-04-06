@@ -16,7 +16,8 @@ import Logout from '../../../../../assets/button-assets/dashboard-related/logout
 import "./style/Navigation.scss";
 
 const NavButtonGroup = [
-    {
+    {   
+        isButtonLink: true,
         Contrast: true,
         ImageProperties: {
             src: Home,
@@ -27,6 +28,7 @@ const NavButtonGroup = [
         Route: '/Admin/Dashboard'
     },
     {
+        isButtonLink: true,
         Contrast: true,
         ImageProperties: {
             src: Orders,
@@ -38,6 +40,7 @@ const NavButtonGroup = [
     }
     ,
     {
+        isButtonLink: true,
         Contrast: true,
         ImageProperties: {
             src: Products,
@@ -49,6 +52,7 @@ const NavButtonGroup = [
     }
     ,
     {
+        isButtonLink: true,
         Contrast: true,
         ImageProperties: {
             src: Sales,
@@ -60,6 +64,7 @@ const NavButtonGroup = [
     }
     ,
     {
+        isButtonLink: true,
         Contrast: true,
         ImageProperties: {
             src: Settings,
@@ -83,6 +88,7 @@ const AdminDashboardNavbar = (props) => {
                     NavButtonGroup.map((Props, key) => 
                         <NavButton
                             key = {key}
+                            isButtonLink = {Props.isButtonLink}
                             isButtonContrast = {Props.Contrast}
                             ButtonImageProps = {Props.ImageProperties}
                             Route = {Props.Route}
@@ -94,6 +100,7 @@ const AdminDashboardNavbar = (props) => {
             <NavButton
                     className = "ExitButton"
                     isButtonContrast = {true}
+                    isButtonLink = {false}
                     ButtonImageProps = {
                         {
                             src: Logout,

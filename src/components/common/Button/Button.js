@@ -32,6 +32,7 @@ const Button = props => {
 
 export const DashboardButton = props => {
     return (
+                props.isButtonLink ?
                 <NavLink
                     className={props.isButtonContrast ? 'DashboardButton ButtonContrast onActive' : 'DashboardButton onActive'}
                     activeStyle = {props.activeStyle}
@@ -45,6 +46,19 @@ export const DashboardButton = props => {
                         width = {props.ButtonImageProps.width}
                     />
                 </NavLink>
+                :
+                <button
+                    className={props.isButtonContrast ? 'DashboardButton ButtonContrast onActive' : 'DashboardButton onActive'}
+                    onClick = {props.ButtonFunction}
+                    type = {props.Type}
+                >
+                    <img 
+                        src={props.ButtonImageProps.src} 
+                        alt={props.ButtonImageProps.alt} 
+                        height={props.ButtonImageProps.height} 
+                        width = {props.ButtonImageProps.width}
+                    />
+                </button>
     );
 }
 
