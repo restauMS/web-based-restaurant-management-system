@@ -9,9 +9,9 @@ import ControllerRouter from '../../routers/Controller';
 import { useAuth } from '../../hooks/AuthCheck';
 
 // ? Customer Component Import
-// import Customer from '../../layouts/Customer/CustomerLayout';
+import Customer from '../../layouts/Customer/CustomerLayout';
 // ? Worker Component Import
-// import Worker from '../../layouts/Worker/WorkerLayout';
+import Worker from '../../layouts/Worker/WorkerLayout';
 // ? Admin Component Import
 import Admin from '../../layouts/Admin/AdminLayout';
 
@@ -32,8 +32,39 @@ return (
                     exact
                 />
                 {/* Complete parent and child routes for each service component */}
-                {/* { Customer.map(({path, component}, key) => <Route exact strict path = {path} component = {component} key = {key} />)}
-                { Worker.map(({path, component}, key) => <Route exact strict path = {path} component = {component} key = {key} />)} */}
+                
+                {
+                    Customer.map(({path, component, RouteType}, key) => 
+                    <ControllerRouter
+                        key = {key}
+                        path = {path}
+                        component = {component}
+                        RouteType = {RouteType}
+                        AuthStatus = {AuthStatus}
+                        exact
+                        strict
+                    />    
+                    )
+                }
+                
+                
+                { 
+                    Worker.map(({path, component, RouteType, RedirectPath}, key) => 
+                    <ControllerRouter 
+                        key = {key} 
+                        path = {path}
+                        component = {component}
+                        RouteType = {RouteType}
+                        AuthStatus = {AuthStatus}
+                        RedirectPath = {RedirectPath}
+                        exact
+                        strict
+                    />
+                    )
+                }
+                
+
+
                 { 
                     Admin.map(({path, component, RouteType, RedirectPath}, key) => 
                     <ControllerRouter 

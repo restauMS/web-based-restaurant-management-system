@@ -29,11 +29,13 @@ const CustomerCheckout = () => {
 const CustomerServiceRoutes = [
     {
         path: '/Customer/Order',
-        component: CustomerOrder
+        component: CustomerOrder,
+        RouteType: 'public'
     },
     {
         path: '/Customer/Checkout',
-        component: CustomerCheckout
+        component: CustomerCheckout,
+        RouteType: 'public'
     }
 ]
 

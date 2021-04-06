@@ -7,6 +7,7 @@ import WorkerView from '../../views/Worker/WorkerView';
 // Component Styling Import
 import './style/WorkerLayout.scss';
 
+// Login component for authenticating users
 const WorkerLogin = () => {
     return (
         <div className="WorkerLayoutContainer">
@@ -14,6 +15,8 @@ const WorkerLogin = () => {
         </div>
     )
 };
+
+// Registration component for adding Workers into the system
 const WorkerRegistration = () => {
     return (
         <div className="WorkerLayoutContainer">
@@ -22,14 +25,32 @@ const WorkerRegistration = () => {
     )
 };
 
+// Dashboard component for viewing critical information
+const WorkerDashboard = () => {
+    return (
+        <div className="WorkerLayoutContainer">
+            <h1>Not available yet...</h1>
+        </div>
+    )
+}
+
 const WorkerServiceRoutes = [
     {
         path: '/Worker/Login',
-        component: WorkerLogin
+        component: WorkerLogin,
+        RouteType: 'authenticator',
+        RedirectPath: '/Worker/Dashboard'
     },
     {
         path: '/Worker/Registration',
-        component: WorkerRegistration
+        component: WorkerRegistration,
+        RouteType: 'public'
+    },
+    {
+        path: '/Worker/Dashboard',
+        component: WorkerDashboard,
+        RouteType: 'protected',
+        RedirectPath: '/Worker/Login'
     }
 ]
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Component Imports
-import {DashboardButton as NavButton} from '../../../../common/Button/Button';
+import { DashboardButton as NavButton } from '../../../../common/Button/Button';
 
 // Asset Imports
 import Logo from '../../../../../assets/restoms-logo/logo.png';
