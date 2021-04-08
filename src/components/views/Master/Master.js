@@ -23,6 +23,7 @@ const Master = () => {
 return (
     <Router>
             <Switch>
+                
                 <ControllerRouter
                     path = '/'
                     component = {ServiceMenu}
@@ -31,8 +32,8 @@ return (
                     strict
                     exact
                 />
-                {/* Complete parent and child routes for each service component */}
-                
+
+                {/* Customer Routes */}
                 {
                     Customer.map(({path, component, RouteType}, key) => 
                     <ControllerRouter
@@ -47,7 +48,7 @@ return (
                     )
                 }
                 
-                
+                {/* Worker Routes */}
                 { 
                     Worker.map(({path, component, RouteType, RedirectPath}, key) => 
                     <ControllerRouter 
@@ -64,7 +65,7 @@ return (
                 }
                 
 
-
+                {/* Admin Routes */}
                 { 
                     Admin.map(({path, component, RouteType, RedirectPath}, key) => 
                     <ControllerRouter 
@@ -79,6 +80,7 @@ return (
                     />
                     )
                 }
+
                 <ControllerRouter
                     path = '/404'
                     component = {NotFound}
@@ -87,7 +89,9 @@ return (
                     strict
                     exact
                 />
+
                 <Redirect to='/404'/>
+
             </Switch>
     </Router>
 );
