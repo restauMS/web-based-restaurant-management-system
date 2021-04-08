@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 // Component imports
 import Button from '../../../../common/Button/Button';
 import LoginLabel from '../../../../common/Label/Label';
 import LoginInput from '../../../../common/Textfield/Textfield';
-import AlertCard from  '../../../../common/Card/Card';
+// import AlertCard from  '../../../../common/Card/Card';
 
 // Style import
 import './style/LoginForm.scss';
