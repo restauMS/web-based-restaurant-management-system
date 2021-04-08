@@ -24,7 +24,7 @@ $ColorTheme: (
 $FontTheme: (
     Heading: 'Montserrat',
     Secondary: 'Hind Vadodara',
-    Accent: 'Montserrat',
+    Accent: 'Cairo',
     Fallback: 'Segoe UI',
     FallbackSecondary: 'Arial'
 );
@@ -139,9 +139,9 @@ COMPONENT HEIGHT
 }
 
 
-// Mixins
+
 /*
-    Breakpoints
+    Mixins for Breakpoints
 */
 @mixin for-size($size){
     @if $size == GetBreakpoint(Phone) {
