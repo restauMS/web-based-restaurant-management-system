@@ -2,25 +2,21 @@ import React from 'react';
 
 // Component import
 import AdminView from '../../views/Admin/AdminView';
-import { useAuth } from '../../hooks/AuthCheck';
 
 // Styling import
 import './style/AdminLayout.scss';
 
 const AdminLogin = () => {
-
-    const {SetAuthStatus} = useAuth();
-
     return <div className="AdminLayoutContainer">
-                <AdminView ComponentToMount="Login" SetAuthStatus={SetAuthStatus}/>
+                <AdminView ComponentToMount="Login"/>
             </div>
-    };
+};
     
-    const AdminDashboard = () => {
-        return <div className="AdminLayoutContainer">
+const AdminDashboard = () => {
+    return <div className="AdminLayoutContainer">
                 <AdminView ComponentToMount="Dashboard"/>
             </div>
-    };
+};
     
 const AdminServiceRoutes = [
     {

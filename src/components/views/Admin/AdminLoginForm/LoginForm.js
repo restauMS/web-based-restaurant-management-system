@@ -12,7 +12,7 @@ import './style/LoginForm.scss';
 // Asset Imports
 import Logo from '../../../../assets/restoms-logo/logo.png';
 
-const Login = ({SetAuthStatus}) => {
+const Login = () => {
     // ? Subject to change
     const [Username, SetUsername] = useState('');
     const [Password, SetPassword] = useState('');
@@ -37,9 +37,9 @@ const Login = ({SetAuthStatus}) => {
             'Username': Username,
             'Password': Password
         });
-        localStorage.setItem("AccessToken", AccessToken);
-        localStorage.setItem("Username", Name);
-        localStorage.setItem("AuthStatus", Status);
+        // localStorage.setItem("AccessToken", AccessToken);
+        // localStorage.setItem("Username", Name);
+        // localStorage.setItem("AuthStatus", Status);
     }
 
     return (
