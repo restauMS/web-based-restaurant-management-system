@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 // Component Imports
 import LoginButton from '../../../common/Button/Button';
 import LoginLabel from '../../../common/Label/Label';
 import LoginInput from '../../../common/Textfield/Textfield';
+import AuthContext from '../../../contexts/AuthContext';
 // import AlertCard from '../../../common/Card/Card';
 
 // Styling import
@@ -13,9 +14,13 @@ import './style/LoginForm.scss';
 import Logo from '../../../../assets/restoms-logo/logo.png';
 
 const Login = () => {
+
+    const { LogIn } = useContext(AuthContext);
+
     // ? Subject to change
     const [Username, SetUsername] = useState('');
     const [Password, SetPassword] = useState('');
+    
     
     // ! Testing phase subject for Refactoring
     const Authenticate = async (Credentials) => {
@@ -37,9 +42,13 @@ const Login = () => {
             'Username': Username,
             'Password': Password
         });
-        // localStorage.setItem("AccessToken", AccessToken);
-        // localStorage.setItem("Username", Name);
-        // localStorage.setItem("AuthStatus", Status);
+
+        localStorage.setItem("AccessToken", AccessToken);
+        localStorage.setItem("Username", Name);
+        localStorage.setItem("AuthStatus", Status);
+
+        LogIn(Status);
+
     }
 
     return (

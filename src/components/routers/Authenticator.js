@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Route, Redirect} from 'react-router-dom';
+import AuthContext from '../contexts/AuthContext';
 
-const AuthenticatorRoute = ({component: Component, AuthStatus, RedirectPath,...rest}) => {
+const AuthenticatorRoute = ({component: Component, RedirectPath, ...rest}) => {
+    
+    const {AuthStatus} = useContext(AuthContext);
+
     return (
         <Route
             {...rest}
