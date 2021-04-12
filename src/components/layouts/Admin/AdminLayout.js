@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 // Component import
 import AdminView from '../../views/Admin/AdminView';
 
@@ -7,30 +8,34 @@ import AdminView from '../../views/Admin/AdminView';
 import './style/AdminLayout.scss';
 
 const AdminLogin = () => {
-    return <div className="AdminLayoutContainer">
+    return (
+            <div className="AdminLayoutContainer">
                 <AdminView ComponentToMount="Login"/>
             </div>
+            );
 };
     
 const AdminDashboard = () => {
-    return <div className="AdminLayoutContainer">
+    return (
+            <div className="AdminLayoutContainer">
                 <AdminView ComponentToMount="Dashboard"/>
             </div>
+            );
 };
-    
+
 const AdminServiceRoutes = [
     {
         path: '/Admin/Login',
         component: AdminLogin,
         RouteType: 'authenticator',
-        RedirectPath: '/Admin/Dashboard'
-    }, 
-    {
-        path: '/Admin/Dashboard',
-        component: AdminDashboard,
-        RouteType: 'protected',
-        RedirectPath: '/Admin/Login'
+        RedirectPath: '/Admin/Dashboard',
+    }
+    ,{
+            path: '/Admin/Dashboard',
+            component: AdminDashboard,
+            RouteType: 'protected',
+            RedirectPath: '/Admin/Login',
+        
     }
 ]
-
 export default AdminServiceRoutes;
