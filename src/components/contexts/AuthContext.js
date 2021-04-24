@@ -2,18 +2,12 @@ import { createContext, useState } from 'react';
 
 const AuthContext = createContext();
 
-/*
-Fix plan:
-* Separate JS AuthStatus from AuthStatus for localStorage
-
-*/
-
 export const AuthProvider = (props) => {
     // ! Test fix
     const [AuthStatus, SetAuthStatus] = useState(localStorage.getItem("AuthStatus"));
 
     /**
-     * @param {boolean} Status for setting the Authentication status of user
+     * @param {boolean} Status for setting the Authentication statclus of user
      */
     const LogIn = () => {
         SetAuthStatus(true);
