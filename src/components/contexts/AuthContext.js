@@ -6,15 +6,15 @@ export const AuthProvider = (props) => {
     // ! Test fix
     const [AuthStatus, SetAuthStatus] = useState(localStorage.getItem("AuthStatus"));
 
-    /**
-     * @param {boolean} Status for setting the Authentication statclus of user
-     */
     const LogIn = () => {
         SetAuthStatus(true);
     }
 
     const LogOff = () => {
         SetAuthStatus(false);
+        localStorage.removeItem("AuthStatus");
+        localStorage.removeItem("Username")
+        localStorage.removeItem("AccessToken")
     }
 
     return (

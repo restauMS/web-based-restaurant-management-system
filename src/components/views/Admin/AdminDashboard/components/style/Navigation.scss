@@ -8,6 +8,9 @@
     background-color: GetColorTheme(Main);
     border-radius: 0px 15px 15px 0px;
     filter: drop-shadow(5px 0px 4px rgba(0, 0, 0, 0.400));
+    button {
+        cursor: pointer;
+    }
     // ? Breakpoints
     @include for-size(GetBreakpoint(Phone)){
         
@@ -15,17 +18,24 @@
         border-radius: 15px 15px 0px 0px;
         padding: 5px;
 
-        .ExitButton {
+        button {
             display: none;
         }
-        
+
+        .DashboardButton {
+            height: 60px;
+            width: 60px;
+            margin: auto 10px;
+            img{
+                height: 35px;
+                width: 35px;
+            }
+        }
+
         .NavButtonGroup {
-            position: absolute;
             display: flex;
             flex-flow: row;
-            button {
-                margin: auto 10px;
-            }
+            margin: auto;
         }
         
         .Logo {

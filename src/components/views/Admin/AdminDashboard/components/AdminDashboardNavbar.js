@@ -1,14 +1,14 @@
-import React from 'react'
-
+import React, {useContext} from 'react'
+import {Route, Switch} from 'react-router-dom';
 // Component Imports
 import { DashboardButton as NavButton } from '../../../../common/Button/Button';
+import AuthContext from '../../../../contexts/AuthContext'; 
 
 // Asset Imports
 import Logo from '../../../../../assets/restoms-logo/logo.png';
 import Home from '../../../../../assets/button-assets/dashboard-related/home.png';
 import Orders from '../../../../../assets/button-assets/dashboard-related/orders.png';
 import Products from '../../../../../assets/button-assets/dashboard-related/products.png';
-import Sales from '../../../../../assets/button-assets/dashboard-related/sales.png';
 import Settings from '../../../../../assets/button-assets/dashboard-related/settings.png';
 import Logout from '../../../../../assets/button-assets/dashboard-related/logout.png';
 
@@ -26,7 +26,8 @@ const NavButtonGroup = [
             width: "25px"
         },
         Route: '/Admin/Dashboard'
-    },
+    }
+    ,
     {
         isButtonLink: true,
         Contrast: true,
@@ -36,7 +37,7 @@ const NavButtonGroup = [
             height: "25px",
             width: "25px"
         },
-        Route: '/Admin/Dashboard'
+        Route: '/Admin/Dashboard/Transactions'
     }
     ,
     {
@@ -48,19 +49,7 @@ const NavButtonGroup = [
             height: "25px",
             width: "25px"
         },
-        Route: '/Admin/Dashboard'
-    }
-    ,
-    {
-        isButtonLink: true,
-        Contrast: true,
-        ImageProperties: {
-            src: Sales,
-            alt: "An image of a stack of coins",
-            height: "25px",
-            width: "25px"
-        },
-        Route: '/Admin/Dashboard'
+        Route: '/Admin/Dashboard/Inventory'
     }
     ,
     {
@@ -72,35 +61,43 @@ const NavButtonGroup = [
             height: "25px",
             width: "25px"
         },
-        Route: '/Admin/Dashboard'
+        Route: '/Admin/Dashboard/Settings'
     }
 ]
 
 const AdminDashboardNavbar = (props) => {
+
+    const {LogOff} = useContext(AuthContext);
+
     return (
         <div className="Navigation">
             <img className="Logo" src={Logo} alt="" height="50px" width="50px"/> 
             {/*  
                 * Refactor later...
             */}
-            <div className="NavButtonGroup">
-                {
-                    NavButtonGroup.map((Props, key) => 
-                        <NavButton
-                            key = {key}
-                            isButtonLink = {Props.isButtonLink}
-                            isButtonContrast = {Props.Contrast}
-                            ButtonImageProps = {Props.ImageProperties}
-                            Route = {Props.Route}
-                        />
-                        )
-                }
-            </div>
+            <Switch>
+                <div className="NavButtonGroup">
+                    {
+                        NavButtonGroup.map((Props, key) => 
+                            <NavButton
+                                key = {key}
+                                isButtonLink = {Props.isButtonLink}
+                                isButtonContrast = {Props.Contrast}
+                                ButtonImageProps = {Props.ImageProperties}
+                                Route = {Props.Route}
+                            />
+                            )
+                    }
+                </div>
+            </Switch>
             
             <NavButton
-                    className = "ExitButton"
                     isButtonContrast = {true}
                     isButtonLink = {false}
+                    ButtonFunction = {e => {
+                        e.preventDefault();
+                        LogOff();
+                    }}
                     ButtonImageProps = {
                         {
                             src: Logout,
