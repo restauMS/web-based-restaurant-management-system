@@ -28,7 +28,7 @@ const Dashboard = () => {
             AuthType: 'Admin',
             Token: localStorage.getItem('AccessToken')
         });
-    },[])
+    },[]);
 
     return (
         // props.IsAuthenticated ? 

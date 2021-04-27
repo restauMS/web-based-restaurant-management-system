@@ -21,7 +21,6 @@ const Login = () => {
     const [Username, SetUsername] = useState('');
     const [Password, SetPassword] = useState('');
     
-    
     // ! Testing phase subject for Refactoring
     const Authenticate = async (Credentials) => {
         try {
@@ -38,17 +37,24 @@ const Login = () => {
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
-        const {AccessToken, Username: Name, Status} = await Authenticate({
-            'Username': Username,
-            'Password': Password
-        });
-
-        localStorage.setItem("AccessToken", AccessToken);
-        localStorage.setItem("Username", Name);
-        localStorage.setItem("AuthStatus", Status);
-
-        LogIn(Status);
-
+        try {
+            const {AccessToken, Username: Name, Status} = await Authenticate({
+                'Username': Username,
+                'Password': Password
+            });
+            if (Status){
+                localStorage.setItem("AccessToken", AccessToken);
+                localStorage.setItem("Username", Name);
+                LogIn(Status);
+            }
+            else {
+                alert('Recheck your Username and Password input');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        
+        
     }
 
     return (

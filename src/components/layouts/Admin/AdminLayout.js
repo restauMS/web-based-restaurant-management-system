@@ -36,6 +36,25 @@ const AdminServiceRoutes = [
             RouteType: 'protected',
             RedirectPath: '/Admin/Login',
         
+    },
+    {
+        path: '/Admin/Dashboard/Transactions',
+        component: () => {<h1>Transaction page here</h1>},
+        RouteType: 'protected',
+        RedirectPath: '/Admin/Login'
+    },
+    {
+        path: '/Admin/Dashboard/Inventory',
+        component: () => {<h1>Inventory page</h1>},
+        RouteType: 'protected',
+        RedirectPath: '/Admin/Login'
+    }
+    ,
+    {
+        path: '/Admin/Dashboard/Settings',
+        component: () => {<h1>Settings page</h1>},
+        RouteType: 'protected',
+        RedirectPath: '/Admin/Login'
     }
 ]
 export default AdminServiceRoutes;

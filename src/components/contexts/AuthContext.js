@@ -3,18 +3,21 @@ import { createContext, useState } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
-    // ! Test fix
-    const [AuthStatus, SetAuthStatus] = useState(localStorage.getItem("AuthStatus"));
+    
+    const AuthStatusLocal = localStorage.getItem("AuthStatus");
 
-    const LogIn = () => {
-        SetAuthStatus(true);
+    const [AuthStatus, SetAuthStatus] = useState(AuthStatusLocal);
+
+    const LogIn = (LoginStatus) => {
+        SetAuthStatus(LoginStatus);
+        localStorage.setItem("AuthStatus", LoginStatus);
     }
 
     const LogOff = () => {
         SetAuthStatus(false);
         localStorage.removeItem("AuthStatus");
-        localStorage.removeItem("Username")
-        localStorage.removeItem("AccessToken")
+        localStorage.removeItem("Username");
+        localStorage.removeItem("AccessToken");
     }
 
     return (
