@@ -16,12 +16,10 @@ import Logo from '../../../../assets/restoms-logo/logo.png';
 const Login = () => {
 
     const { LogIn } = useContext(AuthContext);
-
-    // ? Subject to change
+    
     const [Username, SetUsername] = useState('');
     const [Password, SetPassword] = useState('');
     
-    // ! Testing phase subject for Refactoring
     const Authenticate = async (Credentials) => {
         try {
             const Auth = await fetch('/API/Admin/Authenticate', {
