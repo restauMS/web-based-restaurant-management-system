@@ -4,19 +4,16 @@ import React from 'react';
 import Login from './AdminLoginForm/LoginForm';
 import Dashboard from './AdminDashboard/AdminDashboard';
 
-const AdminView = props => {
-    switch(props.ComponentToMount){
-        case 'Login': {
-            return <Login/>
-        }
-        case 'Dashboard': {
-            return <Dashboard/>
-        }
-        default:
-            <h1>
-                Something went horribly wrong!
-            </h1>
-    }
+export const AdminLogin = () => {
+    return (
+        <Login/>
+    );
 }
 
-export default AdminView;
+export const AdminDashboard = () => {
+    return (
+        <Dashboard/>
+    );
+}
+
+
