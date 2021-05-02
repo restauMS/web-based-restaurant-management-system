@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-// ? Later on ... import {Redirect} from 'react-router-dom';
+import {Switch} from 'react-router-dom';
+import Protected from '../../../routers/Protected';
 
 // Component Imports
 import Content from './components/DashboardContent/AdminDashboardContent';
@@ -7,8 +8,18 @@ import Navigation from './components/AdminDashboardNavbar';
 
 // Styling Import
 import './style/AdminDashboard.scss';
+import ProtectedRoute from '../../../routers/Protected';
 
-const Dashboard = () => {
+
+const InventoryTest = () => {
+    return (
+        <div>
+            Hello, Inventory here!
+        </div>
+    )
+}
+
+const Dashboard = ({Routes}) => {
 
     /* 
         ! TESTING PHASE
@@ -33,12 +44,15 @@ const Dashboard = () => {
     return (
         // props.IsAuthenticated ? 
         <div className='DashboardContainer'>
-            <Navigation/>
+            <Navigation/>            
             <Content
                 AdminName = {AdminInformation.Username}
                 AuthType = {AdminInformation.AuthType}
                 AuthToken = {AdminInformation.Token}
             />
+            <Switch>
+                
+            </Switch>
         </div>
     );
 }

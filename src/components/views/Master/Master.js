@@ -10,6 +10,34 @@ import Worker from '../../layouts/Worker/WorkerLayout';
 import Admin from '../../layouts/Admin/AdminLayout';
 import { AuthProvider } from '../../contexts/AuthContext';
 
+
+/*
+? implementation @ master level
+
+export default function RouteConfigExample() {
+  return (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/tacos">Tacos</Link>
+          </li>
+          <li>
+            <Link to="/sandwiches">Sandwiches</Link>
+          </li>
+        </ul>
+
+        <Switch>
+          {routes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+        </Switch>
+        </div>
+    </Router>
+);
+}
+*/
+
 const Master = () => {
     return (
         <AuthProvider>

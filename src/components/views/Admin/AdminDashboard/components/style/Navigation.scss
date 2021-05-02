@@ -11,11 +11,11 @@
     button {
         cursor: pointer;
     }
-    // ? Breakpoints
+    // ? When the viewport hits a particular width size the css changes code below will work
     @include for-size(GetBreakpoint(Phone)){
         
         flex-flow: row;
-        border-radius: 15px 15px 0px 0px;
+        border-radius: 5px 5px 0px 0px;
         padding: 5px;
 
         button {
@@ -40,7 +40,6 @@
         
         .Logo {
             display: none;
-        }
-        
+        }   
     }
 }
