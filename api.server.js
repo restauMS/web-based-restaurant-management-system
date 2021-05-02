@@ -30,7 +30,7 @@ const Admin = require('./routes/admin/routes.admin');
 app.use('/API/Customer', Customer);
 app.use('/API/Worker', Worker);
 app.use('/API/Admin', Admin);
-// app.use('/API/Secret/Inventory', Inventory);
+// app.use('/API/Inventory', Inventory);
 
 app.listen(PORT, () => {
     console.log(`API Server is listening at http://localhost:${PORT}`);

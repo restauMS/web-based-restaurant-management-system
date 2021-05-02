@@ -10,10 +10,10 @@ export const AdminLogin = () => {
     );
 }
 
-export const AdminDashboard = ({ProtectedRoutes}) => {
+export const AdminDashboard = ({routes}) => {
     return (
         <Dashboard
-            Routes = {ProtectedRoutes}
+            routes = {routes}
         />
     );
 }

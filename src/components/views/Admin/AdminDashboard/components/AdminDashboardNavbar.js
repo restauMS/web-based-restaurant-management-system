@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
-import {Route, Switch} from 'react-router-dom';
+import React, {useContext} from 'react';
+import {Switch} from 'react-router-dom';
 // Component Imports
 import { DashboardButton as NavButton } from '../../../../common/Button/Button';
 import AuthContext from '../../../../contexts/AuthContext'; 
-
+import RoutesWithSubRoutes from '../../../../routers/RoutesWithSubRoutes';
 // Asset Imports
 import Logo from '../../../../../assets/restoms-logo/logo.png';
 import Home from '../../../../../assets/button-assets/dashboard-related/home.png';
@@ -65,7 +65,7 @@ const NavButtonGroup = [
     }
 ]
 
-const AdminDashboardNavbar = (props) => {
+const AdminDashboardNavbar = ({routes}) => {
 
     const {LogOff} = useContext(AuthContext);
 
@@ -75,7 +75,6 @@ const AdminDashboardNavbar = (props) => {
             {/*  
                 * Refactor later...
             */}
-            <Switch>
                 <div className="NavButtonGroup">
                     {
                         NavButtonGroup.map((Props, key) => 
@@ -88,9 +87,17 @@ const AdminDashboardNavbar = (props) => {
                             />
                             )
                     }
+                    <Switch>
+                        {
+                            routes.map((route, key) => (
+                                <RoutesWithSubRoutes
+                                    key = {key}
+                                    {...route}
+                                />
+                            ))
+                        }
+                    </Switch>
                 </div>
-            </Switch>
-            
             <NavButton
                     isButtonContrast = {true}
                     isButtonLink = {false}
@@ -108,7 +115,6 @@ const AdminDashboardNavbar = (props) => {
                     }
                     Route = "/Admin/Dashboard"
             />
-
         </div>
     )
 }

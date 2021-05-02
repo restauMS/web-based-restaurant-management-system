@@ -3,7 +3,7 @@ import {Route, Redirect} from 'react-router-dom';
 import AuthContext from '../contexts/AuthContext';
 
 
-const ProtectedRoute = ({component: Component, RedirectPath, ...rest}) => {
+const ProtectedRoute = ({component: Component, route, RedirectPath, ...rest}) => {
 
     const {AuthStatus} = useContext(AuthContext);
 
@@ -13,7 +13,7 @@ const ProtectedRoute = ({component: Component, RedirectPath, ...rest}) => {
             render = {renderProps => (
                 AuthStatus
                 ?
-                <Component {...renderProps}/>
+                <Component {...renderProps} routes = {route.routes}/>
                 :
                 <Redirect
                     to = {{pathname: RedirectPath}}

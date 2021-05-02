@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {Switch} from 'react-router-dom';
-import Protected from '../../../routers/Protected';
 
 // Component Imports
 import Content from './components/DashboardContent/AdminDashboardContent';
@@ -8,22 +6,9 @@ import Navigation from './components/AdminDashboardNavbar';
 
 // Styling Import
 import './style/AdminDashboard.scss';
-import ProtectedRoute from '../../../routers/Protected';
 
+const Dashboard = ({routes}) => {
 
-const InventoryTest = () => {
-    return (
-        <div>
-            Hello, Inventory here!
-        </div>
-    )
-}
-
-const Dashboard = ({Routes}) => {
-
-    /* 
-        ! TESTING PHASE
-    */
     const AdminInformationTemplate = {
         Username: '',
         Fullname: '',
@@ -44,15 +29,14 @@ const Dashboard = ({Routes}) => {
     return (
         // props.IsAuthenticated ? 
         <div className='DashboardContainer'>
-            <Navigation/>            
+            <Navigation
+                routes = {routes}
+            />            
             <Content
                 AdminName = {AdminInformation.Username}
                 AuthType = {AdminInformation.AuthType}
                 AuthToken = {AdminInformation.Token}
             />
-            <Switch>
-                
-            </Switch>
         </div>
     );
 }
