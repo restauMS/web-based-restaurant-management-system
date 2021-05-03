@@ -4,7 +4,7 @@ import React, {useContext, useState} from 'react';
 import LoginButton from '../../../common/Button/Button';
 import LoginLabel from '../../../common/Label/Label';
 import LoginInput from '../../../common/Textfield/Textfield';
-import AuthContext from '../../../contexts/AuthContext';
+import {AuthContext} from '../../../contexts/AuthContext';
 // import AlertCard from '../../../common/Card/Card';
 
 // Styling import

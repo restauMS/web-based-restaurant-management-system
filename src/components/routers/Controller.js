@@ -4,19 +4,22 @@ import { Route } from 'react-router-dom';
 // Component Imports
 import AuthenticatorRoute from './Authenticator';
 import ProtectedRoute from './Protected';
-
-const ControllerRouter = ({RouteType, ...RouteProps}) => {
+// component: Component, routes, RouteType, ...RouteProps
+const ControllerRouter = (route) => {
 
     return (
         <>
             {
-                RouteType === 'public' &&
+                route.RouteType === 'public' &&
                 <Route
-                    {...RouteProps}
+                    path = {route.path}
+                    render = {routeProps => (
+                        <route.component {...routeProps} routes = {route.routes} />
+                    )}
                 />
             }
-            {(RouteType === 'authenticator') && <AuthenticatorRoute {...RouteProps}/>}
-            {(RouteType === 'protected') && <ProtectedRoute {...RouteProps}/>}
+            {(route.RouteType === 'authenticator') && <AuthenticatorRoute {...route}/>}
+            {(route.RouteType === 'protected') && <ProtectedRoute {...route}/>}
         </>
     );
 }

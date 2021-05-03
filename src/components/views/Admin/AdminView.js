@@ -8,9 +8,11 @@ export const AdminLogin = () => {
     );
 }
 
-export const AdminDashboard = () => {
+export const AdminDashboard = ({routes}) => {
     return (
-        <Dashboard/>
+        <Dashboard
+            routes = {routes}
+        />
     );
 }
 

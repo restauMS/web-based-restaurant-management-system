@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import MasterRoutes from './MasterRoutes';
 import { AuthProvider } from '../../contexts/AuthContext';
-import RoutesWithSubRoutes from '../../routers/RoutesWithSubRoutes';
+import ControllerRouter from '../../routers/Controller';
+import NotFound from '../NotFound/NotFound';
 
 const Master = () => {
     return (
@@ -11,12 +12,20 @@ const Master = () => {
                 <Switch>
                     {
                         MasterRoutes.map((routes, key) => (
-                            <RoutesWithSubRoutes
+                            <ControllerRouter
                                 key = {key}
                                 {...routes}
                             />
                         ))
                     }
+                    <ControllerRouter
+                        path =  '/404'
+                        component = {NotFound}
+                        AuthStatus =  {false}
+                        RouteType =  'public'
+                        strict =  {true}
+                        exact =  {true}
+                    />
                     <Redirect to='/404'/>
                 </Switch>
             </Router>

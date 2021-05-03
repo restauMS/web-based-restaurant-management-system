@@ -2,7 +2,6 @@ import ServiceMenu from '../ServiceMenu/ServiceMenu';
 import { CustomerOrder , CustomerCheckout } from '../../layouts/Customer/CustomerLayout';
 import { AdminLogin , AdminDashboard } from '../../layouts/Admin/AdminLayout';
 import { WorkerLogin , WorkerRegistration , WorkerDashboard } from '../../layouts/Worker/WorkerLayout';
-import NotFound from '../NotFound/NotFound';
 
 const MasterRoutes = [
     {
@@ -94,14 +93,6 @@ const MasterRoutes = [
         RedirectPath: '/Worker/Login',
         strict: true,
         exact: true
-    },
-    {
-        path: '/404',
-        component: {NotFound},
-        AuthStatus: false,
-        RouteType: 'public',
-        strict: true,
-        exact: true,
     }
 ];
 

@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
-// ! import {Switch} from 'react-router-dom';
+import {Switch} from 'react-router-dom';
 import { DashboardButton as NavButton } from '../../../../common/Button/Button';
-import AuthContext from '../../../../contexts/AuthContext'; 
-// ! import RoutesWithSubRoutes from '../../../../routers/RoutesWithSubRoutes';
+import {AuthContext} from '../../../../contexts/AuthContext'; 
+import ControllerRouter from '../../../../routers/Controller';
 import Logo from '../../../../../assets/restoms-logo/logo.png';
 import Home from '../../../../../assets/button-assets/dashboard-related/home.png';
 import Orders from '../../../../../assets/button-assets/dashboard-related/orders.png';
@@ -61,7 +61,7 @@ const NavButtonGroup = [
     }
 ]
 
-const AdminDashboardNavbar = () => {
+const AdminDashboardNavbar = ({routes}) => {
 
     const {LogOff} = useContext(AuthContext);
 
@@ -99,8 +99,18 @@ const AdminDashboardNavbar = () => {
                             width: "25px"
                         }
                     }
-                    Route = "/Admin/Dashboard"
+                    Route = "/Admin/Login"
             />
+            <Switch>
+                {
+                    routes.map((routes, key) => (
+                        <ControllerRouter
+                            key = {key}
+                            {...routes}
+                        />
+                    ))
+                }
+            </Switch>
         </div>
     )
 }

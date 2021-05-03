@@ -10,10 +10,12 @@ export const AdminLogin = () => {
     )
 }
 
-export const AdminDashboard = () => {
+export const AdminDashboard = ({routes}) => {
     return (
         <div className="AdminLayoutContainer">
-            <Dashboard/>
+            <Dashboard
+                routes = {routes}
+            />
         </div>
     )
 }

@@ -3,7 +3,7 @@ import Content from './components/DashboardContent/AdminDashboardContent';
 import Navigation from './components/AdminDashboardNavbar';
 import './style/AdminDashboard.scss';
 
-const Dashboard = () => {
+const Dashboard = ({routes}) => {
 
     const AdminInformationTemplate = {
         Username: '',
@@ -25,7 +25,9 @@ const Dashboard = () => {
     return (
         // props.IsAuthenticated ? 
         <div className='DashboardContainer'>
-            <Navigation/>            
+            <Navigation
+                routes = {routes}
+            />            
             <Content
                 AdminName = {AdminInformation.Username}
                 AuthType = {AdminInformation.AuthType}
