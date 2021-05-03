@@ -1,20 +1,16 @@
 import React, {useState, useEffect} from 'react';
-
-// Component Imports
 import Content from './components/DashboardContent/AdminDashboardContent';
 import Navigation from './components/AdminDashboardNavbar';
-
-// Styling Import
 import './style/AdminDashboard.scss';
 
-const Dashboard = ({routes}) => {
+const Dashboard = () => {
 
     const AdminInformationTemplate = {
         Username: '',
         Fullname: '',
         AuthType: ''
     }
-
+    
     const [AdminInformation, SetAdminInformation] = useState(AdminInformationTemplate);
 
     useEffect(() => {
@@ -29,9 +25,7 @@ const Dashboard = ({routes}) => {
     return (
         // props.IsAuthenticated ? 
         <div className='DashboardContainer'>
-            <Navigation
-                routes = {routes}
-            />            
+            <Navigation/>            
             <Content
                 AdminName = {AdminInformation.Username}
                 AuthType = {AdminInformation.AuthType}

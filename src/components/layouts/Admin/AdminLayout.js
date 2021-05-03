@@ -1,7 +1,5 @@
 import React from 'react';
 import { AdminLogin as Login, AdminDashboard as Dashboard} from '../../views/Admin/AdminView';
-
-// Styling import
 import './style/AdminLayout.scss';
 
 export const AdminLogin = () => {

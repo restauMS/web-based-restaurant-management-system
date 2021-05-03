@@ -1,6 +1,4 @@
 import React from 'react';
-
-// Component Imports
 import Login from './AdminLoginForm/LoginForm';
 import Dashboard from './AdminDashboard/AdminDashboard';
 
@@ -10,11 +8,9 @@ export const AdminLogin = () => {
     );
 }
 
-export const AdminDashboard = ({routes}) => {
+export const AdminDashboard = () => {
     return (
-        <Dashboard
-            routes = {routes}
-        />
+        <Dashboard/>
     );
 }
 

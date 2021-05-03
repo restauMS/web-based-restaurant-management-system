@@ -1,7 +1,7 @@
 import ServiceMenu from '../ServiceMenu/ServiceMenu';
-import {CustomerOrder, CustomerCheckout} from '../../layouts/Customer/CustomerLayout';
-import {AdminLogin, AdminDashboard} from '../../layouts/Admin/AdminLayout';
-import {WorkerLogin, WorkerRegistration, WorkerDashboard} from '../../layouts/Worker/WorkerLayout';
+import { CustomerOrder , CustomerCheckout } from '../../layouts/Customer/CustomerLayout';
+import { AdminLogin , AdminDashboard } from '../../layouts/Admin/AdminLayout';
+import { WorkerLogin , WorkerRegistration , WorkerDashboard } from '../../layouts/Worker/WorkerLayout';
 import NotFound from '../NotFound/NotFound';
 
 const MasterRoutes = [
@@ -20,16 +20,14 @@ const MasterRoutes = [
         AuthStatus: false,
         strict: true,
         exact: true,
-        routes: [
-            {
-                path: '/Customer/Checkout',
-                component: CustomerCheckout,
-                RouteType: 'public',
-                AuthStatus: false,
-                strict: true,
-                exact: true
-            }
-        ]
+    },
+    {
+        path: '/Customer/Checkout',
+        component: CustomerCheckout,
+        RouteType: 'public',
+        AuthStatus: false,
+        strict: true,
+        exact: true
     },
     {
         path: '/Admin/Login',
