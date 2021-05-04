@@ -1,12 +1,12 @@
 import React from 'react';
 import './style/Button.scss';
-import {Link, NavLink} from 'react-router-dom';
+import {Link as NavLink} from 'react-router-dom';
 
 const Button = props => {
     return (
         props.isButtonLink ? 
             (
-                <Link 
+                <NavLink 
                     className={props.isButtonContrast ? 'Button ButtonContrast Link onActive' : 'Button Link onActive'}
                     role="button"
                     style = {{...props.Style}}
@@ -14,7 +14,7 @@ const Button = props => {
                     onClick={props.ButtonFunction}
                     > 
                     {props.ButtonContent}
-                </Link>
+                </NavLink>
             )
         :
             (
@@ -30,12 +30,12 @@ const Button = props => {
     );
 }
 
-export const DashboardButton = props => {
+export const DashboardButton = (props) => {
     return (
                 props.isButtonLink ?
                 <NavLink
                     className={props.isButtonContrast ? 'DashboardButton ButtonContrast onActive' : 'DashboardButton onActive'}
-                    activeStyle = {props.activeStyle}
+                    activestyle = {props.activeStyle}
                     to = {props.Route}
                     style = {{...props.Style}}
                 >

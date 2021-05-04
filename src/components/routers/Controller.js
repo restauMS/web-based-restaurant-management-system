@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 // Component Imports
 import AuthenticatorRoute from './Authenticator';
 import ProtectedRoute from './Protected';
-// component: Component, routes, RouteType, ...RouteProps
 const ControllerRouter = (route) => {
 
     return (

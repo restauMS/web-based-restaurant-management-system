@@ -26,9 +26,9 @@ const Dashboard = ({routes}) => {
         // props.IsAuthenticated ? 
         <div className='DashboardContainer'>
             <Navigation
-                routes = {routes}
             />            
             <Content
+                routes = {routes}
                 AdminName = {AdminInformation.Username}
                 AuthType = {AdminInformation.AuthType}
                 AuthToken = {AdminInformation.Token}

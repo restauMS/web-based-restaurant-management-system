@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
-import {Switch} from 'react-router-dom';
+import React, { useContext  } from 'react';
+import { Switch } from 'react-router-dom';
 import { DashboardButton as NavButton } from '../../../../common/Button/Button';
-import {AuthContext} from '../../../../contexts/AuthContext'; 
+import { AuthContext } from '../../../../contexts/AuthContext'; 
 import ControllerRouter from '../../../../routers/Controller';
 import Logo from '../../../../../assets/restoms-logo/logo.png';
 import Home from '../../../../../assets/button-assets/dashboard-related/home.png';
@@ -61,16 +61,13 @@ const NavButtonGroup = [
     }
 ]
 
-const AdminDashboardNavbar = ({routes}) => {
+const AdminDashboardNavbar = () => {
 
     const {LogOff} = useContext(AuthContext);
 
     return (
         <div className="Navigation">
             <img className="Logo" src={Logo} alt="" height="50px" width="50px"/> 
-            {/*  
-                * Refactor later...
-            */}
                 <div className="NavButtonGroup">
                     {
                         NavButtonGroup.map((Props, key) => 
@@ -101,16 +98,6 @@ const AdminDashboardNavbar = ({routes}) => {
                     }
                     Route = "/Admin/Login"
             />
-            <Switch>
-                {
-                    routes.map((routes, key) => (
-                        <ControllerRouter
-                            key = {key}
-                            {...routes}
-                        />
-                    ))
-                }
-            </Switch>
         </div>
     )
 }
