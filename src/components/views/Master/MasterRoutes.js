@@ -42,19 +42,18 @@ const MasterRoutes = [
         RouteType: 'protected',
         RedirectPath: '/Admin/Login',
         strict: true,
-        exact: true,
         routes: [
             {
-                path: '/Admin/Dashboard/Inventory',
-                component: () => <h1>Inventory page</h1>,
+                path: '/Admin/Dashboard/Transactions',
+                component: function(){return(<h1>Transactions page</h1>)},
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,
                 exact: true
             },
             {
-                path: '/Admin/Dashboard/Transactions',
-                component: () => <h1>Transactions page</h1>,
+                path: '/Admin/Dashboard/Inventory',
+                component: function(){return(<h1>Inventory page</h1>)},
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,
@@ -62,7 +61,7 @@ const MasterRoutes = [
             },
             {
                 path: '/Admin/Dashboard/Settings',
-                component: () => <h1>Settings page</h1>,
+                component: function(){return(<h1>Settings page</h1>)},
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,

@@ -1,37 +1,34 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Content from './components/DashboardContent/AdminDashboardContent';
 import Navigation from './components/AdminDashboardNavbar';
 import './style/AdminDashboard.scss';
 
 const Dashboard = ({routes}) => {
 
-    const AdminInformationTemplate = {
-        Username: '',
-        Fullname: '',
-        AuthType: ''
-    }
+    // const AdminInformationTemplate = {
+    //     Username: '',
+    //     Fullname: '',
+    //     AuthType: ''
+    // }
     
-    const [AdminInformation, SetAdminInformation] = useState(AdminInformationTemplate);
+    // const [AdminInformation, SetAdminInformation] = useState(AdminInformationTemplate);
 
     useEffect(() => {
-        SetAdminInformation({
-            Username: localStorage.getItem('Username'),
-            Fullname: '',
-            AuthType: 'Admin',
-            Token: localStorage.getItem('AccessToken')
-        });
-    },[]);
+        // SetAdminInformation({
+        //     Username: localStorage.getItem('Username'),
+        //     Fullname: '',
+        //     AuthType: 'Admin',
+        //     Token: localStorage.getItem('AccessToken')
+        // });
+        console.log(routes);
+    },[routes]);
 
     return (
         // props.IsAuthenticated ? 
         <div className='DashboardContainer'>
-            <Navigation
-            />            
+            <Navigation/>            
             <Content
-                routes = {routes}
-                AdminName = {AdminInformation.Username}
-                AuthType = {AdminInformation.AuthType}
-                AuthToken = {AdminInformation.Token}
+                routes= {routes}
             />
         </div>
     );

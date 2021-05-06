@@ -1,8 +1,6 @@
 import React, { useContext  } from 'react';
-import { Switch } from 'react-router-dom';
 import { DashboardButton as NavButton } from '../../../../common/Button/Button';
 import { AuthContext } from '../../../../contexts/AuthContext'; 
-import ControllerRouter from '../../../../routers/Controller';
 import Logo from '../../../../../assets/restoms-logo/logo.png';
 import Home from '../../../../../assets/button-assets/dashboard-related/home.png';
 import Orders from '../../../../../assets/button-assets/dashboard-related/orders.png';
