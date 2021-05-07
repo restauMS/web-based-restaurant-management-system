@@ -1,8 +1,9 @@
 import React from 'react';
+import '../style/Content.scss';
 
 const Settings = () => {
     return (
-        <div>
+        <div className = "SettingsContainer">
             
         </div>
     );

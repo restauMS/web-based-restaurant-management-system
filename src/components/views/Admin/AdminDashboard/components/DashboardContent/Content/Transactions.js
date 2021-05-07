@@ -1,8 +1,9 @@
 import React from 'react'
+import '../style/Content.scss';
 
 const Transactions = () => {
     return (
-        <div>
+        <div className = "TransactionContainer">
             
         </div>
     );

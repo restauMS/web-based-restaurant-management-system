@@ -1,8 +1,9 @@
 import React from 'react';
+import '../style/Content.scss';
 
 const Inventory = () => {
     return (
-        <div>
+        <div className = "InventoryContainer">
             
         </div>
     );
