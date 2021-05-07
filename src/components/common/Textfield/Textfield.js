@@ -10,6 +10,7 @@ const Textfield = props => {
         onChange = {props.HandleChange}
         name = {props.Name}
         value = {props.Value}
+        style = {props.Style}
         />
     )
 }
