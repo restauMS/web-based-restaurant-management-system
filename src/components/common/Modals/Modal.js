@@ -6,52 +6,22 @@ import { CheckoutFoodCard } from '../Card/Card';
 import './style/Modal.scss';
 import Textfield from '../Textfield/Textfield';
 
-const TestData = [
-    {
-        Name: 'Fried Chicken',
-        Qty: '3',
-    },
-    {
-        Name: 'Burger',
-        Qty: '20',
-    },
-    {
-        Name: 'Spaghetti',
-        Qty: '2',
-    },
-    {
-        Name: 'Lasagna',
-        Qty: '7',
-    },
-    {
-        Name: 'Lasagna',
-        Qty: '7',
-    },
-    {
-        Name: 'Lasagna',
-        Qty: '7',
-    },
-    {
-        Name: 'Lasagna',
-        Qty: '7',
-    },
-    {
-        Name: 'Lasagna',
-        Qty: '7',
-    },
-]
-
 export const FoodModal = (props) => {
+
     return (
         <div className = "ModalContainer">
             <div className="FoodModal">
                 <ModalLabel
-                    // LabelContent = {props.FoodName}
-                    LabelContent = {"Test"}
+                    LabelContent = {`${props.FoodName}`}
+                    Style = {{fontSize: 'clamp(15px, 25px, 30px)'}}
+                />
+                <ModalLabel
+                    LabelContent = {`Price: ${props.FoodPrice}`}
+                    Style = {{fontSize: 'clamp(15px, 25px, 30px)'}}
                 />
                 <Textfield
                     Type = "number"
-                    PlaceholderTitle = {`Enter ${props.FoodName} Quantity`}
+                    PlaceholderTitle = {`Quantity`}
                     Name = "FoodQty"
                 />
                 <div className="ModalButtonGroup">
@@ -60,7 +30,8 @@ export const FoodModal = (props) => {
                             ButtonContent = "Proceed"
                             isButtonContrast = {true}
                             ButtonFunction = {() => {
-                                alert('Are you sure?');
+                                props.SetCheckoutList([...props.CheckoutList, {Id: props.FoodId, Name: props.FoodName, Price: props.FoodPrice}]);    
+                                props.SetFoodModalStatus(false);
                             }}
                         />
                     <ModalButton
@@ -101,7 +72,7 @@ export const OrderTransactionModal = () => {
     return (
         <div className = "ModalContainer">
             <div className="TransactionModal">
-
+            
             </div>
         </div>
     );
@@ -119,13 +90,27 @@ export const CheckoutModal = (props) => {
                 />
                 <div className="CheckoutContainer">
                     <div className="ModalList">
-                        {TestData.map((Items, key) => 
-                            <CheckoutFoodCard
-                                key = {key}
-                                FoodName = {Items.Name}
-                                FoodQty = {Items.Price}
-                            />
-                        )}
+                        {
+                            props.CheckoutList.length > 0 ?
+                                props.CheckoutList.map((Items, key) => 
+                                <CheckoutFoodCard
+                                    key = {key}
+                                    CheckoutList = {props.CheckoutList}
+                                    SetCheckoutList = {props.SetCheckoutList}
+                                    id = {Items.Id}
+                                    FoodName = {Items.Name}
+                                    FoodQty = {Items.Price}
+                                />
+                                )
+                            :
+                                <ModalLabel
+                                    LabelContent = "Checkout card is Empty! Start Ordering 👀"
+                                    isLabelContrast = {true}
+                                    Style = {{
+                                        fontSize: 'clamp(20px, 25px, 30px)'
+                                    }}
+                                />
+                        }
                     </div>
                     <div className="ModalButtonGroup">
                         <ModalButton

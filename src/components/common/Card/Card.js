@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Spring } from 'react-spring/renderprops';
 // Component Imports
 import Button from '../Button/Button';
@@ -26,21 +26,6 @@ const AlertCardComponent = AlertProps =>
             }
         </Spring>
         
-    )
-}
-
-/*
-    * Order Card Component
-    ? Card component responsible for taking specific notes for a specific dish ordered
-*/
-export const OrderNoteCardComponent = props => 
-{
-    return (
-        <div className="OrderNoteCard">
-            <h1>
-                Order Note Card
-            </h1>
-        </div>
     )
 }
 
@@ -92,14 +77,11 @@ export const TableCardComponent  = props =>
 */
 export const FoodItemCardComponent = props => 
 {
-
         return (
             <div
                 className={props.isRounded ? 'FoodItemCard FoodItemCardRounded' : 'FoodItemCard'}
                 style = {{...props.Style}}
-                onClick = {() => {
-                    props.SetFoodModalStatus(true);
-                }}
+                onClick = {props.FoodCardFunction}
             >
                 <h1>
                     {props.FoodName}
@@ -112,6 +94,12 @@ export const FoodItemCardComponent = props =>
 }
 
 export const CheckoutFoodCard = props => {
+
+    const RemoveCard = (Id) => {
+        const UpdatedCheckoutList = props.CheckoutList.filter(Order => Order.Id !== Id);
+        props.SetCheckoutList(UpdatedCheckoutList);
+    }
+
     return (
         <div className = {props.isCheckoutFoodCardContrast ? 'CheckoutFoodCard Contrast' : 'CheckoutFoodCard'}>
             <img src={props.FoodImageSrc} alt={props.FoodImageAlt}/>
@@ -127,22 +115,13 @@ export const CheckoutFoodCard = props => {
                 </h5>
             </div>
             <div className="ButtonContainer">
-                <div className="ButtonGroup">
                     <Button
                         isButtonLink = {false}
                         ButtonContent = 'Remove'
                         isButtonContrast = {true}
-                        ButtonFunction = {props.RemoveFunction}
-                        Style = {{minHeight: '0',minWidth: '100px'}}
+                        ButtonFunction = {() => RemoveCard(props.id)}
+                        Style = {{minHeight: '0', minWidth: '100px'}}
                     />
-                    <Button
-                        isButtonLink = {false}
-                        ButtonContent = 'Note'
-                        isButtonContrast = {true}
-                        ButtonFunction = {props.NoteFunction}
-                        Style = {{minHeight: '0',minWidth: '100px'}}
-                    />
-                </div>
             </div>
         </div>
     )

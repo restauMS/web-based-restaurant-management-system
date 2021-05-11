@@ -98,21 +98,24 @@
 .CheckoutFoodCard {
     display: flex;
     background-color: GetColorTheme(Main);
-    min-width: fit-content;
+    justify-content: space-between;
+    min-width: 100%;
+    max-width: 100%;
     min-height: fit-content;
     border-radius: 100px 0 0 100px;
     padding: 10px;
     margin: 10px auto;
     img {
         border-radius: 10000px;
-        min-height: 100px;
-        min-width: 100px;
+        min-height: 60px;
+        min-width: 60px;
         background-color: GetColorTheme(Base);
         margin: auto 10px;
     }
     .CheckoutInfo {
         display: flex;
         flex-flow: column;
+        justify-content: space-evenly;
         margin: auto;
         h3 {
             color: GetColorTheme(MainContrast);
@@ -126,13 +129,8 @@
     .ButtonContainer {
         display: flex;
         flex-flow: column;
-        .ButtonGroup {
-            display: flex;
-            flex-flow: column;
-            margin: auto;
-            button {
-                margin: 2px auto;
-            }
+        button {
+            margin: auto 10px;
         }
     }
 }

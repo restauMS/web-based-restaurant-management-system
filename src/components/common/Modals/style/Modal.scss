@@ -15,9 +15,12 @@
         margin: auto;
         justify-content: space-evenly;
         min-height: 30vh;
-        max-height: 30vh;
+        max-height: 50vh;
         background-color: GetColorTheme(Main);
         border-radius: 15px;
+        .Label {
+            margin: 0 auto;
+        }
         .ModalButtonGroup {
             display: flex;
             margin: auto;
@@ -68,7 +71,8 @@
                 margin: 5px auto;
                 .Button {
                     margin: 2px 2px;
-                    max-width: 15px;
+                    min-width: 120px;
+                    max-width: 120px;
                 }
             }
         }

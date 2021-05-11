@@ -14,10 +14,6 @@
         .HeaderContainer {
             display: flex;
             justify-content: space-between;
-            // ? Removed to be transfered down under... XD
-            // button {
-            //     margin: auto 10px;
-            // }
         }
         .FoodMenuContainer {
             max-width: 70%;
@@ -60,8 +56,6 @@
         }
     }
 
-   
-
     // Remove sidebar checkout container if breakpoint hits phone dimensions
     @include for-size(GetBreakpoint(TabletPortraitUp)){
         .CheckoutContainer {
@@ -74,8 +68,10 @@
         .CheckoutContainer {
             display: none;
         }
-        .Button {
-            display: block;
+        .InnerContainer {
+            .Button {
+                display: block;
+            }
         }
     }
 }

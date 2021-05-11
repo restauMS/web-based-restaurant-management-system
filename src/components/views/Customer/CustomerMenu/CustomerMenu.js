@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Spring } from 'react-spring/renderprops';
+// import { Spring } from 'react-spring/renderprops';
 
 // ? Component Imports
 import CustomerLabel from '../../../common/Label/Label';
 import CustomerButton from '../../../common/Button/Button';
 import { FoodItemCardComponent as FoodCard, CheckoutFoodCard as CheckoutCard } from '../../../common/Card/Card';
-import { CheckoutModal, FoodModal } from '../../../common/Modals/Modal';
+import { CheckoutModal , FoodModal } from '../../../common/Modals/Modal';
 
 // ? Asset Imports
 import './style/Menu.scss';
@@ -28,10 +28,11 @@ const CustomerMenu = props => {
             console.trace(error);
         }
     }
-    const [ModalStatus, SetModalStatus] = useState(false);
-    const [FoodModalStatus, SetFoodModalStatus] = useState(false);
-    const [MenuList, SetMenuList] = useState([]);
-    const [CheckoutList, SetCheckoutList] = useState([]);
+    const [ ModalStatus , SetModalStatus ] = useState(false);
+    const [ CurrentFoodFocus, SetFoodFocus ] = useState({});
+    const [ FoodModalStatus , SetFoodModalStatus ] = useState(false);
+    const [ MenuList , SetMenuList ] = useState([]);
+    const [CheckoutList , SetCheckoutList] = useState([]);
     const {
         // eslint-disable-next-line
             CustomerAddress: Address,
@@ -48,6 +49,7 @@ const CustomerMenu = props => {
             FetchMenuData()
             .then(Data => SetMenuList(Data))
             .catch(Error => console.trace(Error));
+            console.table(CheckoutList);
         } catch (error) {
             console.trace(error);
         }
@@ -63,8 +65,22 @@ const CustomerMenu = props => {
             {
                 ModalStatus ?
                     <CheckoutModal
-                        ToCheckout = {CheckoutList}
+                        CheckoutList = {CheckoutList}
+                        SetCheckoutList = {SetCheckoutList}
                         SetModalStatus = {SetModalStatus}
+                    />
+                :
+                    null
+            }
+            {
+                FoodModalStatus ?
+                    <FoodModal
+                        FoodName = {CurrentFoodFocus.Name}
+                        FoodPrice = {CurrentFoodFocus.Price}
+                        FoodId = {CurrentFoodFocus.Id}
+                        SetFoodModalStatus = {SetFoodModalStatus}
+                        SetCheckoutList = {SetCheckoutList}
+                        CheckoutList = {CheckoutList}
                     />
                 :
                     null
@@ -94,7 +110,10 @@ const CustomerMenu = props => {
                             FoodName = {Dish.item_name}
                             FoodPrice = {Dish.item_price}
                             isRounded = {false}
-                            FoodCardFunction = {() => {SetCheckoutList([...CheckoutList, {Id: Dish.item_id, Name: Dish.item_name, Price: Dish.item_price}])}}
+                            FoodCardFunction = {() => {
+                                SetFoodModalStatus(true);
+                                SetFoodFocus({Id: Dish.item_id, Name: Dish.item_name, Price: Dish.item_price});
+                            }}
                         />)
                     }
                 </div>
@@ -118,13 +137,16 @@ const CustomerMenu = props => {
                             CheckoutList.map((Order, key) => 
                                 <CheckoutCard
                                     key = {key}
+                                    id = {Order.Id}
+                                    CheckoutList = {CheckoutList}
+                                    SetCheckoutList = {SetCheckoutList}
                                 />
                             )
                         }
                     </div>
                     <CustomerButton
-                    ButtonContent = "Proceed"
-                    isButtonContrast = {true}
+                        ButtonContent = "Proceed"
+                        isButtonContrast = {true}
                     />
                 </div>
             </div>
