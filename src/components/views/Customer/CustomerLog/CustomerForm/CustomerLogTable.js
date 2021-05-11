@@ -10,10 +10,6 @@ import AlertCard, {TableCardComponent as TableCard} from '../../../../common/Car
 // eslint-disable-next-line
 import CustomerButton from '../../../../common/Button/Button';
 
-
-/*
- ! This Component will need a backend service to grab available Tables from the database
-*/
 const CustomerLogTable = props => {
     // Constant for Max Table you can Aqcuire as a Group
     const MaxTablePerGroup = props.IsGroup ? 2 : 1;

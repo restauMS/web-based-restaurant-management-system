@@ -30,16 +30,85 @@
         }
     }
 
-    .ItemModal {
+    .ModifyInventoryItemModal {
 
+    }
+
+    .ItemModal {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-evenly;
+        margin: auto;
+        padding: 15px;
+        border-radius: 15px;
+        min-width: 50vh;
+        max-width: 50vh;
+        min-height: 30vh;
+        max-height: 50vh;
+        background-color: GetColorTheme(Main);
     }
 
     .ModifyItemModal {
-
+        display: flex;
+        flex-flow: column;
+        justify-content: space-evenly;
+        margin: auto;
+        padding: 15px;
+        border-radius: 15px;
+        min-width: 50vh;
+        max-width: 50vh;
+        min-height: 30vh;
+        max-height: 50vh;
+        background-color: GetColorTheme(Main);
+        .Textfield {
+            margin: 5px auto;
+        }
+        .ModalButtonGroup {
+            display: flex wrap;
+            margin: 5px auto;
+            .Button {
+                margin: 2px 2px;
+                min-width: 120px;
+                max-width: 120px;
+            }
+        }
     }
 
     .TransactionModal {
-
+        display: flex;
+        flex-flow: column;
+        justify-content: space-evenly;
+        margin: auto;
+        padding: 15px;
+        border-radius: 15px;
+        min-width: 50vh;
+        max-width: 50vh;
+        min-height: 80vh;
+        background-color: GetColorTheme(Main);
+        .Label {
+            margin: 0 auto;
+        }
+        .OrderedItemsContainer {
+            display: flex;
+            flex-flow: column;
+            margin: auto;
+            border-radius: 15px;
+            min-width: 45vh;
+            max-width: 45vh;
+            min-height: 50vh;
+            max-height: 50vh;
+            overflow-y: scroll;
+            background-color: GetColorTheme(MainContrast);
+        }
+        .ModalButtonGroup {
+            display: flex wrap;
+            margin: 5px auto;
+            .Button {
+                margin: 2px 2px;
+                min-width: 120px;
+                max-width: 120px;
+            }
+        }
     }
 
     .CheckoutModal {

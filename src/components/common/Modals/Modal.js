@@ -7,7 +7,6 @@ import './style/Modal.scss';
 import Textfield from '../Textfield/Textfield';
 
 export const FoodModal = (props) => {
-
     return (
         <div className = "ModalContainer">
             <div className="FoodModal">
@@ -30,7 +29,7 @@ export const FoodModal = (props) => {
                             ButtonContent = "Proceed"
                             isButtonContrast = {true}
                             ButtonFunction = {() => {
-                                props.SetCheckoutList([...props.CheckoutList, {Id: props.FoodId, Name: props.FoodName, Price: props.FoodPrice}]);    
+                                props.SetCheckoutList([...props.CheckoutList, {Id: props.FoodId, Name: props.FoodName, Price: props.FoodPrice}]);
                                 props.SetFoodModalStatus(false);
                             }}
                         />
@@ -52,27 +51,108 @@ export const ItemModal = () => {
     return (
         <div className = "ModalContainer">
             <div className="ItemModal">
-
+                
             </div>
         </div>
     );
 }
 
-export const ModifyItemModal = () => {
+export const ModifyInventoryItemModal = props => {
+    return (
+        <div className="ModalContainer">
+            <div className="ModifyInventoryItemModal">
+
+            </div>
+        </div>
+    )
+}
+
+export const ModifyItemModal = (props) => {
     return (
         <div className = "ModalContainer">
             <div className="ModifyItemModal">
-
+                <ModalLabel
+                    LabelContent = {`Item: ${props.ItemName}`}
+                    isLabelContrast = {false}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)',
+                        textAlign: 'start'
+                    }}
+                />
+                <Textfield
+                    Type = "text"
+                    PlaceholderTitle = {`New Name`}
+                    Name = "UpdateName"
+                />
+                <Textfield
+                    Type = "text"
+                    PlaceholderTitle = {`New Quantity`}
+                    Name = "UpdateQuantity"
+                />
+                <div className="ModalButtonGroup">
+                        <ModalButton
+                            isButtonLink = {false}
+                            ButtonContent = "Proceed"
+                            isButtonContrast = {true}
+                            ButtonFunction = {() => {
+                                alert('Are you sure?');
+                            }}
+                        />
+                        <ModalButton
+                            isButtonLink = {false}
+                            isButtonContrast = {true}
+                            ButtonContent = "Cancel"
+                            ButtonFunction = {() => {
+                                // Cancel function
+                            }}
+                        />
+                    </div>
             </div>
         </div>
     );
 }
 
-export const OrderTransactionModal = () => {
+export const OrderTransactionModal = (props) => {
     return (
         <div className = "ModalContainer">
             <div className="TransactionModal">
-            
+                <ModalLabel
+                    LabelContent = {`Transaction Id: ${props.TransactionId}`}
+                    isLabelContrast = {false}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)',
+                        textAlign: 'start'
+                    }}
+                />
+                <ModalLabel
+                    LabelContent = {`Customer Name: ${props.TransactionId}`}
+                    isLabelContrast = {false}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)',
+                        textAlign: 'start'
+                    }}
+                />
+                <div className="OrderedItemsContainer">
+
+                </div>
+                <div className="ModalButtonGroup">
+                        <ModalButton
+                            isButtonLink = {false}
+                            ButtonContent = "End Session"
+                            isButtonContrast = {true}
+                            ButtonFunction = {() => {
+                                alert('Are you sure?');
+                            }}
+                        />
+                        <ModalButton
+                            isButtonLink = {false}
+                            isButtonContrast = {true}
+                            ButtonContent = "Cancel"
+                            ButtonFunction = {() => {
+                                // Cancel function
+                            }}
+                        />
+                    </div>
             </div>
         </div>
     );

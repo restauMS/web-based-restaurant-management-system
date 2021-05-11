@@ -78,6 +78,7 @@ const CustomerMenu = props => {
                         FoodName = {CurrentFoodFocus.Name}
                         FoodPrice = {CurrentFoodFocus.Price}
                         FoodId = {CurrentFoodFocus.Id}
+                        FoodCheckedOut = {CurrentFoodFocus.IsSelected}
                         SetFoodModalStatus = {SetFoodModalStatus}
                         SetCheckoutList = {SetCheckoutList}
                         CheckoutList = {CheckoutList}

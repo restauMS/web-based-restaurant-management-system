@@ -1,12 +1,18 @@
 import React from 'react';
 import './style/Tester.scss';
 
-import {CheckoutModal as Checkout, FoodModal as Food} from '../../common/Modals/Modal';
+import {CheckoutModal as Checkout, 
+        FoodModal as Food, 
+        ItemModal as Item, 
+        ModifyItemModal as ModifyItem,
+        ModifyInventoryItemModal as ModifyInventoryItem,
+        OrderTransactionModal as TransactionModal
+    } from '../../common/Modals/Modal';
 
 const ComponentTester = () => {
     return (
         <div className="TesterContainer">
-            <Food/>
+            <Item/>
         </div>
     )
 }
