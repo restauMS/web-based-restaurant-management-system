@@ -127,4 +127,12 @@ export const CheckoutFoodCard = props => {
     )
 }
 
+export const ListCard = (props) => {
+    return (
+        <div className="ListCard">
+            
+        </div>
+    )
+}
+
 export default AlertCardComponent;

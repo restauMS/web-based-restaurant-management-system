@@ -47,24 +47,67 @@ export const FoodModal = (props) => {
     );
 }
 
-export const ItemModal = () => {
+export const ItemModal = (props) => {
     return (
         <div className = "ModalContainer">
             <div className="ItemModal">
-                
+                <ModalLabel
+                    LabelContent = {`Item Id: ${props.FoodId}`}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)',
+                        textAlign: 'start'
+                    }}
+                />
+                <ModalLabel
+                    LabelContent = {`Item Name: ${props.FoodName}`}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)',
+                        textAlign: 'start'
+                    }}
+                />
+                <ModalLabel
+                    LabelContent = {`Price: ${props.FoodPrice}`}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)',
+                        textAlign: 'start'
+                    }}
+                />
+                <ModalLabel
+                    LabelContent = {`Qty: ${props.ItemQuantity}`}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)',
+                        textAlign: 'start'
+                    }}
+                />
+                <div className="ModalButtonGroup">
+                    <ModalButton
+                            isButtonLink = {false}
+                            ButtonContent = "Delete Item"
+                            isButtonContrast = {true}
+                            ButtonFunction = {() => {
+                                // Deleted function
+                            }}
+                        />
+                    <ModalButton
+                        isButtonLink = {false}
+                        isButtonContrast = {true}
+                        ButtonContent = "Edit Item"
+                        ButtonFunction = {() => {
+                            // Triggers Edit modal
+                        }}
+                    />
+                    <ModalButton
+                        isButtonLink = {false}
+                        isButtonContrast = {true}
+                        ButtonContent = "Cancel"
+                        ButtonFunction = {() => {
+                            // Exits the modal
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );
-}
-
-export const ModifyInventoryItemModal = props => {
-    return (
-        <div className="ModalContainer">
-            <div className="ModifyInventoryItemModal">
-
-            </div>
-        </div>
-    )
 }
 
 export const ModifyItemModal = (props) => {
@@ -84,6 +127,17 @@ export const ModifyItemModal = (props) => {
                     PlaceholderTitle = {`New Name`}
                     Name = "UpdateName"
                 />
+                    {
+                        props.IsInventoryEdit ? 
+                            <Textfield
+                                Type = "text"
+                                PlaceholderTitle = {`New Quantity`}
+                                Name = "UpdateQuantity"
+                            />
+                        :
+                            null
+    
+                    }
                 <Textfield
                     Type = "text"
                     PlaceholderTitle = {`New Quantity`}

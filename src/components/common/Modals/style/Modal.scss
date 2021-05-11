@@ -29,11 +29,7 @@
             }
         }
     }
-
-    .ModifyInventoryItemModal {
-
-    }
-
+    
     .ItemModal {
         display: flex;
         flex-flow: column;
@@ -41,11 +37,23 @@
         margin: auto;
         padding: 15px;
         border-radius: 15px;
-        min-width: 50vh;
-        max-width: 50vh;
+        min-width: 40vh;
+        max-width: 40vh;
         min-height: 30vh;
         max-height: 50vh;
         background-color: GetColorTheme(Main);
+        .Label {
+            margin: 0 auto;
+        }
+        .ModalButtonGroup {
+            display: flex wrap;
+            margin: 5px auto;
+            .Button {
+                margin: 2px 2px;
+                min-width: 100px;
+                max-width: 100px;
+            }
+        }
     }
 
     .ModifyItemModal {
