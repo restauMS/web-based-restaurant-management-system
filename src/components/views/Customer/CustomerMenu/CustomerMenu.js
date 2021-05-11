@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {Spring} from 'react-spring/renderprops';
+import { Spring } from 'react-spring/renderprops';
 
 // ? Component Imports
 import CustomerLabel from '../../../common/Label/Label';
 import CustomerButton from '../../../common/Button/Button';
-import {FoodItemCardComponent as FoodCard, CheckoutFoodCard as CheckoutCard} from '../../../common/Card/Card';
+import { FoodItemCardComponent as FoodCard, CheckoutFoodCard as CheckoutCard } from '../../../common/Card/Card';
+import { CheckoutModal } from '../../../common/Modals/Modal';
 
 // ? Asset Imports
 import './style/Menu.scss';
@@ -27,7 +28,7 @@ const CustomerMenu = props => {
             console.trace(error);
         }
     }
-    const [DropdownStatus, SetDropdownStatus] = useState(false);
+    const [ModalStatus, SetModalStatus] = useState(false);
     const [MenuList, SetMenuList] = useState([]);
     const [CheckoutList, SetCheckoutList] = useState([]);
     const {
@@ -42,36 +43,38 @@ const CustomerMenu = props => {
 
     // Fetch data from the Database
     useEffect(() =>{
-        FetchMenuData()
-        .then(Data => SetMenuList(Data))
-        .catch(Error => console.trace(Error));
-    }
-    ,[CheckoutList]
-    )
+        try {
+            FetchMenuData()
+            .then(Data => SetMenuList(Data))
+            .catch(Error => console.trace(Error));
+        } catch (error) {
+            console.trace(error);
+        }
+    } , [CheckoutList]);
 
     if(props.Stage !== 2)
         return null;
 
     return (
-        // ? To form or not To form
-        <form
-        className = 'MenuContainer'
+        <div
+            className = 'MenuContainer'
         >
+            {
+                ModalStatus ?
+                    <CheckoutModal
+                        ToCheckout = {CheckoutList}
+                        SetModalStatus = {SetModalStatus}
+                    />
+                :
+                    null
+            }
             <div className="InnerContainer">
-                <div className="HeaderCheckoutContainer">
+                <div className="HeaderContainer">
                     <CustomerLabel
                         LabelContent = {`Hello${Name.length > 0 ? `, ${props.LoggedData.CustomerName}` : ' 😊'}`}
                         Style = {{margin: '10px auto',textAlign: "start"}}
                     />
-                    <CustomerButton
-                    isButtonLink = {false}
-                    ButtonFunction = {(e) => {
-                                        e.preventDefault();
-                                        SetDropdownStatus(true);
-                                        }}
-                    isButtonContrast = {true}
-                    Style = {{height: '10px', minWidth: '45px', backgroundImage: `url('${CheckoutIcon}')`, backgroundPosition: 'center', backgroundSize: 'cover'}}
-                    />
+                    
                 </div>
                 <CustomerLabel
                     LabelContent = {`${Day[CurrentDate.getDay()]}, ${TodayDate}, Weather information unavailable at the moment`}
@@ -94,67 +97,38 @@ const CustomerMenu = props => {
                         />)
                     }
                 </div>
+                <CustomerButton
+                    isButtonLink = {false}
+                    isButtonContrast = {true}
+                    Style = {{minHeight: '65px', minWidth: '65px', backgroundImage: `url('${CheckoutIcon}')`, backgroundPosition: 'center', backgroundSize: 'auto', backgroundRepeat: "no-repeat"}}
+                    ButtonFunction = {() => {
+                        SetModalStatus(true)
+                    }}
+                />
             </div>
-            {
-                // ! Needs major refactoring, using the component wrong
-                DropdownStatus ? 
-                <Spring
-                    from = {{transform: 'translateY(-1000px)', transition: '0.1s ease-in-out'}}
-                    to = {{transform: 'translateY(0px)'}} 
-                >
-                    {props => 
-                        <div className="CheckoutDropdown" style={{...props}}>
-                            <CustomerButton
-                                isButtonLink = {false}
-                                isButtonContrast = {false}
-                                ButtonFunction = {e => {
-                                    e.preventDefault();
-                                    SetDropdownStatus(false);
-                                }}
-                                ButtonContent = 'exit'
-                                Style = {{minWidth: '70px', minHeight: '10px', margin: '10px 10px'}}
-                            />
-                            <CustomerLabel
-                                isLabelContrast = {false}
-                                LabelContent = 'Checkout'
-                            />
-                            <div className="CheckoutContainer">
-                                <div className="CheckoutList">
-                                    {
-                                        CheckoutList.length <= 0 ?
-                                        <CustomerLabel
-                                            isLabelContrast = {true}
-                                            LabelContent = 'Your Checkout List is Empty!'
-                                        />
-                                        :
-                                        CheckoutList.map(CheckedOut => 
-                                            <CheckoutCard
-                                            key = {CheckedOut.Id}
-                                            FoodName = {CheckedOut.Name}
-                                            FoodQty = {`Qty: ${CheckedOut.Price}`}
-                                            FoodTotal = {`Total: ${CheckedOut.Price * 2}`}
-                                            />
-                                        )
-                                    }
-                                </div>
-                                <CustomerButton
-                                    isButtonLink = {false}
-                                    isButtonContrast = {true}
-                                    ButtonFunction = {e => {
-                                        e.preventDefault();
-                                        console.log(CheckoutList);
-                                    }}
-                                    ButtonContent = 'proceed'
-                                    Style={{margin: 'auto'}}
+            <div className="CheckoutContainer">
+                <CustomerLabel
+                    LabelContent = "Checkout"
+                    Style = {{fontSize: "clamp(25px, 30px, 40px)", margin: "25px auto"}}
+                />
+                <div className="CheckoutInnerContainer">
+                    <div className="CheckoutList">
+                        {
+                            CheckoutList.map((Order, key) => 
+
+                                <CheckoutCard
+                                    key = {key}
                                 />
-                        </div>
+                            )
+                        }
+                    </div>
+                    <CustomerButton
+                    ButtonContent = "Proceed"
+                    isButtonContrast = {true}
+                    />
+                </div>
             </div>
-                    }
-                </Spring>
-            :
-            null
-            }
-        </form>
+        </div>
     );
 }
 export default CustomerMenu;
