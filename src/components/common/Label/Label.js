@@ -10,7 +10,7 @@ const Label = (props) => {
         style = {props.Style} 
         className={props.isLabelContrast ? 'Label LabelContrast' : 'Label'}
         > 
-        {props.LabelContent} 
+            {props.LabelContent} 
         </p>
     </strong>
     );

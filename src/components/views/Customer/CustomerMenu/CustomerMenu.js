@@ -5,7 +5,7 @@ import { Spring } from 'react-spring/renderprops';
 import CustomerLabel from '../../../common/Label/Label';
 import CustomerButton from '../../../common/Button/Button';
 import { FoodItemCardComponent as FoodCard, CheckoutFoodCard as CheckoutCard } from '../../../common/Card/Card';
-import { CheckoutModal } from '../../../common/Modals/Modal';
+import { CheckoutModal, FoodModal } from '../../../common/Modals/Modal';
 
 // ? Asset Imports
 import './style/Menu.scss';
@@ -29,6 +29,7 @@ const CustomerMenu = props => {
         }
     }
     const [ModalStatus, SetModalStatus] = useState(false);
+    const [FoodModalStatus, SetFoodModalStatus] = useState(false);
     const [MenuList, SetMenuList] = useState([]);
     const [CheckoutList, SetCheckoutList] = useState([]);
     const {
@@ -115,7 +116,6 @@ const CustomerMenu = props => {
                     <div className="CheckoutList">
                         {
                             CheckoutList.map((Order, key) => 
-
                                 <CheckoutCard
                                     key = {key}
                                 />

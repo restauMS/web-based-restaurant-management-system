@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Spring } from 'react-spring/renderprops';
 // Component Imports
 import Button from '../Button/Button';
@@ -92,11 +92,14 @@ export const TableCardComponent  = props =>
 */
 export const FoodItemCardComponent = props => 
 {
+
         return (
             <div
                 className={props.isRounded ? 'FoodItemCard FoodItemCardRounded' : 'FoodItemCard'}
                 style = {{...props.Style}}
-                onClick = {props.FoodCardFunction}
+                onClick = {() => {
+                    props.SetFoodModalStatus(true);
+                }}
             >
                 <h1>
                     {props.FoodName}
@@ -104,9 +107,6 @@ export const FoodItemCardComponent = props =>
                 <h2>
                     ₱{props.FoodPrice}
                 </h2>
-                {/* <h3>
-                    Ingredients: {props.FoodIngredients}
-                </h3> */}
             </div>
         )
 }

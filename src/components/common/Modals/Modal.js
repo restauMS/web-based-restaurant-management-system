@@ -4,6 +4,7 @@ import ModalLabel from '../Label/Label';
 import { CheckoutFoodCard } from '../Card/Card';
 
 import './style/Modal.scss';
+import Textfield from '../Textfield/Textfield';
 
 const TestData = [
     {
@@ -40,11 +41,37 @@ const TestData = [
     },
 ]
 
-export const FoodModal = () => {
+export const FoodModal = (props) => {
     return (
         <div className = "ModalContainer">
             <div className="FoodModal">
-
+                <ModalLabel
+                    // LabelContent = {props.FoodName}
+                    LabelContent = {"Test"}
+                />
+                <Textfield
+                    Type = "number"
+                    PlaceholderTitle = {`Enter ${props.FoodName} Quantity`}
+                    Name = "FoodQty"
+                />
+                <div className="ModalButtonGroup">
+                    <ModalButton
+                            isButtonLink = {false}
+                            ButtonContent = "Proceed"
+                            isButtonContrast = {true}
+                            ButtonFunction = {() => {
+                                alert('Are you sure?');
+                            }}
+                        />
+                    <ModalButton
+                        isButtonLink = {false}
+                        isButtonContrast = {true}
+                        ButtonContent = "Cancel"
+                        ButtonFunction = {() => {
+                            props.SetFoodModalStatus(false);
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );

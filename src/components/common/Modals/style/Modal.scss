@@ -8,9 +8,23 @@
     background-color: rgba($color: #ffff, $alpha: 0.2);
     position: absolute;
     z-index: 1;
+
     .FoodModal {
-
-
+        display: flex;
+        flex-flow: column;
+        margin: auto;
+        justify-content: space-evenly;
+        min-height: 30vh;
+        max-height: 30vh;
+        background-color: GetColorTheme(Main);
+        border-radius: 15px;
+        .ModalButtonGroup {
+            display: flex;
+            margin: auto;
+            .Button {
+                margin: auto 2px;
+            }
+        }
     }
 
     .ItemModal {
