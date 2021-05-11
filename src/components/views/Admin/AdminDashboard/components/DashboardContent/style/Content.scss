@@ -22,12 +22,12 @@
             .OrderSessionList{
                 display: flex;
                 flex-flow: column;
-                background-color: GetColorTheme(MainContrast);
+                background-color: GetColorTheme(Main);
                 height: 79vh;
                 width: 100vh;
                 border-radius: 25px;
                 .OrdersContainer {
-                    // TODO:
+                    
                 }
             }
             .SideContentContainer {
@@ -40,7 +40,7 @@
                         height: 20vh;
                         width: 60vh;
                         padding: 15px;
-                        background-color: GetColorTheme(MainContrast);
+                        background-color: GetColorTheme(Main);
                         .Dish {
                             display: flex;
                         }
@@ -50,7 +50,7 @@
                         width: 60vh;
                         height: 58vh;
                         padding: 15px;
-                        background-color: GetColorTheme(MainContrast);
+                        background-color: GetColorTheme(Main);
                     }
             }
         }
@@ -69,8 +69,29 @@
     }
 
     @include for-size(GetBreakpoint(Phone)){
-
+        padding: 10px;
         .HomeContainer {
+            .TopBar{
+                display: flex;
+                flex-flow: column-reverse;
+            }
+            .MainContainer {
+                flex-flow: column;
+                .OrderSessionList {
+                    max-width: 45vh;
+                    margin: auto;
+                }
+                .SideContentContainer {
+                    .RecentTransactions {
+                        max-width: 45vh;                        
+                        margin: 5px auto;
+                    }
+                    // Hides the Trending Dish of the Day not needed in mobile atm
+                    .DishOTD {
+                        display: none;
+                    }
+                }
+            }        
             
         }
 

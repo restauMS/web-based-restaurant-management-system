@@ -2,6 +2,10 @@ import ServiceMenu from '../ServiceMenu/ServiceMenu';
 import { CustomerOrder , CustomerCheckout } from '../../layouts/Customer/CustomerLayout';
 import { AdminLogin , AdminDashboard } from '../../layouts/Admin/AdminLayout';
 import { WorkerLogin , WorkerRegistration , WorkerDashboard } from '../../layouts/Worker/WorkerLayout';
+import Inventory from '../Admin/AdminDashboard/components/DashboardContent/Content/Inventory';
+import Transactions from '../Admin/AdminDashboard/components/DashboardContent/Content/Transactions';
+import Settings from '../Admin/AdminDashboard/components/DashboardContent/Content/Settings';
+import Test from '../ComponentTesting/ComponentTester';
 
 const MasterRoutes = [
     {
@@ -45,7 +49,7 @@ const MasterRoutes = [
         routes: [
             {
                 path: '/Admin/Dashboard/Transactions',
-                component: function(){return(<h1>Transactions page</h1>)},
+                component: Transactions,
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,
@@ -53,7 +57,7 @@ const MasterRoutes = [
             },
             {
                 path: '/Admin/Dashboard/Inventory',
-                component: function(){return(<h1>Inventory page</h1>)},
+                component: Inventory,
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,
@@ -61,7 +65,7 @@ const MasterRoutes = [
             },
             {
                 path: '/Admin/Dashboard/Settings',
-                component: function(){return(<h1>Settings page</h1>)},
+                component: Settings,
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,
@@ -90,6 +94,16 @@ const MasterRoutes = [
         component: WorkerDashboard,
         RouteType: 'protected',
         RedirectPath: '/Worker/Login',
+        strict: true,
+        routes: [
+            
+        ]
+    },
+    {
+        path: '/ComponentTest',
+        component: Test,
+        RouteType: 'public',
+        RedirectPath: '/404',
         strict: true,
         exact: true
     }
