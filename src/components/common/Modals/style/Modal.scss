@@ -89,7 +89,7 @@
         margin: auto;
         padding: 15px;
         border-radius: 15px;
-        min-width: 50vh;
+        min-width: 30vh;
         max-width: 50vh;
         min-height: 80vh;
         background-color: GetColorTheme(Main);
@@ -100,8 +100,8 @@
             display: flex;
             flex-flow: column;
             margin: auto;
-            border-radius: 15px;
-            min-width: 45vh;
+            border-radius: 10px;
+            min-width: 40vh;
             max-width: 45vh;
             min-height: 50vh;
             max-height: 50vh;

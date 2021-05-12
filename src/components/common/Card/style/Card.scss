@@ -134,6 +134,19 @@
         }
     }
 }
+
 .Contrast {
     background-color: GetColorTheme(MainContrast);
+}
+
+.ListCard {
+    background-color: GetColorTheme(Base);
+    padding: 5px;
+    margin: 5px auto;
+    text-align: start;
+    min-width: inherit;
+    max-width: inherit;
+    max-height: min-content;
+    border-radius: 10px;
+    color: GetColorTheme(Main);
 }

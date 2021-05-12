@@ -12,7 +12,7 @@ import {CheckoutModal as Checkout,
 const ComponentTester = () => {
     return (
         <div className="TesterContainer">
-            <Item/>
+            <TransactionModal/>
         </div>
     )
 }

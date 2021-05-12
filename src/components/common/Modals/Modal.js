@@ -1,7 +1,7 @@
 import React from 'react';
 import ModalButton from '../Button/Button';
 import ModalLabel from '../Label/Label';
-import { CheckoutFoodCard } from '../Card/Card';
+import { CheckoutFoodCard, ListCard } from '../Card/Card';
 
 import './style/Modal.scss';
 import Textfield from '../Textfield/Textfield';
@@ -187,7 +187,13 @@ export const OrderTransactionModal = (props) => {
                     }}
                 />
                 <div className="OrderedItemsContainer">
-
+                    {
+                        props.TransactionList.map(Items => (
+                            <ListCard
+                                CardContent = {Items}
+                            />
+                        ))
+                    }
                 </div>
                 <div className="ModalButtonGroup">
                         <ModalButton

@@ -129,8 +129,12 @@ export const CheckoutFoodCard = props => {
 
 export const ListCard = (props) => {
     return (
-        <div className="ListCard">
-            
+        <div className="ListCard"
+            onClick = {props.CardFunction}
+        >
+            <h4>
+                {props.CardContent}
+            </h4>
         </div>
     )
 }

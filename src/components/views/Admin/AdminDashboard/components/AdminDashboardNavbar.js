@@ -26,24 +26,24 @@ const NavButtonGroup = [
         isButtonLink: true,
         Contrast: true,
         ImageProperties: {
-            src: Orders,
-            alt: "An image of a Paper sheet with writings",
-            height: "25px",
-            width: "25px"
-        },
-        Route: '/Admin/Dashboard/Transactions'
-    }
-    ,
-    {
-        isButtonLink: true,
-        Contrast: true,
-        ImageProperties: {
             src: Products,
             alt: "An image of an opened box",
             height: "25px",
             width: "25px"
         },
         Route: '/Admin/Dashboard/Inventory'
+    }
+    ,
+    {
+        isButtonLink: true,
+        Contrast: true,
+        ImageProperties: {
+            src: Orders,
+            alt: "An image of a Paper sheet with writings",
+            height: "25px",
+            width: "25px"
+        },
+        Route: '/Admin/Dashboard/Transactions'
     }
     ,
     {

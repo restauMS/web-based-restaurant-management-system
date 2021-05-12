@@ -5,13 +5,13 @@ import './style/AdminDashboard.scss';
 
 const Dashboard = ({routes}) => {
 
-    const AdminInformationTemplate = {
+    const AdminInformationFormat = {
         Username: '',
         Fullname: '',
         AuthType: ''
     }
     
-    const [AdminInformation, SetAdminInformation] = useState(AdminInformationTemplate);
+    const [AdminInformation, SetAdminInformation] = useState(AdminInformationFormat);
 
     useEffect(() => {
         SetAdminInformation({
