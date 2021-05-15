@@ -175,9 +175,10 @@
                 .IdUsername {
                     display: flex;
                     justify-content: space-evenly;
+                    margin: 5px 0;
                     .ListCard {
                         flex: 1;
-                        margin: auto 2px;
+                        margin: 0 2px;
                     }
                 }
             }

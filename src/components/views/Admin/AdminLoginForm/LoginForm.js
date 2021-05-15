@@ -44,12 +44,11 @@ const Login = () => {
                 localStorage.setItem("AccessToken", AccessToken);
                 localStorage.setItem("Username", Name);
                 LogIn(Status);
-            }
-            else {
+            } else {
                 alert('Recheck your Username and Password input');
             }
         } catch (error) {
-            console.log(error);
+            console.trace(error);
         }
         
         

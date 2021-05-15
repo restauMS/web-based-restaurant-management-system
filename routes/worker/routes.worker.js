@@ -33,7 +33,9 @@ Router.post('/Authenticate', async(Request, Response) => {
                 .send(
                     {
                         "Status": true,
-                        "StatusDescription": "Login Successful"
+                        "StatusDescription": "Login Successful",
+                        "Username": Username, 
+                        "AccessToken": AccessToken
                     }
                 );
             }

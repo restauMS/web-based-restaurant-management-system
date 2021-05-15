@@ -4,7 +4,7 @@ import { ListCard } from '../../../../../../common/Card/Card';
 import Label from '../../../../../../common/Label/Label';
 import '../style/Content.scss';
 
-const Settings = () => {
+const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
     return (
         <div className = "SettingsContainer">
             <div className="TopBar">
@@ -22,23 +22,23 @@ const Settings = () => {
                     <div className="InfoContainer">
                         <div className="IdUsername">
                             <ListCard
-                                CardContent = {`Account Id: ${1}`}
+                                CardContent = {`Account Id: ${Id}`}
                             />
                             <ListCard
-                                CardContent = {`Username: ${localStorage.getItem("Username")}`}
+                                CardContent = {`Username: ${Username}`}
                             />
                         </div>
                         <ListCard
-                            CardContent = {`Name: Sean Christian Lozana`}
+                            CardContent = {`Name: ${Name}`}
                         />
                         <ListCard
-                            CardContent = {`Password: *******`}
+                            CardContent = {`Password: ${Password}`}
                         />
                         <ListCard
-                            CardContent = {`Contact #: 12345678912`}
+                            CardContent = {`Contact #: ${Contact}`}
                         />
                         <ListCard
-                            CardContent = {`Address: Bakers field, California`}
+                            CardContent = {`Address: ${Address}`}
                         />
                     </div>
                     <div className="ButtonGroup">

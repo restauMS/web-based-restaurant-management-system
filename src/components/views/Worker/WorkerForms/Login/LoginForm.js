@@ -1,79 +1,76 @@
-import React from 'react';
-// Component imports
+import React , { useState , useContext} from 'react';
+import { AuthContext } from '../../../../contexts/AuthContext';
 import Button from '../../../../common/Button/Button';
 import LoginLabel from '../../../../common/Label/Label';
 import LoginInput from '../../../../common/Textfield/Textfield';
-// import AlertCard from  '../../../../common/Card/Card';
-
-// Style import
 import './style/LoginForm.scss';
-
-// Asset imports
 import Logo from '../../../../../assets/restoms-logo/logo.png';
 
 
 const Login = () => {
 
-    // ! To be replaced
-    // const [Username, SetUsername] = useState('');
-    // const [Password, SetPassword] = useState('');
-    // const [AuthState, SetAuthState] = useState(false);
+    const { LogIn } = useContext(AuthContext);
+    
+    const [Username, SetUsername] = useState('');
+    const [Password, SetPassword] = useState('');
+        
+    const Authenticate = async(Credentials) => {
+        try {
+            const Auth = await fetch('/API/Worker/Authenticate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(Credentials)
+            });
+            return Auth.json();
+        } catch (error) {
+            console.trace('Something went wrong', error);
+        }
+    }
 
-    // ! Dog water code
-    // const Authenticate = async() => {
-    //     try {
-    //         const Auth = await fetch('./API/Worker/Authenticate', {
-    //             method: 'POST',
-    //             headers: {'Content-Type': 'application/json'},
-    //             body: JSON.stringify({
-    //                 "Username": Username,
-    //                 "Password": Password
-    //             })
-    //         });
-    //         return Auth.json();
-    //     } catch (error) {
-    //         console.trace('Something went wrong', error);
-    //     }
-    // }
+    const SubmitHandler = async(e) => {
+        e.preventDefault();
+        try {
+            const {AccessToken, Username: Name, Status} = await Authenticate({
+                'Username': Username,
+                'Password': Password
+            });
+            if(Status){
+                localStorage.setItem('AccessToken', AccessToken);
+                localStorage.setItem('Username', Name);
+                LogIn(Status);
+            } else {
+                alert('Recheck your Username and Password input');
+            }
+        } catch (error) {
+            console.trace(error);
+        }
+    }
 
     return (
-        <form onChange={e => {e.preventDefault()}} className="LoginContainer">
-                {/* {
-                    AuthState ?
-                    <AlertCard
-                    AlertTitle = 'Login Successful'
-                    />
-                    :
-                    null
-                } */}
+        <form 
+            className="LoginContainer"
+            onSubmit = {SubmitHandler}
+        >
             <div className="FormContainer">
                 <img src={Logo} alt="" id="restoms-logo"/>
                 <LoginLabel
-                isLabelContrast = {false}
-                LabelContent = 'Worker Login'
+                    isLabelContrast = {false}
+                    LabelContent = 'Worker Login'
                 />
                 <LoginInput
-                PlaceholderTitle = 'Username here'
-                // HandleChange = {(e) => SetUsername(e.target.value)}
+                    PlaceholderTitle = 'Username here'
+                    HandleChange = {(e) => SetUsername(e.target.value)}
                 />
                 <LoginInput
-                PlaceholderTitle = 'Password here'
-                Type = 'password'
-                // HandleChange = {(e) => SetPassword(e.target.value)}
+                    PlaceholderTitle = 'Password here'
+                    Type = 'password'
+                    HandleChange = {(e) => SetPassword(e.target.value)}
                 />
                 <Button
-                isButtonLink = {false}
-                isButtonContrast = {true}
-                ButtonContent = 'LOGIN'
-                ButtonFunction = {(e) => {
-                    e.preventDefault();
-
-                    // ! Absolute dog water piece of code
-                    // Authenticate()
-                    // .then(Result => Result.length > 0 ? SetAuthState(true) : alert('Massive cuckery for not getting it right.'))
-                    // .catch(Error => console.trace(Error))
-                }
-                }
+                    isButtonLink = {false}
+                    isButtonContrast = {true}
+                    ButtonContent = 'LOGIN'
+                    Type = 'submit'
                 />
             </div>
         </form>

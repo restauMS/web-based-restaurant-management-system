@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-
-// Customer Logger View
+import { Spring } from 'react-spring/renderprops';
 import CustomerLog from './CustomerLog/CustomerLog';
 import CustomerMenu from './CustomerMenu/CustomerMenu';
 
@@ -12,24 +11,30 @@ const CustomerView = () => {
         // * For evaluation
         // const [OrderData, SetOrderData] = useState({});
 
-
-        // eslint-disable-next-line
         const _nextStage = () => {
                 SetStage(Stage >= 1 ? 2 : Stage + 1);
         }
         
         return (
-                <div>       
-                        <CustomerLog
-                                NextStage = {_nextStage}
-                                Stage = {Stage}
-                                LogData = {SetLogData}
-                        />
-                        <CustomerMenu
-                                Stage = {Stage}
-                                LoggedData = {LogData}
-                        />
-                </div>
+                <Spring
+                        from = {{opacity: 0, transition: '0.1s ease-in-out'}}
+                        to = {{opacity: 1}}
+                >
+                {
+                        props => 
+                        <div style={{...props}}>       
+                                <CustomerLog
+                                        NextStage = {_nextStage}
+                                        Stage = {Stage}
+                                        LogData = {SetLogData}
+                                />
+                                <CustomerMenu
+                                        Stage = {Stage}
+                                        LoggedData = {LogData}
+                                />
+                        </div>
+                }
+        </Spring> 
         );
 }
 

@@ -3,8 +3,8 @@ POST http://localhost:3001/API/Worker/Authenticate
 content-type: application/json
 
 {
-    "Username": "jml",
-    "Password": "jireh123"
+    "Username": "lozanasc",
+    "Password": "sean123"
 }
 ### Registration of Worker Information
 POST http://localhost:3001/API/Worker/Register
@@ -12,7 +12,7 @@ content-type: application/json
 
 {
     "Username": "lozanasc",
-    "Password": "",
+    "Password": "sean123",
     "Fullname": "Sean Christian Lozana",
     "Contact": "09455477432",
     "Address": "Candau-ay, Dumaguete City"
