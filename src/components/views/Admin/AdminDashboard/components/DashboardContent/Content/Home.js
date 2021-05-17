@@ -5,7 +5,7 @@ import '../style/Content.scss';
 import Label from '../../../../../../common/Label/Label';
 import { ListCard } from '../../../../../../common/Card/Card';
 
-const Home = ({info, OrderList, TransactionList}) => {
+const Home = ({info}) => {
     return (
         <Spring
             from = {{opacity: 0, transition: '0.1s ease-in-out'}}
