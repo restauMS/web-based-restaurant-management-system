@@ -1,51 +1,38 @@
-// Dependency Imports
-import React from 'react'
-
-// Component Imports
-import WDLabel from '../../../common/Label/Label';
-import WDButton from '../../../common/Button/Button';
-
-// Asset imports
-import Logo from '../../../../assets/restoms-logo/logo.png';
-
-// Component styling Import
+import React , { useState , useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import './style/WorkerDashboard.scss';
+import Navigation from './components/WorkerDashboardNavbar';
+import Content from './components/DashboardContent/WorkerDashboardContent';
+const WorkerDashboard = ({routes}) => {
 
-const WorkerDashboard = () => {
+    const WorkerInformationFormat = {
+        Username: '',
+        Fullname: '',
+        AuthLevel: '',
+    }
+
+    const [WorkerInformation, SetWorkerInformation] = useState(WorkerInformationFormat);
+
+    useEffect(() => {
+        SetWorkerInformation({
+            Username: localStorage.getItem('Username'),
+            Fullname: '',
+            AuthLevel: localStorage.getItem('AuthLevel'),
+            Token: localStorage.getItem('AccessToken')
+        });
+    },[]);
+
     return (
-        <div className="DashboardContainer">
-            <nav className="DashboardNavigation">
-                <div className="NavigationContent">
-                    <img src={Logo} alt="RestoMS Logo"/>
-                    <WDButton
-                        isButtonLink = {false} // Atleast for now
-                        ButtonContent = 'Button 1'
-                        isButtonContrast = {false}
-                    />
-                    <WDButton
-                        isButtonLink = {false} // Atleast for now
-                        ButtonContent = 'Button 2'
-                        isButtonContrast = {false}
-                    />
-                    <WDButton
-                        isButtonLink = {false} // Atleast for now
-                        ButtonContent = 'Button 3'
-                        isButtonContrast = {false}
-                    />
-                    <WDButton
-                        isButtonLink = {false} // Atleast for now
-                        ButtonContent = 'Button 4'
-                        isButtonContrast = {false}
-                    />
-                </div>
-            </nav>
-            <div className="ContentContainer">
-                <WDLabel
-                    isLabelContrast = {true}
-                    LabelContent = 'The quick brown fox jumps over the lazy dog'
+        WorkerInformation.AuthLevel === 'Admin' ?
+            <Redirect to = '/Admin/Dashboard'/>
+                :
+            <div className="WorkerDashboardContainer">
+                <Navigation/>
+                <Content
+                    routes = {routes}
+                    agent_info = {WorkerInformation}
                 />
             </div>
-        </div>
     )
 }
 
