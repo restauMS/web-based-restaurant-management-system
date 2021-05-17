@@ -20,7 +20,6 @@ const Inventory = () => {
                             isLabelContrast = {true}
                         />
                         <Label
-                            // TODO: Create context to pass through all the Dashboard Content pages
                             LabelContent = {`Hello, ${localStorage.getItem("Username")}`}
                             Style = {{fontSize: 'clamp(20px, 30px, 40px)'}}
                             isLabelContrast = {true}
