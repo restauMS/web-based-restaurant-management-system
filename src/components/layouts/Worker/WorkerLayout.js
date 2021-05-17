@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Component Imports
-import {WorkerLogin as Login, WorkerRegistration as Registration} from '../../views/Worker/WorkerView';
+import {WorkerLogin as Login, WorkerRegistration as Registration, WorkerDashboard as Dashboard} from '../../views/Worker/WorkerView';
 
 // Component Styling Import
 import './style/WorkerLayout.scss';
@@ -26,10 +26,12 @@ export const WorkerRegistration = () => {
 };
 
 // Dashboard component for viewing critical information
-export const WorkerDashboard = () => {
+export const WorkerDashboard = ({routes}) => {
     return (
         <div className="WorkerLayoutContainer">
-            <h1>Not available yet...</h1>
+            <Dashboard
+                routes = {routes}
+            />
         </div>
     )
 }
