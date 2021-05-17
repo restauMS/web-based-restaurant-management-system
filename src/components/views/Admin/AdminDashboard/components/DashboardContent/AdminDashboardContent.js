@@ -13,7 +13,7 @@ const AdminDashboardContent = ({routes, agent_info}) => {
     const Home = window.location.pathname;
 
     return (
-        <div className="Content">
+        <div className="AdminContent">
                 {
                     Home === '/Admin/Dashboard' ?
                     <Main
