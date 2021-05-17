@@ -12,6 +12,7 @@ const Button = props => {
                     style = {{...props.Style}}
                     to={props.ButtonLinkRoute}
                     onClick={props.ButtonFunction}
+                    exact = {props.exact}
                     > 
                     {props.ButtonContent}
                 </NavLink>
@@ -38,6 +39,7 @@ export const DashboardButton = (props) => {
                     activestyle = {props.activeStyle}
                     to = {props.Route}
                     style = {{...props.Style}}
+                    exact = {props.exact}
                 >
                     <img 
                         src={props.ButtonImageProps.src} 

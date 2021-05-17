@@ -11,7 +11,6 @@ import AdminSettings from '../Admin/AdminDashboard/components/DashboardContent/C
 import WorkerInventory from '../Worker/WorkerDashboard/components/DashboardContent/Content/Inventory';
 import WorkerTransactions from '../Worker/WorkerDashboard/components/DashboardContent/Content/Transactions';
 import WorkerSettings from '../Worker/WorkerDashboard/components/DashboardContent/Content/Settings';
-import Test from '../ComponentTesting/ComponentTester';
 
 const MasterRoutes = [
     {
@@ -19,8 +18,8 @@ const MasterRoutes = [
         component: ServiceMenu,
         RouteType: 'public',
         AuthStatus: false,
-        strict: true,
         exact: true,
+        strict: true,
     },
     {
         path: '/Customer/Order',
@@ -127,14 +126,6 @@ const MasterRoutes = [
                 exact: true
             }
         ]
-    },
-    {
-        path: '/ComponentTest',
-        component: Test,
-        RouteType: 'public',
-        RedirectPath: '/404',
-        strict: true,
-        exact: true
     }
 ];
 
