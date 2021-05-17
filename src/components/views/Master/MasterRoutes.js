@@ -2,9 +2,15 @@ import ServiceMenu from '../ServiceMenu/ServiceMenu';
 import { CustomerOrder , CustomerCheckout } from '../../layouts/Customer/CustomerLayout';
 import { AdminLogin , AdminDashboard } from '../../layouts/Admin/AdminLayout';
 import { WorkerLogin , WorkerRegistration , WorkerDashboard } from '../../layouts/Worker/WorkerLayout';
-import Inventory from '../Admin/AdminDashboard/components/DashboardContent/Content/Inventory';
-import Transactions from '../Admin/AdminDashboard/components/DashboardContent/Content/Transactions';
-import Settings from '../Admin/AdminDashboard/components/DashboardContent/Content/Settings';
+// Dev Note: I'm pretty sure there's a much cleaner way than this but fuck it...
+// ? Content Pages for Admin
+import AdminInventory from '../Admin/AdminDashboard/components/DashboardContent/Content/Inventory';
+import AdminTransactions from '../Admin/AdminDashboard/components/DashboardContent/Content/Transactions';
+import AdminSettings from '../Admin/AdminDashboard/components/DashboardContent/Content/Settings';
+// ? Content Pages for Worker
+import WorkerInventory from '../Worker/WorkerDashboard/components/DashboardContent/Content/Inventory';
+import WorkerTransactions from '../Worker/WorkerDashboard/components/DashboardContent/Content/Transactions';
+import WorkerSettings from '../Worker/WorkerDashboard/components/DashboardContent/Content/Settings';
 import Test from '../ComponentTesting/ComponentTester';
 
 const MasterRoutes = [
@@ -49,7 +55,7 @@ const MasterRoutes = [
         routes: [
             {
                 path: '/Admin/Dashboard/Transactions',
-                component: Transactions,
+                component: AdminTransactions,
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,
@@ -57,7 +63,7 @@ const MasterRoutes = [
             },
             {
                 path: '/Admin/Dashboard/Inventory',
-                component: Inventory,
+                component: AdminInventory,
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,
@@ -65,7 +71,7 @@ const MasterRoutes = [
             },
             {
                 path: '/Admin/Dashboard/Settings',
-                component: Settings,
+                component: AdminSettings,
                 RouteType: 'protected',
                 RedirectPath: '/Admin/Login',
                 strict: true,
@@ -96,7 +102,30 @@ const MasterRoutes = [
         RedirectPath: '/Worker/Login',
         strict: true,
         routes: [
-            
+            {
+                path: '/Worker/Dashboard/Transactions',
+                component: WorkerTransactions,
+                RouteType: 'protected',
+                RedirectPath: '/Worker/Login',
+                strict: true,
+                exact: true
+            },
+            {
+                path: '/Worker/Dashboard/Inventory',
+                component: WorkerInventory,
+                RouteType: 'protected',
+                RedirectPath: '/Worker/Login',
+                strict: true,
+                exact: true
+            },
+            {
+                path: '/Worker/Dashboard/Settings',
+                component: WorkerSettings,
+                RouteType: 'protected',
+                RedirectPath: '/Worker/Login',
+                strict: true,
+                exact: true
+            }
         ]
     },
     {
