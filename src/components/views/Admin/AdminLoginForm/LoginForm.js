@@ -43,7 +43,7 @@ const Login = () => {
             if (Status){
                 localStorage.setItem("AccessToken", AccessToken);
                 localStorage.setItem("Username", Name);
-                LogIn(Status);
+                LogIn(Status, "Admin");
             } else {
                 alert('Recheck your Username and Password input');
             }
