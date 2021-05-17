@@ -64,7 +64,7 @@ const AdminDashboardNavbar = () => {
     const {LogOff} = useContext(AuthContext);
 
     return (
-        <div className="Navigation">
+        <div className="AdminNavigation">
             <img className="Logo" src={Logo} alt="" height="50px" width="50px"/> 
                 <div className="NavButtonGroup">
                     {
