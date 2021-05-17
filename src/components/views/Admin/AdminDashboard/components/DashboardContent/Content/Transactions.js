@@ -12,8 +12,7 @@ const Transactions = () => {
                     LabelContent = "Transactions"
                     isLabelContrast = {true}
                 />
-                <Label
-                    // TODO: Create context to pass through all the Dashboard Content pages
+                <Label                    
                     LabelContent = {`Hello, ${localStorage.getItem("Username")}`}
                     Style = {{fontSize: 'clamp(20px, 30px, 40px)'}}
                     isLabelContrast = {true}
