@@ -23,19 +23,17 @@
         .DashboardButton {
             height: 60px;
             width: 60px;
-            margin: auto 30px;
+            margin: auto 20px;
             img{
                 height: 35px;
                 width: 35px;
             }
         }
-
         .NavButtonGroup {
             display: flex;
             flex-flow: row;
             margin: auto;
         }
-        
         .Logo {
             display: none;
         }   
