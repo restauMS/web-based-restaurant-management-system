@@ -1,6 +1,5 @@
 @import '../../../../../theme/theme';
 
-// ! Needs refactoring...
 .DashboardContainer {
 
     height: 100vh;
@@ -11,7 +10,6 @@
     flex-flow: row;
     overflow: hidden;
 
-    // ? Breakpoints
     @include for-size(GetBreakpoint(Phone)){
         flex-flow: column-reverse;
         overflow: auto;
