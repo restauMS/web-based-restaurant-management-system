@@ -19,7 +19,7 @@ const About = () => {
             />
             <Label
                 LabelContent = {`A Software Analysis and Design and Software Engineering I/II projects for the entire AY 2020-2021
-                A web-based Restaurant Management System that is maximizing on the ability to produce Progressive Web Application that will enable clients to use the system on multiple platforms thus reducing cost on development. The system also have built-in integrated logging system for covid safety protocol compliance.`}
+                A web-based Restaurant Management System that is maximizing on the ability of Progressive Web Applications that will enable clients to use the system on multiple platforms thus reducing cost on development. The system also have built-in integrated logging system for covid safety protocol compliance.`}
                 isLabelContrast = {true}
                 Style = {{textAlign: 'start', fontSize: 'clamp(10px,20px,30px)'}}
             />

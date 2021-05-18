@@ -17,8 +17,6 @@ const Home = () => {
                 <div className="CardGroup">
                     <div className="LinkBox">    
                         <NavLink
-                            strict = {true}
-                            exact = {true}
                             to = '/Customer/Order'
                         >
                             Customer
@@ -33,8 +31,6 @@ const Home = () => {
                 <div className="CardGroup">
                     <div className="LinkBox">
                         <NavLink
-                            strict = {true}
-                            exact = {true}
                             to = '/Worker/Login'
                         >
                             Worker
@@ -49,8 +45,6 @@ const Home = () => {
                 <div className="CardGroup">
                     <div className="LinkBox">
                         <NavLink
-                            strict = {true}
-                            exact = {true}
                             to = '/Admin/Login'
                         >
                             Admin
