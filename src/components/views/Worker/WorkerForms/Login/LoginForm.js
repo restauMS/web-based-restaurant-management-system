@@ -51,6 +51,14 @@ const Login = () => {
             className="LoginContainer"
             onSubmit = {SubmitHandler}
         >
+            <div className="ButtonContainer">
+                <Button
+                        isButtonLink = {true}
+                        isButtonContrast = {true}
+                        ButtonContent = 'Back to Menu'
+                        ButtonLinkRoute = '/'
+                />
+            </div>
             <div className="FormContainer">
                 <img src={Logo} alt="" id="restoms-logo"/>
                 <LoginLabel
