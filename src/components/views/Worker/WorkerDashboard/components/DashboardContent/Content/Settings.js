@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../../../../contexts/AuthContext';
 import { Spring } from 'react-spring/renderprops';
 
 import Label from '../../../../../../common/Label/Label';
@@ -6,6 +7,9 @@ import Button from '../../../../../../common/Button/Button';
 import { ListCard } from '../../../../../../common/Card/Card';
 
 const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
+
+    const {LogOff} = useContext(AuthContext);
+
     return (
         <Spring
         from = {{opacity: 0, transition: '0.1s ease-in-out'}}
@@ -19,6 +23,13 @@ const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
                             LabelContent = "Settings"
                             isLabelContrast = {true}
                             Style = {{color: '#E56B6F'}}
+                            
+                        />
+                        <Button
+                            isButtonLink = {false}
+                            isButtonContrast = {false}
+                            ButtonContent = 'Logout'
+                            ButtonFunction = {() => {LogOff()}}
                         />
                     </div>
                     <div className="SettingsInfoContainer">

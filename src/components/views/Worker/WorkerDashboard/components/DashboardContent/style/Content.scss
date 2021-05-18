@@ -155,6 +155,9 @@
             .Label {
                 margin: 5px auto 10px auto;
             }
+            .Button {
+                display: none;
+            }
         }
         .SettingsInfoContainer  {
             padding: 15px;
@@ -254,10 +257,19 @@
     
         .SettingsContainer {
             .TopBar{
-                flex-flow: column-reverse;
+                flex-flow: row;
+                justify-content: space-between;
                 .Label {
                     text-align: start;
-                    margin: 0 auto;
+                    margin: 5px auto;
+                }
+                .Button {
+                    display: block;
+                    margin: auto 0;
+                    min-width: 90px;
+                    max-width: 100px;
+                    min-height: 35px;
+                    max-height: 35px;
                 }
             }
             .Button {
