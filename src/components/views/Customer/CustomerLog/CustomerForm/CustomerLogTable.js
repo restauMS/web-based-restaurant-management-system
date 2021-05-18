@@ -71,15 +71,15 @@ const CustomerLogTable = props => {
             >
             {
                 AvailableTable.length > 0 ?
-                AvailableTable.map(items => 
+                AvailableTable.map((items, key) => 
                     <TableCard
-                        key = {items.table_id}
-                        TableNumber = {items.table_id}
-                        SeatType = {items.table_seat_no}
-                        isTaken = {items.table_availability}
+                        key = {key}
+                        TableNumber = {items.id}
+                        SeatType = {items.seat_no}
+                        isTaken = {items.availability}
                         PropsTablecount
                         TableIsChosen = {
-                            items.table_availability ? 
+                            items.availability ? 
                                 () => 
                                     {
                                         SetTableStatus(true);
@@ -92,9 +92,9 @@ const CustomerLogTable = props => {
                                     {
                                         if(Count < MaxTablePerGroup)
                                         {
-                                            props.SetChosenCard(items.table_id);
+                                            props.SetChosenCard(items.id);
                                             SetCount(Count + 1);
-                                            items.table_availability = 1;
+                                            items.availability = 1;
                                         }
                                     }
                         }
