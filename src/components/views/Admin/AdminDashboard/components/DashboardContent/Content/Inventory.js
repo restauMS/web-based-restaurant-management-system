@@ -1,9 +1,9 @@
 import React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import '../style/Content.scss';
-
 import Label from '../../../../../../common/Label/Label';
 import { ListCard } from '../../../../../../common/Card/Card';
+import Button from '../../../../../../common/Button/Button';
 
 const Inventory = () => {
     return (
@@ -31,6 +31,17 @@ const Inventory = () => {
                                 WhateverListGoesHere.map((Items, key) => <ListCard key = {key} CardContent = {Items}/>)
                             } */}
                         </div>
+                    </div>
+                    <div className="ButtonContainer">
+                        <Button
+                            isButtonLink = {false}
+                            ButtonContent = 'Add New Item'
+                            isButtonContrast= {true}
+                            ButtonFunction = {() => {
+                                // Add new item in the database
+                                // Will trigger a modal
+                            }}
+                        />
                     </div>
                 </div>
         }
