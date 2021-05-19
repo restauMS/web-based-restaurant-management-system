@@ -1,6 +1,15 @@
 const Connection = require('../../database/mysql.connection');
 
-module.exports = async( Name, Address, Phone, Table ) => {
+/**
+ * @param {string} Name Name of the Customer
+ * @param {string} Address Address of the Customer
+ * @param {string} Phone Contact number of the Customer
+ * @param {string} Table Chosen table of the Customer
+ * @param {object} Checkout Checkout object of thj
+ * @returns true otherwise false
+ **/
+
+module.exports = async( Name, Address, Phone, Table, Checkout) => {
     try {
         const Query = `INSERT INTO order_session (
                             customer_id, 
@@ -8,6 +17,7 @@ module.exports = async( Name, Address, Phone, Table ) => {
                             customer_address,
                             customer_phone,
                             customer_table_no,
+                            checkout,
                             status
                         )
                         VALUES
@@ -17,7 +27,8 @@ module.exports = async( Name, Address, Phone, Table ) => {
                             '${Address}',
                             '${Phone}',
                             '${Table}',
-                            '1'
+                            '{"checkout": ${Checkout}}',
+                            1
                         )
                         `;
         await Connection(Query);

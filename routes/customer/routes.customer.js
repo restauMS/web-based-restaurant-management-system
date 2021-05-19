@@ -29,8 +29,8 @@ Router.post('/Tables', async(Request, Response) => {
 
 Router.post('/NewSession', async(Request, Response) => {
     try {
-        const { Name, Address, Phone, Table } = Request.body;
-        const NewSession = await OrderSession(Name, Address, Phone, Table );
+        const { Name, Address, Phone, Table, Checkout} = Request.body;
+        const NewSession = await OrderSession(Name, Address, Phone, Table, JSON.stringify(Checkout));
         if(NewSession){
             Response.status(200)
             .send({
@@ -45,12 +45,7 @@ Router.post('/NewSession', async(Request, Response) => {
             });
         }
     } catch (error) {
-        Response.status(500)
-        .send({
-            'Status': false,
-            'Description': 'Something went wrong!',
-            'Error': JSON.stringify(error)
-        })
+        console.trace(error);
     }
 });
 

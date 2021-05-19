@@ -1,9 +1,8 @@
 const Connection = require('../../database/mysql.connection');
-
 /**
- * 
- * @param {String} User 
- */
+ * @param {String} User Username of the Agent
+ * @returns a JSON otherwise a false 
+ **/
 module.exports = async(User) => {
     try {
         const Query = `SELECT salesperson_password FROM salesperson WHERE salesperson_user_name = '${User}'`;
@@ -13,4 +12,4 @@ module.exports = async(User) => {
         console.trace('Something went wrong: ', error);
         return false;
     }
-}
+};

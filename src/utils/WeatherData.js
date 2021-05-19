@@ -26,6 +26,4 @@ const Temperature = () => {
     .catch(Error => console.trace(Error));
 }
 
-
-
 export default Temperature;

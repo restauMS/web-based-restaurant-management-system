@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 // Services
 const Authenticate = require('../../services/worker/worker.auth');
 const Register = require('../../services/worker/worker.register');
-const FetchOrderQueue = require('../../services/worker/worker.fetchOrderQueue');
 
 const AuthenticateToken = (Request, Response, Next) => {
     const AuthenticationHeader = Request.headers['authorization'];
@@ -81,26 +80,6 @@ Router.post('/Register', async(Request, Response) => {
                 }
             )
         }
-    } catch (error) {
-        console.trace(error);
-    }
-});
-
-Router.post('/FetchOrderQueue', async(Request, Response) => {
-    try {
-        const OrderQueue = await FetchOrderQueue();
-        if(OrderQueue){
-            Response.status(200)
-            .send(OrderQueue)
-        }
-        else {
-            Response.status(500)
-            .send({
-                'Status': OrderQueue,
-                'StatusDescpription': 'Something went wrong, operation failed.'
-            })
-        }
-
     } catch (error) {
         console.trace(error);
     }
