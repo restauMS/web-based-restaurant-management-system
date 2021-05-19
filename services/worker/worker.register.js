@@ -11,12 +11,12 @@ module.exports = async(Username, Password, FullName, Contact, Address) => {
     try {
         await Connection(`INSERT INTO salesperson 
                         (
-                            salesperson_id,
-                            salesperson_user_name,
-                            salesperson_password,
-                            salesperson_full_name,
-                            salesperson_contact_no,
-                            salesperson_address)
+                            id,
+                            username,
+                            password,
+                            fullname,
+                            phone,
+                            address)
                         VALUES
                         (
                             null,

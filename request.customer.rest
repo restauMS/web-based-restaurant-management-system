@@ -1,16 +1,12 @@
 ### Customer Requests
 POST http://localhost:3001/API/Customer/FetchAvailableTable
-### Grab Menu data list
-POST http://localhost:3001/API/Customer/FetchMenuData
-### Push Log information endpoint
-POST http://localhost:3001/API/Customer/PushLogInformation
+###
+POST http://localhost:3001/API/Customer/NewSession
 content-type: application/json
+
 {
-    # Body info here
-}
-### Push Order Session information endpoint
-POST http://localhost:3001/API/Customer/PushOrderSessionInformation
-content-type: application/json
-{
-    # Body info here
+    "Name": "Sean Christian Lozana",
+    "Address": "Candau-ay",
+    "Phone": "0921233121",
+    "Table": "4"    
 }

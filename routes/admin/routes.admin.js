@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const Authenticate = require('../../services/admin/admin.auth');
 const Register = require('../../services/admin/admin.register');
 const Sales = require('../../services/admin/admin.sales');
-const AdminInformation = require('../../services/admin/admin.getAdminInfo');
+// const AdminInformation = require('../../services/admin/admin.getAdminInfo');
 
 // Middleware for Authenticating Token
 const AuthenticateToken = (Request, Response, Next) => {
@@ -21,32 +21,31 @@ const AuthenticateToken = (Request, Response, Next) => {
     }) 
 }
 
-// ! Needs refactoring...
-Router.post('/GetAdminInformation', AuthenticateToken, async(Request, Response) => {
-    try {
-        const GetAdminInformation = await AdminInformation();
-        if(GetAdminInformation){
-            Response.status(200)
-            .send({
-                "Information": GetAdminInformation
-            });
-        }
-        else {
-            Response.status(500)
-            .send({
-                "Status": GetAdminInformation,
-                "StatusDescription": "Something went wrong, my apologies...",
-            })
-        }
-    } catch (error) {
-        Response.status(500)
-        .send({
-            "Status": false,
-            "StatusDescription": "Something went wrong, my apologies...",
-            "Error": error
-        });
-    }
-});
+// Router.post('/GetAdminInformation', AuthenticateToken, async(Request, Response) => {
+//     try {
+//         const GetAdminInformation = await AdminInformation();
+//         if(GetAdminInformation){
+//             Response.status(200)
+//             .send({
+//                 "Information": GetAdminInformation
+//             });
+//         }
+//         else {
+//             Response.status(500)
+//             .send({
+//                 "Status": GetAdminInformation,
+//                 "StatusDescription": "Something went wrong, my apologies...",
+//             })
+//         }
+//     } catch (error) {
+//         Response.status(500)
+//         .send({
+//             "Status": false,
+//             "StatusDescription": "Something went wrong, my apologies...",
+//             "Error": error
+//         });
+//     }
+// });
 
 // Test Protected API Endpoint
 Router.post('/GetSales', AuthenticateToken, async(Request, Response) => {
@@ -74,9 +73,8 @@ Router.post('/Authenticate', async(Request, Response) => {
             const { Username, Password } = Request.body;
             const Auth = await Authenticate(Username);
             if(Auth) {
-                if(await compare(Password, Auth[0].admin_password)) {
+                if(await compare(Password, Auth[0].password)) {
                     const AccessToken = jwt.sign({ Username, Password }, process.env.ACCESS_TOKEN_SECRET);
-                    // ! Review later, security reasons...
                     Response.status(200)
                     .send(
                         {

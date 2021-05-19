@@ -21,7 +21,7 @@ const CustomerLogTable = props => {
     
     const FetchTableData = async() => {
         try {
-            const Data = await fetch('/API/Customer/FetchAvailableTable', {method: 'POST'});
+            const Data = await fetch('/API/Customer/Tables', {method: 'POST'});
             return Data.json();
         } catch (error) {
             console.trace(error);

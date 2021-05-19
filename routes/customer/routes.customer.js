@@ -2,102 +2,58 @@ const express = require('express');
 const Router = express.Router();
 
 // Services
-const FetchTableData = require('../../services/customer/customer.pullAvailableTable');
-const FetchMenuList = require('../../services/customer/customer.pullMenuList');
-const PushLogData = require('../../services/customer/customer.pushLogData');
-const PushOrderInformation = require('../../services/customer/customer.pushOrderInformation');
+const FetchTable = require('../../services/customer/customer.table');
+const OrderSession = require('../../services/customer/customer.session');
 
-Router.post('/FetchAvailableTable', async(Request, Response) => {
+Router.post('/Tables', async(Request, Response) => {
     try {
-        const TableData = await FetchTableData();
+        const TableData = await FetchTable();
         if(TableData){
             Response.status(200)
             .send(TableData);
-        }
-        else {
+        } else {
             Response.status(500)
             .send({
                 'Status': TableData
             });
         }
     } catch (error) {
-        console.trace(error);
+        Response.status(500)
+        .send({
+            'Status': false,
+            'Description': 'Something went wrong!',
+            'Error': JSON.stringify(error)
+        })
     }
 });
 
-Router.post('/FetchMenuData', async(Request, Response) => {
+Router.post('/NewSession', async(Request, Response) => {
     try {
-        const MenuData = await FetchMenuList();
-        if(MenuData){
+        const { Name, Address, Phone, Table } = Request.body;
+        const NewSession = await OrderSession(Name, Address, Phone, Table );
+        if(NewSession){
             Response.status(200)
-            .send(MenuData);
-        }
-        else {
+            .send({
+                'Status': NewSession,
+                'Description': 'Order confirmed!'
+            });
+        } else {
             Response.status(500)
             .send({
-                'Status': MenuData,
-                'StatusDescription': 'Something went wrong, operation failed.'
+                'Status': NewSession,
+                'Description': 'Order unsuccessful! Please contact management!'
             });
         }
     } catch (error) {
-        console.trace(error)
+        Response.status(500)
+        .send({
+            'Status': false,
+            'Description': 'Something went wrong!',
+            'Error': JSON.stringify(error)
+        })
     }
 });
 
-Router.post('/PushLogInformation', async(Request, Response) => {
-    try {
-        const {Name, Contact, Address, Table} = Request.body;
-        const PushData = await PushLogData(Name, Contact, Address, Table);
-        if(PushData){
-            Response.status(200)
-            .send({
-                'Status': PushData,
-                'StatusDescription': 'Customer Information has been logged and pushed to the database successfully'
-            });
-        }
-        else {
-            Response.status(500)
-            .send({
-                'Status': PushData,
-                'StatusDescription': 'Something went wrong, data has not been logged'
-            })
-        }
-    } catch (error) {
-        console.trace(error)
-    }
-});
 
-Router.post('/PushOrderSessionInformation', async(Request, Response) => {
-    try {
-        const {TotalQty, TotalPayable} = Request.body;
-        const Order = await PushOrderInformation(TotalQty, TotalPayable);
-        if(Order) {
-            Response.status(200)
-            .send({
-                'Status': Order,
-                'StatusDescription': 'Order Information has been successfully sent'
-                }
-            )
-        }
-        else {
-            Response.status(500)
-            .send({
-                'Status': Order,
-                'StatusDescription': 'Something went wrong, your order has been cancelled. Sorry for the inconvenience'
-                }
-            )
-        }
-    } catch (error) {
-        console.trace(error);
-    }
-});
-
-Router.get('/TestRoute', (Request, Response) => {
-    try {
-        Response.send({'Status': 'Working...'});    
-    } catch (error) {
-        console.trace(error);
-    }
-});
 
 module.exports = Router;

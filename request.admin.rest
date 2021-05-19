@@ -3,8 +3,8 @@ POST http://localhost:3001/API/Admin/Authenticate
 content-type: application/json
 
 {
-    "Username": "lloyd",
-    "Password": "lloyd123"
+    "Username": "admin",
+    "Password": "admin"
 }
 ### Registration endpoint
 POST http://localhost:3001/API/Admin/Register

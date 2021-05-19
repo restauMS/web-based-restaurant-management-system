@@ -13,12 +13,13 @@ module.exports = async(Username, Password, FullName, Contact, Address) => {
     try {
         await Connection(`INSERT INTO admin 
         (
-            admin_id,
-            admin_user_name,
-            admin_password,
-            admin_full_name,
-            admin_contact_no,
-            admin_address)
+            id,
+            username,
+            password,
+            fullname,
+            phone,
+            address
+        )
         VALUES
         (
             null,
