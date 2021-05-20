@@ -11,8 +11,7 @@ import AdminSettings from '../Admin/AdminDashboard/components/DashboardContent/C
 import WorkerInventory from '../Worker/WorkerDashboard/components/DashboardContent/Content/Inventory';
 import WorkerTransactions from '../Worker/WorkerDashboard/components/DashboardContent/Content/Transactions';
 import WorkerSettings from '../Worker/WorkerDashboard/components/DashboardContent/Content/Settings';
-// ! For testing components
-import Test from '../ComponentTesting/ComponentTester';
+
 const MasterRoutes = [
     {
         path: '/',
@@ -127,15 +126,6 @@ const MasterRoutes = [
                 exact: true
             }
         ]
-    }
-    ,
-    {
-        path: '/Test',
-        component: Test,
-        RouteType: 'public',
-        AuthStatus: false,
-        exact: true,
-        strict: true,
     }
 ];
 

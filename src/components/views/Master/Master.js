@@ -10,14 +10,14 @@ const Master = () => {
         <AuthProvider>
             <Router>
                 <Switch>
-                    {
-                        MasterRoutes.map((routes, key) => (
-                            <ControllerRouter
-                                key = {key}
-                                {...routes}
-                            />
-                        ))
-                    }
+                        {
+                            MasterRoutes.map((routes, key) => (
+                                <ControllerRouter
+                                    key = {key}
+                                    {...routes}
+                                />
+                            ))
+                        }  
                     <ControllerRouter
                         path =  '/404'
                         component = {NotFound}
