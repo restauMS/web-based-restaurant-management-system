@@ -1,38 +1,27 @@
-import React, { useEffect, useState } from 'react';
-// import { Spring } from 'react-spring/renderprops';
-
-// ? Component Imports
+import React, { useEffect, useState, useContext } from 'react';
 import CustomerLabel from '../../../common/Label/Label';
 import CustomerButton from '../../../common/Button/Button';
+import { CustomerContext } from '../../../contexts/CustomerContext';
 import { FoodItemCardComponent as FoodCard, CheckoutFoodCard as CheckoutCard } from '../../../common/Card/Card';
 import { CheckoutModal , FoodModal } from '../../../common/Modals/Modal';
-
-// ? Asset Imports
 import './style/Menu.scss';
 import CheckoutIcon from '../../../../assets/button-assets/checkout-icon.png';
 
 const CustomerMenu = props => {
+
+
+    const { MenuList } = useContext(CustomerContext);
 
     // ! Code to => util directory
     // ? Create a Builder for this maybe if there's time...
     const CurrentDate = new Date();
     const Day = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday'];
     const TodayDate = `${CurrentDate.getDate()}/${CurrentDate.getMonth()+1}/${CurrentDate.getFullYear()}`;
-    const FetchMenuData = async() => {
-        try {
-            const Data = await fetch('/API/Customer/FetchMenuData', {
-                method: 'POST'
-            });
-            return Data.json();
-        } catch (error) {
-            console.trace(error);
-        }
-    }
+
     const [ ModalStatus , SetModalStatus ] = useState(false);
-    const [ CurrentFoodFocus, SetFoodFocus ] = useState({});
     const [ FoodModalStatus , SetFoodModalStatus ] = useState(false);
-    const [ MenuList , SetMenuList ] = useState([]);
-    const [CheckoutList , SetCheckoutList] = useState([]);
+    const [ CurrentFoodFocus, SetFoodFocus ] = useState({});
+    const [ CheckoutList, SetCheckoutList ] = useState([]);
     const {
         // eslint-disable-next-line
             CustomerAddress: Address,
@@ -42,21 +31,8 @@ const CustomerMenu = props => {
             // eslint-disable-next-line
             CustomerTable: Table
         } = props.LoggedData;
-
-    // Fetch data from the Database
-    useEffect(() =>{
-        try {
-            FetchMenuData()
-            .then(Data => SetMenuList(Data))
-            .catch(Error => console.trace(Error));
-            console.table(CheckoutList);
-        } catch (error) {
-            console.trace(error);
-        }
-    } , [CheckoutList]);
-
     if(props.Stage !== 2)
-        return null;
+        return null;    
 
     return (
         <div
@@ -105,15 +81,15 @@ const CustomerMenu = props => {
                             LabelContent = {`We're very sorry for this, the Menu seems to be empty 😢`}
                         />
                         :
-                        MenuList.map(Dish => 
+                        MenuList.map(({id, name, price}) => 
                         <FoodCard 
-                            key={Dish.item_id}
-                            FoodName = {Dish.item_name}
-                            FoodPrice = {Dish.item_price}
+                            key={id}
+                            FoodName = {name}
+                            FoodPrice = {price}
                             isRounded = {false}
                             FoodCardFunction = {() => {
                                 SetFoodModalStatus(true);
-                                SetFoodFocus({Id: Dish.item_id, Name: Dish.item_name, Price: Dish.item_price});
+                                SetFoodFocus({Id: id, Name: name, Price: price});
                             }}
                         />)
                     }

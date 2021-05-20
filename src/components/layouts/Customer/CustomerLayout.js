@@ -1,18 +1,16 @@
-// Dependency Imports
 import React from 'react';
-
-// Component Imports
 import MainCustomer from '../../views/Customer/CustomerView';
-
-// Component Styling Import
+import { CustomerProvider } from '../../contexts/CustomerContext';
 import './style/CustomerLayout.scss';
 
 
 export const CustomerOrder = () => {
     return (
-        <div className="CustomerLayoutContainer">
-            <MainCustomer/>
-        </div>
+        <CustomerProvider>
+            <div className="CustomerLayoutContainer">
+                <MainCustomer/>
+            </div>
+        </CustomerProvider>
     )
 }
 

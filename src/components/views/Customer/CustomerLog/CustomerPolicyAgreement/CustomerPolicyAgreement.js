@@ -1,10 +1,16 @@
-import React from 'react';
+import React , { useContext } from 'react';
 import Label from '../../../../common/Label/Label';
 import Button from '../../../../common/Button/Button';
 import './style/CustomerPolicyAgreement.scss';
-const CustomerPolicyAgreement = props => {
-    if(props.LogPage !== 1)
+import { CustomerContext } from '../../../../contexts/CustomerContext';
+
+const CustomerPolicyAgreement = () => {
+
+    const { PageCount , _NextPage } = useContext(CustomerContext);
+
+    if(PageCount !== 1)
         return null;
+        
     return (
         <div className="PolicyAgreementContainer">
             <div className="InnerContainer">

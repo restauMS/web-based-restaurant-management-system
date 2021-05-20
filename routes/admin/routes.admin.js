@@ -59,12 +59,7 @@ Router.post('/GetSales', AuthenticateToken, async(Request, Response) => {
             })
         }
     } catch (error) {
-        Response.status(500)
-        .send({
-            "Status": false,
-            "StatusDescription": "Something went wrong, my apologies...",
-            "Error": error
-        });
+        console.trace(error);
     }
 })
 
@@ -103,12 +98,7 @@ Router.post('/Authenticate', async(Request, Response) => {
                 })
             }
             } catch (error) {
-                Response.status(500)
-                .send({
-                    "Status": false,
-                    "StatusDescription": "Something went wrong, my apologies...",
-                    "Error": error
-                });
+                console.trace(error);
             }
 });
 
@@ -136,12 +126,7 @@ Router.post('/Register', async(Request, Response) => {
             )
         }
     } catch (error) {
-        Response.status(500)
-        .send({
-            "Status": false,
-            "StatusDescription": "Something went wrong, my apologies...",
-            "Error": error
-        });
+        console.trace(error);
     }
 })
 

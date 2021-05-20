@@ -1,5 +1,4 @@
 const Connection = require('../../database/mysql.connection');
-
 /**
  * 
  * @param {String} Username 

@@ -1,18 +1,14 @@
 import React from 'react';
 import './style/Tester.scss';
 
-import {CheckoutModal as Checkout, 
-        FoodModal as Food, 
-        ItemModal as Item, 
-        ModifyItemModal as ModifyItem,
-        ModifyInventoryItemModal as ModifyInventoryItem,
-        OrderTransactionModal as TransactionModal
-    } from '../../common/Modals/Modal';
+import CustomerDineType from '../Customer/CustomerLog/CustomerForm/CustomerCount';
 
 const ComponentTester = () => {
     return (
         <div className="TesterContainer">
-            <TransactionModal/>
+            <CustomerDineType
+                Name = 'Sean Christian Lozana'
+            />
         </div>
     )
 }

@@ -1,24 +1,18 @@
-import React, {useContext, useState} from 'react';
-
-// Component Imports
+import React, { useContext, useState } from 'react';
 import LoginButton from '../../../common/Button/Button';
 import LoginLabel from '../../../common/Label/Label';
 import LoginInput from '../../../common/Textfield/Textfield';
-import {AuthContext} from '../../../contexts/AuthContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 // import AlertCard from '../../../common/Card/Card';
-
-// Styling import
 import './style/LoginForm.scss';
-
-// Asset Imports
 import Logo from '../../../../assets/restoms-logo/logo.png';
 
 const Login = () => {
 
     const { LogIn } = useContext(AuthContext);
     
-    const [Username, SetUsername] = useState('');
-    const [Password, SetPassword] = useState('');
+    const [ Username, SetUsername ] = useState('');
+    const [ Password, SetPassword ] = useState('');
     
     const Authenticate = async (Credentials) => {
         try {

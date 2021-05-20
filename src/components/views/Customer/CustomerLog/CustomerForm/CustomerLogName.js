@@ -1,13 +1,14 @@
-import React from 'react';
-
-// Component Imports
+import React , { useContext } from 'react';
 import CustomerLabel from '../../../../common/Label/Label';
 import CustomerTextfield from '../../../../common/Textfield/Textfield';
+import { CustomerContext } from '../../../../contexts/CustomerContext';
 
-const CustomerLogName = props => {
+const CustomerLogName = () => {
+
+    const { PageCount , _NextPage , OrderSession, SetName } = useContext(CustomerContext);
 
     // This is to make sure this component will not mount if not on the right Log Page
-    if(props.LogPage !== 2){
+    if(PageCount !== 2){
         return null;
     }
 
@@ -18,7 +19,6 @@ const CustomerLogName = props => {
             {
                 display: 'flex', 
                 flexFlow: 'column',
-                ...props.Style
             }
         }
         >
@@ -30,8 +30,8 @@ const CustomerLogName = props => {
             {/* * Customer Textfield: A custom Textfield Component where customer's can input text*/}
             <CustomerTextfield
                 PlaceholderTitle='enter your name'
-                HandleChange = {props.HandleChange}
-                Name = {props.Name}
+                HandleChange = { (e) => SetName(e.target.value) }
+                Name = {OrderSession.CustomerName}
                 Type = 'text'
             />
         </div>
