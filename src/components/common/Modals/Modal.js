@@ -45,7 +45,7 @@ export const FoodModal = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export const ItemModal = (props) => {
     return (
@@ -108,7 +108,7 @@ export const ItemModal = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export const ModifyItemModal = (props) => {
     return (
@@ -164,7 +164,7 @@ export const ModifyItemModal = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export const OrderTransactionModal = (props) => {
     return (
@@ -212,11 +212,11 @@ export const OrderTransactionModal = (props) => {
                                 // Cancel function
                             }}
                         />
-                    </div>
+                </div>
             </div>
         </div>
     );
-}
+};
 
 export const CheckoutModal = (props) => {
     return (
@@ -270,6 +270,48 @@ export const CheckoutModal = (props) => {
                             }}
                         />
                     </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const NewItemModal = (props) => {
+    return (
+        <div className="ModalContainer">
+            <div className="NewItemModal">
+                <Textfield
+                        Type = "text"
+                        PlaceholderTitle = {`New Item Name`}
+                        Name = "ItemName"
+                />
+                <Textfield
+                        Type = "number"
+                        PlaceholderTitle = {`Initial Quantity`}
+                        Name = "InitQty"
+                />
+                <Textfield
+                        Type = "number"
+                        PlaceholderTitle = {`Price`}
+                        Name = "Price"
+                />
+                <div className="ModalButtonGroup">
+                        <ModalButton
+                            isButtonLink = {false}
+                            ButtonContent = "Cancel"
+                            isButtonContrast = {true}
+                            ButtonFunction = {() => {
+                                alert('Are you sure?');
+                            }}
+                        />
+                        <ModalButton
+                            isButtonLink = {false}
+                            isButtonContrast = {true}
+                            ButtonContent = "Add Item"
+                            ButtonFunction = {() => {
+                                // Cancel function
+                            }}
+                        />
                 </div>
             </div>
         </div>

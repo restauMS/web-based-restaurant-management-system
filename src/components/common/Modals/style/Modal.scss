@@ -1,5 +1,13 @@
 @import '../../../../theme/theme';
 
+.Contrast {
+    background-color: GetColorTheme(MainContrast);
+}
+
+.NonContrast { 
+    background-color: GetColorTheme(Main);
+}
+
 .ModalContainer {
     display: flex;
     flex-flow: column;
@@ -8,7 +16,7 @@
     background-color: rgba($color: #ffff, $alpha: 0.2);
     position: absolute;
     z-index: 1;
-
+    padding: 25px;
     .FoodModal {
         display: flex;
         flex-flow: column;
@@ -154,5 +162,27 @@
             }
         }
         
+    }
+
+    .NewItemModal {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-evenly;
+        margin: auto;
+        padding: 15px;
+        border-radius: 15px;
+        min-width: 50%;
+        max-width: 50vh;
+        min-height: 80vh;
+        background-color: GetColorTheme(Main);
+        .ModalButtonGroup {
+            display: flex wrap;
+            margin: 5px auto;
+            .Button {
+                margin: 2px 2px;
+                min-width: 120px;
+                max-width: 120px;
+            }
+        }
     }
 }
