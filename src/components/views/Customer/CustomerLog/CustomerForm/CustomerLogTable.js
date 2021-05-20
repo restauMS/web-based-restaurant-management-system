@@ -1,42 +1,20 @@
-// ! For testing --- Testing will determine if this will make it to the Production Build
-// Important Imports
-import React, { useEffect, useState } from 'react';
-// Custom Component Imports
+// ! Still subject to Change...
+import React, { useContext , useState } from 'react';
+import { CustomerContext } from '../../../../contexts/CustomerContext';
 import CustomerLabel from '../../../../common/Label/Label';
 import AlertCard, {TableCardComponent as TableCard} from '../../../../common/Card/Card';
-//Utility Imports
-// import TestData from '../TestData.json';
-
-// eslint-disable-next-line
 import CustomerButton from '../../../../common/Button/Button';
 
-const CustomerLogTable = props => {
+const CustomerLogTable = () => {
+
+    const { PageCount, _NextStage,  TableList, CustomerCount, SetCustomerTable } = useContext(CustomerContext);
+
     // Constant for Max Table you can Aqcuire as a Group
-    const MaxTablePerGroup = props.IsGroup ? 2 : 1;
+    const MaxTablePerGroup = CustomerCount === 'Group' ? 2 : 1;
     const [Count, SetCount] = useState(0);
     const [TableStatus, SetTableStatus] = useState(false);
-    // We'll grab the data from the backend as an array
-    // eslint-disable-next-line
-    const [ AvailableTable, SetAvailableTable ] = useState([]);
     
-    const FetchTableData = async() => {
-        try {
-            const Data = await fetch('/API/Customer/Tables', {method: 'POST'});
-            return Data.json();
-        } catch (error) {
-            console.trace(error);
-        }
-    }
-    
-    useEffect(
-        () => 
-    {
-        FetchTableData()
-        .then(DataList => SetAvailableTable(DataList))
-        .catch(Error => console.trace(Error));
-    }, []);
-    
-    return props.LogPage !== 5 ? null : 
+    return PageCount !== 7 ? null : 
     (
         <div
             style = 
@@ -50,8 +28,8 @@ const CustomerLogTable = props => {
             {/*Needs major refactoring, wrong usage of the Component */}
             {Count >= 1 || TableStatus ? 
             <AlertCard
-            Style = {{zIndex: '1', position: 'absolute', top: '20px', left: '30px'}} 
-            AlertTitle={Count >= 1 ? 'Table limit reached' : TableStatus ? 'Table is taken' : null}/> 
+                Style = {{zIndex: '1', position: 'absolute', top: '20px', left: '30px'}} 
+                AlertTitle={Count >= 1 ? 'Table limit reached' : TableStatus ? 'Table is taken' : null}/> 
             : null
             }
             <CustomerLabel
@@ -70,8 +48,8 @@ const CustomerLogTable = props => {
                 }
             >
             {
-                AvailableTable.length > 0 ?
-                AvailableTable.map((items, key) => 
+                TableList.length > 0 ?
+                TableList.map((items, key) => 
                     <TableCard
                         key = {key}
                         TableNumber = {items.id}
@@ -92,7 +70,7 @@ const CustomerLogTable = props => {
                                     {
                                         if(Count < MaxTablePerGroup)
                                         {
-                                            props.SetChosenCard(items.id);
+                                            SetCustomerTable(items.id);
                                             SetCount(Count + 1);
                                             items.availability = 1;
                                         }
@@ -113,7 +91,11 @@ const CustomerLogTable = props => {
                 isButtonLink = {false}
                 isButtonContrast = {true}
                 ButtonContent = 'Proceed.'
-                ButtonFunction = {props.ProceedFunction}
+                ButtonFunction = {(e) => {
+                    e.preventDefault();
+                    _NextStage();
+                    }
+                }
             />}
         </div>
     );

@@ -5,7 +5,10 @@ import CustomerButton from '../../../../common/Button/Button';
 
 const CustomerDineType = () => {
 
-    const { PageCount ,  _NextPage , SetDineType } = useContext(CustomerContext);
+    const { PageCount , _NextPage , SetCustomerDineType , CustomerName} = useContext(CustomerContext);
+
+    if (PageCount !== 3)
+        return null;
 
     return (
         <div style = {{
@@ -13,7 +16,7 @@ const CustomerDineType = () => {
             flexFlow: 'column'
         }}>
             <CustomerLabel
-                LabelContent={`Hello, ${}!`}
+                LabelContent={`Hello, ${CustomerName}!`}
                 isLabelContrast={false}
             />
             <div style = {{
@@ -25,8 +28,10 @@ const CustomerDineType = () => {
                     isButtonLink = {false}
                     isButtonContrast = {true}
                     ButtonContent = 'Takeout'
-                    HandleChange = {() => {
-                        SetDineType('Takeout');
+                    ButtonFunction = {(e) => {
+                        e.preventDefault();
+                        SetCustomerDineType('Takeout');
+                        _NextPage();
                     }}
                     Style = {{margin: 'auto 15px'}}
                 />
@@ -34,8 +39,10 @@ const CustomerDineType = () => {
                     isButtonLink = {false}
                     isButtonContrast = {true}
                     ButtonContent = 'Dine-In'
-                    HandleChange = {() => {
-                        SetDineType('Dine-In');
+                    ButtonFunction = {(e) => {
+                        e.preventDefault();
+                        SetCustomerDineType('Dine-In');
+                        _NextPage();
                     }}
                     Style = {{margin: 'auto 15px'}}
                 />                

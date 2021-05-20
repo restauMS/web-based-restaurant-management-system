@@ -1,13 +1,14 @@
-import React from 'react';
-
+import React , { useContext } from 'react';
+import { CustomerContext } from '../../../../contexts/CustomerContext';
 import CustomerLabel from '../../../../common/Label/Label';
 import CustomerTextfield from '../../../../common/Textfield/Textfield';
 
-const CustomerLogNumber = props => {
+const CustomerLogNumber = () => {
 
-    if(props.LogPage !== 4) {
+    const { PageCount , SetCustomerContacts } = useContext(CustomerContext);
+
+    if(PageCount !== 6)
         return null
-    }
 
     return (
         <div style=
@@ -18,17 +19,20 @@ const CustomerLogNumber = props => {
             }
         }
         >
-            {/* * Customer Label: Just a heading */}
             <CustomerLabel 
                 LabelContent='we appreciate you dining with us'
                 isLabelContrast={false}
             />
-            {/* * Customer Textfield: A custom Textfield Component where customer's can input text*/}
             <CustomerTextfield
                 PlaceholderTitle='enter your contact number'
-                HandleChange = {props.HandleChange}
-                Name = {props.Name}
-                Type = 'text'
+                HandleChange = {(e) => {
+                    e.preventDefault()
+                    SetCustomerContacts(e.target.value);
+                    }
+                }
+                Name = 'CustomerContacts'
+                MinimumValue = {0}
+                Type = 'number'
             />
         </div>
     );

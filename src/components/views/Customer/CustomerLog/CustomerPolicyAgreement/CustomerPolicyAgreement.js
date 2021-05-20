@@ -42,7 +42,10 @@ const CustomerPolicyAgreement = () => {
                 <Button
                 isButtonContrast = {true}
                 ButtonContent = 'I understand'
-                ButtonFunction = {props.ButtonFunction}
+                ButtonFunction = {(e) => {
+                    e.preventDefault();
+                    _NextPage();
+                }}
                 />
             </div>
         </div>

@@ -5,7 +5,10 @@ import CustomerButton from '../../../../common/Button/Button';
 
 const CustomerCount = () => {
 
-    const { PageCount , _NextPage, SetCount } = useContext(CustomerContext);
+    const { PageCount , _NextPage, SetCustomerCount, CustomerName } = useContext(CustomerContext);
+
+    if(PageCount !== 4)
+        return null;
 
     return (
         <div
@@ -15,7 +18,7 @@ const CustomerCount = () => {
             }}
         >
             <CustomerLabel
-                LabelContent={`How are you doing, ${}!`}
+                LabelContent={`How are you doing, ${CustomerName}!`}
                 isLabelContrast={false}
             />
             <div style = {{
@@ -28,9 +31,10 @@ const CustomerCount = () => {
                     isButtonContrast = {true}
                     ButtonContent = 'Group'
                     Style = {{margin: 'auto 15px'}}
-                    ButtonFunction = {() => {
+                    ButtonFunction = {(e) => {
+                        e.preventDefault()
+                        SetCustomerCount('Group');
                         _NextPage();
-                        SetCount('Group');
                     }} 
                 />
                 <CustomerButton
@@ -38,9 +42,10 @@ const CustomerCount = () => {
                     isButtonContrast = {true}
                     ButtonContent = 'Solo'
                     Style = {{margin: 'auto 15px'}}
-                    ButtonFunction = {() => {
+                    ButtonFunction = {(e) => {
+                        e.preventDefault()
+                        SetCustomerCount('Solo');
                         _NextPage();
-                        SetCount('Solo');
                     }} 
                 />                
             </div>
@@ -48,4 +53,4 @@ const CustomerCount = () => {
     )
 }
 
-export default CustomerCount
+export default CustomerCount;

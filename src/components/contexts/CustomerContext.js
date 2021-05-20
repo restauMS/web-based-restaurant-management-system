@@ -13,10 +13,27 @@ export const CustomerProvider = (props) => {
         CustomerTable: 0,
         CustomerCheckout: []
     };
-
-    const [ MenuList , SetMenuList ] = useState([]);
+    const [ CustomerName, SetCustomerName ] = useState(null);
+    const [ CustomerDineType, SetCustomerDineType ] = useState(null);
+    const [ CustomerCount, SetCustomerCount ] = useState(null);
+    const [ CustomerAddress, SetCustomerAddress ] = useState(null);
+    const [ CustomerContacts, SetCustomerContacts ] = useState(0);
+    const [ CustomerTable, SetCustomerTable ] = useState(0);
+    const [ CustomerCheckout, SetCustomerCheckout ] = useState([]);
+    const [ Stage, SetStage ] = useState(1);
     const [ OrderSession , SetOrderSession ] = useState(OrderSessionFormat);
     const [ PageCount , SetPageCount] = useState(1);
+    const [ MenuList , SetMenuList ] = useState([]);
+    const [ TableList, SetTableList ] = useState([]);
+
+    const FetchTableList = async() => {
+        try {
+            const Data = await fetch('/API/Customer/Tables', {method: 'POST'});
+            return Data.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    }
 
     const FetchMenuList = async() => {
         try {
@@ -30,54 +47,12 @@ export const CustomerProvider = (props) => {
         }
     }
 
-    const SetDineType = (Type) => {
-        // SetOrderSession({CustomerDineType: Type});
-        SetOrderSession(OrderSession.CustomerDineType = Type);
+    const _NextStage = () => {
+        SetStage(Stage >= 1 ? 2 : Stage + 1);
     }
-
-    const SetCount = (Count) => {
-        // SetOrderSession({CustomerCount: Count});
-        SetOrderSession(OrderSession.CustomerCount = Count);
-    }
-
-    const SetName = (Name) => {
-        // SetOrderSession({CustomerName: Name});
-        SetOrderSession(OrderSession.CustomerName = Name);
-    }
-
-    const SetAddress = (Address) => {
-        // SetOrderSession({CustomerAddress: Address});
-        SetOrderSession(OrderSession.CustomerAddress = Address);
-    }
-
-    const SetContacts = (Contacts) => {
-        // SetOrderSession({CustomerContacts: Contacts});
-        SetOrderSession(OrderSession.CustomerContacts = Contacts);
-    }
-
-    const SetTable = (Table) => {
-        // SetOrderSession({CustomerTable: Table});
-        SetOrderSession(OrderSession.CustomerTable = Table);
-    }
-
-    const SetCheckout = (Checkout) => {
-        // SetOrderSession({CustomerCheckout: Checkout});
-        SetOrderSession(OrderSession.CustomerCheckout = Checkout);
-    }
-    
-    // ? If the above code doesn't work we'll try storing data in sessionStorage and push it all at once upon completing the form
-    // const GetOrderSessionDetails = ({ Name, Address, Contacts, Table, Checkout}) => {
-    //     SetOrderSession({
-    //         CustomerName: Name,
-    //         CustomerAddress: Address,
-    //         CustomerContacts: Contacts,
-    //         CustomerTable: Table,
-    //         CustomerCheckout: Checkout
-    //     });
-    // }
 
     const _NextPage = () => {
-        SetPageCount(PageCount >= 1 ? 2 : PageCount + 1);
+        SetPageCount(PageCount >= 6 ? 7 : PageCount + 1);
     }
 
     // ? Not sure yet...
@@ -94,10 +69,42 @@ export const CustomerProvider = (props) => {
         .catch(
             Error => console.trace(Error)
         );
+        FetchTableList()
+        .then(
+            Data => SetTableList(Data)
+        )
+        .catch(
+            Error => console.trace(Error)
+        );
     }, [])
 
     return (
-        <CustomerContext.Provider value = {{ _NextPage , _BackPage , PageCount , OrderSession , SetName, SetAddress, SetContacts, SetTable, SetCheckout , SetDineType , SetCount , MenuList }}>
+        <CustomerContext.Provider value = {
+            { 
+                Stage,
+                _NextStage,
+                _NextPage, 
+                _BackPage, 
+                PageCount, 
+                OrderSession,
+                CustomerDineType, 
+                CustomerCount, 
+                CustomerName,
+                CustomerAddress,
+                CustomerContacts,
+                CustomerTable,
+                CustomerCheckout,
+                SetCustomerDineType, 
+                SetCustomerCount, 
+                SetCustomerName, 
+                SetCustomerAddress, 
+                SetCustomerContacts, 
+                SetCustomerTable, 
+                SetCustomerCheckout, 
+                MenuList,
+                TableList 
+            }
+        }>
             {props.children}
         </CustomerContext.Provider>
     )

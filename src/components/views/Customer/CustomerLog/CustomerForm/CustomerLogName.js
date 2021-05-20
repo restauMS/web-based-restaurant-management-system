@@ -5,12 +5,11 @@ import { CustomerContext } from '../../../../contexts/CustomerContext';
 
 const CustomerLogName = () => {
 
-    const { PageCount , _NextPage , OrderSession, SetName } = useContext(CustomerContext);
+    const { PageCount , SetCustomerName } = useContext(CustomerContext);
 
     // This is to make sure this component will not mount if not on the right Log Page
-    if(PageCount !== 2){
+    if(PageCount !== 2)
         return null;
-    }
 
     return (
         <div style=
@@ -30,12 +29,16 @@ const CustomerLogName = () => {
             {/* * Customer Textfield: A custom Textfield Component where customer's can input text*/}
             <CustomerTextfield
                 PlaceholderTitle='enter your name'
-                HandleChange = { (e) => SetName(e.target.value) }
-                Name = {OrderSession.CustomerName}
+                HandleChange = { (e) => {
+                    e.preventDefault();
+                    SetCustomerName(e.target.value);
+                    } 
+                }
+                Name = 'CustomerName'
                 Type = 'text'
             />
         </div>
-    )
-}
+    );
+};
 
 export default CustomerLogName;

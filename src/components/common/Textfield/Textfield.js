@@ -10,6 +10,7 @@ const Textfield = props => {
             onChange = {props.HandleChange}
             name = {props.Name}
             value = {props.Value}
+            min = {props.MinimumValue}
             style = {props.Style}
         />
     )

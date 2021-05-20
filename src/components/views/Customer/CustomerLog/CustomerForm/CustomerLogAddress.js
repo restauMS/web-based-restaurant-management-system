@@ -1,35 +1,36 @@
-import React from 'react';
-
+import React , { useContext } from 'react';
+import { CustomerContext } from '../../../../contexts/CustomerContext';
 import CustomerLabel from '../../../../common/Label/Label';
 import CustomerTextfield from '../../../../common/Textfield/Textfield';
 
-const CustomerLogAddress = props => {
+const CustomerLogAddress = () => {
 
-    // This is to make sure this component will not mount if not on the right Log Page
-    if(props.LogPage !== 3) 
-    {
+    const { PageCount , SetCustomerAddress } = useContext(CustomerContext);
+
+    if(PageCount !== 5)
         return null;
-    }
-
+    
     return (
-        <div style=
-        {
-            {
-                display: 'flex', 
-                flexFlow: 'column'
+        <div 
+            style = {
+                {
+                    display: 'flex', 
+                    flexFlow: 'column'
+                }
             }
-        }
         >
-            {/* * Customer Label: Just a heading */}
             <CustomerLabel 
                 LabelContent={`how's your day?`}
                 isLabelContrast={false}
             />
-            {/* * Customer Textfield: A custom Textfield Component where customer's can input text*/}
             <CustomerTextfield
                 PlaceholderTitle='enter your address'
-                HandleChange = {props.HandleChange}
-                Name = {props.Name}
+                HandleChange = {(e) => {
+                    e.preventDefault()
+                    SetCustomerAddress(e.target.value);
+                    }
+                }
+                Name = 'CustomerAddress'
                 Type = 'text'
             />
         </div>

@@ -10,7 +10,14 @@ import CheckoutIcon from '../../../../assets/button-assets/checkout-icon.png';
 const CustomerMenu = props => {
 
 
-    const { MenuList } = useContext(CustomerContext);
+    const { 
+        Stage, 
+        MenuList, 
+        CustomerAddress: Address, 
+        CustomerContact: Contact, 
+        CustomerName: Name,
+        CustomerTable: Table
+    } = useContext(CustomerContext);
 
     // ! Code to => util directory
     // ? Create a Builder for this maybe if there's time...
@@ -22,16 +29,8 @@ const CustomerMenu = props => {
     const [ FoodModalStatus , SetFoodModalStatus ] = useState(false);
     const [ CurrentFoodFocus, SetFoodFocus ] = useState({});
     const [ CheckoutList, SetCheckoutList ] = useState([]);
-    const {
-        // eslint-disable-next-line
-            CustomerAddress: Address,
-            // eslint-disable-next-line
-            CustomerContact: Contact,
-            CustomerName: Name,
-            // eslint-disable-next-line
-            CustomerTable: Table
-        } = props.LoggedData;
-    if(props.Stage !== 2)
+    
+    if(Stage !== 2)
         return null;    
 
     return (
@@ -65,7 +64,7 @@ const CustomerMenu = props => {
             <div className="InnerContainer">
                 <div className="HeaderContainer">
                     <CustomerLabel
-                        LabelContent = {`Hello${Name.length > 0 ? `, ${props.LoggedData.CustomerName}` : ' 😊'}`}
+                        LabelContent = {`Hello${Name.length > 0 ? `, ${Name}` : ' 😊'}`}
                         Style = {{margin: '10px auto',textAlign: "start"}}
                     />
                     
