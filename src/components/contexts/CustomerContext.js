@@ -13,6 +13,7 @@ export const CustomerProvider = (props) => {
         CustomerTable: 0,
         CustomerCheckout: []
     };
+
     const [ CustomerName, SetCustomerName ] = useState(null);
     const [ CustomerDineType, SetCustomerDineType ] = useState(null);
     const [ CustomerCount, SetCustomerCount ] = useState(null);
@@ -28,16 +29,17 @@ export const CustomerProvider = (props) => {
 
     const FetchTableList = async() => {
         try {
-            const Data = await fetch('/API/Customer/Tables', {method: 'POST'});
+            const Data = await fetch('/API/Customer/Tables', {
+                method: 'POST'
+            });
             return Data.json();
         } catch (error) {
             console.trace(error);
         }
-    }
+    };
 
     const FetchMenuList = async() => {
         try {
-            // ! For now use /Inventory/List endpoint
             const Data = await fetch('/API/Inventory/List', {
                 method: 'POST'
         });
@@ -45,7 +47,7 @@ export const CustomerProvider = (props) => {
         } catch (error) {
             console.trace(error);
         }
-    }
+    };
 
     const _NextStage = () => {
         SetStage(Stage >= 1 ? 2 : Stage + 1);
@@ -62,6 +64,8 @@ export const CustomerProvider = (props) => {
 
 
     useEffect(() => {
+
+        // grabs the Menu list from the /API/Inventory/List endpoint
         FetchMenuList()
         .then(
             ({List}) => SetMenuList(List)
@@ -69,6 +73,8 @@ export const CustomerProvider = (props) => {
         .catch(
             Error => console.trace(Error)
         );
+
+        // grabs the Table list from the /API/Customer/Tables endpoint
         FetchTableList()
         .then(
             Data => SetTableList(Data)
@@ -76,6 +82,7 @@ export const CustomerProvider = (props) => {
         .catch(
             Error => console.trace(Error)
         );
+        
     }, [])
 
     return (
@@ -108,4 +115,4 @@ export const CustomerProvider = (props) => {
             {props.children}
         </CustomerContext.Provider>
     )
-}
+};
