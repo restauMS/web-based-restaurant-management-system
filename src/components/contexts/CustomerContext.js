@@ -22,9 +22,9 @@ export const CustomerProvider = (props) => {
     const [ CustomerTable, SetCustomerTable ] = useState(0);
     const [ CustomerCheckout, SetCustomerCheckout ] = useState([]);
     const [ Stage, SetStage ] = useState(1);
-    const [ OrderSession , SetOrderSession ] = useState(OrderSessionFormat);
-    const [ PageCount , SetPageCount] = useState(1);
-    const [ MenuList , SetMenuList ] = useState([]);
+    const [ OrderSession, SetOrderSession ] = useState(OrderSessionFormat);
+    const [ PageCount, SetPageCount] = useState(1);
+    const [ MenuList, SetMenuList ] = useState([]);
     const [ TableList, SetTableList ] = useState([]);
 
     const FetchTableList = async() => {
