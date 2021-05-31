@@ -7,12 +7,12 @@ import CustomerLogAddress from './CustomerForm/CustomerLogAddress';
 import CustomerLogNumber from './CustomerForm/CustomerLogNumber';
 import CustomerLogTable from './CustomerForm/CustomerLogTable';
 import CustomerPolicyAgreement from '../CustomerLog/CustomerPolicyAgreement/CustomerPolicyAgreement';
-import SubmitButton from '../../../common/Button/Button';
+import CustomerButton from '../../../common/Button/Button';
 import { CustomerContext } from '../../../contexts/CustomerContext';
 
 const CustomerLog = () => {
 
-    const { Stage ,  PageCount , _NextPage} = useContext(CustomerContext);
+    const { Stage ,  PageCount , _NextPage, _BackPage} = useContext(CustomerContext);
     
     if(Stage !== 1) 
         return null;
@@ -21,36 +21,50 @@ const CustomerLog = () => {
     return (
         <form 
             style = {{
-                'display': 'flex',
-                'flexFlow': 'column'
+                display: 'flex',
+                flexFlow: 'column',
             }}
         >
-            {/* 
-            * This is a multi-paged form approach
-            */}
-            <CustomerPolicyAgreement/> 
-            <CustomerLogName/>
-            <CustomerDineType/>
-            <CustomerCount/>
-            <CustomerLogAddress/>
-            <CustomerLogNumber/>
-            <CustomerLogTable/>
+                {/* 
+                * This is a multi-paged form approach
+                */}
+                <CustomerPolicyAgreement/> 
+                <CustomerLogName/>
+                <CustomerDineType/>
+                <CustomerCount/>
+                <CustomerLogAddress/>
+                <CustomerLogNumber/>
+                <CustomerLogTable/>
+                {
+                // ! Damn
+                PageCount === 2 || PageCount === 5 || PageCount === 6 ? 
+                <CustomerButton
+                    isButtonLink = {false}
+                    isButtonContrast = {true}
+                    ButtonContent = 'Submit.'
+                    ButtonFunction = {(e) => {
+                        e.preventDefault();
+                        _NextPage()
+                    }}
+                /> 
+                    : 
+                    null
+                }
             {
-            // ! Damn
-            PageCount === 2 || PageCount === 5 || PageCount === 6 ? 
-            <SubmitButton
-                isButtonLink = {false}
-                isButtonContrast = {true}
-                ButtonContent = 'Submit.'
-                ButtonFunction = {(e) => {
-                    e.preventDefault();
-                    _NextPage()
-                }}
-            /> 
-                : 
-                null
+                PageCount > 2 ? 
+                    
+                        <CustomerButton
+                            isButtonLink = {false}
+                            isButtonContrast = {true}
+                            ButtonContent = 'Back'
+                            ButtonFunction = {(e) => {
+                                e.preventDefault();
+                                _BackPage()
+                            }}
+                        />
+                    :    
+                    null
             }
-
         </form>
     );
 }
