@@ -30,7 +30,7 @@ const CustomerCount = () => {
                     isButtonLink = {false}
                     isButtonContrast = {true}
                     ButtonContent = 'Group'
-                    Style = {{margin: 'auto 15px'}}
+                    Style = {{margin: 'auto 5px'}}
                     ButtonFunction = {(e) => {
                         e.preventDefault()
                         SetCustomerCount('Group');
@@ -41,7 +41,7 @@ const CustomerCount = () => {
                     isButtonLink = {false}
                     isButtonContrast = {true}
                     ButtonContent = 'Solo'
-                    Style = {{margin: 'auto 15px'}}
+                    Style = {{margin: 'auto 5px'}}
                     ButtonFunction = {(e) => {
                         e.preventDefault()
                         SetCustomerCount('Solo');

@@ -33,7 +33,7 @@ const CustomerDineType = () => {
                         SetCustomerDineType('Takeout');
                         _NextPage();
                     }}
-                    Style = {{margin: 'auto 15px'}}
+                    Style = {{margin: 'auto 5px'}}
                 />
                 <CustomerButton
                     isButtonLink = {false}
@@ -44,7 +44,7 @@ const CustomerDineType = () => {
                         SetCustomerDineType('Dine-In');
                         _NextPage();
                     }}
-                    Style = {{margin: 'auto 15px'}}
+                    Style = {{margin: 'auto 5px'}}
                 />                
             </div>
         </div>
