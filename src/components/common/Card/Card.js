@@ -4,6 +4,7 @@ import { Spring } from 'react-spring/renderprops';
 import Button from '../Button/Button';
 // Asset Imports
 import AlertCardIcon from '../../../assets/alert-card/warning-icon.png';
+import ViewIcon from '../../../assets/button-assets/view-url-icon.png';
 import './style/Card.scss';
 /*
     * Alert Card Component
@@ -137,6 +138,22 @@ export const ListCard = (props) => {
             </h4>
         </div>
     )
+}
+
+export const APICard = (props) => {
+    return (
+        <div className="APICard">
+            <h3>
+                /API/Customer/FetchAvailableTable
+            </h3>
+            <div className="StatusViewContainer">
+                <a href="./API/Customer/FetchAvailableTable" target="_blank">
+                    <img src={ViewIcon} alt='' onClick/>
+                </a>
+                <div className="StatusBox"></div>
+            </div>
+        </div>
+    );
 }
 
 export default AlertCardComponent;

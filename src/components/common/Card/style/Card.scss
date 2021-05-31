@@ -149,4 +149,40 @@
     max-height: min-content;
     border-radius: 10px;
     color: GetColorTheme(Main);
+    filter: drop-shadow(0 2px 0.15rem rgba(0, 0, 0, 0.322));
+    cursor: pointer;
+}
+
+.APICard {
+    display: flex;    
+    background-color: GetColorTheme(Main);
+    justify-content: space-between;
+    margin: 10px auto;
+    width: 90%;
+    height: 60px;
+    border-radius: 15px;
+    h3 {
+        color: white;
+        margin: auto 25px;
+        font-size: clamp(10px, 15px, 20px);
+    }
+    .StatusViewContainer {
+        display: flex;
+        justify-content: space-evenly;        
+        a {
+            margin: auto 15px;
+            img {
+            height: 25px;
+            width: 25px;
+            margin: auto 15px;
+            cursor: pointer;
+        }
+    }
+        .StatusBox {
+            height: 60px;
+            width: 100px;
+            background-color: #00FF19;
+            border-radius: 15px;
+        }
+    }
 }
