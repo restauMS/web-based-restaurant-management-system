@@ -49,8 +49,8 @@ export const FoodModal = (props) => {
 
 export const ItemModal = (props) => {
     return (
-        <div className = "ModalContainer">
-            <div className="ItemModal">
+        <div className = "DashboardModalContainer">
+            <div className={props.isModalContrast ? 'ItemModal DashboardModalBase Contrast' : 'ItemModal DashboardModalBase NonContrast'}>
                 <ModalLabel
                     LabelContent = {`Item Id: ${props.FoodId}`}
                     Style = {{
@@ -83,25 +83,26 @@ export const ItemModal = (props) => {
                     <ModalButton
                             isButtonLink = {false}
                             ButtonContent = "Delete Item"
-                            isButtonContrast = {true}
+                            isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonFunction = {() => {
                                 // Deleted function
                             }}
                         />
                     <ModalButton
                         isButtonLink = {false}
-                        isButtonContrast = {true}
+                        isButtonContrast = {props.isModalContrast ? false : true}
                         ButtonContent = "Edit Item"
                         ButtonFunction = {() => {
-                            // Triggers Edit modal
+                            props.SetEditStatus(true);
+                            props.SetModalStatus(false);
                         }}
                     />
                     <ModalButton
                         isButtonLink = {false}
-                        isButtonContrast = {true}
+                        isButtonContrast = {props.isModalContrast ? false : true}
                         ButtonContent = "Cancel"
                         ButtonFunction = {() => {
-                            // Exits the modal
+                            props.SetModalStatus(false);
                         }}
                     />
                 </div>
@@ -112,8 +113,8 @@ export const ItemModal = (props) => {
 
 export const ModifyItemModal = (props) => {
     return (
-        <div className = "ModalContainer">
-            <div className="ModifyItemModal">
+        <div className = "DashboardModalContainer">
+            <div className={props.isModalContrast ? 'ModifyItemModal DashboardModalBase Contrast' : 'ModifyItemModal DashboardModalBase NonContrast'}>
                 <ModalLabel
                     LabelContent = {`Item: ${props.ItemName}`}
                     isLabelContrast = {false}
@@ -127,19 +128,8 @@ export const ModifyItemModal = (props) => {
                     PlaceholderTitle = {`New Name`}
                     Name = "UpdateName"
                 />
-                    {
-                        props.IsInventoryEdit ? 
-                            <Textfield
-                                Type = "text"
-                                PlaceholderTitle = {`New Quantity`}
-                                Name = "UpdateQuantity"
-                            />
-                        :
-                            null
-    
-                    }
                 <Textfield
-                    Type = "text"
+                    Type = "number"
                     PlaceholderTitle = {`New Quantity`}
                     Name = "UpdateQuantity"
                 />
@@ -157,7 +147,7 @@ export const ModifyItemModal = (props) => {
                             isButtonContrast = {true}
                             ButtonContent = "Cancel"
                             ButtonFunction = {() => {
-                                // Cancel function
+                                props.SetEditStatus(false);
                             }}
                         />
                     </div>
@@ -278,8 +268,8 @@ export const CheckoutModal = (props) => {
 
 export const NewItemModal = (props) => {
     return (
-        <div className="ModalContainer">
-            <div className="NewItemModal">
+        <div className="DashboardModalContainer">
+            <div className = {props.isModalContrast ? 'NewItemModal DashboardModalBase Contrast' : 'NewItemModal DashboardModalBase NonContrast'}>
                 <Textfield
                         Type = "text"
                         PlaceholderTitle = {`New Item Name`}
@@ -299,14 +289,14 @@ export const NewItemModal = (props) => {
                         <ModalButton
                             isButtonLink = {false}
                             ButtonContent = "Cancel"
-                            isButtonContrast = {true}
+                            isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonFunction = {() => {
-                                alert('Are you sure?');
+                                props.SetModalStatus(false);
                             }}
                         />
                         <ModalButton
                             isButtonLink = {false}
-                            isButtonContrast = {true}
+                            isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonContent = "Add Item"
                             ButtonFunction = {() => {
                                 // Cancel function
@@ -317,3 +307,55 @@ export const NewItemModal = (props) => {
         </div>
     );
 }
+
+export const EditSettingInfoModal = (props) => {
+    return (
+        <div className='DashboardModalContainer'>
+            <div className = {
+                props.isModalContrast ? 
+                'EditSettingInfoModal DashboardModalBase Contrast'
+                    :
+                'EditSettingInfoModal DashboardModalBase NonContrast'
+            } >
+                <ModalLabel
+                    LabelContent = {`Editing ${props.InfoEditable}`}
+                    isLabelContrast = {false}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)'
+                    }}
+                />
+                <Textfield
+                    Type = {props.InfoEditable === 'Password' ? "password" : "text"}
+                    PlaceholderTitle = {`New ${props.InfoEditable}`}
+                    Name = {`New${props.InfoEditable}`}
+                />
+                <Textfield
+                    Type = {props.InfoEditable === 'Password' ? "password" : "text"}
+                    PlaceholderTitle = {`Old ${props.InfoEditable}`}
+                    Name = {`Old${props.InfoEditable}`}
+                />
+                <div className="ModalButtonGroup">
+                    <ModalButton
+                        isButtonLink = {false}
+                        ButtonContent = "Cancel"
+                        isButtonContrast = {props.isModalContrast ? false : true}
+                        ButtonFunction = {() => {
+                            // Goes back to its initial states
+                            props.SetModalActive(false);
+                            props.SetModalType('');
+                        }}
+                    />
+                    <ModalButton
+                        isButtonLink = {false}
+                        isButtonContrast = {props.isModalContrast ? false : true}
+                        ButtonContent = "Accept Changes"
+                        ButtonFunction = {() => {
+                            alert('Are you sure?');
+                        }}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
+

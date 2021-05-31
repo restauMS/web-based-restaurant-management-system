@@ -1,15 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext , useState } from 'react';
 import { Spring } from 'react-spring/renderprops';
 import { AuthContext } from '../../../../../../contexts/AuthContext';
 import Button from '../../../../../../common/Button/Button';
 import { ListCard } from '../../../../../../common/Card/Card';
+import { EditSettingInfoModal as EditModal } from '../../../../../../common/Modals/Modal';
 import Label from '../../../../../../common/Label/Label';
-import LogoutImg from '../../../../../../../assets/button-assets/dashboard-related/logout.png';
 import '../style/Content.scss';
 
 const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
 
     const {LogOff} = useContext(AuthContext);
+
+    const [ ModalActive, SetModalActive ] = useState(false);
+    const [ ModalType, SetModalType ] = useState('');
 
     return (
         <Spring
@@ -17,70 +20,92 @@ const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
         to = {{opacity: 1}}
         >
             {
-                props => <div className = "SettingsContainer" style = {{...props}}>
-                <div className="TopBar">
-                    <Label
-                        LabelContent = "Settings"
-                        isLabelContrast = {true}
-                    />
-                    <Button
-                        isButtonLink = {false}
-                        isButtonContrast = {true}
-                        ButtonContent = 'Logout'
-                        ButtonFunction = {() => {LogOff()}}
-                    />
-                </div>
-                
-                <div className="SettingsInfoContainer">
+                props => 
+                <div className = "SettingsContainer" style = {{...props}}>
+                    {
+                        ModalActive ? 
+                        <EditModal 
+                            InfoEditable = {ModalType}
+                            isModalContrast  = {false}
+                            SetModalActive = {SetModalActive}
+                            SetModalType = {SetModalType}
+                        /> 
+                            : 
+                        null
+                    }
+                    <div className="TopBar">
                         <Label
-                            LabelContent = "General Information"
-                            isLabelContrast = {false}
-                            Style = {{fontSize: 'clamp(10px, 20px, 30px)', textAlign: 'start'}}
+                            LabelContent = "Settings"
+                            isLabelContrast = {true}
                         />
-                        <div className="InfoContainer">
-                            <div className="IdUsername">
+                        <Button
+                            isButtonLink = {false}
+                            isButtonContrast = {true}
+                            ButtonContent = 'Logout'
+                            ButtonFunction = {() => {LogOff()}}
+                        />
+                    </div>
+                    <div className="SettingsInfoContainer">
+                            <Label
+                                LabelContent = "General Information"
+                                isLabelContrast = {false}
+                                Style = {{fontSize: 'clamp(10px, 20px, 30px)', textAlign: 'start'}}
+                            />
+                            <div className="InfoContainer">
+                                <div className="IdUsername">
+                                    <ListCard
+                                        CardContent = {`Account Id: ${Id}`}
+                                    />
+                                    <ListCard
+                                        CardContent = {`Username: ${Username}`}
+                                        CardFunction = {() => {
+                                            SetModalType('Username');
+                                            SetModalActive(true);
+                                        }}
+                                    />
+                                </div>
                                 <ListCard
-                                    CardContent = {`Account Id: ${Id}`}
+                                    CardContent = {`Name: ${Name}`}
+                                    CardFunction = {() => {
+                                        SetModalType('Fullname');
+                                        SetModalActive(true);
+                                    }}
                                 />
                                 <ListCard
-                                    CardContent = {`Username: ${Username}`}
+                                    CardContent = {`Password: ${Password}`}
+                                    CardFunction = {() => {
+                                        SetModalType('Password');
+                                        SetModalActive(true);
+                                    }}
+                                />
+                                <ListCard
+                                    CardContent = {`Contact #: ${Contact}`}
+                                    CardFunction = {() => {
+                                        SetModalType('Contact');
+                                        SetModalActive(true);
+                                    }}
+                                />
+                                <ListCard
+                                    CardContent = {`Address: ${Address}`}
+                                    CardFunction = {() => {
+                                        SetModalType('Address');
+                                        SetModalActive(true);
+                                    }}
                                 />
                             </div>
-                            <ListCard
-                                CardContent = {`Name: ${Name}`}
-                            />
-                            <ListCard
-                                CardContent = {`Password: ${Password}`}
-                            />
-                            <ListCard
-                                CardContent = {`Contact #: ${Contact}`}
-                            />
-                            <ListCard
-                                CardContent = {`Address: ${Address}`}
-                            />
-                        </div>
-                        <div className="ButtonGroup">
-                                <Button
-                                    isButtonLink = {false}
-                                    ButtonContent = "Delete Account"
-                                    isButtonContrast = {true}
-                                    ButtonFunction = {() => {
-                                        // Function goes here
-                                    }}
-                                />
-                                <Button
-                                    isButtonLink = {false}
-                                    ButtonContent = "Edit Account"
-                                    isButtonContrast = {true}
-                                    ButtonFunction = {() => {
-                                        // Function goes here
-                                    }}
-                                />
+                            <div className="ButtonGroup">
+                                    <Button
+                                        isButtonLink = {false}
+                                        ButtonContent = "Delete Account"
+                                        isButtonContrast = {true}
+                                        ButtonFunction = {() => {
+                                            LogOff();
+                                        }}
+                                    />
+                                </div>
                                 
-                            </div>
-                            
+                    </div>
                 </div>
-            </div>
             }
         </Spring>
         
