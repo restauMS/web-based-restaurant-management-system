@@ -13,7 +13,7 @@ export const CustomerProvider = (props) => {
         CustomerTable: 0,
         CustomerCheckout: []
     };
-
+    const [ CustomerSessionStatus, SetCustomerSessionStatus ] = useState(false);
     const [ CustomerName, SetCustomerName ] = useState(null);
     const [ CustomerDineType, SetCustomerDineType ] = useState(null);
     const [ CustomerCount, SetCustomerCount ] = useState(null);
@@ -62,6 +62,45 @@ export const CustomerProvider = (props) => {
         SetPageCount(PageCount <= 1 ? 1 : PageCount - 1);
     }
 
+    const InitializeSession = (SessionStatus) => {
+        SetCustomerSessionStatus(SessionStatus);
+        sessionStorage.setItem('CustomerSessionStatus', SessionStatus);
+    }
+
+    const SetName = Name => {
+        SetCustomerName(Name);
+        sessionStorage.setItem('CustomerName', Name);
+    }
+
+    const SetDineType = DineType => {
+        SetCustomerDineType(DineType);
+        sessionStorage.setItem('CustomerDineType', DineType);
+    }
+
+    const SetCount = Count => {
+        SetCustomerCount(Count);
+        sessionStorage.setItem('CustomerCount', Count);
+    }
+
+    const SetAddress = Address => {
+        SetCustomerAddress(Address);
+        sessionStorage.setItem('CustomerAddress', Address);
+    }
+
+    const SetContacts = Contacts => {
+        SetCustomerContacts(Contacts);
+        sessionStorage.setItem('CustomerContacts', Contacts);
+    }
+
+    const SetTable = Table => {
+        SetCustomerTable(Table);
+        sessionStorage.setItem('CustomerTable', Table);
+    }
+
+    const SetCheckout = Checkout => {
+        SetCustomerCheckout(Checkout);
+        sessionStorage.setItem('CustomerCheckout', Checkout);    
+    }
 
     useEffect(() => {
 
@@ -83,31 +122,33 @@ export const CustomerProvider = (props) => {
             Error => console.trace(Error)
         );
         
-    }, [])
+        
+
+    }, []);
 
     return (
         <CustomerContext.Provider value = {
             { 
+                InitializeSession,
                 Stage,
                 _NextStage,
                 _NextPage, 
                 _BackPage, 
                 PageCount, 
                 OrderSession,
-                CustomerDineType, 
-                CustomerCount, 
                 CustomerName,
+                CustomerCount, 
                 CustomerAddress,
                 CustomerContacts,
                 CustomerTable,
                 CustomerCheckout,
-                SetCustomerDineType, 
-                SetCustomerCount, 
-                SetCustomerName, 
-                SetCustomerAddress, 
-                SetCustomerContacts, 
-                SetCustomerTable, 
-                SetCustomerCheckout, 
+                SetDineType, 
+                SetCount, 
+                SetName, 
+                SetAddress, 
+                SetContacts, 
+                SetTable, 
+                SetCheckout, 
                 MenuList,
                 TableList 
             }
