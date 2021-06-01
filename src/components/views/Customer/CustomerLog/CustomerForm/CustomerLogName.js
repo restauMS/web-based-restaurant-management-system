@@ -5,7 +5,7 @@ import { CustomerContext } from '../../../../contexts/CustomerContext';
 
 const CustomerLogName = () => {
 
-    const { PageCount , SetCustomerName } = useContext(CustomerContext);
+    const { PageCount , SetName } = useContext(CustomerContext);
 
     // This is to make sure this component will not mount if not on the right Log Page
     if(PageCount !== 2)
@@ -31,7 +31,7 @@ const CustomerLogName = () => {
                 PlaceholderTitle='enter your name'
                 HandleChange = { (e) => {
                     e.preventDefault();
-                    SetCustomerName(e.target.value);
+                    SetName(e.target.value);
                     } 
                 }
                 Name = 'CustomerName'

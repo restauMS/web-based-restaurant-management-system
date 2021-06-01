@@ -5,7 +5,7 @@ import CustomerButton from '../../../../common/Button/Button';
 
 const CustomerCount = () => {
 
-    const { PageCount , _NextPage, SetCustomerCount, CustomerName } = useContext(CustomerContext);
+    const { PageCount , _NextPage, SetCount, CustomerName } = useContext(CustomerContext);
 
     if(PageCount !== 4)
         return null;
@@ -33,7 +33,7 @@ const CustomerCount = () => {
                     Style = {{margin: 'auto 5px'}}
                     ButtonFunction = {(e) => {
                         e.preventDefault()
-                        SetCustomerCount('Group');
+                        SetCount('Group');
                         _NextPage();
                     }} 
                 />
@@ -44,7 +44,7 @@ const CustomerCount = () => {
                     Style = {{margin: 'auto 5px'}}
                     ButtonFunction = {(e) => {
                         e.preventDefault()
-                        SetCustomerCount('Solo');
+                        SetCount('Solo');
                         _NextPage();
                     }} 
                 />                

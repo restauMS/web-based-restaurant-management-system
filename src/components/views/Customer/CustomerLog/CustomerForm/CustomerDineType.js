@@ -5,7 +5,7 @@ import CustomerButton from '../../../../common/Button/Button';
 
 const CustomerDineType = () => {
 
-    const { PageCount , _NextPage , SetCustomerDineType , CustomerName} = useContext(CustomerContext);
+    const { PageCount , _NextPage , SetDineType , CustomerName} = useContext(CustomerContext);
 
     if (PageCount !== 3)
         return null;
@@ -30,7 +30,7 @@ const CustomerDineType = () => {
                     ButtonContent = 'Takeout'
                     ButtonFunction = {(e) => {
                         e.preventDefault();
-                        SetCustomerDineType('Takeout');
+                        SetDineType('Takeout');
                         _NextPage();
                     }}
                     Style = {{margin: 'auto 5px'}}
@@ -41,7 +41,7 @@ const CustomerDineType = () => {
                     ButtonContent = 'Dine-In'
                     ButtonFunction = {(e) => {
                         e.preventDefault();
-                        SetCustomerDineType('Dine-In');
+                        SetDineType('Dine-In');
                         _NextPage();
                     }}
                     Style = {{margin: 'auto 5px'}}

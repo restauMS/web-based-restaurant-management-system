@@ -5,7 +5,7 @@ import CustomerTextfield from '../../../../common/Textfield/Textfield';
 
 const CustomerLogNumber = () => {
 
-    const { PageCount , SetCustomerContacts } = useContext(CustomerContext);
+    const { PageCount , SetContacts } = useContext(CustomerContext);
 
     if(PageCount !== 6)
         return null
@@ -27,7 +27,7 @@ const CustomerLogNumber = () => {
                 PlaceholderTitle='enter your contact number'
                 HandleChange = {(e) => {
                     e.preventDefault()
-                    SetCustomerContacts(e.target.value);
+                    SetContacts(e.target.value);
                     }
                 }
                 Name = 'CustomerContacts'

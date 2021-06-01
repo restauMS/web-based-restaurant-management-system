@@ -5,7 +5,7 @@ import CustomerTextfield from '../../../../common/Textfield/Textfield';
 
 const CustomerLogAddress = () => {
 
-    const { PageCount , SetCustomerAddress } = useContext(CustomerContext);
+    const { PageCount , SetAddress } = useContext(CustomerContext);
 
     if(PageCount !== 5)
         return null;
@@ -27,7 +27,7 @@ const CustomerLogAddress = () => {
                 PlaceholderTitle='enter your address'
                 HandleChange = {(e) => {
                     e.preventDefault()
-                    SetCustomerAddress(e.target.value);
+                    SetAddress(e.target.value);
                     }
                 }
                 Name = 'CustomerAddress'

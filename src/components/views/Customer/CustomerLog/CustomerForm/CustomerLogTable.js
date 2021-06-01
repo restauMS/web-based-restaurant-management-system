@@ -7,7 +7,7 @@ import CustomerButton from '../../../../common/Button/Button';
 
 const CustomerLogTable = () => {
 
-    const { PageCount, _NextStage,  TableList, CustomerCount, SetCustomerTable } = useContext(CustomerContext);
+    const { PageCount, _NextStage,  TableList, CustomerCount, SetTable } = useContext(CustomerContext);
 
     // Constant for Max Table you can Aqcuire as a Group
     const MaxTablePerGroup = CustomerCount === 'Group' ? 2 : 1;
@@ -70,7 +70,7 @@ const CustomerLogTable = () => {
                                     {
                                         if(Count < MaxTablePerGroup)
                                         {
-                                            SetCustomerTable(items.id);
+                                            SetTable(items.id);
                                             SetCount(Count + 1);
                                             items.availability = 1;
                                         }
