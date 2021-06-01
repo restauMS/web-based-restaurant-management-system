@@ -9,7 +9,7 @@ import Textfield from '../Textfield/Textfield';
 export const FoodModal = (props) => {
     return (
         <div className = "ModalContainer">
-            <div className="FoodModal">
+            <div className="FoodModal ModalBase">
                 <ModalLabel
                     LabelContent = {`${props.FoodName}`}
                     Style = {{fontSize: 'clamp(15px, 25px, 30px)'}}
@@ -159,7 +159,7 @@ export const ModifyItemModal = (props) => {
 export const OrderTransactionModal = (props) => {
     return (
         <div className = "ModalContainer">
-            <div className="TransactionModal">
+            <div className="TransactionModal ModalBase">
                 <ModalLabel
                     LabelContent = {`Transaction Id: ${props.TransactionId}`}
                     isLabelContrast = {false}
@@ -211,7 +211,7 @@ export const OrderTransactionModal = (props) => {
 export const CheckoutModal = (props) => {
     return (
         <div className = "ModalContainer">
-            <div className="CheckoutModal">
+            <div className="CheckoutModal ModalBase">
                 <ModalLabel
                     LabelContent = "Checkout"
                     Style = {{

@@ -103,21 +103,13 @@
         flex-flow: column;
         margin: auto;
         justify-content: space-evenly;
-        min-height: 30vh;
-        max-height: 50vh;
         background-color: GetColorTheme(Main);
         border-radius: 15px;
     }
 
     .FoodModal {
-        display: flex;
-        flex-flow: column;
-        margin: auto;
-        justify-content: space-evenly;
         min-height: 30vh;
         max-height: 50vh;
-        background-color: GetColorTheme(Main);
-        border-radius: 15px;
         .Label {
             margin: 0 auto;
         }
@@ -129,22 +121,12 @@
             }
         }
     }
-    
-    
-
-   
 
     .TransactionModal {
-        display: flex;
-        flex-flow: column;
-        justify-content: space-evenly;
-        margin: auto;
         padding: 15px;
-        border-radius: 15px;
         min-width: 30vh;
         max-width: 50vh;
         min-height: 80vh;
-        background-color: GetColorTheme(Main);
         .Label {
             margin: 0 auto;
         }
@@ -172,14 +154,9 @@
     }
 
     .CheckoutModal {
-        display: flex;
-        flex-flow: column;
-        margin: auto;
-        border-radius: 15px;
         min-width: 35vh;
         max-width: 55vh;
-        min-height: 70vh;
-        background-color: GetColorTheme(MainContrast);      
+        min-height: 70vh; 
         overflow: scroll;  
         .CheckoutContainer {
             padding: 15px;
@@ -208,7 +185,4 @@
         }
         
     }
-
-    
-
 }
