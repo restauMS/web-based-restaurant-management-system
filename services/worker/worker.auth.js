@@ -5,7 +5,7 @@ const Connection = require('../../database/mysql.connection');
  **/
 module.exports = async(User) => {
     try {
-        const Query = `SELECT salesperson_password FROM salesperson WHERE salesperson_user_name = '${User}'`;
+        const Query = `SELECT password FROM salesperson WHERE username = '${User}'`;
         const AuthData = await Connection(Query);
         return AuthData;
     } catch (error) {

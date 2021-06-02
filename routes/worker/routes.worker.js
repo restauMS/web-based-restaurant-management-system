@@ -24,7 +24,7 @@ Router.post('/Authenticate', async(Request, Response) => {
         const {Username, Password} = Request.body;
         const Auth = await Authenticate(Username);
         if (Auth) {
-            if(await compare(Password, Auth[0].salesperson_password)){
+            if(await compare(Password, Auth[0].password)){
                 const AccessToken = jwt.sign({Username, Password}, process.env.ACCESS_TOKEN_SECRET);
                 // ! Review later, security reasons... 
                 // localStorage.setItem('AccessToken', AccessToken);
