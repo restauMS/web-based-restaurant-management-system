@@ -50,7 +50,7 @@ export const CustomerProvider = (props) => {
     };
 
     const _NextStage = () => {
-        SetStage(Stage >= 1 ? 2 : Stage + 1);
+        SetStage(Stage >= 2 ? 3 : Stage + 1);
     }
 
     const _NextPage = () => {
@@ -60,6 +60,17 @@ export const CustomerProvider = (props) => {
     // ? Not sure yet...
     const _BackPage = () => {
         SetPageCount(PageCount <= 1 ? 1 : PageCount - 1);
+    }
+
+    const CompleteSession = () => {
+        sessionStorage.removeItem("CustomerSessionStatus");
+        sessionStorage.removeItem("CustomerName");
+        sessionStorage.removeItem("CustomerDineType");
+        sessionStorage.removeItem("CustomerCount");
+        sessionStorage.removeItem("CustomerAddress");
+        sessionStorage.removeItem("CustomerContacts");
+        sessionStorage.removeItem("CustomerTable");
+        sessionStorage.removeItem("CustomerCheckout");
     }
 
     const InitializeSession = (SessionStatus) => {
@@ -130,7 +141,10 @@ export const CustomerProvider = (props) => {
         <CustomerContext.Provider value = {
             { 
                 InitializeSession,
+                CompleteSession,
                 Stage,
+                SetStage,
+                SetPageCount,
                 _NextStage,
                 _NextPage, 
                 _BackPage, 
