@@ -12,6 +12,7 @@ const CustomerMenu = props => {
 
     const { 
         Stage, 
+        _NextStage,
         MenuList, 
         CustomerAddress: Address, 
         CustomerContact: Contact, 
@@ -114,6 +115,8 @@ const CustomerMenu = props => {
                                 <CheckoutCard
                                     key = {key}
                                     id = {Order.Id}
+                                    FoodName = {Order.Name}
+                                    FoodQty = {Order.Price}
                                     CheckoutList = {CheckoutList}
                                     SetCheckoutList = {SetCheckoutList}
                                 />
@@ -121,8 +124,12 @@ const CustomerMenu = props => {
                         }
                     </div>
                     <CustomerButton
+                        isButtonLink = {false}
                         ButtonContent = "Proceed"
                         isButtonContrast = {true}
+                        ButtonFunction = {() => {
+                            _NextStage();
+                        }}
                     />
                 </div>
             </div>

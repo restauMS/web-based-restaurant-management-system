@@ -2,7 +2,7 @@ import React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import CustomerLog from './CustomerLog/CustomerLog';
 import CustomerMenu from './CustomerMenu/CustomerMenu';
-
+import CustomerConfirmation from './CustomerMenu/CustomerConfirmation';
 const CustomerView = () => {
         return (
                 <Spring
@@ -14,6 +14,7 @@ const CustomerView = () => {
                         <div style={{...props}}>       
                                 <CustomerLog/>
                                 <CustomerMenu/>
+                                <CustomerConfirmation/>
                         </div>
                 }
         </Spring> 
