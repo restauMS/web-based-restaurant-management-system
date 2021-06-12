@@ -26,8 +26,6 @@ Router.post('/Authenticate', async(Request, Response) => {
         if (Auth) {
             if(await compare(Password, Auth[0].password)){
                 const AccessToken = jwt.sign({Username, Password}, process.env.ACCESS_TOKEN_SECRET);
-                // ! Review later, security reasons... 
-                // localStorage.setItem('AccessToken', AccessToken);
                 Response.status(200)
                 .send(
                     {
