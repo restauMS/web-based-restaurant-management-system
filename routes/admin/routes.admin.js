@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const Authenticate = require('../../services/admin/admin.auth');
 const Register = require('../../services/admin/admin.register');
 const Sales = require('../../services/admin/admin.sales');
+const Sessions = require('../../services/admin/admin.sessions');
 // const AdminInformation = require('../../services/admin/admin.getAdminInfo');
 
 // Middleware for Authenticating Token
@@ -20,6 +21,21 @@ const AuthenticateToken = (Request, Response, Next) => {
         Next();
     }) 
 }
+
+Router.get('/Sessions', AuthenticateToken, async(Request, Response) => {
+    try {
+        const GetSessions = await Sessions();
+        if(Sessions){
+            Response.status(200).send({
+                "Status": true,
+                "StatusDescription": "Fetching Order sessions list is successful",
+                SalesData: GetSessions
+            })
+        }
+    } catch (error) {
+        
+    }
+})
 
 // Router.post('/GetAdminInformation', AuthenticateToken, async(Request, Response) => {
 //     try {
