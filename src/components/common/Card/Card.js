@@ -105,15 +105,15 @@ export const CheckoutFoodCard = props => {
         <div className = {props.isCheckoutFoodCardContrast ? 'CheckoutFoodCard Contrast' : 'CheckoutFoodCard'}>
             <img src={props.FoodImageSrc} alt={props.FoodImageAlt}/>
             <div className="CheckoutInfo">
-                <h3>
+                <h5>
                     {props.FoodName}
-                </h3>
-                <h5>
+                </h5>
+                <h6>
                     {props.FoodQty}
-                </h5>
-                <h5>
+                </h6>
+                <h6>
                     {props.FoodTotal}
-                </h5>
+                </h6>
             </div>
             <div className="ButtonContainer">
                     <Button
