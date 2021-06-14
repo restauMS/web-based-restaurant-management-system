@@ -14,20 +14,17 @@ const CustomerMenu = props => {
         Stage, 
         _NextStage,
         MenuList, 
-        CustomerAddress: Address, 
-        CustomerContact: Contact, 
         CustomerName: Name,
-        CustomerTable: Table
+        SetCustomerCheckout,
+        CustomerCheckout,
     } = useContext(CustomerContext);
 
-    // ! Code to => util directory
-    // ? Create a Builder for this maybe if there's time...
     const CurrentDate = new Date();
     const Day = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday'];
     const TodayDate = `${CurrentDate.getDate()}/${CurrentDate.getMonth()+1}/${CurrentDate.getFullYear()}`;
 
-    const [ ModalStatus , SetModalStatus ] = useState(false);
-    const [ FoodModalStatus , SetFoodModalStatus ] = useState(false);
+    const [ ModalStatus, SetModalStatus ] = useState(false);
+    const [ FoodModalStatus, SetFoodModalStatus ] = useState(false);
     const [ CurrentFoodFocus, SetFoodFocus ] = useState({});
     const [ CheckoutList, SetCheckoutList ] = useState([]);
     
@@ -111,12 +108,12 @@ const CustomerMenu = props => {
                 <div className="CheckoutInnerContainer">
                     <div className="CheckoutList">
                         {
-                            CheckoutList.map((Order, key) => 
-                                <CheckoutCard
+                            CheckoutList.map(({Id, Name, Price}, key) => 
+                                 <CheckoutCard
                                     key = {key}
-                                    id = {Order.Id}
-                                    FoodName = {Order.Name}
-                                    FoodQty = {Order.Price}
+                                    id = {Id}
+                                    FoodName = {Name}
+                                    FoodQty = {Price}
                                     CheckoutList = {CheckoutList}
                                     SetCheckoutList = {SetCheckoutList}
                                 />
@@ -129,6 +126,8 @@ const CustomerMenu = props => {
                         isButtonContrast = {true}
                         ButtonFunction = {() => {
                             _NextStage();
+                            SetCustomerCheckout(CheckoutList);
+                            SetCheckoutList([]);
                         }}
                     />
                 </div>
