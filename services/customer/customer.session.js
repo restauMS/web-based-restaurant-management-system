@@ -9,10 +9,12 @@ const Connection = require('../../database/mysql.connection');
  * @returns true otherwise false
  **/
 
-module.exports = async( Name, Address, Phone, Table, Checkout) => {
+module.exports = async( DineType, Count, Name, Address, Phone, Table, Checkout) => {
     try {
         const Query = `INSERT INTO order_session (
                             customer_id, 
+                            customer_dine_type,
+                            customer_count,
                             customer_name, 
                             customer_address,
                             customer_phone,
@@ -23,6 +25,8 @@ module.exports = async( Name, Address, Phone, Table, Checkout) => {
                         VALUES
                         (
                             null,
+                            '${DineType}',
+                            '${Count}',
                             '${Name}',
                             '${Address}',
                             '${Phone}',
