@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import ModalButton from '../Button/Button';
 import ModalLabel from '../Label/Label';
 import { CheckoutFoodCard, ListCard } from '../Card/Card';
@@ -7,6 +7,9 @@ import './style/Modal.scss';
 import Textfield from '../Textfield/Textfield';
 
 export const FoodModal = (props) => {
+
+    const [ FoodQty, SetFoodQty ] = useState(0);
+
     return (
         <div className = "ModalContainer">
             <div className="FoodModal ModalBase">
@@ -22,17 +25,25 @@ export const FoodModal = (props) => {
                     Type = "number"
                     PlaceholderTitle = {`Quantity`}
                     Name = "FoodQty"
+                    HandleChange = {(e) => {
+                        e.preventDefault();
+                        SetFoodQty(e.target.value);
+                    }}
                 />
                 <div className="ModalButtonGroup">
                     <ModalButton
                             isButtonLink = {false}
                             ButtonContent = "Proceed"
                             isButtonContrast = {true}
-                            ButtonFunction = {() => {
-                                props.SetCheckoutList([...props.CheckoutList, {Id: props.FoodId, Name: props.FoodName, Price: props.FoodPrice}]);
+                            ButtonFunction = {() => {    
+                                const exist = props.CheckoutList.find((item) => item.Id === props.FoodId);
+                                if(exist) 
+                                    alert('Item is already in checkout!')
+                                else 
+                                    props.SetCheckoutList([...props.CheckoutList, { Id: props.FoodId, Name: props.FoodName, Price: props.FoodPrice, Qty: FoodQty, Total: (props.FoodPrice * FoodQty)}]);
                                 props.SetFoodModalStatus(false);
                             }}
-                        />
+                    />
                     <ModalButton
                         isButtonLink = {false}
                         isButtonContrast = {true}
