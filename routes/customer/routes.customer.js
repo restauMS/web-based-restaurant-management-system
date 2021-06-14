@@ -29,8 +29,8 @@ Router.post('/Tables', async(Request, Response) => {
 
 Router.post('/NewSession', async(Request, Response) => {
     try {
-        const { Name, Address, Phone, Table, Checkout} = Request.body;
-        const NewSession = await OrderSession(Name, Address, Phone, Table, JSON.stringify(Checkout));
+        const { DineType, Count, Name, Address, Phone, Table, Checkout} = Request.body;
+        const NewSession = await OrderSession(DineType, Count, Name, Address, Phone, Table, JSON.stringify(Checkout));
         if(NewSession){
             Response.status(200)
             .send({
