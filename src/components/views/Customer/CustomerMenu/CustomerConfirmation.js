@@ -6,7 +6,21 @@ import './style/Confirmation.scss';
 
 const CustomerConfirmation = () => {
 
-    const { Stage, SetStage, SetPageCount, CustomerName , CompleteSession } = useContext(CustomerContext);
+    const 
+    { 
+        Stage, 
+        SetStage, 
+        SetPageCount,
+        CustomerCheckout,
+        CompleteSession,
+        CustomerName,
+        CustomerDineType,
+        CustomerCount,
+        CustomerTable,
+        CustomerAddress,
+        CustomerContacts,
+        PushOrderSessionToDB
+    } = useContext(CustomerContext);
 
     if(Stage!==3)
         return null;
@@ -25,12 +39,21 @@ const CustomerConfirmation = () => {
                 <CustomerButton 
                     isButtonLink = {false}
                     isButtonContrast = {true}
-                    ButtonContent = 'exit'
+                    ButtonContent = 'Confirm'
                     ButtonLinkRoute = '/Customer/Order'
                     ButtonFunction = {() => {
                         CompleteSession();
                         SetStage(1);
                         SetPageCount(1);
+                        PushOrderSessionToDB({
+                            DineType: CustomerDineType,
+                            Count: CustomerCount,
+                            Name: CustomerName, 
+                            Address: CustomerAddress,
+                            Phone: CustomerContacts,
+                            Table: CustomerTable,
+                            Checkout: CustomerCheckout
+                        });
                     }}
                 />
             </div>
