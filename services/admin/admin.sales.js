@@ -1,6 +1,3 @@
-/*
-    ? This is a protected service
-*/
 const Connection = require('../../database/mysql.connection');
 
 module.exports = async() => {
