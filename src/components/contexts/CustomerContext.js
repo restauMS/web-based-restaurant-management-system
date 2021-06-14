@@ -4,15 +4,7 @@ export const CustomerContext = createContext();
 
 export const CustomerProvider = (props) => {
 
-    const OrderSessionFormat = {
-        CustomerDineType: null,
-        CustomerCount: null,
-        CustomerName: null,
-        CustomerAddress: null,
-        CustomerContacts: null,
-        CustomerTable: 0,
-        CustomerCheckout: []
-    };
+    
     const [ CustomerSessionStatus, SetCustomerSessionStatus ] = useState(false);
     const [ CustomerName, SetCustomerName ] = useState(null);
     const [ CustomerDineType, SetCustomerDineType ] = useState(null);
@@ -22,10 +14,33 @@ export const CustomerProvider = (props) => {
     const [ CustomerTable, SetCustomerTable ] = useState(0);
     const [ CustomerCheckout, SetCustomerCheckout ] = useState([]);
     const [ Stage, SetStage ] = useState(1);
-    const [ OrderSession, SetOrderSession ] = useState(OrderSessionFormat);
+    const [ OrderSession, SetOrderSession ] = useState({});
     const [ PageCount, SetPageCount] = useState(1);
     const [ MenuList, SetMenuList ] = useState([]);
     const [ TableList, SetTableList ] = useState([]);
+
+    const PushOrderSessionToDB = async({DineType, Count, Name, Address, Phone, Table, Checkout}) => {
+        try {
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json")
+            const Data = await fetch('/API/Customer/NewSession', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    "DineType": DineType,
+                    "Count": Count,
+                    "Name": Name,
+                    "Address": Address,
+                    "Phone": Phone,
+                    "Table": Table,
+                    "Checkout": Checkout
+                })
+            });
+            return Data;
+        } catch (error) {
+            console.trace(error);
+        }
+    }
 
     const FetchTableList = async() => {
         try {
@@ -140,17 +155,20 @@ export const CustomerProvider = (props) => {
     return (
         <CustomerContext.Provider value = {
             { 
+                CustomerSessionStatus,
                 InitializeSession,
                 CompleteSession,
                 Stage,
                 SetStage,
                 SetPageCount,
+                SetOrderSession,
                 _NextStage,
                 _NextPage, 
                 _BackPage, 
                 PageCount, 
                 OrderSession,
                 CustomerName,
+                CustomerDineType,
                 CustomerCount, 
                 CustomerAddress,
                 CustomerContacts,
@@ -162,9 +180,10 @@ export const CustomerProvider = (props) => {
                 SetAddress, 
                 SetContacts, 
                 SetTable, 
-                SetCheckout, 
+                SetCustomerCheckout, 
                 MenuList,
-                TableList 
+                TableList,
+                PushOrderSessionToDB 
             }
         }>
             {props.children}
