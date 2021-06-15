@@ -56,7 +56,7 @@ export const CustomerProvider = (props) => {
     const FetchMenuList = async() => {
         try {
             const Data = await fetch('/API/Inventory/List', {
-                method: 'POST'
+                method: 'GET'
         });
             return Data.json();
         } catch (error) {

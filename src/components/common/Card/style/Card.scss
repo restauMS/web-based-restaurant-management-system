@@ -151,6 +151,8 @@
     color: GetColorTheme(Main);
     filter: drop-shadow(0 2px 0.15rem rgba(0, 0, 0, 0.322));
     cursor: pointer;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .APICard {

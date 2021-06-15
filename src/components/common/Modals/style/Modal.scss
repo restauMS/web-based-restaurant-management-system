@@ -28,13 +28,22 @@
         filter: drop-shadow(2px 0 0.20rem rgba(0, 0, 0, 0.342));
     }
     .EditSettingInfoModal {
-        .ModalButtonGroup {
-            display: flex wrap;
-            margin: 5px auto;
-            .Button {   
-                margin: 2px 2px;
-                min-width: 120px;
-                max-width: 120px;
+        .InnerContainer {
+            display: flex;
+            flex-flow: column;
+            .ModalInputGroup {
+                display: flex;
+                flex-flow: column;
+                margin: 0 auto;
+            }
+            .ModalButtonGroup {
+                display: flex wrap;
+                margin: 5px auto;
+                .Button {   
+                    margin: 2px 2px;
+                    min-width: 120px;
+                    max-width: 120px;
+                }
             }
         }
     }

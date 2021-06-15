@@ -324,46 +324,50 @@ export const EditSettingInfoModal = (props) => {
         <div className='DashboardModalContainer'>
             <div className = {
                 props.isModalContrast ? 
-                'EditSettingInfoModal DashboardModalBase Contrast'
+                'DashboardModalBase EditSettingInfoModal Contrast'
                     :
-                'EditSettingInfoModal DashboardModalBase NonContrast'
+                'DashboardModalBase EditSettingInfoModal NonContrast'
             } >
-                <ModalLabel
-                    LabelContent = {`Editing ${props.InfoEditable}`}
-                    isLabelContrast = {false}
-                    Style = {{
-                        fontSize: 'clamp(15px, 20px, 25px)'
-                    }}
-                />
-                <Textfield
-                    Type = {props.InfoEditable === 'Password' ? "password" : "text"}
-                    PlaceholderTitle = {`New ${props.InfoEditable}`}
-                    Name = {`New${props.InfoEditable}`}
-                />
-                <Textfield
-                    Type = {props.InfoEditable === 'Password' ? "password" : "text"}
-                    PlaceholderTitle = {`Old ${props.InfoEditable}`}
-                    Name = {`Old${props.InfoEditable}`}
-                />
-                <div className="ModalButtonGroup">
-                    <ModalButton
-                        isButtonLink = {false}
-                        ButtonContent = "Cancel"
-                        isButtonContrast = {props.isModalContrast ? false : true}
-                        ButtonFunction = {() => {
-                            // Goes back to its initial states
-                            props.SetModalActive(false);
-                            props.SetModalType('');
+                <div className="InnerContainer">
+                    <ModalLabel
+                        LabelContent = {`Editing ${props.InfoEditable}`}
+                        isLabelContrast = {false}
+                        Style = {{
+                            fontSize: 'clamp(15px, 20px, 25px)'
                         }}
                     />
-                    <ModalButton
-                        isButtonLink = {false}
-                        isButtonContrast = {props.isModalContrast ? false : true}
-                        ButtonContent = "Accept Changes"
-                        ButtonFunction = {() => {
-                            alert('Are you sure?');
-                        }}
-                    />
+                    <div className="ModalInputGroup">
+                        <Textfield
+                            Type = {props.InfoEditable === 'Password' ? "password" : "text"}
+                            PlaceholderTitle = {`New ${props.InfoEditable}`}
+                            Name = {`New${props.InfoEditable}`}
+                        />
+                        <Textfield
+                            Type = {props.InfoEditable === 'Password' ? "password" : "text"}
+                            PlaceholderTitle = {`Old ${props.InfoEditable}`}
+                            Name = {`Old${props.InfoEditable}`}
+                        />
+                    </div>
+                    <div className="ModalButtonGroup">
+                        <ModalButton
+                            isButtonLink = {false}
+                            ButtonContent = "Cancel"
+                            isButtonContrast = {props.isModalContrast ? false : true}
+                            ButtonFunction = {() => {
+                                // Goes back to its initial states
+                                props.SetModalActive(false);
+                                props.SetModalType('');
+                            }}
+                        />
+                        <ModalButton
+                            isButtonLink = {false}
+                            isButtonContrast = {props.isModalContrast ? false : true}
+                            ButtonContent = "Accept Changes"
+                            ButtonFunction = {() => {
+                                alert('Are you sure?');
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

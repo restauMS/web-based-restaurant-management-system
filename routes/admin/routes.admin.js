@@ -8,7 +8,7 @@ const Authenticate = require('../../services/admin/admin.auth');
 const Register = require('../../services/admin/admin.register');
 const Sales = require('../../services/admin/admin.sales');
 const Sessions = require('../../services/admin/admin.sessions');
-// const AdminInformation = require('../../services/admin/admin.getAdminInfo');
+const AdminInformation = require('../../services/admin/admin.info');
 
 // Middleware for Authenticating Token
 const AuthenticateToken = (Request, Response, Next) => {
@@ -20,7 +20,7 @@ const AuthenticateToken = (Request, Response, Next) => {
         Request.Password = Password;
         Next();
     }) 
-}
+};
 
 Router.get('/Sessions', AuthenticateToken, async(Request, Response) => {
     try {
@@ -35,35 +35,36 @@ Router.get('/Sessions', AuthenticateToken, async(Request, Response) => {
     } catch (error) {
         
     }
-})
+});
 
-// Router.post('/GetAdminInformation', AuthenticateToken, async(Request, Response) => {
-//     try {
-//         const GetAdminInformation = await AdminInformation();
-//         if(GetAdminInformation){
-//             Response.status(200)
-//             .send({
-//                 "Information": GetAdminInformation
-//             });
-//         }
-//         else {
-//             Response.status(500)
-//             .send({
-//                 "Status": GetAdminInformation,
-//                 "StatusDescription": "Something went wrong, my apologies...",
-//             })
-//         }
-//     } catch (error) {
-//         Response.status(500)
-//         .send({
-//             "Status": false,
-//             "StatusDescription": "Something went wrong, my apologies...",
-//             "Error": error
-//         });
-//     }
-// });
+Router.post('/AdminData', AuthenticateToken, async(Request, Response) => {
+    try {
+        const { Username } = Request.body;
+        const GetAdminInformation = await AdminInformation(Username);
+        if(GetAdminInformation){
+            Response.status(200)
+            .send({
+                "Status": "Successful!",
+                "Data": GetAdminInformation
+            });
+        }
+        else {
+            Response.status(500)
+            .send({
+                "Status": GetAdminInformation,
+                "StatusDescription": "Something went wrong, my apologies...",
+            })
+        }
+    } catch (error) {
+        Response.status(500)
+        .send({
+            "Status": false,
+            "StatusDescription": "Something went wrong, my apologies...",
+            "Error": error
+        });
+    }
+});
 
-// Test Protected API Endpoint
 Router.post('/GetSales', AuthenticateToken, async(Request, Response) => {
     try {
         const GetSales = await Sales();
@@ -77,7 +78,7 @@ Router.post('/GetSales', AuthenticateToken, async(Request, Response) => {
     } catch (error) {
         console.trace(error);
     }
-})
+});
 
 Router.post('/Authenticate', async(Request, Response) => {
         try {
@@ -144,6 +145,6 @@ Router.post('/Register', async(Request, Response) => {
     } catch (error) {
         console.trace(error);
     }
-})
+});
 
 module.exports = Router;

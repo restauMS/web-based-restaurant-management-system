@@ -1,5 +1,6 @@
 import React from 'react';
 import { AdminLogin as Login, AdminDashboard as Dashboard} from '../../views/Admin/AdminView';
+import { AdminProvider } from '../../contexts/AdminContext';
 import './style/AdminLayout.scss';
 
 export const AdminLogin = () => {
@@ -12,10 +13,12 @@ export const AdminLogin = () => {
 
 export const AdminDashboard = ({routes}) => {
     return (
-        <div className="AdminLayoutContainer">
-            <Dashboard
-                routes = {routes}
-            />
-        </div>
+        <AdminProvider>
+            <div className="AdminLayoutContainer">
+                <Dashboard
+                    routes = {routes}
+                />
+            </div>
+        </AdminProvider>
     )
 }

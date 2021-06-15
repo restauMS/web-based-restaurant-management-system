@@ -1,19 +1,23 @@
 import React, { useContext , useState } from 'react';
 import { Spring } from 'react-spring/renderprops';
 import { AuthContext } from '../../../../../../contexts/AuthContext';
+import { AdminContext } from '../../../../../../contexts/AdminContext';
 import Button from '../../../../../../common/Button/Button';
 import { ListCard } from '../../../../../../common/Card/Card';
 import { EditSettingInfoModal as EditModal } from '../../../../../../common/Modals/Modal';
 import Label from '../../../../../../common/Label/Label';
 import '../style/Content.scss';
 
-const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
+const Settings = () => {
 
-    const {LogOff} = useContext(AuthContext);
+    const { LogOff } = useContext(AuthContext);
+    const { Data } = useContext(AdminContext);
 
+    
     const [ ModalActive, SetModalActive ] = useState(false);
     const [ ModalType, SetModalType ] = useState('');
-
+    
+    
     return (
         <Spring
         from = {{opacity: 0, transition: '0.1s ease-in-out'}}
@@ -54,10 +58,10 @@ const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
                             <div className="InfoContainer">
                                 <div className="IdUsername">
                                     <ListCard
-                                        CardContent = {`Account Id: ${Id}`}
+                                        CardContent = {`Account Id: ${Data.id}`}
                                     />
                                     <ListCard
-                                        CardContent = {`Username: ${Username}`}
+                                        CardContent = {`Username: ${Data.username}`}
                                         CardFunction = {() => {
                                             SetModalType('Username');
                                             SetModalActive(true);
@@ -65,28 +69,28 @@ const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
                                     />
                                 </div>
                                 <ListCard
-                                    CardContent = {`Name: ${Name}`}
+                                    CardContent = {`Name: ${Data.fullname}`}
                                     CardFunction = {() => {
                                         SetModalType('Fullname');
                                         SetModalActive(true);
                                     }}
                                 />
                                 <ListCard
-                                    CardContent = {`Password: ${Password}`}
+                                    CardContent = {`Password: ${Data.password}`}
                                     CardFunction = {() => {
                                         SetModalType('Password');
                                         SetModalActive(true);
                                     }}
                                 />
                                 <ListCard
-                                    CardContent = {`Contact #: ${Contact}`}
+                                    CardContent = {`Contact #: ${Data.phone}`}
                                     CardFunction = {() => {
                                         SetModalType('Contact');
                                         SetModalActive(true);
                                     }}
                                 />
                                 <ListCard
-                                    CardContent = {`Address: ${Address}`}
+                                    CardContent = {`Address: ${Data.address}`}
                                     CardFunction = {() => {
                                         SetModalType('Address');
                                         SetModalActive(true);
