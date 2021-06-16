@@ -9,6 +9,7 @@ export const AdminProvider = (props) => {
 
     const [ Data, SetData ] = useState({});
     const [ Inventory, SetInventory ] = useState([]);
+    const [ ActiveSessions, SetActiveSessions ] = useState([]);
 
     const GetData = async(User) => {
         try {
@@ -39,16 +40,74 @@ export const AdminProvider = (props) => {
         }
     };
 
+    const GetActiveSessions = async() => {
+        try {
+            const headers = new Headers();
+
+            headers.append('Authorization', `Bearer ${authToken}`);
+
+            const Data = await fetch('/API/Admin/SessionsActive', {
+                method: 'GET',
+                headers: headers
+            });
+            return Data.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    }
+
+    const AsyncAddItem = async(Name, Type, InitQty, InitPrice) => {
+        try {
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            const Result = await fetch('/API/Inventory/New', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    "Name": Name,
+                    "Type": Type,
+                    "InitQty": InitQty,
+                    "InitPrice": InitPrice
+                })
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const AsyncRemoveItem = async(Id) => {
+        try {
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            const Result = await fetch('/API/Inventory/Remove', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    "Id": Id
+                })
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    }
+
     useEffect(() => {
 
         // Fetches inventory list
         GetInventory()
-        .then(({List}) => SetInventory(List))
+        .then(({ List }) => SetInventory(List))
         .catch(err => console.trace(err));
 
         // Fetches admin agent data
         GetData(user)
-        .then(({Data}) => SetData(Data[0]))
+        .then(({ Data }) => SetData(Data[0]))
+        .catch(err => console.trace(err));
+
+        // Fetches active sessions
+        GetActiveSessions()
+        .then(({ ActiveSessions }) => SetActiveSessions(ActiveSessions))
         .catch(err => console.trace(err));
 
     }, []);
@@ -58,7 +117,10 @@ export const AdminProvider = (props) => {
             value = {
                 {
                     Data,
-                    Inventory
+                    ActiveSessions,
+                    Inventory,
+                    AsyncAddItem,
+                    AsyncRemoveItem
                 }
             }
         >

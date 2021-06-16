@@ -128,7 +128,8 @@ export const CheckoutFoodCard = props => {
     )
 }
 
-export const ListCard = (props) => {
+export const ListCard = props => {
+
     return (
         <div className="ListCard"
             onClick = {props.CardFunction}
@@ -140,7 +141,7 @@ export const ListCard = (props) => {
     )
 }
 
-export const APICard = (props) => {
+export const APICard = props => {
     return (
         <div className="APICard">
             <h3>

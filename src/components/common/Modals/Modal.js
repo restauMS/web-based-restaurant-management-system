@@ -59,6 +59,13 @@ export const FoodModal = (props) => {
 };
 
 export const ItemModal = (props) => {
+
+    const RemoveItem = (Id) => {
+        const UpdatedInventoryList = props.TempInventory.filter(Item => Item.id !== Id);
+        props.UpdateInventory(UpdatedInventoryList);
+        props.PopItem(Id);
+    }
+
     return (
         <div className = "DashboardModalContainer">
             <div className={props.isModalContrast ? 'ItemModal DashboardModalBase Contrast' : 'ItemModal DashboardModalBase NonContrast'}>
@@ -96,7 +103,8 @@ export const ItemModal = (props) => {
                             ButtonContent = "Delete Item"
                             isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonFunction = {() => {
-                                // Deleted function
+                                RemoveItem(props.FoodId);
+                                props.SetModalStatus(false);
                             }}
                         />
                     <ModalButton
@@ -169,8 +177,8 @@ export const ModifyItemModal = (props) => {
 
 export const OrderTransactionModal = (props) => {
     return (
-        <div className = "ModalContainer">
-            <div className="TransactionModal ModalBase">
+        <div className = "DashboardModalContainer">
+            <div className={props.isModalContrast ? "TransactionModal DashboardModalBase Contrast" : "TransactionModal DashboardModalBase NonContrast"}>
                 <ModalLabel
                     LabelContent = {`Transaction Id: ${props.TransactionId}`}
                     isLabelContrast = {false}
@@ -180,18 +188,27 @@ export const OrderTransactionModal = (props) => {
                     }}
                 />
                 <ModalLabel
-                    LabelContent = {`Customer Name: ${props.TransactionId}`}
+                    LabelContent = {`Customer Name: ${props.TransactionName}`}
                     isLabelContrast = {false}
                     Style = {{
                         fontSize: 'clamp(15px, 20px, 25px)',
                         textAlign: 'start'
                     }}
                 />
-                <div className="OrderedItemsContainer">
+                <ModalLabel
+                    LabelContent = {`Customer's Table: ${props.TransactionTable}`}
+                    isLabelContrast = {false}
+                    Style = {{
+                        fontSize: 'clamp(15px, 20px, 25px)',
+                        textAlign: 'start'
+                    }}
+                />
+                <div className={props.isModalContrast ? "OrderedItemsContainer NonContrast" : "OrderedItemsContainer Contrast"}>
                     {
-                        props.TransactionList.map(Items => (
+                        props.TransactionList.map((Items, key) => (
                             <ListCard
-                                CardContent = {Items}
+                                key = {key}
+                                CardContent = {Items.Name}
                             />
                         ))
                     }
@@ -200,17 +217,17 @@ export const OrderTransactionModal = (props) => {
                         <ModalButton
                             isButtonLink = {false}
                             ButtonContent = "End Session"
-                            isButtonContrast = {true}
+                            isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonFunction = {() => {
                                 alert('Are you sure?');
                             }}
                         />
                         <ModalButton
                             isButtonLink = {false}
-                            isButtonContrast = {true}
+                            isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonContent = "Cancel"
                             ButtonFunction = {() => {
-                                // Cancel function
+                                props.Cancel(false);
                             }}
                         />
                 </div>
@@ -278,41 +295,80 @@ export const CheckoutModal = (props) => {
 };
 
 export const NewItemModal = (props) => {
+
+    const [ ItemName , SetItemName ] = useState('');
+    const [ ItemType , SetItemType ] = useState('');
+    const [ ItemQty , SetItemQty ] = useState('');
+    const [ ItemPrice , SetItemPrice ] = useState('');
+
     return (
         <div className="DashboardModalContainer">
             <div className = {props.isModalContrast ? 'NewItemModal DashboardModalBase Contrast' : 'NewItemModal DashboardModalBase NonContrast'}>
-                <Textfield
-                        Type = "text"
-                        PlaceholderTitle = {`New Item Name`}
-                        Name = "ItemName"
+                <div className="InnerContainer">
+                <ModalLabel
+                    LabelContent = "New Item"
+                    Style = {{
+                        fontSize: 'clamp(10px, 20px, 30px)'
+                    }}
                 />
-                <Textfield
-                        Type = "number"
-                        PlaceholderTitle = {`Initial Quantity`}
-                        Name = "InitQty"
-                />
-                <Textfield
-                        Type = "number"
-                        PlaceholderTitle = {`Price`}
-                        Name = "Price"
-                />
-                <div className="ModalButtonGroup">
-                        <ModalButton
-                            isButtonLink = {false}
-                            ButtonContent = "Cancel"
-                            isButtonContrast = {props.isModalContrast ? false : true}
-                            ButtonFunction = {() => {
-                                props.SetModalStatus(false);
+                    <Textfield
+                            Type = "text"
+                            PlaceholderTitle = {`New Item Name`}
+                            Name = "ItemName"
+                            HandleChange = {(e) => {
+                                e.preventDefault();
+                                SetItemName(e.target.value);
                             }}
-                        />
-                        <ModalButton
-                            isButtonLink = {false}
-                            isButtonContrast = {props.isModalContrast ? false : true}
-                            ButtonContent = "Add Item"
-                            ButtonFunction = {() => {
-                                // Cancel function
+                    />
+                    <Textfield
+                            Type = "text"
+                            PlaceholderTitle = {`New Item Type`}
+                            Name = "ItemType"
+                            HandleChange = {(e) => {
+                                e.preventDefault();
+                                SetItemType(e.target.value);
                             }}
-                        />
+                    />
+                    <Textfield
+                            Type = "number"
+                            PlaceholderTitle = {`Initial Quantity`}
+                            Name = "InitQty"
+                            HandleChange = {(e) => {
+                                e.preventDefault();
+                                SetItemQty(e.target.value);
+                            }}
+                    />
+                    <Textfield
+                            Type = "number"
+                            PlaceholderTitle = {`Initial Price`}
+                            Name = "InitPrice"
+                            HandleChange = {(e) => {
+                                e.preventDefault();
+                                SetItemPrice(e.target.value);
+                            }}
+                    />
+                    <div className="ModalButtonGroup">
+                            <ModalButton
+                                isButtonLink = {false}
+                                ButtonContent = "Cancel"
+                                isButtonContrast = {props.isModalContrast ? false : true}
+                                ButtonFunction = {() => {
+                                    props.SetModalStatus(false);
+                                }}
+                            />
+                            <ModalButton
+                                isButtonLink = {false}
+                                isButtonContrast = {props.isModalContrast ? false : true}
+                                ButtonContent = "Add Item"
+                                ButtonFunction = {() => {
+                                    const lastItemId = (props.TempInventory.length + 1);
+                                    console.log(lastItemId);
+                                    props.PushItem( ItemName, ItemType, ItemQty, ItemPrice );
+                                    props.UpdateInventory([...props.TempInventory, { id: lastItemId, name: ItemName, type: ItemType, quantity: ItemQty, price: ItemPrice }])
+                                    props.SetModalStatus(false);
+                                }}
+                            />
+                    </div>
                 </div>
             </div>
         </div>

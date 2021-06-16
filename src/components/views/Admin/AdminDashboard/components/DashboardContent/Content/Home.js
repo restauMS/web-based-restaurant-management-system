@@ -1,11 +1,18 @@
-import React from 'react';
+import React , { useState, useContext } from 'react';
 import { Spring } from 'react-spring/renderprops';
+import { OrderTransactionModal } from '../../../../../../common/Modals/Modal';
+import { AdminContext } from '../../../../../../contexts/AdminContext';
 import '../style/Content.scss';
 
 import Label from '../../../../../../common/Label/Label';
 import { ListCard } from '../../../../../../common/Card/Card';
 
 const Home = ({info}) => {
+
+    const { ActiveSessions } = useContext(AdminContext);
+    const [ TransactionModalActive, SetTransactionModalActive ] = useState(false);
+    const [ TransactionFocus, SetTransactionFocus ] = useState({});
+
     return (
         <Spring
             from = {{opacity: 0, transition: '0.1s ease-in-out'}}
@@ -14,6 +21,23 @@ const Home = ({info}) => {
             {
                 props => 
                 <div className="HomeContainer" style={{...props}}>
+
+                    {
+                        TransactionModalActive ? 
+                        <OrderTransactionModal
+                            isModalContrast = {false}
+                            key = {TransactionFocus.Key}                         
+                            TransactionId = {TransactionFocus.Id}
+                            TransactionName = {TransactionFocus.Name}
+                            TransactionList = {TransactionFocus.Checkout}
+                            TransactionTable = {TransactionFocus.Table}
+                            Cancel = {SetTransactionModalActive}
+                            ActiveSessions = {ActiveSessions}
+                        />
+                        :
+                        null
+                    }
+
                     <div className="TopBar">
                         <Label
                             LabelContent = "Dashboard"
@@ -33,12 +57,24 @@ const Home = ({info}) => {
                                 isLabelContrast = {false}
                             />
                             <div className="OrderList">
-                                {/* {
-                                    OrderList.length > 0 ?
-                                    OrderList.map(Items => <ListCard CardContent = {Items} />)
+                                {
+                                    ActiveSessions.length > 0 ?
+                                    ActiveSessions.map((Items, key) => 
+                                    <ListCard 
+                                        key = {key}
+                                        CardContent = {Items.customer_name} 
+                                        CardFunction = {() => {
+                                            SetTransactionModalActive(true);
+                                            SetTransactionFocus({Key: key, Id: Items.customer_id, Name: Items.customer_name, Table: Items.customer_table_no, Checkout: JSON.parse(Items.checkout).checkout});
+                                        }}
+                                    />)
                                     :
-                                    <h3> Whaaaat, well you can take a break I guess...🤷‍♂️</h3>
-                                } */}
+                                    <Label
+                                        LabelContent = {`Whaaaat, well you can take a break I guess...🤷‍♂️`}
+                                        Style = {{fontSize: 'clamp(7px, 14px, 21px)'}}
+                                        isLabelContrast = {false}
+                                    />
+                                }
                             </div>
                         </div>
                         <div className="SideContentContainer">

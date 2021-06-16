@@ -15,7 +15,7 @@ const Api = () => {
                 Style = {{textAlign: 'start', color: '#E56B6F', fontSize: 'clamp(10px,20px,30px)'}}
             />
             <Label
-                LabelContent = {`What is an API? An API is the interface that connects the font-end and the back-end, the back-end stores the data the API serves that data and the front-end presents the data.`}
+                LabelContent = {`What is an API? An API is the interface that connects the front-end and the back-end, the back-end stores the data the API serves that data and the front-end presents the data.`}
                 isLabelContrast = {true}
                 Style = {{textAlign: 'start', fontSize: 'clamp(10px,20px,30px)'}}
             />

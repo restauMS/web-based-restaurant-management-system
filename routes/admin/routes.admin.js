@@ -6,8 +6,7 @@ const jwt = require('jsonwebtoken');
 // Services
 const Authenticate = require('../../services/admin/admin.auth');
 const Register = require('../../services/admin/admin.register');
-const Sales = require('../../services/admin/admin.sales');
-const Sessions = require('../../services/admin/admin.sessions');
+const { AllSessions , ActiveSessions } = require('../../services/admin/admin.sessions');
 const AdminInformation = require('../../services/admin/admin.info');
 
 // Middleware for Authenticating Token
@@ -22,18 +21,46 @@ const AuthenticateToken = (Request, Response, Next) => {
     }) 
 };
 
+Router.get('/SessionsActive', AuthenticateToken, async(Request, Response) => {
+    try {
+        const GetActiveSessions = await ActiveSessions();
+        if(GetActiveSessions){
+            Response.status(200)
+            .send({
+                "Status": true,
+                "StatusDescription": "Fetching active Order sessions list is successful",
+                "ActiveSessions": GetActiveSessions
+            });
+        } else { 
+            Response.status(500)
+            .send({
+                "Status": false,
+                "StatusDescription": "Fetch failed!",
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
 Router.get('/Sessions', AuthenticateToken, async(Request, Response) => {
     try {
-        const GetSessions = await Sessions();
-        if(Sessions){
+        const GetSessions = await AllSessions();
+        if(GetSessions){
             Response.status(200).send({
                 "Status": true,
                 "StatusDescription": "Fetching Order sessions list is successful",
-                SalesData: GetSessions
+                "Sessions": GetSessions
             })
+        } else {
+            Response.status(500)
+            .send({
+                "Status": false,
+                "StatusDescription": "Fetch failed!",
+            });
         }
     } catch (error) {
-        
+        console.trace(error);
     }
 });
 
@@ -62,21 +89,6 @@ Router.post('/AdminData', AuthenticateToken, async(Request, Response) => {
             "StatusDescription": "Something went wrong, my apologies...",
             "Error": error
         });
-    }
-});
-
-Router.post('/GetSales', AuthenticateToken, async(Request, Response) => {
-    try {
-        const GetSales = await Sales();
-        if(GetSales){
-            Response.status(200).send({
-                "Status": true,
-                "StatusDescription": "Fetching Sales information is successful",
-                SalesData: GetSales
-            })
-        }
-    } catch (error) {
-        console.trace(error);
     }
 });
 

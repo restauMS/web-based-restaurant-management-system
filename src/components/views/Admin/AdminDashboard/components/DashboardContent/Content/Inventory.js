@@ -9,12 +9,15 @@ import '../style/Content.scss';
 
 const Inventory = () => {
     
-    const { Inventory } = useContext(AdminContext);
+    const { Inventory, AsyncAddItem, AsyncRemoveItem } = useContext(AdminContext);
 
     const [ AddItemModalStatus, SetAddItemModalStatus ] = useState(false);
     const [ InventoryItemModalStatus, SetInventoryItemModalStatus ] = useState(false);
+    const [ TempInventory, SetTempInventory] = useState(Inventory);
     const [ EditItemModalStatus, SetEditItemModalStatus] = useState(false);
     const [ ItemFocus, SetItemFocus] = useState({});
+
+    console.log(TempInventory);
 
     return (
         <Spring
@@ -29,6 +32,9 @@ const Inventory = () => {
                             <AddItem
                                 SetModalStatus = {SetAddItemModalStatus}
                                 isModalContrast = {false}
+                                PushItem = { AsyncAddItem }
+                                UpdateInventory = {SetTempInventory}
+                                TempInventory = {TempInventory}
                             />
                         :
                             null
@@ -42,6 +48,9 @@ const Inventory = () => {
                             ItemQuantity = { ItemFocus.Quantity }
                             SetModalStatus = { SetInventoryItemModalStatus }
                             SetEditStatus = { SetEditItemModalStatus }
+                            UpdateInventory = {SetTempInventory}
+                            TempInventory = {TempInventory}
+                            PopItem = {AsyncRemoveItem}
                         />
                         :
                             null
@@ -71,16 +80,22 @@ const Inventory = () => {
                     <div className="InventoryListContainer">
                         <div className="InventoryList">
                             {
-                                Inventory.map((Items, key) => 
+                                TempInventory.length != 0 ?
+                                TempInventory.map((Items, key) => 
                                 <ListCard 
                                     key = {key} 
                                     CardContent = {Items.name}
                                     CardFunction = {() => {
                                         SetInventoryItemModalStatus(true);
-                                        SetItemFocus({Id: key, Name: Items.name, Price: Items.price, Quantity: Items.quantity});
+                                        SetItemFocus({Id: Items.id, Name: Items.name, Price: Items.price, Quantity: Items.quantity});
                                     }}
                                 />
                                 )
+                                :
+                                <Label
+                                    LabelContent = "Resupply needed!"
+                                    isLabelContrast = {false}
+                                />
                             }
                         </div>
                     </div>

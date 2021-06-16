@@ -4,6 +4,7 @@ const Router = express.Router();
 // Inventory services
 const GetList = require('../../services/inventory/inventory.list');
 const RemoveItem = require('../../services/inventory/inventory.remove');
+const AddItem = require('../../services/inventory/inventory.new');
 
 Router.post('/Remove', async(Request, Response) => {
     try {
@@ -20,6 +21,28 @@ Router.post('/Remove', async(Request, Response) => {
             .send({
                 "Status": Result,
                 "StatusDescription": "Something went wrong! Item was not deleted!"
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
+Router.post('/New', async(Request, Response) => {
+    try {
+        const {Name, Type, InitQty, InitPrice} = Request.body;
+        const Result = await AddItem(Name, Type, InitQty, InitPrice);
+        if(Result) {
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": "Item added successfully!"
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": "Something went wrong, Item was not added!"
             });
         }
     } catch (error) {
