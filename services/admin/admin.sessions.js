@@ -19,6 +19,24 @@ module.exports = {
             console.trace("Something went wrong: ", error);
             return [];
         }
+    },
+    EndSession: async(Id) => {
+        try {
+            await Connection(`UPDATE ORDER_SESSION SET status = 0 WHERE customer_id = ${Id}`);
+            return true;
+        } catch (error) {
+            console.trace("Something went wrong: ", error);
+            return false;
+        }
+    },
+    ClearSession: async() => {
+        try {
+            await Connection('TRUNCATE order_session');
+            return true;
+        } catch (error) {
+            console.trace("Something went wrong: ", error);
+            return false;
+        }
     }
     
 }

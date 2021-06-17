@@ -7,15 +7,20 @@ import CustomerButton from '../../../../common/Button/Button';
 
 const CustomerLogTable = () => {
 
-    const { PageCount, _NextStage,  TableList, CustomerCount, SetTable } = useContext(CustomerContext);
+    const { PageCount, _NextStage, CustomerDineType,  TableList, CustomerCount, SetTable } = useContext(CustomerContext);
 
     // Constant for Max Table you can Aqcuire as a Group
     const MaxTablePerGroup = CustomerCount === 'Group' ? 2 : 1;
     const [Count, SetCount] = useState(0);
     const [TableStatus, SetTableStatus] = useState(false);
     
-    return PageCount !== 7 ? null : 
-    (
+    if(PageCount !== 7)
+        return null;
+
+    if(CustomerDineType === 'Takeout')
+        _NextStage();
+
+    return (
         <div
             style = 
             {{

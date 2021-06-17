@@ -5,10 +5,13 @@ import CustomerButton from '../../../../common/Button/Button';
 
 const CustomerCount = () => {
 
-    const { PageCount , _NextPage, SetCount, CustomerName } = useContext(CustomerContext);
+    const { PageCount , CustomerDineType, _NextPage, SetCount, CustomerName } = useContext(CustomerContext);
 
     if(PageCount !== 4)
         return null;
+
+    if(CustomerDineType === 'Takeout')
+        _NextPage();
 
     return (
         <div

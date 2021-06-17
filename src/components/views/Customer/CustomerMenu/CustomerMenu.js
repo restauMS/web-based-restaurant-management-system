@@ -28,6 +28,13 @@ const CustomerMenu = props => {
     const [ CurrentFoodFocus, SetFoodFocus ] = useState({});
     const [ CheckoutList, SetCheckoutList ] = useState([]);
     
+    const Total = () => {
+        let sum = 0;
+        for(let i = 0; i < CheckoutList.length; i++)
+            sum = sum + CheckoutList[i].Total;
+        return sum;
+    }
+
     if(Stage !== 2)
         return null;    
 
@@ -104,6 +111,10 @@ const CustomerMenu = props => {
                 <CustomerLabel
                     LabelContent = "Checkout"
                     Style = {{fontSize: "clamp(25px, 30px, 40px)", margin: "25px auto"}}
+                />
+                 <CustomerLabel
+                    LabelContent = {`Total: ${Total()}`}
+                    Style = {{fontSize: "clamp(10px, 20px, 30px)", margin: "10px auto"}}
                 />
                 <div className="CheckoutInnerContainer">
                     <div className="CheckoutList">

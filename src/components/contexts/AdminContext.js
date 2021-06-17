@@ -10,6 +10,7 @@ export const AdminProvider = (props) => {
     const [ Data, SetData ] = useState({});
     const [ Inventory, SetInventory ] = useState([]);
     const [ ActiveSessions, SetActiveSessions ] = useState([]);
+    const [ AllSessions, SetAllSessions ] = useState([]);
 
     const GetData = async(User) => {
         try {
@@ -39,6 +40,22 @@ export const AdminProvider = (props) => {
             console.trace(error);
         }
     };
+
+    const GetSessions = async() => {
+        try {
+            const headers = new Headers();
+
+            headers.append('Authorization', `Bearer ${authToken}`);
+
+            const Data = await fetch('/API/Admin/Sessions', {
+                method: 'GET',
+                headers: headers
+            });
+            return Data.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    }
 
     const GetActiveSessions = async() => {
         try {
@@ -91,8 +108,57 @@ export const AdminProvider = (props) => {
         } catch (error) {
             console.trace(error);
         }
+    };
+
+    const AsyncEndSession = async(Id) => {
+        try {
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            headers.append('Authorization', `Bearer ${authToken}`);
+            const Result = await fetch('/API/Admin/EndSession', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    "Id": Id
+                })
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const AsyncClearInventory = async() => {
+        try {
+            const Result = await fetch('/API/Inventory/Clear', {
+                method: 'GET'
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const AsyncClearSessions = async() => {
+        try {
+            const headers = new Headers();
+            headers.append('Authorization', `Bearer ${authToken}`);
+            const Result = await fetch('/API/Admin/ClearSessions', {
+                method: 'GET',
+                headers: headers
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
     }
 
+    // FIX: Bad practice!
+    /*
+        Fix, is to invote the functions in here on the component level.
+    */
+
+    // eslint-disable-next-line
     useEffect(() => {
 
         // Fetches inventory list
@@ -103,6 +169,11 @@ export const AdminProvider = (props) => {
         // Fetches admin agent data
         GetData(user)
         .then(({ Data }) => SetData(Data[0]))
+        .catch(err => console.trace(err));
+        
+        // Fetches all sessions, active or not
+        GetSessions()
+        .then(({ Sessions }) => SetAllSessions(Sessions))
         .catch(err => console.trace(err));
 
         // Fetches active sessions
@@ -118,9 +189,13 @@ export const AdminProvider = (props) => {
                 {
                     Data,
                     ActiveSessions,
+                    AllSessions,
                     Inventory,
                     AsyncAddItem,
-                    AsyncRemoveItem
+                    AsyncRemoveItem,
+                    AsyncEndSession,
+                    AsyncClearSessions,
+                    AsyncClearInventory
                 }
             }
         >

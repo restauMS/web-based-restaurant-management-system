@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 // Services
 const Authenticate = require('../../services/admin/admin.auth');
 const Register = require('../../services/admin/admin.register');
-const { AllSessions , ActiveSessions } = require('../../services/admin/admin.sessions');
+const { AllSessions , ActiveSessions, EndSession, ClearSession } = require('../../services/admin/admin.sessions');
 const AdminInformation = require('../../services/admin/admin.info');
 
 // Middleware for Authenticating Token
@@ -43,6 +43,47 @@ Router.get('/SessionsActive', AuthenticateToken, async(Request, Response) => {
     }
 });
 
+Router.post('/EndSession', AuthenticateToken, async(Request, Response) => {
+    try {
+        const { Id } = Request.body;
+        const Result = await EndSession(Id);
+        if(Result){
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": "Session successful, moved to archived!"
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": "Session unsuccessful, something went wrong!"
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
+Router.get('/ClearSessions', AuthenticateToken, async(Request, Response) => {
+    try {
+        const Clear = await ClearSession();
+        if (Clear) {
+            Response.status(200).send({
+                "Status": Clear,
+                "StatusDescription": "Order session list has been cleared!",
+            });
+        } else {
+            Response.status(500).send({
+                "Status": Clear,
+                "StatusDescription": "Order session list has not been cleared, something went wrong!",
+            });
+        }
+    } catch (error) {
+        
+    }
+});
+
 Router.get('/Sessions', AuthenticateToken, async(Request, Response) => {
     try {
         const GetSessions = await AllSessions();
@@ -51,7 +92,7 @@ Router.get('/Sessions', AuthenticateToken, async(Request, Response) => {
                 "Status": true,
                 "StatusDescription": "Fetching Order sessions list is successful",
                 "Sessions": GetSessions
-            })
+            });
         } else {
             Response.status(500)
             .send({

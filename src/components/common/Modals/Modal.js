@@ -103,6 +103,9 @@ export const ItemModal = (props) => {
                             ButtonContent = "Delete Item"
                             isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonFunction = {() => {
+                                // Resets the the database table C:
+                                if (props.TempInventory.length === 1)
+                                    props.ClearInventory();
                                 RemoveItem(props.FoodId);
                                 props.SetModalStatus(false);
                             }}
@@ -176,6 +179,13 @@ export const ModifyItemModal = (props) => {
 };
 
 export const OrderTransactionModal = (props) => {
+
+    const EndSession = (Id) => {
+        const UpdatedSessions = props.TempSessions.filter(Session => Session.customer_id !== Id);
+        props.UpdateSessions(UpdatedSessions);
+        props.EndSession(Id);
+    }
+
     return (
         <div className = "DashboardModalContainer">
             <div className={props.isModalContrast ? "TransactionModal DashboardModalBase Contrast" : "TransactionModal DashboardModalBase NonContrast"}>
@@ -203,6 +213,18 @@ export const OrderTransactionModal = (props) => {
                         textAlign: 'start'
                     }}
                 />
+                <ModalLabel
+                    LabelContent = {`Session Status: 
+                        ${
+                        props.TransactionStatus === 1 ? 'Active' : 'Archived'
+                        }`
+                    }
+                    isLabelContrast = {false}
+                    Style = {{
+                        fontSize: 'clamp(10px, 15px, 20px)',
+                        textAlign: 'start'
+                    }}
+                />
                 <div className={props.isModalContrast ? "OrderedItemsContainer NonContrast" : "OrderedItemsContainer Contrast"}>
                     {
                         props.TransactionList.map((Items, key) => (
@@ -219,7 +241,10 @@ export const OrderTransactionModal = (props) => {
                             ButtonContent = "End Session"
                             isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonFunction = {() => {
-                                alert('Are you sure?');
+                                if(props.TempSessions.length === 1)
+                                       
+                                EndSession(props.TransactionId);
+                                props.Cancel(false);
                             }}
                         />
                         <ModalButton

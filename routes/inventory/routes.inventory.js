@@ -5,6 +5,7 @@ const Router = express.Router();
 const GetList = require('../../services/inventory/inventory.list');
 const RemoveItem = require('../../services/inventory/inventory.remove');
 const AddItem = require('../../services/inventory/inventory.new');
+const Clear = require('../../services/inventory/inventory.clear');
 
 Router.post('/Remove', async(Request, Response) => {
     try {
@@ -67,6 +68,27 @@ Router.get('/List', async(Request, Response) => {
                 'Description': 'Fetching list is Unsuccessful!',
                 'List': List
             })
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
+Router.get('/Clear', async(Request, Response) => {
+    try {
+        const Result = await Clear();
+        if(Result) {
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": "The inventory list has been cleared!"
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": "The inventory list has not been cleared, something went wrong!"
+            });
         }
     } catch (error) {
         console.trace(error);

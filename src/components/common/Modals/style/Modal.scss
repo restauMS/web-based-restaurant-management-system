@@ -112,11 +112,12 @@
             flex-flow: column;
             margin: auto;
             border-radius: 10px;
-            min-width: 40vh;
-            max-width: 45vh;
+            padding: 5px;
+            min-width: 90%;
+            max-width: 90%;
             min-height: 50vh;
             max-height: 50vh;
-            overflow-y: scroll;
+            overflow-y: auto;
         }
         .ModalButtonGroup {
             display: flex wrap;

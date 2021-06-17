@@ -9,9 +9,10 @@ import { ListCard } from '../../../../../../common/Card/Card';
 
 const Home = ({info}) => {
 
-    const { ActiveSessions } = useContext(AdminContext);
+    const { ActiveSessions , AllSessions, AsyncEndSession } = useContext(AdminContext);
     const [ TransactionModalActive, SetTransactionModalActive ] = useState(false);
     const [ TransactionFocus, SetTransactionFocus ] = useState({});
+    const [ TempSessions, SetTempSessions ] = useState(ActiveSessions);
 
     return (
         <Spring
@@ -31,8 +32,12 @@ const Home = ({info}) => {
                             TransactionName = {TransactionFocus.Name}
                             TransactionList = {TransactionFocus.Checkout}
                             TransactionTable = {TransactionFocus.Table}
+                            TransactionStatus = {TransactionFocus.Status}
+                            TempSessions = {TempSessions}
+                            UpdateSessions = {SetTempSessions}
                             Cancel = {SetTransactionModalActive}
                             ActiveSessions = {ActiveSessions}
+                            EndSession = {AsyncEndSession}
                         />
                         :
                         null
@@ -58,14 +63,14 @@ const Home = ({info}) => {
                             />
                             <div className="OrderList">
                                 {
-                                    ActiveSessions.length > 0 ?
-                                    ActiveSessions.map((Items, key) => 
+                                    TempSessions.length > 0 ?
+                                    TempSessions.map((Items, key) => 
                                     <ListCard 
                                         key = {key}
                                         CardContent = {Items.customer_name} 
                                         CardFunction = {() => {
                                             SetTransactionModalActive(true);
-                                            SetTransactionFocus({Key: key, Id: Items.customer_id, Name: Items.customer_name, Table: Items.customer_table_no, Checkout: JSON.parse(Items.checkout).checkout});
+                                            SetTransactionFocus({Key: key, Id: Items.customer_id, Name: Items.customer_name, Table: Items.customer_table_no, Checkout: JSON.parse(Items.checkout).checkout , Status: Items.status});
                                         }}
                                     />)
                                     :
@@ -94,12 +99,24 @@ const Home = ({info}) => {
                                     isLabelContrast = {false}
                                 />
                                 <div className="TransactionList">
-                                    {/* {
-                                            TransactionList.length > 0 ?
-                                            TransactionList.map(Items => <ListCard CardContent = {Items} />)
+                                    {
+                                            AllSessions.length !== 0 ?
+                                            AllSessions.map((Items, key) => 
+                                            <ListCard 
+                                                key = {key} 
+                                                CardContent = {Items.customer_name} 
+                                                CardFunction = {() => {
+                                                    SetTransactionModalActive(true);
+                                                    SetTransactionFocus({Key: key, Id: Items.customer_id, Name: Items.customer_name, Table: Items.customer_table_no, Checkout: JSON.parse(Items.checkout).checkout});
+                                                }}
+                                            />)
                                             :
-                                            <h3> List is empty! </h3>
-                                    } */}
+                                            <Label
+                                            LabelContent = {`No recent transactions`}
+                                            Style = {{fontSize: 'clamp(7px, 14px, 21px)'}}
+                                            isLabelContrast = {false}
+                                        />
+                                    }
                                 </div>
                             </div>
                         </div>

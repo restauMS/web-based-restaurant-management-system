@@ -9,15 +9,13 @@ import '../style/Content.scss';
 
 const Inventory = () => {
     
-    const { Inventory, AsyncAddItem, AsyncRemoveItem } = useContext(AdminContext);
+    const { Inventory, AsyncAddItem, AsyncRemoveItem, AsyncClearInventory } = useContext(AdminContext);
 
     const [ AddItemModalStatus, SetAddItemModalStatus ] = useState(false);
     const [ InventoryItemModalStatus, SetInventoryItemModalStatus ] = useState(false);
     const [ TempInventory, SetTempInventory] = useState(Inventory);
     const [ EditItemModalStatus, SetEditItemModalStatus] = useState(false);
     const [ ItemFocus, SetItemFocus] = useState({});
-
-    console.log(TempInventory);
 
     return (
         <Spring
@@ -41,17 +39,18 @@ const Inventory = () => {
                     }
                     {
                         InventoryItemModalStatus ? 
-                        <ViewItem
-                            FoodId = { ItemFocus.Id }
-                            FoodName = { ItemFocus.Name }
-                            FoodPrice = { ItemFocus.Price }
-                            ItemQuantity = { ItemFocus.Quantity }
-                            SetModalStatus = { SetInventoryItemModalStatus }
-                            SetEditStatus = { SetEditItemModalStatus }
-                            UpdateInventory = {SetTempInventory}
-                            TempInventory = {TempInventory}
-                            PopItem = {AsyncRemoveItem}
-                        />
+                            <ViewItem
+                                FoodId = { ItemFocus.Id }
+                                FoodName = { ItemFocus.Name }
+                                FoodPrice = { ItemFocus.Price }
+                                ItemQuantity = { ItemFocus.Quantity }
+                                SetModalStatus = { SetInventoryItemModalStatus }
+                                SetEditStatus = { SetEditItemModalStatus }
+                                UpdateInventory = {SetTempInventory}
+                                TempInventory = {TempInventory}
+                                PopItem = {AsyncRemoveItem}
+                                ClearInventory = {AsyncClearInventory}
+                            />
                         :
                             null
                     }
