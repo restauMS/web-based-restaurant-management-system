@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const Authenticate = require('../../services/admin/admin.auth');
 const Register = require('../../services/admin/admin.register');
 const { AllSessions , ActiveSessions, EndSession, ClearSession } = require('../../services/admin/admin.sessions');
-const AdminInformation = require('../../services/admin/admin.info');
+const { AdminInformation, EditName, EditFullname, EditAddress, EditContacts, EditPassword, DeleteAccount} = require('../../services/admin/admin.info');
 
 // Middleware for Authenticating Token
 const AuthenticateToken = (Request, Response, Next) => {
@@ -133,6 +133,117 @@ Router.post('/AdminData', AuthenticateToken, async(Request, Response) => {
     }
 });
 
+Router.post('/EditUsername', AuthenticateToken, async(Request, Response) => {
+    try {
+        const { NewUsername, OldUsername, Id} = Request.body;
+        const Result = await EditName(NewUsername, OldUsername, Id);
+        if(Result) {
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldUsername} to ${NewUsername} is successful!`
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldUsername} to ${NewUsername} is unsuccessful!`
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
+Router.post('/EditFullname', AuthenticateToken, async(Request, Response) => {
+    try {
+        const { NewFullname, OldFullname, Id} = Request.body;
+        const Result = await EditFullname(NewFullname, OldFullname, Id);
+        if(Result) {
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldFullname} to ${NewFullname} is successful!`
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldFullname} to ${NewFullname} is unsuccessful!`
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
+Router.post('/EditContacts', AuthenticateToken, async(Request, Response) => {
+    try {
+        const { NewContacts, OldContacts, Id} = Request.body;
+        const Result = await EditContacts(NewContacts, OldContacts, Id);
+        if(Result) {
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldContacts} to ${NewContacts} is successful!`
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldContacts} to ${NewContacts} is unsuccessful!`
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
+Router.post('/EditPassword', AuthenticateToken, async(Request, Response) => {
+    try {
+        const { NewPassword, OldPassword, Id} = Request.body;
+        const EncryptedPassword = await hash(NewPassword, 10);
+        const Result = await EditPassword(EncryptedPassword, OldPassword, Id);
+        if(Result) {
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldPassword} to ${EncryptedPassword} is successful!`
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldPassword} to ${EncryptedPassword} is unsuccessful!`
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
+Router.post('/EditAddress', AuthenticateToken, async(Request, Response) => {
+    try {
+        const { NewAddress, OldAddress, Id} = Request.body;
+        const Result = await EditAddress(NewAddress, OldAddress, Id);
+        if(Result) {
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldAddress} to ${NewAddress} is successful!`
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": `Changing of ${OldAddress} to ${NewAddress} is unsuccessful!`
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
+});
+
 Router.post('/Authenticate', async(Request, Response) => {
         try {
             const { Username, Password } = Request.body;
@@ -170,6 +281,28 @@ Router.post('/Authenticate', async(Request, Response) => {
             } catch (error) {
                 console.trace(error);
             }
+});
+
+Router.post('/Delete', AuthenticateToken, async(Request, Response) => {
+    try {
+        const { Id } = Request.body;
+        const Result = await DeleteAccount(Id);
+        if(Result) {
+            Response.status(200)
+            .send({
+                "Status": Result,
+                "StatusDescription": "Account successfully deleted!"
+            });
+        } else {
+            Response.status(500)
+            .send({
+                "Status": Result,
+                "StatusDescription": "Account was not deleted, something went wrong!"
+            });
+        }
+    } catch (error) {
+        console.trace(error);
+    }
 });
 
 Router.post('/Register', async(Request, Response) => {

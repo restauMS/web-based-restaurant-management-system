@@ -73,6 +73,117 @@ export const AdminProvider = (props) => {
         }
     }
 
+    const AsyncEditInfoUsername = async(NewUsername, OldUsername, Id) => {
+        try {
+            const headers = new Headers();
+
+            headers.append('Authorization', `Bearer ${authToken}`);
+            headers.append('Content-Type', 'application/json');
+
+            const Result = await fetch('/API/Admin/EditUsername', {
+                method: 'POST',
+                body: JSON.stringify({
+                    "NewUsername": NewUsername,
+                    "OldUsername": OldUsername,
+                    "Id": Id
+                }),
+                headers: headers
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const AsyncEditInfoName = async(NewFullname, OldFullname, Id) => {
+        try {
+            const headers = new Headers();
+
+            headers.append('Authorization', `Bearer ${authToken}`);
+            headers.append('Content-Type', 'application/json');
+
+            const Result = await fetch('/API/Admin/EditFullname', {
+                method: 'POST',
+                body: JSON.stringify({
+                    "NewFullname": NewFullname,
+                    "OldFullname": OldFullname,
+                    "Id": Id
+                }),
+                headers: headers
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+    
+    const AsyncEditInfoPassword = async(NewPassword, OldPassword, Id) => {
+        try {
+            const headers = new Headers();
+
+            headers.append('Authorization', `Bearer ${authToken}`);
+            headers.append('Content-Type', 'application/json');
+
+            const Result = await fetch('/API/Admin/EditPassword', {
+                method: 'POST',
+                body: JSON.stringify({
+                    "NewPassword": NewPassword,
+                    "OldPassword": OldPassword,
+                    "Id": Id
+                }),
+                headers: headers
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const AsyncEditInfoContacts = async(NewContacts, OldContacts, Id) => {
+        try {
+            const headers = new Headers();
+
+            headers.append('Authorization', `Bearer ${authToken}`);
+            headers.append('Content-Type', 'application/json');
+
+            const Result = await fetch('/API/Admin/EditContacts', {
+                method: 'POST',
+                body: JSON.stringify({
+                    "NewContacts": NewContacts,
+                    "OldContacts": OldContacts,
+                    "Id": Id
+                }),
+                headers: headers
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const AsyncEditInfoAddress = async(NewAddress, OldAddress, Id) => {
+        try {
+            const headers = new Headers();
+
+            headers.append('Authorization', `Bearer ${authToken}`);
+            headers.append('Content-Type', 'application/json');
+
+            const Result = await fetch('/API/Admin/EditAddress', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'NewAddress': NewAddress,
+                    'OldAddress': OldAddress,
+                    'Id': Id
+                }),
+                headers: headers
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+
     const AsyncAddItem = async(Name, Type, InitQty, InitPrice) => {
         try {
             const headers = new Headers();
@@ -98,6 +209,26 @@ export const AdminProvider = (props) => {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
             const Result = await fetch('/API/Inventory/Remove', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    "Id": Id
+                })
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const AsyncDeleteAccount = async(Id) => {
+        try {
+            const headers = new Headers();
+
+            headers.append('Authorization', `Bearer ${authToken}`);
+            headers.append('Content-Type', 'application/json');
+
+            const Result = await fetch('/API/Admin/Delete', {
                 method: 'POST',
                 headers: headers,
                 body: JSON.stringify({
@@ -151,12 +282,9 @@ export const AdminProvider = (props) => {
         } catch (error) {
             console.trace(error);
         }
-    }
+    };
 
-    // FIX: Bad practice!
-    /*
-        Fix, is to invote the functions in here on the component level.
-    */
+    
 
     // eslint-disable-next-line
     useEffect(() => {
@@ -170,16 +298,18 @@ export const AdminProvider = (props) => {
         GetData(user)
         .then(({ Data }) => SetData(Data[0]))
         .catch(err => console.trace(err));
-        
+
         // Fetches all sessions, active or not
         GetSessions()
         .then(({ Sessions }) => SetAllSessions(Sessions))
         .catch(err => console.trace(err));
-
+        
         // Fetches active sessions
         GetActiveSessions()
         .then(({ ActiveSessions }) => SetActiveSessions(ActiveSessions))
         .catch(err => console.trace(err));
+
+
 
     }, []);
 
@@ -188,6 +318,8 @@ export const AdminProvider = (props) => {
             value = {
                 {
                     Data,
+                    SetActiveSessions,
+                    SetAllSessions,
                     ActiveSessions,
                     AllSessions,
                     Inventory,
@@ -195,7 +327,13 @@ export const AdminProvider = (props) => {
                     AsyncRemoveItem,
                     AsyncEndSession,
                     AsyncClearSessions,
-                    AsyncClearInventory
+                    AsyncClearInventory,
+                    AsyncEditInfoUsername,
+                    AsyncEditInfoName,
+                    AsyncEditInfoPassword,
+                    AsyncEditInfoAddress,
+                    AsyncEditInfoContacts,
+                    AsyncDeleteAccount
                 }
             }
         >

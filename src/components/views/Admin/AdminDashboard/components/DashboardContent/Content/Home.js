@@ -9,10 +9,9 @@ import { ListCard } from '../../../../../../common/Card/Card';
 
 const Home = ({info}) => {
 
-    const { ActiveSessions , AllSessions, AsyncEndSession } = useContext(AdminContext);
+    const { ActiveSessions, SetActiveSessions, AllSessions, AsyncEndSession, AsyncClearSessions } = useContext(AdminContext);
     const [ TransactionModalActive, SetTransactionModalActive ] = useState(false);
     const [ TransactionFocus, SetTransactionFocus ] = useState({});
-    const [ TempSessions, SetTempSessions ] = useState(ActiveSessions);
 
     return (
         <Spring
@@ -33,10 +32,10 @@ const Home = ({info}) => {
                             TransactionList = {TransactionFocus.Checkout}
                             TransactionTable = {TransactionFocus.Table}
                             TransactionStatus = {TransactionFocus.Status}
-                            TempSessions = {TempSessions}
-                            UpdateSessions = {SetTempSessions}
+                            TempSessions = {ActiveSessions}
+                            UpdateSessions = {SetActiveSessions}
                             Cancel = {SetTransactionModalActive}
-                            ActiveSessions = {ActiveSessions}
+                            ClearSessions = {AsyncClearSessions}
                             EndSession = {AsyncEndSession}
                         />
                         :
@@ -63,8 +62,8 @@ const Home = ({info}) => {
                             />
                             <div className="OrderList">
                                 {
-                                    TempSessions.length > 0 ?
-                                    TempSessions.map((Items, key) => 
+                                    ActiveSessions.length !== 0 ?
+                                    ActiveSessions.map((Items, key) => 
                                     <ListCard 
                                         key = {key}
                                         CardContent = {Items.customer_name} 
@@ -107,7 +106,7 @@ const Home = ({info}) => {
                                                 CardContent = {Items.customer_name} 
                                                 CardFunction = {() => {
                                                     SetTransactionModalActive(true);
-                                                    SetTransactionFocus({Key: key, Id: Items.customer_id, Name: Items.customer_name, Table: Items.customer_table_no, Checkout: JSON.parse(Items.checkout).checkout});
+                                                    SetTransactionFocus({Key: key, Id: Items.customer_id, Name: Items.customer_name, Table: Items.customer_table_no, Checkout: JSON.parse(Items.checkout).checkout, Status: Items.status});
                                                 }}
                                             />)
                                             :

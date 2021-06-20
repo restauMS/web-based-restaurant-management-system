@@ -180,11 +180,18 @@ export const ModifyItemModal = (props) => {
 
 export const OrderTransactionModal = (props) => {
 
-    const EndSession = (Id) => {
+    const EndSession = (Id, Status) => {
+
+        if(Status === 0) {
+            alert('Session is already archived');
+            return;
+        }
+
         const UpdatedSessions = props.TempSessions.filter(Session => Session.customer_id !== Id);
         props.UpdateSessions(UpdatedSessions);
         props.EndSession(Id);
-    }
+
+    };
 
     return (
         <div className = "DashboardModalContainer">
@@ -242,8 +249,9 @@ export const OrderTransactionModal = (props) => {
                             isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonFunction = {() => {
                                 if(props.TempSessions.length === 1)
-                                       
-                                EndSession(props.TransactionId);
+                                    props.ClearSessions();
+                                
+                                EndSession(props.TransactionId, props.TransactionStatus);
                                 props.Cancel(false);
                             }}
                         />
@@ -401,6 +409,9 @@ export const NewItemModal = (props) => {
 }
 
 export const EditSettingInfoModal = (props) => {
+
+    const [ NewValue , SetNewValue ] = useState('');
+
     return (
         <div className='DashboardModalContainer'>
             <div className = {
@@ -419,14 +430,32 @@ export const EditSettingInfoModal = (props) => {
                     />
                     <div className="ModalInputGroup">
                         <Textfield
-                            Type = {props.InfoEditable === 'Password' ? "password" : "text"}
-                            PlaceholderTitle = {`New ${props.InfoEditable}`}
-                            Name = {`New${props.InfoEditable}`}
+                            Type = 'text'
+                            Name = {`Old${props.InfoEditable}`}
+                            Rest = {{
+                                'defaultValue': `${
+                                    props.InfoEditable === 'Username' ? 
+                                        props.ToEditData.username :
+                                    props.InfoEditable === 'Fullname' ?
+                                        props.ToEditData.fullname :
+                                    props.InfoEditable === 'Password' ?
+                                        props.ToEditData.password :
+                                    props.InfoEditable === 'Contact' ?
+                                        props.ToEditData.phone :
+                                    props.InfoEditable === 'Address' ?
+                                        props.ToEditData.address :
+                                    undefined
+                                }`
+                            }}
                         />
                         <Textfield
                             Type = {props.InfoEditable === 'Password' ? "password" : "text"}
-                            PlaceholderTitle = {`Old ${props.InfoEditable}`}
-                            Name = {`Old${props.InfoEditable}`}
+                            PlaceholderTitle = {`New ${props.InfoEditable}`}
+                            Name = {`New${props.InfoEditable}`}
+                            HandleChange = {(e) => {
+                                e.preventDefault();
+                                SetNewValue(e.target.value);
+                            }}
                         />
                     </div>
                     <div className="ModalButtonGroup">
@@ -435,7 +464,6 @@ export const EditSettingInfoModal = (props) => {
                             ButtonContent = "Cancel"
                             isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonFunction = {() => {
-                                // Goes back to its initial states
                                 props.SetModalActive(false);
                                 props.SetModalType('');
                             }}
@@ -444,9 +472,22 @@ export const EditSettingInfoModal = (props) => {
                             isButtonLink = {false}
                             isButtonContrast = {props.isModalContrast ? false : true}
                             ButtonContent = "Accept Changes"
-                            ButtonFunction = {() => {
-                                alert('Are you sure?');
-                            }}
+                            ButtonFunction = {    
+                                () => {
+                                    if (props.InfoEditable === 'Username')
+                                        props.SetNewUsername(NewValue, props.ToEditData.username, props.ToEditData.id);
+                                    else if (props.InfoEditable === 'Fullname')
+                                        props.SetNewName(NewValue, props.ToEditData.fullname, props.ToEditData.id);
+                                    else if (props.InfoEditable === 'Password')
+                                        props.SetNewPassword(NewValue, props.ToEditData.password, props.ToEditData.id);
+                                    else if (props.InfoEditable === 'Contact')
+                                        props.SetNewContacts(NewValue, props.ToEditData.phone, props.ToEditData.id)
+                                    else if (props.InfoEditable === 'Address')
+                                        props.SetNewAddress(NewValue, props.ToEditData.address, props.ToEditData.id);
+                                    props.SetModalActive(false);
+                                    console.log("Password stuff: " + NewValue + " " + props.ToEditData.password + " " + props.ToEditData.id)
+                                }
+                            }
                         />
                     </div>
                 </div>

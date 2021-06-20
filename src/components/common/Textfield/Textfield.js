@@ -12,6 +12,7 @@ const Textfield = props => {
             value = {props.Value}
             min = {props.MinimumValue}
             style = {props.Style}
+            {...props.Rest}
         />
     )
 }

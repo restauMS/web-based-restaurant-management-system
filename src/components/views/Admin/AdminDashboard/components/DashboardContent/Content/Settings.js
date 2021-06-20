@@ -11,13 +11,12 @@ import '../style/Content.scss';
 const Settings = () => {
 
     const { LogOff } = useContext(AuthContext);
-    const { Data } = useContext(AdminContext);
+    const { Data, AsyncEditInfoUsername, AsyncEditInfoName, AsyncEditInfoPassword, AsyncEditInfoAddress, AsyncEditInfoContacts, AsyncDeleteAccount } = useContext(AdminContext);
 
     
     const [ ModalActive, SetModalActive ] = useState(false);
     const [ ModalType, SetModalType ] = useState('');
-    
-    
+
     return (
         <Spring
         from = {{opacity: 0, transition: '0.1s ease-in-out'}}
@@ -28,7 +27,13 @@ const Settings = () => {
                 <div className = "SettingsContainer" style = {{...props}}>
                     {
                         ModalActive ? 
-                        <EditModal 
+                        <EditModal
+                            ToEditData = {Data}
+                            SetNewUsername = {AsyncEditInfoUsername}
+                            SetNewName = {AsyncEditInfoName}
+                            SetNewPassword = {AsyncEditInfoPassword}
+                            SetNewContacts = {AsyncEditInfoContacts}
+                            SetNewAddress = {AsyncEditInfoAddress}
                             InfoEditable = {ModalType}
                             isModalContrast  = {false}
                             SetModalActive = {SetModalActive}
@@ -103,6 +108,8 @@ const Settings = () => {
                                         ButtonContent = "Delete Account"
                                         isButtonContrast = {true}
                                         ButtonFunction = {() => {
+                                            alert('Are you sure? Doing this will erase your account forever!')
+                                            AsyncDeleteAccount(Data.id);
                                             LogOff();
                                         }}
                                     />

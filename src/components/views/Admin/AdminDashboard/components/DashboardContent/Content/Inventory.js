@@ -79,7 +79,7 @@ const Inventory = () => {
                     <div className="InventoryListContainer">
                         <div className="InventoryList">
                             {
-                                TempInventory.length != 0 ?
+                                TempInventory.length !== 0 ?
                                 TempInventory.map((Items, key) => 
                                 <ListCard 
                                     key = {key} 
