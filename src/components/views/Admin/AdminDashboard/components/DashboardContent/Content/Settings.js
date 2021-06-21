@@ -108,9 +108,13 @@ const Settings = () => {
                                         ButtonContent = "Delete Account"
                                         isButtonContrast = {true}
                                         ButtonFunction = {() => {
-                                            alert('Are you sure? Doing this will erase your account forever!')
-                                            AsyncDeleteAccount(Data.id);
-                                            LogOff();
+                                             if(window.confirm('Are you sure? Doing this will erase your account forever!')){
+                                                 AsyncDeleteAccount(Data.id);
+                                                 LogOff();
+                                             }
+                                            else {
+                                                return;
+                                            }
                                         }}
                                     />
                                 </div>

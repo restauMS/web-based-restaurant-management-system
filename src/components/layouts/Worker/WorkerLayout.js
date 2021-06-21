@@ -1,6 +1,6 @@
 // Dependency Imports
 import React from 'react';
-
+import { WorkerProvider } from '../../contexts/WorkerContext';
 // Component Imports
 import {WorkerLogin as Login, WorkerRegistration as Registration, WorkerDashboard as Dashboard} from '../../views/Worker/WorkerView';
 
@@ -28,10 +28,12 @@ export const WorkerRegistration = () => {
 // Dashboard component for viewing critical information
 export const WorkerDashboard = ({routes}) => {
     return (
-        <div className="WorkerLayoutContainer">
-            <Dashboard
-                routes = {routes}
-            />
-        </div>
+        <WorkerProvider>
+            <div className="WorkerLayoutContainer">
+                <Dashboard
+                    routes = {routes}
+                />
+            </div>
+        </WorkerProvider>
     )
 }

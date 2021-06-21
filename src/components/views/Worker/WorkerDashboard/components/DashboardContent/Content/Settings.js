@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../../../../../contexts/AuthContext';
+import { WorkerContext } from '../../../../../../contexts/WorkerContext';
 import { Spring } from 'react-spring/renderprops';
-
 import Label from '../../../../../../common/Label/Label';
 import Button from '../../../../../../common/Button/Button';
 import { ListCard } from '../../../../../../common/Card/Card';
+import { EditSettingInfoModal as EditModal } from '../../../../../../common/Modals/Modal';
 
 const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
 
     const {LogOff} = useContext(AuthContext);
+    const { Data, AsyncEditInfoUsername, AsyncEditInfoName, AsyncEditInfoPassword, AsyncEditInfoAddress, AsyncEditInfoContacts, AsyncDeleteAccount } = useContext(WorkerContext);
+
+    const [ ModalActive, SetModalActive ] = useState(false);
+    const [ ModalType, SetModalType ] = useState('');
 
     return (
         <Spring
@@ -18,6 +23,23 @@ const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
             {
                 props => 
                 <div className = "SettingsContainer" style={{...props}}>
+                    {
+                        ModalActive ? 
+                        <EditModal
+                            ToEditData = {Data}
+                            SetNewUsername = {AsyncEditInfoUsername}
+                            SetNewName = {AsyncEditInfoName}
+                            SetNewPassword = {AsyncEditInfoPassword}
+                            SetNewContacts = {AsyncEditInfoContacts}
+                            SetNewAddress = {AsyncEditInfoAddress}
+                            InfoEditable = {ModalType}
+                            isModalContrast  = {false}
+                            SetModalActive = {SetModalActive}
+                            SetModalType = {SetModalType}
+                        /> 
+                            : 
+                        null
+                    }
                     <div className="TopBar">
                         <Label
                             LabelContent = "Settings"
@@ -41,23 +63,43 @@ const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
                     <div className="InfoContainer">
                         <div className="IdUsername">
                             <ListCard
-                                CardContent = {`Account Id: ${Id}`}
+                                CardContent = {`Account Id: ${Data.id}`}
                             />
                             <ListCard
-                                CardContent = {`Username: ${Username}`}
+                                CardContent = {`Username: ${Data.username}`}
+                                CardFunction = {() => {
+                                    SetModalType('Username');
+                                    SetModalActive(true);
+                                }}
                             />
                         </div>
                         <ListCard
-                            CardContent = {`Name: ${Name}`}
+                            CardContent = {`Name: ${Data.fullname}`}
+                            CardFunction = {() => {
+                                SetModalType('Fullname');
+                                SetModalActive(true);
+                            }}
                         />
                         <ListCard
-                            CardContent = {`Password: ${Password}`}
+                            CardContent = {`Password: ${Data.password}`}
+                            CardFunction = {() => {
+                                SetModalType('Password');
+                                SetModalActive(true);
+                            }}
                         />
                         <ListCard
-                            CardContent = {`Contact #: ${Contact}`}
+                            CardContent = {`Contact #: ${Data.phone}`}
+                            CardFunction = {() => {
+                                SetModalType('Contact');
+                                SetModalActive(true);
+                            }}
                         />
                         <ListCard
-                            CardContent = {`Address: ${Address}`}
+                            CardContent = {`Address: ${Data.address}`}
+                            CardFunction = {() => {
+                                SetModalType('Address');
+                                SetModalActive(true);
+                            }}
                         />
                     </div>
                     <div className="ButtonGroup">
@@ -66,15 +108,13 @@ const Settings = ({Id, Username, Name, Password, Contact, Address}) => {
                                 ButtonContent = "Delete Account"
                                 isButtonContrast = {false}
                                 ButtonFunction = {() => {
-                                    // Function goes here
-                                }}
-                            />
-                            <Button
-                                isButtonLink = {false}
-                                ButtonContent = "Edit Account"
-                                isButtonContrast = {false}
-                                ButtonFunction = {() => {
-                                    // Function goes here
+                                    if(window.confirm('Are you sure? Doing this will erase your account forever!')){
+                                        AsyncDeleteAccount(Data.id);
+                                        LogOff();
+                                    }
+                                   else {
+                                       return;
+                                   }
                                 }}
                             />
                         </div>

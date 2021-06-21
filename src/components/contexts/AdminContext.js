@@ -11,6 +11,8 @@ export const AdminProvider = (props) => {
     const [ Inventory, SetInventory ] = useState([]);
     const [ ActiveSessions, SetActiveSessions ] = useState([]);
     const [ AllSessions, SetAllSessions ] = useState([]);
+    const [ TrendingDish, SetTrendingDish ] = useState('');
+    
 
     const GetData = async(User) => {
         try {
@@ -55,7 +57,7 @@ export const AdminProvider = (props) => {
         } catch (error) {
             console.trace(error);
         }
-    }
+    };
 
     const GetActiveSessions = async() => {
         try {
@@ -71,7 +73,7 @@ export const AdminProvider = (props) => {
         } catch (error) {
             console.trace(error);
         }
-    }
+    };
 
     const AsyncEditInfoUsername = async(NewUsername, OldUsername, Id) => {
         try {
@@ -270,13 +272,17 @@ export const AdminProvider = (props) => {
         }
     };
 
-    const AsyncClearSessions = async() => {
+    const AsyncUpdateQty = async(NewQty, Id) => {
         try {
             const headers = new Headers();
-            headers.append('Authorization', `Bearer ${authToken}`);
-            const Result = await fetch('/API/Admin/ClearSessions', {
-                method: 'GET',
-                headers: headers
+            headers.append('Content-Type', 'application/json');
+            const Result = await fetch('/API/Inventory/QtyUpdate', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    "NewQty": NewQty,
+                    "Id": Id
+                })
             });
             return Result.json();
         } catch (error) {
@@ -284,7 +290,42 @@ export const AdminProvider = (props) => {
         }
     };
 
-    
+    const AsyncGetQty = async(Id) => {
+        try {
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+            const Result = await fetch('/API/Inventory/ItemQty', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    "Id": Id
+                })
+            });
+
+            return Result.json();    
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const AsyncGetTrendingDish = async() => {
+        try {
+            const Result = await fetch('/API/Inventory/TrendingDish', {
+                method: 'GET'
+            });
+            return Result.json();
+        } catch (error) {
+            console.trace(error);
+        }
+    };
+
+    const GetTrendingDish = () => {
+        AsyncGetTrendingDish()
+        .then(TrendingDish => SetTrendingDish(TrendingDish[0].name))
+        .catch(err => console.log(err));
+        return TrendingDish;
+    };
 
     // eslint-disable-next-line
     useEffect(() => {
@@ -309,8 +350,6 @@ export const AdminProvider = (props) => {
         .then(({ ActiveSessions }) => SetActiveSessions(ActiveSessions))
         .catch(err => console.trace(err));
 
-
-
     }, []);
 
     return (
@@ -323,17 +362,19 @@ export const AdminProvider = (props) => {
                     ActiveSessions,
                     AllSessions,
                     Inventory,
+                    AsyncUpdateQty,
                     AsyncAddItem,
                     AsyncRemoveItem,
                     AsyncEndSession,
-                    AsyncClearSessions,
                     AsyncClearInventory,
                     AsyncEditInfoUsername,
                     AsyncEditInfoName,
                     AsyncEditInfoPassword,
                     AsyncEditInfoAddress,
                     AsyncEditInfoContacts,
-                    AsyncDeleteAccount
+                    AsyncDeleteAccount,
+                    AsyncGetQty,
+                    GetTrendingDish
                 }
             }
         >

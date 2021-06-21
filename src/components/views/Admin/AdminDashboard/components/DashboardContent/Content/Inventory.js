@@ -13,8 +13,8 @@ const Inventory = () => {
 
     const [ AddItemModalStatus, SetAddItemModalStatus ] = useState(false);
     const [ InventoryItemModalStatus, SetInventoryItemModalStatus ] = useState(false);
-    const [ TempInventory, SetTempInventory] = useState(Inventory);
-    const [ EditItemModalStatus, SetEditItemModalStatus] = useState(false);
+    const [ TempInventory, SetTempInventory ] = useState(Inventory);
+    const [ EditItemModalStatus, SetEditItemModalStatus ] = useState(false);
     const [ ItemFocus, SetItemFocus] = useState({});
 
     return (
@@ -30,7 +30,7 @@ const Inventory = () => {
                             <AddItem
                                 SetModalStatus = {SetAddItemModalStatus}
                                 isModalContrast = {false}
-                                PushItem = { AsyncAddItem }
+                                PushItem = {AsyncAddItem}
                                 UpdateInventory = {SetTempInventory}
                                 TempInventory = {TempInventory}
                             />

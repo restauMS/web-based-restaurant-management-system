@@ -1,38 +1,17 @@
-import React , { useState } from 'react';
+import React , { useState , useContext } from 'react';
 import { Spring } from 'react-spring/renderprops';
-
+import { WorkerContext } from '../../../../../../contexts/WorkerContext';
 import Label from '../../../../../../common/Label/Label';
 import { ListCard } from '../../../../../../common/Card/Card';
 import Button from '../../../../../../common/Button/Button';
 import { NewItemModal as AddItem, ItemModal as ViewItem, ModifyItemModal as EditItem } from '../../../../../../common/Modals/Modal';
 
-const WhateverListGoesHere = [
-    {
-        Name: 'Chicken Burger', 
-        Price: 75, 
-        Quantity: 13
-    },
-    {
-        Name: 'Spaghetti', 
-        Price: 50, 
-        Quantity: 3 
-    },
-    {
-        Name: 'Sandwich', 
-        Price: 25, 
-        Quantity: 5
-    },
-    {
-        Name: 'Roasted Nuts', 
-        Price: 12, 
-        Quantity: 2
-    }
-]
-
 const Inventory = () => {
+    const { Inventory, AsyncAddItem, AsyncRemoveItem, AsyncClearInventory } = useContext(WorkerContext);
 
     const [ AddItemModalStatus, SetAddItemModalStatus ] = useState(false);
     const [ InventoryItemModalStatus, SetInventoryItemModalStatus ] = useState(false);
+    const [ TempInventory, SetTempInventory ] = useState(Inventory);
     const [ EditItemModalStatus, SetEditItemModalStatus] = useState(false);
     const [ ItemFocus, SetItemFocus] = useState({});
 
@@ -50,28 +29,35 @@ const Inventory = () => {
                             <AddItem
                                 SetModalStatus = {SetAddItemModalStatus}
                                 isModalContrast = {true}
+                                PushItem = {AsyncAddItem}
+                                UpdateInventory = {SetTempInventory}
+                                TempInventory = {TempInventory}
                             />
                         :
                             null
                     }
                     {
                         InventoryItemModalStatus ? 
-                        <ViewItem
-                            FoodId = { ItemFocus.Id }
-                            FoodName = { ItemFocus.Name }
-                            FoodPrice = { ItemFocus.Price }
-                            ItemQuantity = { ItemFocus.Quantity }
-                            SetModalStatus = { SetInventoryItemModalStatus }
-                            SetEditStatus = { SetEditItemModalStatus }
-                            isModalContrast = {true}
-                        />
+                            <ViewItem
+                                isModalContrast = {true}
+                                FoodId = { ItemFocus.Id }
+                                FoodName = { ItemFocus.Name }
+                                FoodPrice = { ItemFocus.Price }
+                                ItemQuantity = { ItemFocus.Quantity }
+                                SetModalStatus = { SetInventoryItemModalStatus }
+                                SetEditStatus = { SetEditItemModalStatus }
+                                UpdateInventory = {SetTempInventory}
+                                TempInventory = {TempInventory}
+                                PopItem = {AsyncRemoveItem}
+                                ClearInventory = {AsyncClearInventory}
+                            />
                         :
                             null
                     }
                     {
                         EditItemModalStatus ?
                             <EditItem 
-                                isModalContrast = {true}
+                                isModalContrast = {false}
                                 ItemName = {ItemFocus.Name}
                                 InitialQuantity = {ItemFocus.Quantity}
                                 SetEditStatus = { SetEditItemModalStatus }
@@ -95,17 +81,23 @@ const Inventory = () => {
                     <div className="InventoryListContainer">
                         <div className="InventoryList">
                             {
-                                WhateverListGoesHere.map((Items, key) => 
-                                <ListCard 
-                                    key = {key} 
-                                    CardContent = {Items.Name}
-                                    CardFunction = {() => {
-                                        SetInventoryItemModalStatus(true);
-                                        SetItemFocus({Id: key, Name: Items.Name, Price: Items.Price, Quantity: Items.Quantity});
-                                    }}
-                                />
-                                )
-                            }
+                                    TempInventory.length !== 0 ?
+                                    TempInventory.map((Items, key) => 
+                                    <ListCard 
+                                        key = {key} 
+                                        CardContent = {Items.name}
+                                        CardFunction = {() => {
+                                            SetInventoryItemModalStatus(true);
+                                            SetItemFocus({Id: Items.id, Name: Items.name, Price: Items.price, Quantity: Items.quantity});
+                                        }}
+                                    />
+                                    )
+                                    :
+                                    <Label
+                                        LabelContent = "Resupply needed!"
+                                        isLabelContrast = {false}
+                                    />
+                                }
                         </div>
                     </div>
                     <div className="ButtonContainer">
@@ -114,8 +106,7 @@ const Inventory = () => {
                                 isButtonContrast = {false}
                                 ButtonContent = 'Add Item'
                                 ButtonFunction = {() => {
-                                    // Add new item in the database
-                                    // Will trigger a modal
+                                    SetAddItemModalStatus(true);
                                 }}
                             />
                     </div>

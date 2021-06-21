@@ -9,7 +9,7 @@ import { ListCard } from '../../../../../../common/Card/Card';
 
 const Home = ({info}) => {
 
-    const { ActiveSessions, SetActiveSessions, AllSessions, AsyncEndSession, AsyncClearSessions } = useContext(AdminContext);
+    const { ActiveSessions, SetActiveSessions, AllSessions, AsyncEndSession, AsyncUpdateQty, AsyncGetQty, GetTrendingDish } = useContext(AdminContext);
     const [ TransactionModalActive, SetTransactionModalActive ] = useState(false);
     const [ TransactionFocus, SetTransactionFocus ] = useState({});
 
@@ -21,7 +21,6 @@ const Home = ({info}) => {
             {
                 props => 
                 <div className="HomeContainer" style={{...props}}>
-
                     {
                         TransactionModalActive ? 
                         <OrderTransactionModal
@@ -34,8 +33,9 @@ const Home = ({info}) => {
                             TransactionStatus = {TransactionFocus.Status}
                             TempSessions = {ActiveSessions}
                             UpdateSessions = {SetActiveSessions}
+                            UpdateInventory = {AsyncUpdateQty}
+                            ItemQty = {AsyncGetQty}
                             Cancel = {SetTransactionModalActive}
-                            ClearSessions = {AsyncClearSessions}
                             EndSession = {AsyncEndSession}
                         />
                         :
@@ -89,6 +89,11 @@ const Home = ({info}) => {
                                     isLabelContrast = {false}
                                 />
                                 <div className="Dish">
+                                    <Label
+                                        LabelContent = {`${GetTrendingDish()}`}
+                                        Style = {{fontSize: 'clamp(10px, 20px, 30px)', textAlign: 'center', color: '#EAAC8B'}}
+                                        isLabelContrast = {false}
+                                    />
                                 </div>
                             </div>
                             <div className="RecentTransactions">
@@ -99,21 +104,21 @@ const Home = ({info}) => {
                                 />
                                 <div className="TransactionList">
                                     {
-                                            AllSessions.length !== 0 ?
-                                            AllSessions.map((Items, key) => 
-                                            <ListCard 
-                                                key = {key} 
-                                                CardContent = {Items.customer_name} 
-                                                CardFunction = {() => {
-                                                    SetTransactionModalActive(true);
-                                                    SetTransactionFocus({Key: key, Id: Items.customer_id, Name: Items.customer_name, Table: Items.customer_table_no, Checkout: JSON.parse(Items.checkout).checkout, Status: Items.status});
-                                                }}
-                                            />)
-                                            :
-                                            <Label
-                                            LabelContent = {`No recent transactions`}
-                                            Style = {{fontSize: 'clamp(7px, 14px, 21px)'}}
-                                            isLabelContrast = {false}
+                                        AllSessions.length !== 0 ?
+                                        AllSessions.map((Items, key) => 
+                                        <ListCard 
+                                            key = {key} 
+                                            CardContent = {Items.customer_name} 
+                                            CardFunction = {() => {
+                                                SetTransactionModalActive(true);
+                                                SetTransactionFocus({Key: key, Id: Items.customer_id, Name: Items.customer_name, Table: Items.customer_table_no, Checkout: JSON.parse(Items.checkout).checkout, Status: Items.status});
+                                            }}
+                                        />)
+                                        :
+                                        <Label
+                                        LabelContent = {`No recent transactions`}
+                                        Style = {{fontSize: 'clamp(7px, 14px, 21px)'}}
+                                        isLabelContrast = {false}
                                         />
                                     }
                                 </div>

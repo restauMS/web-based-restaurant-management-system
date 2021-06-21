@@ -15,24 +15,24 @@ const Transactions = () => {
     return (
         <div className = "TransactionsContainer">
             {
-                        TransactionModalActive ? 
-                        <OrderTransactionModal
-                            isModalContrast = {false}
-                            key = {TransactionFocus.Key}                         
-                            TransactionId = {TransactionFocus.Id}
-                            TransactionName = {TransactionFocus.Name}
-                            TransactionList = {TransactionFocus.Checkout}
-                            TransactionTable = {TransactionFocus.Table}
-                            TransactionStatus = {TransactionFocus.Status}
-                            TempSessions = {AllSessions}
-                            UpdateSessions = {SetAllSessions}
-                            Cancel = {SetTransactionModalActive}
-                            ClearSessions = {AsyncClearSessions}
-                            EndSession = {AsyncEndSession}
-                        />
-                        :
-                        null
-                    }
+                TransactionModalActive ? 
+                <OrderTransactionModal
+                    isModalContrast = {false}
+                    key = {TransactionFocus.Key}                         
+                    TransactionId = {TransactionFocus.Id}
+                    TransactionName = {TransactionFocus.Name}
+                    TransactionList = {TransactionFocus.Checkout}
+                    TransactionTable = {TransactionFocus.Table}
+                    TransactionStatus = {TransactionFocus.Status}
+                    TempSessions = {AllSessions}
+                    UpdateSessions = {SetAllSessions}
+                    Cancel = {SetTransactionModalActive}
+                    ClearSessions = {AsyncClearSessions}
+                    EndSession = {AsyncEndSession}
+                />
+                :
+                null
+            }
             <div className="TopBar">
                 <Label
                     LabelContent = "Transactions"
@@ -59,10 +59,10 @@ const Transactions = () => {
                         />)
                         :
                         <Label
-                        LabelContent = {`No recent transactions`}
-                        Style = {{fontSize: 'clamp(7px, 14px, 21px)'}}
-                        isLabelContrast = {false}
-                    />
+                            LabelContent = {`No recent transactions`}
+                            Style = {{fontSize: 'clamp(7px, 14px, 21px)'}}
+                            isLabelContrast = {false}
+                        />
                     }
                 </div>
             </div>

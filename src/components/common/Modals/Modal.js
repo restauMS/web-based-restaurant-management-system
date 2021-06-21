@@ -180,6 +180,8 @@ export const ModifyItemModal = (props) => {
 
 export const OrderTransactionModal = (props) => {
 
+    // const [ ItemQty, SetItemQty ] = useState(0);
+
     const EndSession = (Id, Status) => {
 
         if(Status === 0) {
@@ -190,8 +192,33 @@ export const OrderTransactionModal = (props) => {
         const UpdatedSessions = props.TempSessions.filter(Session => Session.customer_id !== Id);
         props.UpdateSessions(UpdatedSessions);
         props.EndSession(Id);
+        for(let i in props.TransactionList){
+            
+            let TListQty = props.TransactionList[i].Qty
+            let ItemQty = 0;
+            props.ItemQty(props.TransactionList[i].Id)
+            .then((Qty) => ItemQty = Qty[0].quantity)
+            .catch(err => console.log(err));
 
+            setTimeout(() => {
+                console.log("Item Qty from TransactionList = ", TListQty);
+                console.log("Item Qty from Database = ", ItemQty);
+                setTimeout(() => {
+                    let NewDeductedQty = (ItemQty - TListQty);
+                    props.UpdateInventory(NewDeductedQty, props.TransactionList[i].Id);
+                    console.log((ItemQty - TListQty));
+                }, 2000)
+            }, 2000)
+        }
     };
+
+    const TotalPayable = () => {
+        let Total = 0;
+        for( let i = 0; i < props.TransactionList.length; i++ )
+            Total += props.TransactionList[i].Total;
+
+        return Total;
+    }
 
     return (
         <div className = "DashboardModalContainer">
@@ -232,12 +259,20 @@ export const OrderTransactionModal = (props) => {
                         textAlign: 'start'
                     }}
                 />
+                <ModalLabel
+                    LabelContent = {`Total Payable: ${TotalPayable()}`}
+                    isLabelContrast = {false}
+                    Style = {{
+                        fontSize: 'clamp(10px, 15px, 20px)',
+                        textAlign: 'start'
+                    }}
+                />
                 <div className={props.isModalContrast ? "OrderedItemsContainer NonContrast" : "OrderedItemsContainer Contrast"}>
                     {
                         props.TransactionList.map((Items, key) => (
                             <ListCard
                                 key = {key}
-                                CardContent = {Items.Name}
+                                CardContent = { Items.Name }
                             />
                         ))
                     }
@@ -247,10 +282,7 @@ export const OrderTransactionModal = (props) => {
                             isButtonLink = {false}
                             ButtonContent = "End Session"
                             isButtonContrast = {props.isModalContrast ? false : true}
-                            ButtonFunction = {() => {
-                                if(props.TempSessions.length === 1)
-                                    props.ClearSessions();
-                                
+                            ButtonFunction = {() => {                                
                                 EndSession(props.TransactionId, props.TransactionStatus);
                                 props.Cancel(false);
                             }}

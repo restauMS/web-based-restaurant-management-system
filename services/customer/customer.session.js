@@ -33,7 +33,14 @@ module.exports = async( DineType, Count, Name, Address, Phone, Table, Checkout) 
                             '${Table}',
                             '{"checkout": ${Checkout}}',
                             1
-                        )
+                        );
+
+                        UPDATE 
+                            table_list 
+                        SET 
+                            availability = 1 
+                        WHERE 
+                            id = ${Table}
                         `;
         await Connection(Query);
         return true;
