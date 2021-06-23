@@ -1,4 +1,3 @@
-// ! Still subject to Change...
 import React, { useContext , useState } from 'react';
 import { CustomerContext } from '../../../../contexts/CustomerContext';
 import CustomerLabel from '../../../../common/Label/Label';
@@ -16,9 +15,12 @@ const CustomerLogTable = () => {
     
     if(PageCount !== 7)
         return null;
-
-    if(CustomerDineType === 'Takeout')
+    // eslint-disable-next-line
+    else if(CustomerDineType === 'Takeout'){
+        SetTable(0);
         _NextStage();
+    }
+        
 
     return (
         <div
@@ -29,13 +31,15 @@ const CustomerLogTable = () => {
                 margin: 'auto',
                 padding: '20px'
             }}
-        >
-            {/*Needs major refactoring, wrong usage of the Component */}
-            {Count >= 1 || TableStatus ? 
-            <AlertCard
-                Style = {{zIndex: '1', position: 'absolute', top: '20px', left: '30px'}} 
-                AlertTitle={Count >= 1 ? 'Table limit reached' : TableStatus ? 'Table is taken' : null}/> 
-            : null
+        >            
+            { 
+            Count >= 1 || TableStatus ? 
+                <AlertCard
+                    Style = {{zIndex: '1', position: 'absolute', top: '20px', left: '30px'}} 
+                    AlertTitle={Count >= 1 ? 'Table limit reached' : TableStatus ? 'Table is taken' : null}
+                /> 
+            : 
+                null
             }
             <CustomerLabel
                 LabelContent = 'Choose your desired table'
@@ -104,6 +108,6 @@ const CustomerLogTable = () => {
             />}
         </div>
     );
-}
+};
 
 export default CustomerLogTable;

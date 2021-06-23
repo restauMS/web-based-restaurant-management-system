@@ -8,7 +8,7 @@ import { ListCard } from '../../../../../../common/Card/Card';
 
 const Home = ({info}) => {
 
-    const { ActiveSessions, SetActiveSessions, AllSessions, AsyncEndSession, AsyncUpdateQty, AsyncGetQty, GetTrendingDish } = useContext(WorkerContext);
+    const { ActiveSessions, SetActiveSessions, AllSessions, AsyncEndSession, AsyncUpdateQty, AsyncGetQty, TrendingDish } = useContext(WorkerContext);
     const [ TransactionModalActive, SetTransactionModalActive ] = useState(false);
     const [ TransactionFocus, SetTransactionFocus ] = useState({});
 
@@ -90,7 +90,7 @@ const Home = ({info}) => {
                                 />
                                 <div className="Dish">
                                     <Label
-                                        LabelContent = {`${GetTrendingDish()}`}
+                                        LabelContent = {`${TrendingDish}`}
                                         Style = {{fontSize: 'clamp(10px, 20px, 30px)', textAlign: 'center', color: '#EAAC8B'}}
                                         isLabelContrast = {false}
                                     />

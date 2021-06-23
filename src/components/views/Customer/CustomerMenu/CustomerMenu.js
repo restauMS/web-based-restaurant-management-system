@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import CustomerLabel from '../../../common/Label/Label';
 import CustomerButton from '../../../common/Button/Button';
 import { CustomerContext } from '../../../contexts/CustomerContext';
@@ -16,7 +16,6 @@ const CustomerMenu = props => {
         MenuList, 
         CustomerName: Name,
         SetCustomerCheckout,
-        CustomerCheckout,
     } = useContext(CustomerContext);
 
     const CurrentDate = new Date();
@@ -145,5 +144,6 @@ const CustomerMenu = props => {
             </div>
         </div>
     );
-}
+};
+
 export default CustomerMenu;

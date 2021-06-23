@@ -12,7 +12,6 @@ export const CustomerProvider = (props) => {
     const [ CustomerAddress, SetCustomerAddress ] = useState(null);
     const [ CustomerContacts, SetCustomerContacts ] = useState(0);
     const [ CustomerTable, SetCustomerTable ] = useState(0);
-    const [ CustomerCheckout, SetCustomerCheckout ] = useState([]);
     const [ Stage, SetStage ] = useState(1);
     const [ OrderSession, SetOrderSession ] = useState({});
     const [ PageCount, SetPageCount] = useState(1);
@@ -45,7 +44,7 @@ export const CustomerProvider = (props) => {
     const FetchTableList = async() => {
         try {
             const Data = await fetch('/API/Customer/Tables', {
-                method: 'POST'
+                method: 'GET'
             });
             return Data.json();
         } catch (error) {
@@ -121,12 +120,7 @@ export const CustomerProvider = (props) => {
     const SetTable = Table => {
         SetCustomerTable(Table);
         sessionStorage.setItem('CustomerTable', Table);
-    }
-
-    const SetCheckout = Checkout => {
-        SetCustomerCheckout(Checkout);
-        sessionStorage.setItem('CustomerCheckout', Checkout);    
-    }
+    }  
 
     useEffect(() => {
 
@@ -173,14 +167,12 @@ export const CustomerProvider = (props) => {
                 CustomerAddress,
                 CustomerContacts,
                 CustomerTable,
-                CustomerCheckout,
                 SetDineType, 
                 SetCount, 
                 SetName, 
                 SetAddress, 
                 SetContacts, 
-                SetTable, 
-                SetCustomerCheckout, 
+                SetTable,  
                 MenuList,
                 TableList,
                 PushOrderSessionToDB 

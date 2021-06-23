@@ -9,9 +9,11 @@ const CustomerCount = () => {
 
     if(PageCount !== 4)
         return null;
-
-    if(CustomerDineType === 'Takeout')
+    // eslint-disable-next-line
+    else if(CustomerDineType === 'Takeout'){
+        SetCount('N/A')
         _NextPage();
+    }
 
     return (
         <div

@@ -9,6 +9,7 @@ const Label = (props) => {
         <p
         style = {props.Style} 
         className={props.isLabelContrast ? 'Label LabelContrast' : 'Label'}
+        onClick = {props.LabelFunction}
         > 
             {props.LabelContent} 
         </p>

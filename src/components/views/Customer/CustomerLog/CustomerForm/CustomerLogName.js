@@ -7,26 +7,22 @@ const CustomerLogName = () => {
 
     const { PageCount , SetName } = useContext(CustomerContext);
 
-    // This is to make sure this component will not mount if not on the right Log Page
     if(PageCount !== 2)
         return null;
 
     return (
         <div style=
-        {
-            
+        {  
             {
                 display: 'flex', 
                 flexFlow: 'column',
             }
         }
         >
-            {/* * Customer Label: Just a heading */}
             <CustomerLabel 
                 LabelContent='welcome.'
                 isLabelContrast={false}
             />
-            {/* * Customer Textfield: A custom Textfield Component where customer's can input text*/}
             <CustomerTextfield
                 PlaceholderTitle='enter your name'
                 HandleChange = { (e) => {

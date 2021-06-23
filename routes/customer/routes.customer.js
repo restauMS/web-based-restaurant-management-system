@@ -5,7 +5,7 @@ const Router = express.Router();
 const FetchTable = require('../../services/customer/customer.table');
 const OrderSession = require('../../services/customer/customer.session');
 
-Router.post('/Tables', async(Request, Response) => {
+Router.get('/Tables', async(Request, Response) => {
     try {
         const TableData = await FetchTable();
         if(TableData){

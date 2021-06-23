@@ -307,7 +307,7 @@ export const WorkerProvider = (props) => {
         }
     };
 
-    const AsyncGetTrendingDish = async() => {
+    const GetTrendingDish = async() => {
         try {
             const Result = await fetch('/API/Inventory/TrendingDish', {
                 method: 'GET'
@@ -318,18 +318,15 @@ export const WorkerProvider = (props) => {
         }
     };
 
-    const GetTrendingDish = () => {
-        AsyncGetTrendingDish()
-        .then(TrendingDish => SetTrendingDish(TrendingDish[0].name))
-        .catch(err => console.log(err));
-        return TrendingDish;
-    };
-
     useEffect(() => {
         // Fetches inventory list
         GetInventory()
         .then(({ List }) => SetInventory(List))
         .catch(err => console.trace(err));
+        
+        GetTrendingDish()
+        .then(TrendingDish => SetTrendingDish(TrendingDish[0].name))
+        .catch(err => console.log(err));
 
         // Fetches admin agent data
         GetData(user)
@@ -369,7 +366,7 @@ export const WorkerProvider = (props) => {
                     AsyncEditInfoContacts,
                     AsyncDeleteAccount,
                     AsyncGetQty,
-                    GetTrendingDish
+                    TrendingDish
                 }
             }
         >
