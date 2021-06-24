@@ -24,6 +24,6 @@ app.use('/API/Worker', Worker);
 app.use('/API/Admin', Admin);
 app.use('/API/Inventory', Inventory);
 
-app.listen(app.get('port', () => {
-    console.log(`API Server is listening at PORT = ${PORT}`);
-}));
+app.listen(() => {
+    console.log(`API Server is listening at PORT = ${process.env.API_SERVER}`);
+});
