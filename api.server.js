@@ -13,9 +13,9 @@ const Worker = require('./routes/worker/routes.worker');
 const Admin = require('./routes/admin/routes.admin');
 const Inventory = require('./routes/inventory/routes.inventory');
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'restoms-client/build')));
 app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+    res.sendFile(path.join(__dirname, 'restoms-client/build', 'index.html'));
 });
 
 app.use('/API/Customer', Customer);
