@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = process.env.API_SERVER;
+const path = require('path');
 
 app.use(express.json());
 
