@@ -2,9 +2,10 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const port = process.env.API_SERVER || 3001;
 const path = require('path');
 
-app.set('port', (process.env.API_SERVER || 3001));
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -24,6 +25,6 @@ app.use('/API/Worker', Worker);
 app.use('/API/Admin', Admin);
 app.use('/API/Inventory', Inventory);
 
-app.listen(() => {
-    console.log(`API Server is listening at PORT = ${process.env.API_SERVER}`);
+app.listen(port, () => {
+    console.log(`API Server is listening at PORT = ${[port]}`);
 });
