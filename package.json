@@ -24,8 +24,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "concurrently \"nodemon api.server.js\" \"cross-env PORT=3001 react-scripts start\"",
-    "prod_start": "node api.server.js",
+    "dev_start": "concurrently \"nodemon api.server.js\" \"cross-env PORT=3001 react-scripts start\"",
+    "start": "node api.server.js",
     "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -6,6 +6,7 @@ const PORT = process.env.API_SERVER || 3000;
 const path = require('path');
 
 app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 const Customer = require('./routes/customer/routes.customer');
 const Worker = require('./routes/worker/routes.worker');
