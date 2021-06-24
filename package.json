@@ -5,7 +5,7 @@
   "main": "api.server.js",
   "scripts": {
     "start": "node api.server.js",
-    "heroku-postbuild": "cd restoms-client && npm install && npm run build",
+    "heroku-postbuild": "cd restoms-client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sean Christian Lozana",
