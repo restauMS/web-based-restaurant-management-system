@@ -123,6 +123,11 @@ export const CustomerProvider = (props) => {
         sessionStorage.setItem('CustomerTable', Table);
     }  
 
+    const SetCheckout = Checkout => {
+        SetCustomerCheckout(Checkout);
+        sessionStorage.setItem('CustomerCheckout', Checkout);    
+    }
+
     useEffect(() => {
 
         // grabs the Menu list from the /API/Inventory/List endpoint
@@ -172,6 +177,7 @@ export const CustomerProvider = (props) => {
                 SetAddress, 
                 SetContacts, 
                 SetTable,  
+                SetCustomerCheckout, 
                 MenuList,
                 TableList,
                 PushOrderSessionToDB 
