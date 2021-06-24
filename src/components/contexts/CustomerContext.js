@@ -12,6 +12,7 @@ export const CustomerProvider = (props) => {
     const [ CustomerAddress, SetCustomerAddress ] = useState(null);
     const [ CustomerContacts, SetCustomerContacts ] = useState(0);
     const [ CustomerTable, SetCustomerTable ] = useState(0);
+    const [ CustomerCheckout, SetCustomerCheckout ] = useState([]);
     const [ Stage, SetStage ] = useState(1);
     const [ OrderSession, SetOrderSession ] = useState({});
     const [ PageCount, SetPageCount] = useState(1);
@@ -122,6 +123,11 @@ export const CustomerProvider = (props) => {
         sessionStorage.setItem('CustomerTable', Table);
     }  
 
+    const SetCheckout = Checkout => {
+        SetCustomerCheckout(Checkout);
+        sessionStorage.setItem('CustomerCheckout', Checkout);    
+    }
+
     useEffect(() => {
 
         // grabs the Menu list from the /API/Inventory/List endpoint
@@ -161,6 +167,7 @@ export const CustomerProvider = (props) => {
                 _BackPage, 
                 PageCount, 
                 OrderSession,
+                CustomerCheckout,
                 CustomerName,
                 CustomerDineType,
                 CustomerCount, 
@@ -173,6 +180,7 @@ export const CustomerProvider = (props) => {
                 SetAddress, 
                 SetContacts, 
                 SetTable,  
+                SetCustomerCheckout, 
                 MenuList,
                 TableList,
                 PushOrderSessionToDB 
