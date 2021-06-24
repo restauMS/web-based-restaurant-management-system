@@ -26,7 +26,7 @@
   "scripts": {
     "start": "concurrently \"nodemon api.server.js\" \"cross-env PORT=3001 react-scripts start\"",
     "prod_start": "node api.server.js",
-    "build": "react-scripts build",
+    "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
