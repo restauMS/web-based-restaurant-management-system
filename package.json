@@ -4,6 +4,7 @@
   "description": "RestoMS' server stuff",
   "main": "api.server.js",
   "scripts": {
+    "dev_start": "concurrently \"nodemon api.server.js\" \"cd restoms-client && cross-env PORT=3000 react-scripts start\"",
     "start": "nodemon api.server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
