@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const port = process.env.API_SERVER || 3001;
+const PORT = process.env.API_SERVER || 3001;
 const path = require('path');
 
 app.use(express.json());
@@ -23,4 +23,6 @@ app.use('/API/Worker', Worker);
 app.use('/API/Admin', Admin);
 app.use('/API/Inventory', Inventory);
 
-app.listen(process.env.API_SERVER || 3001);
+app.listen(PORT, () => {
+    console.log(`Server is running at port = ${PORT}`);
+});
