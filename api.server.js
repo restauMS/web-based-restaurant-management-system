@@ -5,8 +5,6 @@ const app = express();
 const port = process.env.API_SERVER || 3001;
 const path = require('path');
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
@@ -25,6 +23,4 @@ app.use('/API/Worker', Worker);
 app.use('/API/Admin', Admin);
 app.use('/API/Inventory', Inventory);
 
-app.listen(port, () => {
-    console.log(`API Server is listening at PORT = ${[port]}`);
-});
+app.listen(process.env.API_SERVER || 3001);
