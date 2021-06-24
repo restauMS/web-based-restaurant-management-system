@@ -12,6 +12,7 @@ export const CustomerProvider = (props) => {
     const [ CustomerAddress, SetCustomerAddress ] = useState(null);
     const [ CustomerContacts, SetCustomerContacts ] = useState(0);
     const [ CustomerTable, SetCustomerTable ] = useState(0);
+    const [ CustomerCheckout, SetCustomerCheckout ] = useState([]);
     const [ Stage, SetStage ] = useState(1);
     const [ OrderSession, SetOrderSession ] = useState({});
     const [ PageCount, SetPageCount] = useState(1);
@@ -129,7 +130,7 @@ export const CustomerProvider = (props) => {
         .then(
             ({List}) => SetMenuList(List)
         )
-        .catch(
+        .catch (
             Error => console.trace(Error)
         );
 
@@ -141,8 +142,6 @@ export const CustomerProvider = (props) => {
         .catch(
             Error => console.trace(Error)
         );
-        
-        
 
     }, []);
 
