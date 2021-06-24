@@ -25,8 +25,6 @@ app.use('/API/Worker', Worker);
 app.use('/API/Admin', Admin);
 app.use('/API/Inventory', Inventory);
 
-app.get('/API', (Request, Response) => {
-    Response.send("API Server is running!");
-}).listen(app.get('port', () => {
+app.listen(app.get('port', () => {
     console.log(`API Server is listening at PORT = ${PORT}`);
 }));
