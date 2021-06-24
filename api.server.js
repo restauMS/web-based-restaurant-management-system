@@ -2,8 +2,10 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const PORT = process.env.API_SERVER || 3000;
+const PORT = process.env.API_SERVER || 3001;
 const path = require('path');
+
+app.set('port', PORT);
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -23,7 +25,8 @@ app.use('/API/Worker', Worker);
 app.use('/API/Admin', Admin);
 app.use('/API/Inventory', Inventory);
 
-
-app.listen(PORT, () => {
-    console.log(`API Server is listening at http://localhost:${PORT}`);
-});
+app.get('/API', (Request, Response) => {
+    Response.send("API Server is running!");
+}).listen(app.get('port', () => {
+    console.log(`API Server is listening at PORT = ${PORT}`);
+}));
