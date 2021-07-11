@@ -12,7 +12,7 @@ import { CustomerContext } from '../../../contexts/CustomerContext';
 
 const CustomerLog = () => {
 
-    const { Stage ,  PageCount , _NextPage, _BackPage} = useContext(CustomerContext);
+    const { Stage, CustomerDineType: DineType,  PageCount, _NextPage, _BackPage } = useContext(CustomerContext);
     
     if(Stage !== 1) 
         return null;
@@ -59,7 +59,7 @@ const CustomerLog = () => {
                             ButtonContent = 'Back'
                             ButtonFunction = {(e) => {
                                 e.preventDefault();
-                                _BackPage()
+                                    _BackPage(DineType === 'Takeout' ? 2 : 1);
                             }}
                         />
                     :    

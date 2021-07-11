@@ -1,6 +1,6 @@
 import ServiceMenu from '../ServiceMenu/ServiceMenu';
 import { CustomerOrder , CustomerCheckout } from '../../layouts/Customer/CustomerLayout';
-import { AdminLogin , AdminDashboard } from '../../layouts/Admin/AdminLayout';
+import { AdminLogin , AdminDashboard , AdminRegistration} from '../../layouts/Admin/AdminLayout';
 import { WorkerLogin , WorkerRegistration , WorkerDashboard } from '../../layouts/Worker/WorkerLayout';
 // Dev Note: I'm pretty sure there's a much cleaner way than this but fuck it...
 // ? Content Pages for Admin
@@ -42,6 +42,14 @@ const MasterRoutes = [
         component: AdminLogin,
         RouteType: 'authenticator',
         RedirectPath: '/Admin/Dashboard',
+        strict: true,
+        exact: true
+    },
+    {
+        path: '/Admin/Registration',
+        component: AdminRegistration,
+        RouteType: 'protected',
+        RedirectPath: '/Admin/Login',
         strict: true,
         exact: true
     },
@@ -89,8 +97,8 @@ const MasterRoutes = [
     {
         path: '/Worker/Registration',
         component: WorkerRegistration,
-        RouteType: 'authenticator',
-        RedirectPath: '/Worker/Dashboard',
+        RouteType: 'protected',
+        RedirectPath: '/Worker/Login',
         strict: true,
         exact: true
     },

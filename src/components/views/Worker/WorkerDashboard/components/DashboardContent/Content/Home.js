@@ -90,7 +90,7 @@ const Home = ({info}) => {
                                 />
                                 <div className="Dish">
                                     <Label
-                                        LabelContent = {`${TrendingDish}`}
+                                        LabelContent = {`${TrendingDish != null ? TrendingDish : 'Nothing yet... 😥'}`}
                                         Style = {{fontSize: 'clamp(10px, 20px, 30px)', textAlign: 'center', color: '#EAAC8B'}}
                                         isLabelContrast = {false}
                                     />

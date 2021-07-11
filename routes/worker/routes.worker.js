@@ -2,6 +2,10 @@ const express = require('express');
 const Router = express.Router();
 const {compare, hash} = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
+const { check, validationResult } = require('express-validator');
+
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // Services
 const Authenticate = require('../../services/worker/worker.auth');
@@ -261,6 +265,13 @@ Router.post('/Authenticate', async(Request, Response) => {
         }
     } catch (error) {
         console.trace(error);
+        Response.status(403)
+                .send(
+                    {
+                        "Status": false,
+                        "StatusDescription": "Login Unsuccesful, Password is incorrect"
+                    }
+                );
     }
 });
 
@@ -286,26 +297,60 @@ Router.post('/Delete', AuthenticateToken, async(Request, Response) => {
     }
 });
 
-Router.post('/Register', async(Request, Response) => {
+Router.post('/Register', urlencodedParser, [
+
+    check('Username', 'Username should at least contain 3 characters or more')
+        .exists()
+        .isLength({min: 3})
+    ,
+    check('Password', 'Password should atleast contain 8 characters or more')
+        .exists()
+        .isLength({min: 8})
+    ,
+    check('Fullname', 'Fullname should atleast contain 3 characters or more')
+    .exists()
+    .isLength({min: 3})
+    ,
+
+    check('Contact', 'The contact number you entered is not valid!')
+    .exists()
+    .isInt()
+    .isLength({min: 11, max: 11})
+
+    ,
+    check('Address', 'This field should not be left empty and should be 3 characters or more')
+    .exists()
+    .isLength({min: 3})
+
+],async(Request, Response) => {
     try {
-        const {Username, Password, Fullname, Contact, Address} = Request.body;
-        const EncryptedPassword = await hash(Password, 10);
-        const PushWorkerData = await Register(Username, EncryptedPassword, Fullname, Contact, Address);
-        if (PushWorkerData) {
-            Response.status(200)
-            .send(
-                {
-                    "Status": PushWorkerData,
-                    "StatusDescription": "Registration successful!"
-                })
+
+        // ? Server-sided form validations
+        const validationErrors = validationResult(Request);
+
+        if(!validationErrors.isEmpty()){
+            Response.status(422)
+            .send({'Error': validationErrors.array()});
         } else {
-            Response.status(500)
-            .send(
-                {
-                    "Status": PushWorkerData,
-                    "StatusDescription": "Something went wrong, operation failed."
-                }
-            )
+            const {Username, Password, Fullname, Contact, Address} = Request.body;
+            const EncryptedPassword = await hash(Password, 10);
+            const PushWorkerData = await Register(Username, EncryptedPassword, Fullname, Contact, Address);
+            if (PushWorkerData) {
+                Response.status(200)
+                .send(
+                    {
+                        "Status": PushWorkerData,
+                        "StatusDescription": "Registration successful!"
+                    })
+            } else {
+                Response.status(500)
+                .send(
+                    {
+                        "Status": PushWorkerData,
+                        "StatusDescription": "Something went wrong, operation failed."
+                    }
+                )
+            }
         }
     } catch (error) {
         console.trace(error);

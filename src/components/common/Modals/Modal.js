@@ -39,6 +39,8 @@ export const FoodModal = (props) => {
                                 const exist = props.CheckoutList.find((item) => item.Id === props.FoodId);
                                 if(exist) 
                                     alert('Item is already in checkout!')
+                                else if(props.FoodQty < FoodQty)
+                                    alert(`Sorry, there's not enough ${props.FoodName}`)
                                 else 
                                     props.SetCheckoutList([...props.CheckoutList, { Id: props.FoodId, Name: props.FoodName, Price: props.FoodPrice, Qty: FoodQty, Total: (props.FoodPrice * FoodQty)}]);
                                 props.SetFoodModalStatus(false);
@@ -341,7 +343,12 @@ export const CheckoutModal = (props) => {
                             ButtonContent = "Proceed"
                             isButtonContrast = {true}
                             ButtonFunction = {() => {
-                                alert('Are you sure?');
+                                if(props.CheckoutList.length !== 0){
+                                    props.SetCustomerCheckout(props.CheckoutList);
+                                    props.SetCheckoutList([]);
+                                    props.Proceed();
+                                } else 
+                                    alert('You need atleast 1 order to proceed checkout')
                             }}
                         />
                         <ModalButton
@@ -517,7 +524,6 @@ export const EditSettingInfoModal = (props) => {
                                     else if (props.InfoEditable === 'Address')
                                         props.SetNewAddress(NewValue, props.ToEditData.address, props.ToEditData.id);
                                     props.SetModalActive(false);
-                                    console.log("Password stuff: " + NewValue + " " + props.ToEditData.password + " " + props.ToEditData.id)
                                 }
                             }
                         />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AdminLogin as Login, AdminDashboard as Dashboard} from '../../views/Admin/AdminView';
+import { AdminLogin as Login, AdminDashboard as Dashboard, AdminRegistration as Registration} from '../../views/Admin/AdminView';
 import { AdminProvider } from '../../contexts/AdminContext';
 import './style/AdminLayout.scss';
 
@@ -9,7 +9,15 @@ export const AdminLogin = () => {
             <Login/>
         </div>
     )
-}
+};
+
+export const AdminRegistration = () => {
+        return (
+        <div className="AdminLayoutContainer">
+            <Registration/>
+        </div>
+        )
+};
 
 export const AdminDashboard = ({routes}) => {
     return (
@@ -21,4 +29,4 @@ export const AdminDashboard = ({routes}) => {
             </div>
         </AdminProvider>
     )
-}
+};

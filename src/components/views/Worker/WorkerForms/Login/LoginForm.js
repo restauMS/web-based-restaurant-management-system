@@ -42,7 +42,7 @@ const Login = () => {
                 alert('Recheck your Username and Password input');
             }
         } catch (error) {
-            console.trace(error);
+            alert('Recheck your Username and Password input');
         }
     }
 

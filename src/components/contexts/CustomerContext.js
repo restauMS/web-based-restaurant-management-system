@@ -72,9 +72,9 @@ export const CustomerProvider = (props) => {
         SetPageCount(PageCount >= 6 ? 7 : PageCount + 1);
     }
 
-    // ? Not sure yet...
-    const _BackPage = () => {
-        SetPageCount(PageCount <= 1 ? 1 : PageCount - 1);
+    
+    const _BackPage = (DecrementValue) => {
+        SetPageCount(PageCount <= 1 ? 1 : PageCount - DecrementValue);
     }
 
     const CompleteSession = () => {

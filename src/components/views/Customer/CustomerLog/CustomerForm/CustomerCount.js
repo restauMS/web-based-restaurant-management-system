@@ -23,7 +23,7 @@ const CustomerCount = () => {
             }}
         >
             <CustomerLabel
-                LabelContent={`How are you doing, ${CustomerName}!`}
+                LabelContent={`How are you doing, ${CustomerName || 'anonymous'}!`}
                 isLabelContrast={false}
             />
             <div style = {{

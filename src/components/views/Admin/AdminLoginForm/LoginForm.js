@@ -42,7 +42,7 @@ const Login = () => {
                 alert('Recheck your Username and Password input');
             }
         } catch (error) {
-            console.trace(error);
+            alert('Recheck your Username and Password input');
         }
         
         
@@ -68,10 +68,12 @@ const Login = () => {
                 />
                 <LoginInput
                     PlaceholderTitle = 'Username here'
+                    Name = 'Username'
                     HandleChange = {(e) => SetUsername(e.target.value)}
                 />
                 <LoginInput
                     PlaceholderTitle = 'Password here'
+                    Name = 'Password'
                     HandleChange = {(e) => SetPassword(e.target.value)}
                     Type = 'password'
                 />

@@ -9,7 +9,6 @@ import CheckoutIcon from '../../../../assets/button-assets/checkout-icon.png';
 
 const CustomerMenu = props => {
 
-
     const { 
         Stage, 
         _NextStage,
@@ -47,6 +46,8 @@ const CustomerMenu = props => {
                         CheckoutList = {CheckoutList}
                         SetCheckoutList = {SetCheckoutList}
                         SetModalStatus = {SetModalStatus}
+                        SetCustomerCheckout= {SetCustomerCheckout}
+                        Proceed = {_NextStage}
                     />
                 :
                     null
@@ -57,7 +58,7 @@ const CustomerMenu = props => {
                         FoodName = {CurrentFoodFocus.Name}
                         FoodPrice = {CurrentFoodFocus.Price}
                         FoodId = {CurrentFoodFocus.Id}
-                        FoodCheckedOut = {CurrentFoodFocus.IsSelected}
+                        FoodQty = {CurrentFoodFocus.Quantity}
                         SetFoodModalStatus = {SetFoodModalStatus}
                         SetCheckoutList = {SetCheckoutList}
                         CheckoutList = {CheckoutList}
@@ -68,13 +69,13 @@ const CustomerMenu = props => {
             <div className="InnerContainer">
                 <div className="HeaderContainer">
                     <CustomerLabel
-                        LabelContent = {`Hello${Name.length > 0 ? `, ${Name}` : ' 😊'}`}
+                        LabelContent = {`Hello${Name != null ? `, ${Name}` : ' 😊'}`}
                         Style = {{margin: '10px auto',textAlign: "start"}}
                     />
                     
                 </div>
                 <CustomerLabel
-                    LabelContent = {`${Day[CurrentDate.getDay()]}, ${TodayDate}, Weather information unavailable at the moment`}
+                    LabelContent = {`${Day[CurrentDate.getDay()]}, ${TodayDate}`}
                     Style = {{fontSize: '17px', margin: '0 auto', textAlign: "start"}}
                 />
                 <div className="FoodMenuContainer">
@@ -84,7 +85,7 @@ const CustomerMenu = props => {
                             LabelContent = {`We're very sorry for this, the Menu seems to be empty 😢`}
                         />
                         :
-                        MenuList.map(({id, name, price}) => 
+                        MenuList.map(({id, name, price, quantity}) => 
                         <FoodCard 
                             key={id}
                             FoodName = {name}
@@ -92,7 +93,7 @@ const CustomerMenu = props => {
                             isRounded = {false}
                             FoodCardFunction = {() => {
                                 SetFoodModalStatus(true);
-                                SetFoodFocus({Id: id, Name: name, Price: price});
+                                SetFoodFocus({Id: id, Name: name, Price: price, Quantity: quantity});
                             }}
                         />)
                     }
@@ -135,9 +136,12 @@ const CustomerMenu = props => {
                         ButtonContent = "Proceed"
                         isButtonContrast = {true}
                         ButtonFunction = {() => {
-                            _NextStage();
-                            SetCustomerCheckout(CheckoutList);
-                            SetCheckoutList([]);
+                            if(CheckoutList.length !== 0) {
+                                _NextStage();
+                                SetCustomerCheckout(CheckoutList);
+                                SetCheckoutList([]);
+                            } else
+                                alert('You need atleast 1 order to proceed checkout');
                         }}
                     />
                 </div>

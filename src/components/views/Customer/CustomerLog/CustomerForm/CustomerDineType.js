@@ -16,7 +16,7 @@ const CustomerDineType = () => {
             flexFlow: 'column'
         }}>
             <CustomerLabel
-                LabelContent={`Hello, ${CustomerName}!`}
+                LabelContent={`Hello, ${CustomerName || 'anonynmous'}!`}
                 isLabelContrast={false}
             />
             <div style = {{

@@ -27,7 +27,7 @@ const CustomerLogName = () => {
                 PlaceholderTitle='enter your name'
                 HandleChange = { (e) => {
                     e.preventDefault();
-                    SetName(e.target.value);
+                        SetName(e.target.value);
                     } 
                 }
                 Name = 'CustomerName'
