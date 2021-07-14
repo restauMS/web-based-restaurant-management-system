@@ -2,7 +2,7 @@ import ServiceMenu from '../ServiceMenu/ServiceMenu';
 import { CustomerOrder , CustomerCheckout } from '../../layouts/Customer/CustomerLayout';
 import { AdminLogin , AdminDashboard , AdminRegistration} from '../../layouts/Admin/AdminLayout';
 import { WorkerLogin , WorkerRegistration , WorkerDashboard } from '../../layouts/Worker/WorkerLayout';
-// Dev Note: I'm pretty sure there's a much cleaner way than this but fuck it...
+// Dev Note: I'm pretty sure there's a much cleaner way than this
 // ? Content Pages for Admin
 import AdminInventory from '../Admin/AdminDashboard/components/DashboardContent/Content/Inventory';
 import AdminTransactions from '../Admin/AdminDashboard/components/DashboardContent/Content/Transactions';
